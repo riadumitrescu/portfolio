@@ -67,6 +67,20 @@ body {
   }
   
   /* Custom cursor on hover */
-  #container:hover {
-    cursor: pointer;
-  }
+  #container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#marketing-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    cursor: grab;
+    pointer-events: auto; /* allow interaction with the video */
+    max-width: 80%;
+    max-height: 80%;
+}

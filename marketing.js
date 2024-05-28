@@ -1,27 +1,29 @@
-const video = document.getElementById('video');
+window.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('marketing-video');
+    let isDragging = false;
+    let offsetX, offsetY;
 
-let isDragging = false;
-let offsetX, offsetY;
+    // Handle mouse events for dragging the video
+    video.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - video.offsetLeft;
+        offsetY = e.clientY - video.offsetTop;
+        video.style.cursor = 'grabbing';
+    });
 
-video.addEventListener('mousedown', startDrag);
-video.addEventListener('mouseup', stopDrag);
-video.addEventListener('mousemove', drag);
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            video.style.cursor = 'grab';
+        }
+    });
 
-function startDrag(e) {
-    isDragging = true;
-    offsetX = e.clientX - video.getBoundingClientRect().left;
-    offsetY = e.clientY - video.getBoundingClientRect().top;
-}
-
-function stopDrag() {
-    isDragging = false;
-}
-
-function drag(e) {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.clientX - offsetX;
-    const y = e.clientY - offsetY;
-    video.style.left = `${x}px`;
-    video.style.top = `${y}px`;
-}
+    window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+            video.style.left = `${x}px`;
+            video.style.top = `${y}px`;
+        }
+    });
+});
