@@ -71,16 +71,18 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-}
-
-#marketing-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #marketing-video-1,
+  #marketing-video-2 {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
     cursor: grab;
     pointer-events: auto; /* allow interaction with the video */
     max-width: 80%;
     max-height: 80%;
-}
+  }
+
+  
