@@ -77,12 +77,93 @@ body {
   }
   
   #marketing-video-1,
-  #marketing-video-2 {
+  #marketing-video-2, #marketing-video-3, #marketing-video-4, #marketing-video-5, #marketing-video-6, #marketing-video-7, #marketing-video-8, #marketing-video-9, #marketing-video-10, #marketing-video-11, #marketing-video-12  {
     position: absolute;
     cursor: grab;
     pointer-events: auto; /* allow interaction with the video */
-    max-width: 80%;
-    max-height: 80%;
+    max-width: 40%;
+    max-height: 40%;
   }
 
-  
+  /* Adjustments for responsiveness */
+@media (max-width: 992px) {
+  #container {
+    width: 90vw; /* Adjusted width for medium screens */
+    height: 60vh; /* Adjusted height for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  #container {
+    width: 90vw; /* Adjusted width for small screens */
+    height: 40vh; /* Adjusted height for small screens */
+  }
+
+  video {
+    max-width: 30%; /* Reduce video width on small screens */
+    max-height: 30%; /* Reduce video height on small screens */
+  }
+}
+
+/* circle */
+#rounded-rectangle {
+  width: 400px; /* Adjusted width */
+  height: 200px; /* Adjusted height */
+  background-color: white; /* Solid background color */
+  border-radius: 20px; /* Adjust the border radius to control the roundness of corners */
+  box-shadow: 
+    0 0 0 5px black, /* Black border */
+    0 0 10px rgba(0, 0, 0, 0.5); /* Dark subtle shadow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack the text vertically */
+  background-clip: padding-box; /* Clip the background to the padding box */
+  position: relative; /* Make sure the note can be positioned absolutely within the box */
+}
+
+#rounded-rectangle-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Ensure it's above other content */
+}
+
+#rounded-rectangle p {
+  margin: 0;
+  font-size: 150%; /* Increase the font size */
+  font-weight: bold; /* Bold font weight */
+  text-align: center;
+  color: black;
+  border-radius: 20px; /* Ensure text corners are round */
+}
+
+#rounded-rectangle p.note {
+  font-size: 70%; /* Smaller font size for the note */
+  font-weight: normal; /* Normal font weight for the note */
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  text-align: right;
+}
+.gradient-text {
+  background: linear-gradient(to right, #ADD8E6, #BA55D3); /* Adjusted color values */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 400% 400%; /* Increased size to accommodate circular movement */
+  animation: gradient-animation 6s linear infinite; /* Increased duration to complete a full circle */
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%; /* Start from the left */
+  }
+  50% {
+    background-position: 100% 50%; /* Move to the right */
+  }
+  100% {
+    background-position: 0% 50%; /* Complete the circle */
+  }
+}
