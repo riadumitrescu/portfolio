@@ -1,0 +1,59 @@
+/* Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+body {
+  background-color: #f8f9fa; /* Light grey background */
+  font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
+}
+
+.navbar {
+  border-radius: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-brand {
+  font-weight: bold; /* Make the navbar brand bold */
+  font-size: 24px; /* Adjust the font size */
+}
+
+.navbar-toggler-icon {
+  font-size: 16px; /* Adjust the hamburger menu icon size */
+}
+
+.navbar-nav .nav-item {
+  position: relative; /* Position relative for the pseudo-element */
+}
+
+.navbar-nav .nav-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust the position of the line */
+  width: 0;
+  height: 2px; /* Height of the line */
+  background-color: black; /* Color of the line */
+  transition: width 0.3s ease; /* Transition effect for width */
+}
+
+.navbar-nav .nav-item:hover::after {
+  width: 100%; /* Expand the line on hover */
+}
+
+/* Style for the "About" link */
+.navbar-nav .nav-item:nth-child(3) .nav-link {
+  color: black; /* Make the text color black */
+}
+
+.navbar-nav .nav-item:nth-child(3) .nav-link::after {
+  width: 100%; /* Ensure the underline is full width */
+}
+
+
+
+
+/* Responsive font size */
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    font-size: 16px; /* Decrease font size for smaller screens */
+  }
+}

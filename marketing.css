@@ -40,13 +40,16 @@ body {
 }
 
 /* Style for the "About" link */
-.navbar-nav .nav-item:nth-child(1) .nav-link {
+.navbar-nav .nav-item:nth-child(4) .nav-link {
   color: black; /* Make the text color black */
 }
 
-.navbar-nav .nav-item:nth-child(1) .nav-link::after {
+.navbar-nav .nav-item:nth-child(4) .nav-link::after {
   width: 100%; /* Ensure the underline is full width */
 }
+
+
+
 
 /* Responsive font size */
 @media (max-width: 768px) {
