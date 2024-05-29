@@ -73,10 +73,15 @@ body {
   color: white !important;
 }
 .card {
+  color: black;
   border-radius: 20px; /* Rounded corners for cards */
   border: 2px solid black; /* Black border */
   transition: all 0.3s ease; /* Smooth transition for hover effect */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+.card-link .card-body {
+  color: black; /* Set text color to black */
 }
 
 .card-img-top {
@@ -97,6 +102,9 @@ body {
 #projects .row {
   justify-content: center; /* Center the row content */
 }
+
+
+
 
 /* Hover Effect */
 .card:hover {
