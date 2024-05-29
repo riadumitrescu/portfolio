@@ -172,3 +172,17 @@ body {
 .project-info {
   padding-left: 0px; /* Add left padding to move the content 20 pixels away from the left edge */
 }
+
+
+/* Additional CSS for video styling */
+.video-section {
+  padding-top: 0px;
+  width: 100%;
+  margin-top: 50px; /* Adjust margin as needed */
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+}
