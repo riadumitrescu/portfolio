@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
 
 body {
-  background-color: #f8f9fa; /* Light grey background */
+  background-color: hsl(0, 0%, 100%); /* Light grey background */
   font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
 }
 
@@ -170,4 +170,19 @@ body {
 }
 .project-info {
   padding-left: 0px; /* Add left padding to move the content 20 pixels away from the left edge */
+}
+
+
+
+/* Additional CSS for video styling */
+.video-section {
+  padding-top: 0px;
+  width: 100%;
+  margin-top: 50px; /* Adjust margin as needed */
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
 }
