@@ -189,3 +189,87 @@ body {
 
 
 
+/*colors*/
+.container1 {
+  height: 200px;
+  width: 700px;
+  border-radius: 1em;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(219, 219, 219, 0.1); /* Adjusted opacity */
+  font-family: sans-serif;
+  margin: 30px auto 0; /* Add margin-top of 30px to create space above */
+}
+
+
+
+.palette {
+  display: flex;
+  height: 86%;
+  width: 100%;
+}
+
+.color {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: flex 0.1s linear;
+}
+
+.color span {
+  opacity: 0;
+  transition: opacity 0.1s linear;
+}
+
+.color:nth-child(1) {
+  background: #8D4630;
+}
+
+.color:nth-child(2) {
+  background: #FFFFFF;
+}
+
+.color:nth-child(3) {
+  background: #000000;
+}
+
+.color:nth-child(4) {
+  background: #DDDDDD;
+}
+
+.color:nth-child(5) {
+  background: #243E33;
+}
+
+.color:hover {
+  flex: 2;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.color:hover span {
+  opacity: 1;
+}
+
+#stats {
+  height: 14%;
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5em;
+  box-sizing: border-box;
+  color: #bebebe;
+}
+
+#stats svg {
+  fill: #bebebe;
+  transform: scale(1.2);
+}
+
+
+
