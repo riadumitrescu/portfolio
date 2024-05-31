@@ -172,3 +172,302 @@ body {
 .project-info {
   padding-left: 0px; /* Add left padding to move the content 20 pixels away from the left edge */
 }
+
+
+.light-side-section {
+  background-color: black;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 36px 10px;
+  text-align: center;
+  z-index: 0;
+}
+
+.light-side-title {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  color: #ffd4d2;
+}
+
+.light-side-paragraph {
+  font-size: 1.1em;
+  margin: 0 auto;
+  max-width: 800px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  text-align: justify;
+  padding-bottom: 40px;
+  color: #ffd4d2;
+}
+
+
+.white-side-section {
+  background-color: #FFFBF4;
+  color: rgb(0, 0, 0);
+  position: relative;
+  overflow: hidden;
+  padding: 50px 20px;
+  text-align: center;
+  z-index: 0;
+}
+
+
+.white-side-title {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  padding-top: 40px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  color: #0c371b;
+}
+
+.white-side-paragraph {
+  font-size: 1.1em;
+  margin: 0 auto;
+  max-width: 800px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  text-align: justify;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  color: #265e2a;
+}
+
+
+.black-side-paragraph {
+  font-size: 1.1em;
+  margin: 0 auto;
+  max-width: 800px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  text-align: justify;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #ffd4d2;
+}
+
+.circle {
+  position: absolute;
+  background: rgba(128, 0, 128, 0.2); /* Purple color with opacity */
+  border-radius: 50%;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  pointer-events: none; /* To ensure it doesn't interfere with text selection */
+  z-index: 1; /* Ensure the circle is behind the text */
+
+}
+
+.images-container {
+  text-align: center;
+}
+
+
+.memory-image {
+  padding: 20px 100px;
+  max-width: calc(100% - 100px); /* Adjusted to ensure images are smaller */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.image-section img {
+  max-width: 100%; /* Make the images responsive */
+  height: auto;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 576px) {
+  .image-section img {
+      margin: 0; /* Remove margin on mobile */
+  }
+
+  .memory-image {
+      padding: 20px 0px;
+      max-width: calc(100% - 0px); /* Adjusted to ensure images are smaller */
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+}
+
+/*card*/
+
+
+
+
+.card {
+  color: black;
+  border-radius: 20px; /* Rounded corners for cards */
+  border: 2px solid black; /* Black border */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+.card-link .card-body {
+  color: black; /* Set text color to black */
+}
+
+.card-img-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+/* Additional Styles */
+#projects .card {
+  flex: 1; /* Distribute remaining space equally */
+  margin: 0 auto; /* Center cards horizontally */
+}
+
+#projects .row {
+  justify-content: center; /* Center the row content */
+}
+
+
+
+
+/* Hover Effect */
+.card:hover {
+  border: 2px solid white; /* White border on hover */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+  transform: scale(1.05); /* Slightly bigger on hover */
+}
+
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+  20%, 40%, 60%, 80% { transform: translateX(8px); }
+}
+
+.card:active {
+  animation: shake 1.2s cubic-bezier(.36,.07,.19,.97); /* Adjusted duration and timing function */
+}
+
+
+
+/* Custom Styles */
+.description-text {
+  font-size: 14px; /* Set the description text size */
+}
+
+/* Responsive font size for description text */
+@media (max-width: 576px) {
+  .description-text {
+    font-size: 12px; /* Decrease font size for smaller screens */
+  }
+}
+
+.card {
+  color: black;
+  border-radius: 20px; /* Rounded corners for cards */
+  border: 2px solid black; /* Black border */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+.card-link .card-body {
+  color: black; /* Set text color to black */
+}
+
+.card-img-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+h2 {
+  padding-top: 20px;
+}
+
+
+
+
+
+/*colors*/
+.container1 {
+  height: 300px;
+  width: 900px;
+  border-radius: 1em;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(219, 219, 219, 0.1); /* Adjusted opacity */
+  font-family: sans-serif;
+  margin: 30px auto 0; /* Add margin-top of 30px to create space above */
+}
+
+
+
+.palette {
+  display: flex;
+  height: 86%;
+  width: 100%;
+}
+
+.color {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: flex 0.1s linear;
+}
+
+.color span {
+  opacity: 0;
+  transition: opacity 0.1s linear;
+}
+
+.color:nth-child(1) {
+  background: #3B8957;
+}
+
+.color:nth-child(2) {
+  background: #FFE7E1;
+}
+
+.color:nth-child(3) {
+  background: #E99F8E;
+}
+
+.color:nth-child(4) {
+  background: #58A876;
+}
+
+.color:nth-child(5) {
+  background: #243E33;
+}
+
+.color:hover {
+  flex: 2;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.color:hover span {
+  opacity: 1;
+}
+
+#stats {
+  height: 14%;
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5em;
+  box-sizing: border-box;
+  color: #bebebe;
+}
+
+#stats svg {
+  fill: #bebebe;
+  transform: scale(1.2);
+}
+
+
