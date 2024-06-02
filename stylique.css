@@ -229,19 +229,19 @@ body {
   background: #8D4630;
 }
 
-.color:nth-child(2) {
+.color:nth-child(5) {
   background: #FFFFFF;
 }
 
-.color:nth-child(3) {
+.color:nth-child(2) {
   background: #000000;
 }
 
-.color:nth-child(4) {
+.color:nth-child(3) {
   background: #DDDDDD;
 }
 
-.color:nth-child(5) {
+.color:nth-child(4) {
   background: #243E33;
 }
 
