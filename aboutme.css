@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
 
 body {
-  background-color: #ffffff; /* Light grey background */
+  background-color: #ffffff  !important; /* Light grey background */
   font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
 }
 
@@ -230,4 +230,11 @@ body {
 }
 
 
+h2 {
+  margin-top: 40px; /* Adjust the value as needed */
+  size: 2.3em;
+}
 
+
+
+/* cool text*/ 

@@ -1,0 +1,319 @@
+/* Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+body {
+  background-color: hsl(0, 0%, 100%); /* Light grey background */
+  font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
+}
+
+
+
+.navbar {
+  border-radius: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-brand {
+  font-weight: bold; /* Make the navbar brand bold */
+  font-size: 24px; /* Adjust the font size */
+}
+
+.navbar-toggler-icon {
+  font-size: 16px; /* Adjust the hamburger menu icon size */
+}
+
+.navbar-nav .nav-item {
+  position: relative; /* Position relative for the pseudo-element */
+}
+
+.navbar-nav .nav-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust the position of the line */
+  width: 0;
+  height: 2px; /* Height of the line */
+  background-color: black; /* Color of the line */
+  transition: width 0.3s ease; /* Transition effect for width */
+}
+
+.navbar-nav .nav-item:hover::after {
+  width: 100%; /* Expand the line on hover */
+}
+
+/* Style for the "About" link */
+.navbar-nav .nav-item:nth-child(2) .nav-link {
+  color: black; /* Make the text color black */
+}
+
+.navbar-nav .nav-item:nth-child(2) .nav-link::after {
+  width: 100%; /* Ensure the underline is full width */
+}
+
+/* Responsive font size */
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    font-size: 16px; /* Decrease font size for smaller screens */
+  }
+
+  .site-title {
+    font-size: 120px; /* Adjust title size for smaller screens */
+  }
+
+  .title-section {
+    padding-top: 120px; /* Adjust padding for smaller screens */
+  }
+}
+
+
+
+/*titleeeee*/
+
+.title-section {
+  padding-top: 256px; /* Padding only above the title */
+}
+
+.title-container {
+  padding-left: 20px; /* Some space to the left */
+}
+
+.site-title {
+  --bg-size: 400%;
+  --color-one: hsl(0, 0%, 0%);
+  --color-two: hsl(0, 0%, 68%);
+  font-size: clamp(3rem, 25vmin, 8rem);
+  background: linear-gradient(
+                90deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-one)
+              ) 0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: move-bg 4s infinite linear;
+  transition: letter-spacing 0.5s ease; /* Add transition for smooth effect */
+
+}
+
+
+@keyframes move-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+.site-title:hover {
+  letter-spacing: 90px; /* Increase letter spacing on hover */
+}
+
+/* Custom Styles */
+
+body {
+  background-color: #f8f9fa; /* Light grey background */
+  font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
+}
+
+.title-section {
+  padding-top: 256px; /* Padding only above the title */
+}
+
+.title-container {
+  padding-left: 200px; /* Some space to the left */
+}
+
+.line {
+  width: 100%; /* Set width to fill the container */
+  height: 5px; /* Set height to define the thickness of the rectangle */
+  background: linear-gradient(
+                90deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-one)
+            ) 0 0 / 200% 100%; /* Adjust the background size */
+  animation: move-bg 4s infinite linear;
+  --color-one: hsl(0, 0%, 0%);
+  --color-two: hsl(0, 0%, 68%);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .title-section {
+    padding-top: 120px; /* Adjust padding for smaller screens */
+  }
+}
+
+/* Disable hover effect on mobile */
+@media (max-width: 768px) {
+  .site-title {
+    letter-spacing: normal; /* Remove letter spacing */
+  }
+  .site-title:hover {
+    letter-spacing: 3px; /* Increase letter spacing on hover */
+  }
+
+  .title-container {
+    padding-left: 20px; /* Some space to the left */
+  }}
+  
+
+
+.project-info {
+    text-align: left; /* Align text to the left */
+}
+.project-about {
+  font-size: 32px; /* Set the font size to 36px */
+}
+.project-info {
+  padding-left: 0px; /* Add left padding to move the content 20 pixels away from the left edge */
+}
+
+
+
+/* Additional CSS for video styling */
+.video-section {
+  padding-top: 0px;
+  width: 100%;
+  margin-top: 50px; /* Adjust margin as needed */
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+}
+
+
+
+/*colors*/
+.container1 {
+  height: 200px;
+  width: 700px;
+  border-radius: 1em;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(219, 219, 219, 0.1); /* Adjusted opacity */
+  font-family: sans-serif;
+  margin: 30px auto 0; /* Add margin-top of 30px to create space above */
+}
+
+
+
+.palette {
+  display: flex;
+  height: 86%;
+  width: 100%;
+}
+
+.color {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: flex 0.1s linear;
+}
+
+.color span {
+  opacity: 0;
+  transition: opacity 0.1s linear;
+}
+
+.color:nth-child(1) {
+  background: #8D4630;
+}
+
+.color:nth-child(5) {
+  background: #FFFFFF;
+}
+
+.color:nth-child(2) {
+  background: #000000;
+}
+
+.color:nth-child(3) {
+  background: #DDDDDD;
+}
+
+.color:nth-child(4) {
+  background: #243E33;
+}
+
+.color:hover {
+  flex: 2;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.color:hover span {
+  opacity: 1;
+}
+
+#stats {
+  height: 14%;
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5em;
+  box-sizing: border-box;
+  color: #bebebe;
+}
+
+#stats svg {
+  fill: #bebebe;
+  transform: scale(1.2);
+}
+
+
+
+
+
+
+.body-gallery{
+    margin:0;
+    height:100vh;
+    display:grid;
+    place-items:center;
+    background-color:#010101;
+  }
+  
+  .gallery{
+    position:relative;
+    width:300px;
+    height:300px;
+    transform-style:preserve-3d;
+    animation:rotate 35s linear infinite;
+  }
+  
+  @keyframes rotate{
+    from{
+      transform:perspective(1200px) rotateY(0deg);
+    }
+    
+    to{
+      transform:perspective(1200px) rotateY(360deg);
+    }
+  }
+  
+  .gallery span{
+    position:absolute;
+    width:100%;
+    height:100%;
+    transform-origin:center;
+    transform-style:preserve-3d;
+    transform:rotateY(calc(var(--i) * 45deg)) translateZ(380px);
+  }
+  
+  .gallery span img{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }

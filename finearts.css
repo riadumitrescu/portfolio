@@ -1,0 +1,651 @@
+/* Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+body {
+  background-color: #c9c9c9 !important; /* Light grey background */
+  font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
+}
+
+
+
+.navbar {
+  border-radius: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-brand {
+  font-weight: bold; /* Make the navbar brand bold */
+  font-size: 24px; /* Adjust the font size */
+}
+
+.navbar-toggler-icon {
+  font-size: 16px; /* Adjust the hamburger menu icon size */
+}
+
+.navbar-nav .nav-item {
+  position: relative; /* Position relative for the pseudo-element */
+}
+
+.navbar-nav .nav-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust the position of the line */
+  width: 0;
+  height: 2px; /* Height of the line */
+  background-color: black; /* Color of the line */
+  transition: width 0.3s ease; /* Transition effect for width */
+}
+
+.navbar-nav .nav-item:hover::after {
+  width: 100%; /* Expand the line on hover */
+}
+
+/* Style for the "About" link */
+.navbar-nav .nav-item:nth-child(2) .nav-link {
+  color: black; /* Make the text color black */
+}
+
+.navbar-nav .nav-item:nth-child(2) .nav-link::after {
+  width: 100%; /* Ensure the underline is full width */
+}
+
+/* Responsive font size */
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    font-size: 16px; /* Decrease font size for smaller screens */
+  }
+
+  .site-title {
+    font-size: 120px; /* Adjust title size for smaller screens */
+  }
+
+  .title-section {
+    padding-top: 120px; /* Adjust padding for smaller screens */
+  }
+}
+
+
+
+/*titleeeee*/
+
+.title-section {
+  padding-top: 256px; /* Padding only above the title */
+}
+
+.title-container {
+  padding-left: 20px; /* Some space to the left */
+}
+
+.site-title {
+  --bg-size: 400%;
+  --color-one: #f29b7e;
+  --color-two: #41bd6c;
+  font-size: clamp(3rem, 25vmin, 8rem);
+  background: linear-gradient(
+                90deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-one)
+              ) 0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: move-bg 4s infinite linear;
+  transition: letter-spacing 0.5s ease; /* Add transition for smooth effect */
+}
+
+
+@keyframes move-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+.site-title:hover {
+  letter-spacing: 50px; /* Increase letter spacing on hover */
+}
+
+/* Custom Styles */
+
+body {
+  background-color: #f8f9fa; /* Light grey background */
+  font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
+}
+
+.title-section {
+  padding-top: 256px; /* Padding only above the title */
+}
+
+.title-container {
+  padding-left: 200px; /* Some space to the left */
+}
+
+.line {
+  width: 100%; /* Set width to fill the container */
+  height: 5px; /* Set height to define the thickness of the rectangle */
+  background: linear-gradient(
+                90deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-one)
+            ) 0 0 / 200% 100%; /* Adjust the background size */
+  animation: move-bg 4s infinite linear;
+  --color-one: #DFB6A8;
+  --color-two: #378352;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .title-section {
+    padding-top: 120px; /* Adjust padding for smaller screens */
+  }
+}
+
+/* Disable hover effect on mobile */
+@media (max-width: 768px) {
+  .site-title {
+    letter-spacing: normal; /* Remove letter spacing */
+  }
+  .site-title:hover {
+    letter-spacing: 3px; /* Increase letter spacing on hover */
+  }
+
+  .title-container {
+    padding-left: 20px; /* Some space to the left */
+  }}
+  
+
+
+.project-info {
+    text-align: left; /* Align text to the left */
+    color: #525252;
+}
+.project-about {
+  font-size: 28px; /* Set the font size to 36px */
+  color:#212838;
+}
+.project-info {
+  padding-left: 0px; /* Add left padding to move the content 20 pixels away from the left edge */
+}
+
+
+.light-side-section {
+  background-color: black;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 36px 10px;
+  text-align: center;
+  z-index: 0;
+}
+
+.light-side-title {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  color: #ffd4d2;
+}
+
+.light-side-paragraph {
+  font-size: 1.1em;
+  margin: 0 auto;
+  max-width: 800px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  text-align: justify;
+  padding-bottom: 40px;
+  color: #525252;
+}
+
+
+.white-side-section {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  position: relative;
+  overflow: hidden;
+  padding: 50px 20px;
+  text-align: center;
+  z-index: 0;
+}
+
+
+.white-side-title {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  padding-top: 40px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  color: #141414;
+}
+
+.white-side-paragraph {
+  font-size: 1.1em;
+  margin: 0 auto;
+  max-width: 800px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  text-align: justify;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  color: #525252;
+}
+
+
+.black-side-paragraph {
+  font-size: 1.1em;
+  margin: 0 auto;
+  max-width: 800px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  text-align: justify;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #ffd4d2;
+}
+
+.circle {
+  position: absolute;
+  background: rgba(128, 0, 128, 0.2); /* Purple color with opacity */
+  border-radius: 50%;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  pointer-events: none; /* To ensure it doesn't interfere with text selection */
+  z-index: 1; /* Ensure the circle is behind the text */
+
+}
+
+.images-container {
+  text-align: center;
+}
+
+
+.memory-image {
+  padding: 20px 100px;
+  max-width: calc(100% - 100px); /* Adjusted to ensure images are smaller */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.image-section img {
+  max-width: 100%; /* Make the images responsive */
+  height: auto;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 576px) {
+  .image-section img {
+      margin: 0; /* Remove margin on mobile */
+  }
+
+  .memory-image {
+      padding: 20px 0px;
+      max-width: calc(100% - 0px); /* Adjusted to ensure images are smaller */
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+}
+
+/*card*/
+
+
+
+
+.card {
+  color: black;
+  border-radius: 20px; /* Rounded corners for cards */
+  border: 2px solid black; /* Black border */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+.card-link .card-body {
+  color: black; /* Set text color to black */
+}
+
+.card-img-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+/* Additional Styles */
+#projects .card {
+  flex: 1; /* Distribute remaining space equally */
+  margin: 0 auto; /* Center cards horizontally */
+}
+
+#projects .row {
+  justify-content: center; /* Center the row content */
+}
+
+
+
+
+/* Hover Effect */
+.card:hover {
+  border: 2px solid white; /* White border on hover */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+  transform: scale(1.05); /* Slightly bigger on hover */
+}
+
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+  20%, 40%, 60%, 80% { transform: translateX(8px); }
+}
+
+.card:active {
+  animation: shake 1.2s cubic-bezier(.36,.07,.19,.97); /* Adjusted duration and timing function */
+}
+
+
+
+/* Custom Styles */
+.description-text {
+  font-size: 14px; /* Set the description text size */
+}
+
+/* Responsive font size for description text */
+@media (max-width: 576px) {
+  .description-text {
+    font-size: 12px; /* Decrease font size for smaller screens */
+  }
+}
+
+.card {
+  color: black;
+  border-radius: 20px; /* Rounded corners for cards */
+  border: 2px solid black; /* Black border */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+.card-link .card-body {
+  color: black; /* Set text color to black */
+}
+
+.card-img-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+h2 {
+  padding-top: 20px;
+}
+
+
+
+
+
+/*colors*/
+.container1 {
+  height: 300px;
+  width: 900px;
+  border-radius: 1em;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(219, 219, 219, 0.1); /* Adjusted opacity */
+  font-family: sans-serif;
+  margin: 30px auto 0; /* Add margin-top of 30px to create space above */
+}
+
+
+
+.palette {
+  display: flex;
+  height: 86%;
+  width: 100%;
+}
+
+.color {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: flex 0.1s linear;
+}
+
+.color span {
+  opacity: 0;
+  transition: opacity 0.1s linear;
+}
+
+.color:nth-child(1) {
+  background: #3B8957;
+}
+
+.color:nth-child(2) {
+  background: #FFE7E1;
+}
+
+.color:nth-child(3) {
+  background: #E99F8E;
+}
+
+.color:nth-child(4) {
+  background: #58A876;
+}
+
+.color:nth-child(5) {
+  background: #243E33;
+}
+
+.color:hover {
+  flex: 2;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.color:hover span {
+  opacity: 1;
+}
+
+#stats {
+  height: 14%;
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5em;
+  box-sizing: border-box;
+  color: #bebebe;
+}
+
+#stats svg {
+  fill: #bebebe;
+  transform: scale(1.2);
+}
+
+
+
+
+
+/*first*/
+.first-container {
+    position: relative;
+}
+
+.first-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/*art*/
+
+
+
+.image-text-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.text-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+}
+
+.image-column {
+    width: 50%;
+}
+
+.image-column img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+    .text-column, .image-column {
+        width: 100%;
+    }
+}
+
+.grid-image.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: zoom-out;
+}
+.row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 0; /* Adjusted margin */
+}
+.image-text-grid{
+
+    background-color: white !important;
+}
+
+
+/*card*/
+
+
+
+
+.card {
+    color: black;
+    border-radius: 20px; /* Rounded corners for cards */
+    border: 2px solid black; /* Black border */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+  }
+  
+  .card-link .card-body {
+    color: black; /* Set text color to black */
+  }
+  
+  .card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  
+  .rounded-circle {
+    border-radius: 50%;
+  }
+  
+  /* Additional Styles */
+  #projects .card {
+    flex: 1; /* Distribute remaining space equally */
+    margin: 0 auto; /* Center cards horizontally */
+  }
+  
+  #projects .row {
+    justify-content: center; /* Center the row content */
+  }
+  
+  
+  
+  
+  /* Hover Effect */
+  .card:hover {
+    border: 2px solid white; /* White border on hover */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+    transform: scale(1.05); /* Slightly bigger on hover */
+  }
+  
+  /* Shake Animation */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
+  }
+  
+  .card:active {
+    animation: shake 1.2s cubic-bezier(.36,.07,.19,.97); /* Adjusted duration and timing function */
+  }
+  
+  
+  
+  /* Custom Styles */
+  .description-text {
+    font-size: 14px; /* Set the description text size */
+  }
+  
+  /* Responsive font size for description text */
+  @media (max-width: 576px) {
+    .description-text {
+      font-size: 12px; /* Decrease font size for smaller screens */
+    }
+  }
+  
+  .card {
+    color: black;
+    border-radius: 20px; /* Rounded corners for cards */
+    border: 2px solid black; /* Black border */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+  }
+  
+  .card-link .card-body {
+    color: black; /* Set text color to black */
+  }
+  
+  .card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  
+  h2 {
+    padding-top: 20px;
+  }
+  
+  
+  
