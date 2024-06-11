@@ -614,3 +614,21 @@ body {
   font-size: 16px !important;
   padding-bottom: 20px;
 }
+
+
+@media (max-width: 576px) {
+  .card {
+    width: 90%; /* Adjust width to be responsive */
+    margin: 10px auto; /* Center the cards and add some margin */
+  }
+
+}
+
+/* Additional Styles to Maintain Layout */
+@media (max-width: 768px) {
+  .card {
+    width: 95%; /* Slightly larger width for tablets */
+    margin: 15px auto; /* Center the cards and add some margin */
+  }
+  
+}
