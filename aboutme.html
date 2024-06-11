@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="aboutme.css">
     <link rel="stylesheet" href="footer.css">
-
 </head>
 
 <body>
@@ -306,5 +305,24 @@
     <!-- Add Bootstrap's JavaScript library and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+      var currentUrl = window.location.href;
+      var url = new URL(currentUrl);
+      
+      var pathname = url.pathname;
+      
+      // ca sa nu mai aiba extensia
+      var newPathname = pathname.replace(/\.[^/.]+$/, "");
+      
+      // cu asta schimbi numele, in cazul meu am facut asta, in loc sa fie in url buy.html, acum e purchase
+      var newPathname = pathname.replace("aboutme.html", "about-me");
+    
+      // aici il creezi efectiv
+      var newUrl = url.origin + newPathname + url.search + url.hash;
+      
+      window.history.replaceState(null, "", newUrl);
+    </script>
 </body>
 </html>
