@@ -8,7 +8,22 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="footer.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const path = window.location.pathname;
 
+        if (path === '/Home') {
+            window.location.href = 'index.html';
+        } else if (path === '/Blender Projects') {
+            window.location.href = '3d.html';
+        } else if (path === '/About Me') {
+            window.location.href = 'aboutme.html';
+        } else if (path === '/Fine Arts') {
+            window.location.href = 'finearts.html';
+        }
+        // Add more redirects as needed
+    });
+</script>
 
 
 </head>
