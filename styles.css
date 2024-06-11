@@ -4,8 +4,15 @@
 body {
   background-color: #fffbf4; /* Light grey background */
   overflow-x: hidden;
-
   font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
+}
+
+body {
+  overflow-x: hidden !important;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
 }
 
 
@@ -474,7 +481,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   min-height: 30vh;
   flex-direction: column; /* Stack the shiningimg-containers vertically */
 }
@@ -578,24 +586,26 @@ body {
 .aboutmecontainer{
   display: flex;
   justify-content: center;
-  margin: 10px;
+  margin: 0px;
   margin-bottom: 0px;
 }
 
 .aboutmecontainer img {
+  margin-top: 20px;
   max-width: 150%;
   height: auto;
 }
 
-@media (min-width: 600px) {
+@media (max-width: 600px) {
   .aboutmecontainer img {
-      max-width: 100%; /* Adjust as necessary */
-  }
+      max-width: 100% !important; /* Adjust as necessary */
+      height: auto;
+    }
 }
 
 @media (min-width: 1200px) {
   .aboutmecontainer img {
-      max-width: 100%; /* Adjust as necessary */
+      max-width: 10%; /* Adjust as necessary */
   }
 }
 
