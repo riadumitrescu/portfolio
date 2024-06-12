@@ -25,6 +25,20 @@ body {
   }
 }
 
+@media screen {
+  body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    -webkit-text-size-adjust: 100%; /* Prevent text resizing in iOS Safari */
+    text-size-adjust: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .body-gallery {
+    display: none !important;
+  }
+}
 
 
 .navbar {
