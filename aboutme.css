@@ -5,6 +5,19 @@ body {
   background-color: #ffffff  !important; /* Light grey background */
   font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
 }
+.navbar-brand img {
+  height: 50px; /* Adjust based on the height of your navbar */
+  width: 50px;
+  border-radius: 50%;
+  margin-left: 10px; /* Add some spacing between the text and the image */
+}
+
+.profile-picture {
+  height: 100%;  /* Takes the full height of the navbar */
+  width: auto;   /* Automatically adjusts the width to maintain the aspect ratio */
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 .navbar {
   border-radius: 0;
@@ -164,7 +177,7 @@ body {
     margin-top: 0.7em;
     justify-self: center;
   }
-  
+
   .albumcover {
     position: relative;
     margin-right: 1em;
@@ -173,7 +186,39 @@ body {
     background-color: rgb(233, 232, 232);
     align-self: center;
     border-radius: 5px;
+    background-image: url('./assets/hoziertalk.jpg');
+    background-size: cover;
+    background-position: center;
   }
+  
+
+  .albumcovertwo {
+    position: relative;
+    margin-right: 1em;
+    height: 40px;
+    width: 40px;
+    background-color: rgb(233, 232, 232);
+    align-self: center;
+    border-radius: 5px;
+    background-image: url('./assets/metalica.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .albumcoverthree {
+    position: relative;
+    margin-right: 1em;
+    height: 40px;
+    width: 40px;
+    background-color: rgb(233, 232, 232);
+    align-self: center;
+    border-radius: 5px;
+    background-image: url('./assets/colind.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+
   
   .song {
     position: relative;
@@ -212,14 +257,15 @@ body {
     pointer-events: none;
 }
 
-.video-wrapper {
+.video-wrapper video, 
+.video-wrapper .instagram-media {
   background-color: white;
   padding: 10px;
   border-radius: 8px;
 }
-
-.video-wrapper video {
-  width: 100%;
+.video-wrapper video, 
+.video-wrapper .instagram-media {
+  width: 80%;
   border-radius: 6px;
 }
 
@@ -235,6 +281,37 @@ h2 {
   size: 2.3em;
 }
 
+.name{
+  padding: 0 0;
+  margin: 0 0;
+  margin-top: 10px;
+}
 
 
 /* cool text*/ 
+.milky {
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;;
+  text-transform: uppercase;
+  display: block;
+  font-size: 92px;
+  color: #f1ebe5;
+  text-shadow: 0 8px 9px #c4b59d, 0px -2px 1px #fff;
+  font-weight: bold;
+  letter-spacing: -4px;
+  text-align: center;
+  background: linear-gradient(to bottom, #ece4d9 0%,#e9dfd1 100%);
+  position: absolute;
+  padding: 100px 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 20px;
+}
+
+body,html {
+  height: 100%;
+} 
+
+.p {
+  padding: 40px;
+}
