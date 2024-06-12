@@ -15,19 +15,6 @@ body {
        box-sizing: border-box;
 }
 
-.navbar-brand img {
-  height: 50px; /* Adjust based on the height of your navbar */
-  width: 50px;
-  border-radius: 50%;
-  margin-left: 10px; /* Add some spacing between the text and the image */
-}
-
-.profile-picture {
-  height: 100%;  /* Takes the full height of the navbar */
-  width: auto;   /* Automatically adjusts the width to maintain the aspect ratio */
-  border-radius: 50%;
-  object-fit: cover;
-}
 
 
 .navbar {
