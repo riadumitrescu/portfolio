@@ -41,6 +41,18 @@ body {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 .navbar {
   border-radius: 0;
   transition: background-color 0.3s, color 0.3s;
@@ -380,19 +392,12 @@ body {
   padding-bottom: 20px !important; /* Default padding-bottom */
 }
 
-@media only screen and (min-width: 600px) and (max-width: 768px) {
-  .responsive-padding {
-    margin-top: 0px;
-    padding-top: 2px;
-    padding-bottom: 15px !important;
-  }
-  .gallery {
-  
-    width: 400px; /* Original larger width */
-    height: 400px; /* Original larger height */
-
+@media (max-width: 768px) {
+  .body-gallery {
+    display: none !important;
   }
 }
+
 
 @media only screen and (min-width: 1200px) {
   .body-gallery {
