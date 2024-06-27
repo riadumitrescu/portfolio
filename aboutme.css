@@ -395,3 +395,13 @@ h2 {
   transform: translateZ(calc(var(--index) * 10));
   margin: 0 .45vw;
 }
+
+@media screen and (max-width: 768px) {
+  .item:nth-child(n+7) {
+    display: none;
+  }
+  .wrapper{
+    height: 20vh;
+
+  }
+}
