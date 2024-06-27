@@ -140,6 +140,20 @@ body {
   --color-two: hsl(0, 0%, 68%);
 }
 
+
+.line1 {
+  width: 100%; /* Set width to fill the container */
+  height: 3px; /* Set height to define the thickness of the rectangle */
+  background: linear-gradient(
+                90deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-one)
+            ) 0 0 / 200% 100%; /* Adjust the background size */
+  animation: move-bg 4s infinite linear;
+  --color-one: hsl(0, 0%, 0%);
+  --color-two: hsl(0, 0%, 68%);
+}
 /* Responsive Styles */
 @media (max-width: 768px) {
   .title-section {
@@ -263,13 +277,140 @@ body {
   justify-content: space-between;
   padding: 0 1.5em;
   box-sizing: border-box;
-  color: #bebebe;
+  color: #616161;
 }
 
 #stats svg {
-  fill: #bebebe;
+  fill: #616161;
   transform: scale(1.2);
 }
 
 
 
+
+.white-side-section {
+  background-color: #FFFBF4;
+  color: rgb(0, 0, 0);
+  position: relative;
+  overflow: hidden;
+  padding: 50px 20px;
+  text-align: left;
+  z-index: 0;
+}
+
+
+
+/*titleeeee*/
+
+
+.white-side-title {
+  --bg-size: 400%;
+  --color-one: hsl(0, 0%, 11%);
+  --color-two: hsl(0, 0%, 68%);
+  font-size: clamp(3rem, 25vmin, 8rem);
+  background: linear-gradient(
+                90deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-one)
+              ) 0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: move-bg 4s infinite linear;
+  transition: letter-spacing 0.5s ease; /* Add transition for smooth effect */
+
+}
+
+
+@keyframes move-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+.white-side-title:hover {
+  letter-spacing: 20px; /* Increase letter spacing on hover */
+}
+
+
+
+
+
+
+.white-side-title {
+  font-size: 2.7em;
+  margin-bottom: 5px !important;
+  margin: 0 auto;
+  z-index: 2; /* Ensure the circle is behind the text */
+  max-width: 50%;
+  margin-left: 25%;
+  text-align: center;
+}
+
+
+.white-side-smalltitle {
+  font-size: 1.5em;
+  margin: 0 auto;
+  margin-top: 20px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  color: #575757;
+  max-width: 50%;
+  margin-left: 25%;
+}
+
+
+.white-side-paragraph {
+  font-size: 1.1em;
+  margin: 0 auto;
+  z-index: 2; /* Ensure the circle is behind the text */
+  text-align: justify;
+  padding-bottom: 20px;
+  color: #252525;
+  max-width: 50%;
+  margin-left: 25%;
+
+}
+
+.images-container {
+  text-align: center;
+}
+
+.memory-image {
+  padding: 20px 100px;
+  max-width: calc(100% - 100px); /* Adjusted to ensure images are smaller */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.image-section img {
+  max-width: 100%; /* Make the images responsive */
+  height: auto;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 576px) {
+  .image-section img {
+      margin: 0; /* Remove margin on mobile */
+  }
+
+  .memory-image {
+      padding: 20px 0px;
+      max-width: calc(100% - 0px); /* Adjusted to ensure images are smaller */
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+}
+
+
+.iframe-container {
+  width: 100%;
+  height: 700px; /* Adjust the height as needed */
+  border: none;
+}

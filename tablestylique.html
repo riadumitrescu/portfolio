@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparison Table</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FFFBF4;
+    color: #4F3D3C;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .comparison-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 0;
+    table-layout: fixed;
+    background-color: #FFFBF4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .comparison-table th,
+  .comparison-table td {
+    border: 1px solid hsl(0, 0%, 48%);
+    padding: 15px;
+    text-align: center;
+    word-wrap: break-word;
+  }
+  .comparison-table th {
+    background-color: hsl(0, 0%, 32%);
+    color: #FFFFFF;
+    font-weight: bold;
+  }
+  .comparison-table tr:nth-child(even) {
+    background-color: #FFFBF4;
+  }
+  .comparison-table tr:nth-child(odd) {
+    background-color: #FFFBF4;
+  }
+  .comparison-table .check {
+    color: green;
+    font-weight: bold;
+  }
+  .comparison-table .cross {
+    color: red;
+    font-weight: bold;
+  }
+  .header {
+    background-color: hsl(0, 0%, 11%);
+  }
+</style>
+</head>
+<body>
+
+<table class="comparison-table">
+  <tr class="header">
+    <th>Features</th>
+    <th>Stylique</th>
+    <th>Style DNA</th>
+    <th>Stylee</th>
+  </tr>
+  <tr>
+    <td>Company Info</td>
+    <td>AI-powered fashion assistant</td>
+    <td>AI stylist with color analysis and shopping assistance</td>
+    <td>AI personal stylist with virtual try-on and style evolution</td>
+  </tr>
+  <tr>
+    <td>AI-Powered Outfit Suggestions</td>
+    <td class="check">✔</td>
+    <td class="check">✔</td>
+    <td class="check">✔</td>
+  </tr>
+  <tr>
+    <td>Weather Integration</td>
+    <td class="check">✔</td>
+    <td class="cross">✘</td>
+    <td class="cross">✘</td>
+  </tr>
+  <tr>
+    <td>Mood-Based Recommendations</td>
+    <td class="check">✔</td>
+    <td class="check">✔</td>
+    <td class="check">✔</td>
+  </tr>
+  <tr>
+    <td>Occasion-Specific Outfits</td>
+    <td class="check">✔</td>
+    <td class="check">✔</td>
+    <td class="check">✔</td>
+  </tr>
+  <tr>
+    <td>Wardrobe Scanning</td>
+    <td class="check">✔</td>
+    <td class="check">✔</td>
+    <td class="check">✔</td>
+  </tr>
+  <tr>
+    <td>Social Sharing</td>
+    <td class="check">✔</td>
+    <td class="cross">✘</td>
+    <td class="check">✔</td>
+  </tr>
+</table>
+
+</body>
+</html>
