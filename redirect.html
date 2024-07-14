@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to YouTube</title>
+    <script type="text/javascript">
+        // Function to redirect to YouTube app
+        function redirectToYouTube() {
+            // Replace with your YouTube video ID
+            var youtubeVideoId = "nlT7Iriw0ZE";
+            var youtubeDeepLink = "vnd.youtube://" + youtubeVideoId;
+            var youtubeWebLink = "https://www.youtube.com/watch?v=" + youtubeVideoId;
+
+            // Redirect to YouTube deep links
+            window.location.href = youtubeDeepLink;
+
+            // Fallback to web link after a short delay (in case the app is not installed)
+            setTimeout(function() {
+                window.location.href = youtubeWebLink;
+            }, 500);
+        }
+    </script>
+</head>
+<body onload="redirectToYouTube()">
+    <p>Redirecting to YouTube...</p>
+</body>
+</html>
