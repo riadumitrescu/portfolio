@@ -201,6 +201,11 @@ body {
   height: auto;
 }
 
+.video-container1 video {
+  width: 80%;
+  height: auto;
+}
+
 
 
 /*colors*/
@@ -338,7 +343,11 @@ body {
 }
 
 
-
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
 
 
 
