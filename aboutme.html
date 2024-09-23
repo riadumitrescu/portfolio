@@ -163,7 +163,7 @@
             <p class="heading">Currently Playing</p>
           </div>
         
-          <div class="loader" onclick="goToYouTube('song1')"> <!-- Add the YouTube link of song 1 in the data-link attribute -->
+          <div class="loader"> <!-- Add the YouTube link of song 1 in the data-link attribute -->
             <div class="song">
               <p class="name">Talk</p>
               <p class="artist">Hozier</p>
@@ -176,7 +176,7 @@
               <div class="load"></div>
             </div>
           </div>
-          <div class="loader" onclick="goToYouTube('song2')"> <!-- Add the YouTube link of song 2 in the data-link attribute -->
+          <div class="loader"> <!-- Add the YouTube link of song 2 in the data-link attribute -->
             <div class="song">
               <p class="name">The Unforgiven II</p>
               <p class="artist">Metalica</p>
@@ -184,7 +184,7 @@
             <div class="albumcovertwo"></div>
             <div class="play"></div>
           </div>
-          <div class="loader" onclick="goToYouTube('song3')"> <!-- Add the YouTube link of song 3 in the data-link attribute -->
+          <div class="loader"> <!-- Add the YouTube link of song 3 in the data-link attribute -->
             <div class="song">
               <p class="name">Colind</p>
               <p class="artist">Subcarpati</p>
@@ -213,6 +213,59 @@
 
 
 
+
+
+
+<!-- Second Section with UI UX Projects -->
+<section id="projects" class="mb-5 pt-4">
+  <div class="container">
+    <div class="mb-4 pb-2"></div>
+      <h2 class="text-center mb-4">Fun Projects <3 </h2>
+    </div>
+    <div class="row">
+        <!-- Love at first sight -->
+        <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+          <a href="love.html" class="card-link">
+            <div class="card">
+              <img src="./assets/love/cover.png" class="card-img-top" alt="Stylique">
+              <div class="card-body" style="height: 165px;"> <!-- Fixed height to match the second project -->
+                <h5 class="card-title">Love at first sight</h5>
+                <p class="card-text description-text">A little romantic animated story in Paris.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- 3D -->
+        <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+          <a href="3d.html" class="card-link">
+            <div class="card">
+              <img src="./assets/3d/teashop.png" class="card-img-top" alt="Stylique">
+              <div class="card-body" style="height: 165px;"> <!-- Fixed height to match the second project -->
+                <h5 class="card-title">First Week In Blender</h5>
+                <p class="card-text description-text">A set of little Blender projects I built during my freshman year
+                  winter break.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- Stylique-->
+        <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+          <a href="stylique.html" class="card-link">
+            <div class="card">
+              <img src="./assets/stylique_rock.png" class="card-img-top" alt="Stylique">
+              <div class="card-body" style="height: 165px;"> <!-- Fixed height to match the second project -->
+                <h5 class="card-title">Stylique (Work In Progress)</h5>
+                <p class="card-text description-text">Your AI-powered fashion assistant for perfect outfits every day,
+                  tailored to your style and mood.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      <!-- Card 4 -->
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -301,21 +354,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <script async src="//www.instagram.com/embed.js"></script>
 
-  <script>
-    function goToYouTube(song) {
-        let youtubeLinks = {
-            'song1': 'https://www.youtube.com/watch?v=VIDEO_ID_1',
-            'song2': 'https://www.youtube.com/watch?v=G-Bn_kD6QN4?si=oAuukh5JqxJ-gpl1',
-            'song3': 'https://www.youtube.com/watch?v=VIDEO_ID_3',
-        };
-
-        if (youtubeLinks[song]) {
-            window.location.href = youtubeLinks[song];
-        } else {
-            alert('YouTube link not available for this song.');
-        }
-    }
-</script>
 </body>
 
 </html>

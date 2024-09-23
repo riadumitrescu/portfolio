@@ -215,3 +215,85 @@ ul {
     }
   }
   
+  .card {
+    color: black;
+    border-radius: 20px; /* Rounded corners for cards */
+    border: 2px solid black; /* Black border */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+  }
+  
+  .card-link .card-body {
+    color: black; /* Set text color to black */
+  }
+  
+  .card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  
+  #projects .card {
+    flex: 1; /* Distribute remaining space equally */
+    margin: 0 auto; /* Center cards horizontally */
+  }
+  
+  #projects .row {
+    justify-content: center; /* Center the row content */
+  }
+  
+  .card-img-top {
+    width: 100%; /* Ensures the image fits the width of the container */
+    height: 350px; /* Set the height you want for the image */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    object-position: center; /* Centers the image within the container */
+  }
+  
+  /* Hover Effect */
+  .card:hover {
+    border: 2px solid white; /* White border on hover */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+    transform: scale(1.05); /* Slightly bigger on hover */
+  }
+  
+  /* Shake Animation */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
+  }
+  
+  .card:active {
+    animation: shake 1.2s cubic-bezier(.36,.07,.19,.97); /* Adjusted duration and timing function */
+  }
+  
+  .description-text {
+    font-size: 14px; /* Set the description text size */
+  }
+  
+  /* Responsive font size for description text */
+  @media (max-width: 576px) {
+    .description-text {
+      font-size: 12px; /* Decrease font size for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      width: 90%; /* Full width on very small screens */
+      margin: 5px auto; /* Less margin for smaller screens */
+    }
+  
+    .card-img-top {
+      height: 300px; /* Further adjust image height */
+    }
+  }
+  
+  /* Additional Styles to Maintain Layout */
+  @media (max-width: 768px) {
+    .card {
+      width: 80%; /* Slightly larger width for tablets */
+      margin: 15px auto; /* Center the cards and add some margin */
+    }
+  }
+  
+      

@@ -19,7 +19,8 @@
   .comparison-table {
     width: 80%;
     border-collapse: collapse;
-    margin: 0 0;
+    margin: 0; /* Removed the vertical margin */
+    padding: 0; /* Removed the padding */
     table-layout: fixed;
     background-color: #FFFBF4;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -27,7 +28,7 @@
   .comparison-table th,
   .comparison-table td {
     border: 1px solid hsl(0, 0%, 48%);
-    padding: 15px;
+    padding: 10px; /* Reduced padding */
     text-align: center;
     word-wrap: break-word;
   }
