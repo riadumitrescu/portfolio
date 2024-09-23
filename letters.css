@@ -264,13 +264,19 @@ body {
 }
 
 
-.memory-image {
+.memory-image1 {
   padding: 20px 100px;
   max-width: calc(100% - 100px); /* Adjusted to ensure images are smaller */
   width: 100%;
   box-sizing: border-box;
 }
 
+.memory-image {
+  padding: 20px 100px;
+  max-width: calc(100% - 100px); /* Adjusted to ensure images are smaller */
+  width: 70%;
+  box-sizing: border-box;
+}
 
 .image-section img {
   max-width: 100%; /* Make the images responsive */
