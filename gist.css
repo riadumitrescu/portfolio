@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
 
 body {
-  background-color: #dbfff4; /* Light grey background */
+  background-color: #FFECE8 !important; /* Light grey background */
   font-family: 'Mukta', sans-serif; /* Mukta font for the whole body */
 }
 
@@ -202,16 +202,7 @@ body {
   z-index: 0;
 }
 
-
-.white-side-title {
-  font-size: 2.2em;
-  margin-bottom: 0px;
-  padding-top: 40px;
-  z-index: 2; /* Ensure the circle is behind the text */
-  color: #133547 !important;
-}
-
-.white-side-paragraph {
+.white-side-paragraph1 {
   font-size: 1.1em;
   margin: 0 auto;
   max-width: 800px;
@@ -222,8 +213,74 @@ body {
   color: #567e93 !important;
 }
 
+.white-side-title {
+  font-size: 2.2em;
+  margin-bottom: 0px;
+  padding-top: 40px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  color: #133547 !important;
+}
 
+.white-side-smalltitle {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #4BCFF0, #08486d); /* Adjust colors as needed */
+  -webkit-background-clip: text; /* For Webkit browsers */
+  -webkit-text-fill-color: transparent; /* Makes the text fill transparent to show the gradient */
 
+}
+
+.white-side-paragraph {
+  font-size: 1.1em;
+  margin: 0 auto;
+  max-width: 800px;
+  z-index: 2; /* Ensure the circle is behind the text */
+  text-align: justify;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  color: #1a3e52 !important;
+}
+
+.design-comparison-section {
+  display: flex;
+  justify-content: center; /* Center the content */
+  align-items: center;
+  background-color: #FEECE7;
+  padding: 50px 80px; /* Reduced left and right padding to bring it closer to the center */
+  text-align: left;
+  color: rgb(94, 149, 217);
+  z-index: 0;
+}
+
+.design-comparison-section .design-text {
+  font-size: 1.1em;
+  max-width: 45%; /* Increased width of text blocks slightly to fill space */
+  color: #1a3e52;
+  text-align: left;
+}
+
+.design-comparison-section .arrow {
+  font-size: 2em;
+  margin: 0 10px; /* Reduced the space between the text and arrow */
+  color: #1a3e52;
+}
+
+.design-comparison-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.design-comparison-section ul li {
+  margin-bottom: 10px;
+}
+
+.design-comparison-section .design-title {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #4BCFF0, #08486d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 
 .card {
