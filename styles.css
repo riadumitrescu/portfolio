@@ -137,6 +137,12 @@ body {
   border-top-right-radius: 20px;
 }
 
+.card-img-top1 {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+
 .rounded-circle {
   border-radius: 50%;
 }
@@ -158,6 +164,12 @@ body {
   object-position: center; /* Centers the image within the container */
 }
 
+
+.card-img-top {
+  width: 100%; /* Ensures the image fits the width of the container */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  object-position: center; /* Centers the image within the container */
+}
 
 
 
