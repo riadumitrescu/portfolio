@@ -43,11 +43,23 @@
     </div>
   </nav>
 
-
+  
   <section id="intro" class="mb-5">
-    <video src="assets/maria_dumitrescu.mp4" autoplay muted loop class="w-100 video-bg"></video>
+    <video autoplay muted loop playsinline class="w-100 video-bg">
+      <!-- 1. Newer Codec (e.g., H.265/HEVC) -->
+      <source src="assets/maria_dumitrescu-h265.mp4" type="video/mp4; codecs=hevc">
+  
+      <!-- 2. Alternative Codec (e.g., VP9 in a WebM container) -->
+      <source src="assets/maria_dumitrescu-vp9.webm" type="video/webm; codecs=vp9">
+  
+      <!-- 3. Fallback (H.264) - Widest Compatibility -->
+      <source src="assets/maria_dumitrescu.mp4" type="video/mp4; codecs=avc1.42E01E">
+  
+      <!-- Fallback text if no video support -->
+      Your browser does not support the video tag.
+    </video>
   </section>
-
+  
 
   <!-- Second Section with UI UX Projects -->
   <section id="projects" class="mb-5">
