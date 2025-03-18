@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Psychology Playbook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Patrick+Hand&family=Montserrat:wght@700;800;900&family=Quicksand:wght@500;700&display=swap');
+        
+        body {
+        
+            background: url('assets/paper.jpg'); /* Replace with actual image path */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: repeat; /* Ensures the paper effect looks natural */
+
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-align: center;
+            line-height: 1.2;
+            padding: 0 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                45deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            );
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 8s ease infinite, brain-pulse 3s ease-in-out infinite;
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes brain-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .subheading {
+            font-size: 1.6rem;
+            color: #444;
+            max-width: 650px;
+            line-height: 1.6;
+            font-style: italic;
+            font-family: 'Quicksand', sans-serif;
+            margin-bottom: 2rem;
+        }
+        
+        /* Section heading styling */
+        .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 40px; /* Increased bottom margin */
+            position: relative;
+        }
+        
+        .section-heading::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(
+                90deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            );
+            border-radius: 2px;
+        }
+
+        .cta-button {
+            padding: 16px 48px 16px 32px;
+            font-size: 1.4rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            margin-top: 25px;
+        }
+
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            );
+            background-size: 300% 300%;
+            z-index: -1;
+            transition: all 0.6s ease;
+            animation: gradient-shift 8s ease infinite;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover::before {
+            background-position: 100% 50%;
+        }
+
+        .cta-button::after {
+            content: "🎲";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 2;
+            color: #333;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+
+        .learn-more {
+            padding: 12px 24px;
+            font-size: 1rem;
+            background: #FFC107;
+            color: #333;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+            margin-top: 15px;
+            width: 90%;
+        }
+
+        .learn-more:hover {
+            background: #E67E22;
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px; /* Increased spacing between cards */
+            max-width: 1200px;
+            padding: 40px 30px; /* Increased horizontal padding */
+            margin: 0 auto;
+            width: 100%;
+            justify-items: center; /* Center items horizontally */
+        }
+
+        /* Large cards container styling */
+        .large-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 100px; /* Increased spacing between large cards */
+            max-width: 1200px;
+            padding: 50px 30px; /* Increased horizontal padding */
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Media query to ensure cards stay centered on larger screens */
+        @media (min-width: 1200px) {
+            .cards-container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Responsive grid adjustments */
+        @media (max-width: 1100px) {
+            .cards-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 50px 45px; /* Increased spacing for 3-column layout */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px 35px; /* Increased spacing for 2-column layout */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-container {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 35px; /* Increased spacing for 1-column layout */
+            }
+        }
+
+        /* Ensure the cards container is properly centered */
+        .cards-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            width: 280px;
+            aspect-ratio: 2.65 / 4;
+            max-width: 90%;
+            perspective: 1000px;
+            cursor: pointer;
+            margin: 0; /* Remove margin since we're using gap */
+        }
+
+        /* Ensure large cards are bigger than mini-cards */
+        .large-cards-container .card {
+            width: 320px;
+            aspect-ratio: 2.65 / 4;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 17px;
+            background: #C6D5B9;
+            outline: 2px solid #60503E;
+            outline-offset: -2px;
+            overflow: hidden;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Card Tag Styles */
+        .card-tag {
+            position: absolute;
+            top: 13px;
+            left: 25px;
+            text-align: left;
+            color: #E6EFDF;
+            font-size: 14px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            background: rgba(96, 80, 62, 0.3);
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        /* Image Container Styles */
+        .card-image-container {
+            width: 220px;
+            height: 220px;
+            margin: 40px auto 0;
+            background: #E6EFDF;
+            box-shadow: -3px 6px 5.2px rgba(73, 60, 47, 0.20) inset;
+            border-radius: 28px;
+            outline: 2px solid #60503E;
+            outline-offset: -2px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Card Front Content Wrapper */
+        .card-front {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Card Title Styles */
+        .card-title {
+            margin-top: 25px;
+            text-align: center;
+            color: #60503E;
+            font-size: 22px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            padding: 0 15px;
+            line-height: 1.4;
+            max-width: 250px;
+        }
+
+        /* Card Subtitle Styles */
+        .card-subtitle {
+            margin-top: 12px;
+            text-align: center;
+            color: #e9f0e3;
+            font-size: 16px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+        }
+
+        /* Card Back Layout */
+        .card-back {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* Updated Action Buttons */
+        .bookmark-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            background: #e9f0e3;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            transition: all 0.2s ease;
+        }
+
+        .video-btn {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 32px;
+            height: 32px;
+            background: #483C2E;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 3;
+            transition: all 0.2s ease;
+        }
+
+        .bookmark-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: #60503E;
+            transition: fill 0.2s ease;
+        }
+
+        .video-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+            transition: fill 0.2s ease;
+        }
+
+        .bookmark-btn:hover {
+            transform: scale(1.1);
+            background: #60503E;
+        }
+
+        .bookmark-btn:hover svg {
+            fill: #F5FFEC;
+        }
+
+        .read-more-btn {
+            width: 130px;
+            height: 36px;
+            margin: 12px auto 0;
+            background: #e9f0e3;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60503E;
+            font-size: 14px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .read-more-btn:hover {
+            transform: scale(1.05);
+            background: #60503E;
+            color: #e9f0e3;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: 90%;
+            }
+            .card-front, .card-back {
+                outline-width: 1.5px;
+            }
+        }
+
+        /* 📌 Sticky Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(
+                90deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            ) 1;
+        }
+
+        /* Logo */
+        .logo {
+            height: 45px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+                /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            padding: 8px 15px;
+            border-radius: 18px; /* Increased border radius for more rounded corners */
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Individual color for each nav link */
+        .nav-links li:nth-child(1) a::before {
+            background: #D5B9CB;
+        }
+        
+        .nav-links li:nth-child(2) a::before {
+            background: #E4D6C0;
+        }
+        
+        .nav-links li:nth-child(3) a::before {
+            background: #9BC5C6;
+        }
+        
+        .nav-links li:nth-child(4) a::before {
+            background: #C6D5B9;
+        }
+
+        .nav-links a::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            opacity: 0.8;
+            transition: height 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-links a:hover {
+            color: #222;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover::before {
+            height: 100%;
+        }
+
+        /* 📌 Responsive Menu Button */
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            color: #333;
+        }
+        
+        .menu-icon:hover {
+            transform: rotate(90deg);
+            color: #9BC5C6;
+        }
+
+        /* 📌 Mobile-Friendly Navigation */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: white;
+                width: 200px;
+                padding: 15px;
+                border-radius: 0 0 8px 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            .nav-links.show {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        /* Prevents Content from Hiding Under Navbar */
+        body {
+            padding-top: 80px;
+        }
+
+        /* 📌 Explore More Section - Smaller & Matching Website Style */
+.explore-more {
+    text-align: center;
+            background: rgba(233, 240, 227, 0.5);
+            padding: 35px 30px;
+    margin-top: 50px;
+            margin-bottom: 30px;
+            border-radius: 17px;
+            max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+            outline: 2px solid #60503E;
+            outline-offset: -2px;
+            position: relative;
+}
+
+/* Bigger and More Balanced Title */
+.explore-more h2 {
+            font-size: 2rem;
+            color: #60503E;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+}
+
+.explore-more p {
+            font-size: 1.1rem;
+            color: #60503E;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            opacity: 0.9;
+}
+
+/* 📌 Wider Grid Layout for Pocket Cards */
+.explore-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+            max-width: 700px;
+    margin: auto;
+            margin-bottom: 25px;
+}
+
+/* Pocket Card Buttons */
+.explore-card {
+            background: #E6EFDF;
+            color: #60503E;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+            white-space: nowrap;
+            min-width: 140px;
+            box-shadow: -2px 3px 4px rgba(73, 60, 47, 0.15) inset;
+            outline: 1.5px solid #60503E;
+            outline-offset: -1.5px;
+}
+
+/* 🎨 Color Variation Per Card */
+        .explore-card:nth-child(1) { 
+            background: #D5B9CB;
+        } /* 💭 Thoughts - Pink */
+        .explore-card:nth-child(2) { 
+            background: #E4D6C0;
+        } /* 🎭 People - Beige */
+        .explore-card:nth-child(3) { 
+            background: #9BC5C6;
+        } /* ⚡ Action - Teal */
+        .explore-card:nth-child(4) { 
+            background: #C6D5B9;
+        } /* 💰 Choices - Green */
+
+/* Hover Effect - Pocket Card Pop */
+.explore-card:hover {
+    transform: scale(1.05) rotate(-1deg);
+        }
+        
+        /* Style for the emoji in the cards */
+        .explore-card span {
+            margin-left: 6px;
+        }
+        
+        /* Saved Cards Button */
+        .saved-cards-btn {
+            background: #e9f0e3;
+            color: #60503E;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            outline: 1.5px solid #60503E;
+            outline-offset: -1.5px;
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .saved-cards-btn svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            fill: #60503E;
+        }
+        
+        .saved-cards-btn:hover {
+            background: #60503E;
+            color: #e9f0e3;
+            transform: translateY(-2px);
+        }
+        
+        .saved-cards-btn:hover svg {
+            fill: #e9f0e3;
+}
+
+/* 📌 Responsive Adjustments */
+@media (max-width: 768px) {
+            .explore-more {
+                padding: 30px 25px;
+                margin-top: 40px;
+            }
+            
+            .explore-more h2 {
+                font-size: 1.8rem;
+            }
+            
+            .explore-more p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+    .explore-grid {
+                gap: 12px;
+                max-width: 600px;
+                margin-bottom: 20px;
+            }
+            
+    .explore-card {
+                min-width: 130px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+            .explore-more {
+                padding: 25px 20px;
+            }
+            
+            .explore-more h2 {
+                font-size: 1.6rem;
+            }
+            
+    .explore-grid {
+        flex-direction: column;
+        align-items: center;
+                gap: 10px;
+                margin-bottom: 20px;
+    }
+            
+    .explore-card {
+                width: 90%;
+        min-width: unset;
+    }
+}
+
+/* 📌 Explore More - Mini Flip Cards */
+.mini-cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Cards Per Row */
+    gap: 50px 50px; /* Increased vertical and horizontal spacing */
+    max-width: 1150px;
+    margin: auto;
+    padding: 50px 0;
+}
+
+/* ✅ Properly Adjusted Mini Flip Cards */
+.mini-card {
+            width: 100%;
+            aspect-ratio: 2.65 / 4;
+    perspective: 1000px;
+    cursor: pointer;
+            margin: 0;
+            max-width: 260px; /* Set a maximum width for consistency */
+            justify-self: center; /* Center cards in their grid cells */
+        }
+
+        /* Ensure mini-cards are properly sized for the grid */
+        @media (min-width: 768px) {
+            .mini-card {
+                max-width: 100%;
+            }
+}
+
+/* Inner Flip Effect */
+.mini-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.mini-card:hover .mini-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* ✅ Front & Back of Mini Cards */
+.mini-card-front, .mini-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+            border-radius: 17px;
+            background: #C6D5B9;
+            outline: 2px solid #60503E;
+            outline-offset: -2px;
+            overflow: hidden;
+}
+
+/* ✅ Front Side */
+.mini-card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+            padding: 15px;
+        }
+
+        /* Card Tag Styles for Mini Cards */
+        .mini-card-tag {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            text-align: left;
+            color: #E6EFDF;
+            font-size: 11px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            background: rgba(96, 80, 62, 0.3);
+            padding: 3px 9px;
+            border-radius: 4px;
+        }
+
+        /* ✅ Image Container for Mini Cards */
+        .mini-card-image-container {
+            width: 190px;
+            height: 190px;
+            margin: 20px auto 0;
+            background: #E6EFDF;
+            box-shadow: -2px 4px 4px rgba(73, 60, 47, 0.20) inset;
+            border-radius: 24px;
+            outline: 2px solid #60503E;
+            outline-offset: -2px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mini-card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            padding: 8px;
+        }
+
+        /* Mini Card Title Styles */
+        .mini-card-title {
+            margin-top: 20px;
+            text-align: center;
+            color: #60503E;
+            font-size: 18px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            padding: 0 10px;
+            line-height: 1.3;
+            max-width: 220px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mini Card Subtitle Styles */
+        .mini-card-subtitle {
+            margin-top: 8px;
+            text-align: center;
+            color: #60503E;
+            font-size: 15px;
+            font-family: Poppins, sans-serif;
+            font-weight: 500;
+            opacity: 0.8;
+            padding: 0 10px;
+            margin-left: auto;
+            margin-right: auto;
+}
+
+/* ✅ Back Side */
+.mini-card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+            padding: 13px;
+        }
+
+        /* Mini-card back content */
+        .mini-card-back-content {
+            margin-top: 10px; /* Increased to ensure it's below the buttons */
+            display: flex;
+            flex-direction: column;
+            gap: 6px; /* Reduced for better spacing */
+            padding: 0 10px;
+        }
+
+        .mini-card-back-content .mini-card-title {
+            margin-top: 0;
+            text-align: center;
+            color: #60503E;
+            font-size: 18px; /* Smaller size */
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            padding: 0 10px;
+    line-height: 1.3;
+            max-width: 220px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 4px;
+        }
+
+        /* Mini-card section styles */
+        .mini-card-section {
+            margin-bottom: 1px; /* Tighter spacing */
+            text-align: left; /* Explicitly set left alignment */
+        }
+
+        .mini-card-section .section-title {
+            font-size: 13px; /* Smaller size */
+            margin-bottom: 3px;
+            font-weight: 600;
+            text-align: left; /* Explicitly set left alignment */
+        }
+
+        .mini-card-section .section-content {
+            font-size: 12px; /* Smaller size */
+            padding: 0 2px;
+            line-height: 1.3;
+            text-align: left; /* Explicitly set left alignment */
+        }
+
+        .section-divider {
+            height: 1px;
+            background: #e9f0e3;
+            border-radius: 9px;
+            margin: 6px 0;
+        }
+
+        /* Action buttons for mini cards */
+        .mini-card .card-actions {
+            position: relative;
+            width: 100%;
+            height: 32px; /* Increased from 28px */
+            margin-bottom: 10px; /* Increased from 8px */
+        }
+
+        .mini-card .bookmark-btn,
+        .mini-card .video-btn {
+            position: absolute;
+            top: 8px;
+            width: 30px; /* Increased from 24px */
+            height: 30px; /* Increased from 24px */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            transition: all 0.2s ease;
+        }
+
+        .mini-card .bookmark-btn {
+            right: 8px;
+            background: #e9f0e3;
+    border: none;
+    cursor: pointer;
+        }
+
+        .mini-card .video-btn {
+            left: 8px;
+            background: #483C2E;
+            text-decoration: none;
+        }
+
+        .mini-card .bookmark-btn svg,
+        .mini-card .video-btn svg {
+            width: 14px; /* Increased from 11px */
+            height: 14px; /* Increased from 11px */
+            transition: fill 0.2s ease;
+        }
+
+        .mini-card .bookmark-btn svg {
+            fill: #60503E;
+        }
+
+        .mini-card .video-btn svg {
+            fill: white;
+        }
+
+        .mini-card .bookmark-btn:hover,
+        .mini-card .video-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .mini-card .bookmark-btn:hover {
+            background: #60503E;
+        }
+
+        .mini-card .bookmark-btn:hover svg {
+            fill: #F5FFEC;
+        }
+
+        .mini-card .video-btn:hover {
+            background: #60503E;
+        }
+
+        .mini-card .bookmark-btn.active {
+            background: #60503E;
+        }
+
+        .mini-card .bookmark-btn.active svg {
+            fill: #F5FFEC;
+        }
+
+        /* Mini Read More Button Styles */
+        .mini-card .read-more-btn {
+            width: 110px;
+            height: 28px;
+            margin: 8px auto 0;
+            background: #e9f0e3;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60503E;
+            font-size: 12px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .mini-card .read-more-btn:hover {
+            transform: scale(1.05);
+            background: #60503E;
+            color: #e9f0e3;
+}
+
+/* 📌 Responsive Adjustments */
+@media (max-width: 1080px) {
+    .mini-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px 24px; /* More space on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .mini-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mini-cards-container {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Footer Styling */
+.footer {
+            background: linear-gradient(
+                to right,
+                rgba(213, 185, 203, 0.2),
+                rgba(228, 214, 192, 0.2),
+                rgba(155, 197, 198, 0.2),
+                rgba(198, 213, 185, 0.2)
+            );
+            border-top: 4px solid;
+            border-image: linear-gradient(
+                90deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            ) 1;
+    text-align: center;
+    padding: 2rem 0;
+    width: 100%;
+    margin-top: 2.5rem;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.footer p {
+    font-size: 1.25rem;
+    font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+    color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer p::after {
+            content: "✨";
+            position: absolute;
+            right: -25px;
+            top: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer p:hover::after {
+            transform: rotate(30deg) scale(1.2);
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.footer-nav a {
+    font-size: 1.1rem;
+    font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+    color: #444;
+    text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            padding: 5px 10px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .footer-nav a::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(
+                90deg, 
+                #D5B9CB, 
+                #9BC5C6
+            );
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+}
+
+.footer-nav a:hover {
+            color: #333;
+            transform: translateY(-2px);
+        }
+        
+        .footer-nav a:hover::before {
+            width: 80%;
+}
+
+.footer-button {
+    display: inline-flex;
+    align-items: center;
+            background: linear-gradient(
+                45deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            );
+            background-size: 300% 300%;
+    color: #333;
+    font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+    padding: 12px 20px;
+    border-radius: 12px;
+            border: none;
+    margin-top: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+}
+
+.footer-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            background-position: 100% 50%;
+        }
+        
+        .footer-button::after {
+            content: "→";
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-button:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Back Content Wrapper */
+        .card-back-content {
+            margin-top: 20px;
+    display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0 10px;
+        }
+
+        /* Card Title Styles - Updated for back of card */
+        .card-back-content .card-title {
+            margin-top: 15px;
+            text-align: center;
+            color: #60503E;
+            font-size: 24px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            padding: 0 15px;
+            line-height: 1.4;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Back Card Section Styles */
+        .card-section {
+            margin: 0;
+            text-align: left;
+            padding: 0;
+        }
+
+        .section-title {
+            color: #EFFFE2;
+            font-size: 14px;
+            font-family: Poppins, sans-serif;
+            font-weight: 600;
+            margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+            gap: 6px;
+            text-align: left; /* Explicitly set left alignment */
+        }
+
+        .section-content {
+            color: #60503E;
+            font-size: 13px;
+            font-family: Poppins, sans-serif;
+            line-height: 1.4;
+            margin-bottom: 6px;
+            padding: 0;
+            text-align: left; /* Explicitly set left alignment */
+        }
+
+        .section-divider {
+            height: 2px;
+            background: #e9f0e3;
+            border-radius: 9px;
+            margin: 8px 0;
+        }
+
+        /* Button group for the explore section */
+        .button-group {
+    display: flex;
+    justify-content: center;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        
+        /* Show All Cards Button */
+        .show-all-btn {
+            background: #e9f0e3;
+            color: #60503E;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            outline: 1.5px solid #60503E;
+            outline-offset: -1.5px;
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .show-all-btn svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            stroke: #60503E;
+        }
+        
+        .show-all-btn:hover {
+            background: #60503E;
+            color: #e9f0e3;
+            transform: translateY(-2px);
+        }
+        
+        .show-all-btn:hover svg {
+            stroke: #e9f0e3;
+        }
+        
+        /* Responsive adjustments for button group */
+        @media (max-width: 480px) {
+            .button-group {
+                flex-direction: column;
+    align-items: center;
+                gap: 10px;
+            }
+            
+            .saved-cards-btn, .show-all-btn {
+                width: 90%;
+            }
+        }
+
+        /* Styling for People category cards */
+        .mini-card[data-category="People"] .mini-card-front,
+        .mini-card[data-category="People"] .mini-card-back {
+            background: #D5B9CB;
+            outline: 2px solid #415A26;
+            outline-offset: -2px;
+        }
+
+        .mini-card[data-category="People"] .mini-card-image-container {
+            background: #F4E4EE;
+            outline: 2px solid #415A26;
+            box-shadow: -2px 4px 4px rgba(65, 90, 38, 0.20) inset;
+        }
+
+        .mini-card[data-category="People"] .mini-card-tag {
+            background: rgba(65, 90, 38, 0.3);
+            color: #F4E4EE;
+        }
+
+        .mini-card[data-category="People"] .mini-card-title,
+        .mini-card[data-category="People"] .mini-card-back-content .mini-card-title {
+            color: #415A26;
+        }
+        
+        .mini-card[data-category="People"] .mini-card-subtitle {
+            color: #F4E4EE;
+        }
+        
+        .mini-card[data-category="People"] .section-content {
+            color: #415A26;
+        }
+
+        .card[data-category="People"] .card-front,
+        .card[data-category="People"] .card-back {
+            background: #D5B9CB;
+            outline: 2px solid #415A26;
+            outline-offset: -2px;
+        }
+
+        .card[data-category="People"] .card-image-container {
+            background: #F4E4EE;
+            outline: 2px solid #415A26;
+            box-shadow: -3px 6px 5.2px rgba(65, 90, 38, 0.20) inset;
+        }
+
+        .card[data-category="People"] .card-tag {
+            background: rgba(65, 90, 38, 0.3);
+            color: #F4E4EE;
+        }
+
+        .card[data-category="People"] .card-title,
+        .card[data-category="People"] .card-back-content .card-title {
+            color: #415A26;
+        }
+        
+        .card[data-category="People"] .card-subtitle {
+            color: #F4E4EE;
+        }
+        
+        .card[data-category="People"] .section-content {
+            color: #415A26;
+        }
+        
+        .mini-card[data-category="People"] .section-title,
+        .card[data-category="People"] .section-title {
+            color: #F4E4EE;
+        }
+        
+        .mini-card[data-category="People"] .section-divider,
+        .card[data-category="People"] .section-divider {
+            background: #F4E4EE;
+        }
+        
+        /* Action buttons for People cards */
+        .mini-card[data-category="People"] .read-more-btn,
+        .card[data-category="People"] .read-more-btn {
+            background: #F4E4EE;
+            color: #415A26;
+        }
+        
+        .mini-card[data-category="People"] .read-more-btn:hover,
+        .card[data-category="People"] .read-more-btn:hover {
+            background: #415A26;
+            color: #F4E4EE;
+        }
+        
+        .mini-card[data-category="People"] .bookmark-btn svg,
+        .card[data-category="People"] .bookmark-btn svg {
+            fill: #415A26;
+        }
+        
+        .mini-card[data-category="People"] .bookmark-btn:hover,
+        .card[data-category="People"] .bookmark-btn:hover {
+            background: #415A26;
+        }
+
+        /* Styling for Thoughts category cards */
+        .mini-card[data-category="Thoughts"] .mini-card-front,
+        .mini-card[data-category="Thoughts"] .mini-card-back {
+            background: #E4D6C0;
+            outline: 2px solid #5A263F;
+            outline-offset: -2px;
+        }
+
+        .mini-card[data-category="Thoughts"] .mini-card-image-container {
+            background: #F3EDE3;
+            outline: 2px solid #5A263F;
+            box-shadow: -2px 4px 4px rgba(90, 38, 63, 0.20) inset;
+        }
+
+        .mini-card[data-category="Thoughts"] .mini-card-tag {
+            background: rgba(90, 38, 63, 0.3);
+            color: #F3EDE3;
+        }
+
+        .mini-card[data-category="Thoughts"] .mini-card-title,
+        .mini-card[data-category="Thoughts"] .mini-card-back-content .mini-card-title {
+            color: #5A263F;
+        }
+        
+        .mini-card[data-category="Thoughts"] .mini-card-subtitle {
+            color: #F3EDE3;
+        }
+        
+        .mini-card[data-category="Thoughts"] .section-content {
+            color: #5A263F;
+        }
+
+        .card[data-category="Thoughts"] .card-front,
+        .card[data-category="Thoughts"] .card-back {
+            background: #E4D6C0;
+            outline: 2px solid #5A263F;
+            outline-offset: -2px;
+        }
+
+        .card[data-category="Thoughts"] .card-image-container {
+            background: #F3EDE3;
+            outline: 2px solid #5A263F;
+            box-shadow: -3px 6px 5.2px rgba(90, 38, 63, 0.20) inset;
+        }
+
+        .card[data-category="Thoughts"] .card-tag {
+            background: rgba(90, 38, 63, 0.3);
+            color: #F3EDE3;
+        }
+
+        .card[data-category="Thoughts"] .card-title,
+        .card[data-category="Thoughts"] .card-back-content .card-title {
+            color: #5A263F;
+        }
+        
+        .card[data-category="Thoughts"] .card-subtitle {
+            color: #F3EDE3;
+        }
+        
+        .card[data-category="Thoughts"] .section-content {
+            color: #5A263F;
+        }
+        
+        .mini-card[data-category="Thoughts"] .section-title,
+        .card[data-category="Thoughts"] .section-title {
+            color: #F3EDE3;
+        }
+        
+        .mini-card[data-category="Thoughts"] .section-divider,
+        .card[data-category="Thoughts"] .section-divider {
+            background: #F3EDE3;
+        }
+        
+        /* Action buttons for Thoughts cards */
+        .mini-card[data-category="Thoughts"] .read-more-btn,
+        .card[data-category="Thoughts"] .read-more-btn {
+            background: #F3EDE3;
+            color: #5A263F;
+        }
+        
+        .mini-card[data-category="Thoughts"] .read-more-btn:hover,
+        .card[data-category="Thoughts"] .read-more-btn:hover {
+            background: #5A263F;
+            color: #F3EDE3;
+        }
+        
+        .mini-card[data-category="Thoughts"] .bookmark-btn svg,
+        .card[data-category="Thoughts"] .bookmark-btn svg {
+            fill: #5A263F;
+        }
+        
+        .mini-card[data-category="Thoughts"] .bookmark-btn:hover,
+        .card[data-category="Thoughts"] .bookmark-btn:hover {
+            background: #5A263F;
+        }
+
+        /* Styling for Choices category cards */
+        .mini-card[data-category="Choices"] .mini-card-front,
+        .mini-card[data-category="Choices"] .mini-card-back {
+            background: #9BC5C6;
+            outline: 2px solid #4E5D6C;
+            outline-offset: -2px;
+        }
+
+        .mini-card[data-category="Choices"] .mini-card-image-container {
+            background: #E4F4F6;
+            outline: 2px solid #4E5D6C;
+            box-shadow: -2px 4px 4px rgba(78, 93, 108, 0.20) inset;
+        }
+
+        .mini-card[data-category="Choices"] .mini-card-tag {
+            background: rgba(78, 93, 108, 0.3);
+            color: #E4F4F6;
+        }
+
+        .mini-card[data-category="Choices"] .mini-card-title,
+        .mini-card[data-category="Choices"] .mini-card-back-content .mini-card-title {
+            color: #4E5D6C;
+        }
+        
+        .mini-card[data-category="Choices"] .mini-card-subtitle {
+            color: #E4F4F6;
+        }
+        
+        .mini-card[data-category="Choices"] .section-content {
+            color: #4E5D6C;
+        }
+
+        .card[data-category="Choices"] .card-front,
+        .card[data-category="Choices"] .card-back {
+            background: #9BC5C6;
+            outline: 2px solid #4E5D6C;
+            outline-offset: -2px;
+        }
+
+        .card[data-category="Choices"] .card-image-container {
+            background: #E4F4F6;
+            outline: 2px solid #4E5D6C;
+            box-shadow: -3px 6px 5.2px rgba(78, 93, 108, 0.20) inset;
+        }
+
+        .card[data-category="Choices"] .card-tag {
+            background: rgba(78, 93, 108, 0.3);
+            color: #E4F4F6;
+        }
+
+        .card[data-category="Choices"] .card-title,
+        .card[data-category="Choices"] .card-back-content .card-title {
+            color: #4E5D6C;
+        }
+        
+        .card[data-category="Choices"] .card-subtitle {
+            color: #E4F4F6;
+        }
+        
+        .card[data-category="Choices"] .section-content {
+            color: #4E5D6C;
+        }
+        
+        .mini-card[data-category="Choices"] .section-title,
+        .card[data-category="Choices"] .section-title {
+            color: #E4F4F6;
+        }
+        
+        .mini-card[data-category="Choices"] .section-divider,
+        .card[data-category="Choices"] .section-divider {
+            background: #E4F4F6;
+        }
+        
+        /* Action buttons for Choices cards */
+        .mini-card[data-category="Choices"] .read-more-btn,
+        .card[data-category="Choices"] .read-more-btn {
+            background: #E4F4F6;
+            color: #4E5D6C;
+        }
+        
+        .mini-card[data-category="Choices"] .read-more-btn:hover,
+        .card[data-category="Choices"] .read-more-btn:hover {
+            background: #4E5D6C;
+            color: #E4F4F6;
+        }
+        
+        .mini-card[data-category="Choices"] .bookmark-btn svg,
+        .card[data-category="Choices"] .bookmark-btn svg {
+            fill: #4E5D6C;
+        }
+        
+        .mini-card[data-category="Choices"] .bookmark-btn:hover,
+        .card[data-category="Choices"] .bookmark-btn:hover {
+            background: #4E5D6C;
+        }
+
+    </style>
+<script>
+        document.querySelectorAll(".explore-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                alert(`You selected: ${button.textContent}`);
+            });
+        });
+
+        // Read More button functionality
+        document.querySelectorAll(".read-more-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                // You can replace this with your desired action
+                alert("Opening full article...");
+                // Example: window.location.href = "/full-article";
+            });
+        });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+
+    // Apply saved bookmarks on page load
+            document.querySelectorAll(".card, .mini-card").forEach((card, index) => {
+        const bookmarkBtn = card.querySelector(".bookmark-btn");
+
+        if (bookmarks.includes(index)) {
+            bookmarkBtn.classList.add("active");
+        }
+
+        bookmarkBtn.dataset.index = index;
+    });
+});
+
+function toggleBookmark(element) {
+    let index = Number(element.dataset.index);
+    let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+
+    if (bookmarks.includes(index)) {
+        // Remove from bookmarks
+        bookmarks = bookmarks.filter(i => i !== index);
+        element.classList.remove("active");
+    } else {
+        // Add to bookmarks
+        bookmarks.push(index);
+        element.classList.add("active");
+    }
+
+    // Save updated bookmarks
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+}
+
+        // Function to view saved cards
+        function viewSavedCards() {
+            let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+            
+            if (bookmarks.length === 0) {
+                alert("You haven't saved any cards yet. Click the bookmark icon on any card to save it!");
+                return;
+            }
+            
+            // Hide all cards first
+            document.querySelectorAll(".card, .mini-card").forEach((card, index) => {
+                card.style.display = "none";
+            });
+            
+            // Show only saved cards
+            bookmarks.forEach(index => {
+                const allCards = document.querySelectorAll(".card, .mini-card");
+                if (allCards[index]) {
+                    allCards[index].style.display = "block";
+                }
+            });
+            
+            // Add a "Show All" button if not already present
+            if (!document.getElementById("show-all-btn")) {
+                const showAllBtn = document.createElement("button");
+                showAllBtn.id = "show-all-btn";
+                showAllBtn.className = "saved-cards-btn";
+                showAllBtn.innerHTML = "Show All Cards";
+                showAllBtn.style.position = "fixed";
+                showAllBtn.style.bottom = "20px";
+                showAllBtn.style.right = "20px";
+                showAllBtn.style.zIndex = "1000";
+                
+                showAllBtn.addEventListener("click", () => {
+                    document.querySelectorAll(".card, .mini-card").forEach(card => {
+                        card.style.display = "block";
+                    });
+                    showAllBtn.remove();
+                });
+                
+                document.body.appendChild(showAllBtn);
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+            
+            // Add animation to menu icon
+            const menuIcon = document.querySelector('.menu-icon');
+            if (navLinks.classList.contains('show')) {
+                menuIcon.innerHTML = '✕';
+                menuIcon.style.transform = 'rotate(90deg)';
+            } else {
+                menuIcon.innerHTML = '☰';
+                menuIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Function to show all cards
+        function showAllCards() {
+            document.querySelectorAll(".card, .mini-card").forEach(card => {
+                card.style.display = "block";
+            });
+            
+            // Remove the fixed show all button if it exists
+            const fixedShowAllBtn = document.getElementById("show-all-btn");
+            if (fixedShowAllBtn) {
+                fixedShowAllBtn.remove();
+            }
+        }
+</script>
+    
+</head>
+<body>
+    <!-- 📌 Sticky Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="whywedo.html">
+                <img src="your-logo.png" alt="Logo" class="logo"> <!-- Replace with actual logo -->
+            </a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="whywedo.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#book">Book</a></li>
+        </ul>
+    </nav>
+
+
+    <h1><span class="gradient-text">Your brain does weird stuff.</span></h1>
+    <p class="subheading">Flip a card to find out why.</p>
+    <button id="shuffle-btn" class="cta-button"><span>Surprise Me</span></button>
+    
+    <!-- Large cards container for random selections -->
+    <div class="cards-wrapper">
+        <div class="large-cards-container">
+            <!-- Large cards will be dynamically generated here -->
+            </div>
+        </div>
+
+   
+    <section class="explore-more">
+    <h2>Want More Pocket Cards?</h2>
+    <p>Flip through more brain hacks and insights to level up your thinking.</p>
+        <div class="explore-grid">
+        <div class="explore-card">💭<span>Thoughts</span></div>
+        <div class="explore-card">🎭<span>People</span></div>
+        <div class="explore-card">⚡<span>Action</span></div>
+        <div class="explore-card">💰<span>Choices</span></div>
+        </div>
+    <div class="button-group">
+        <button class="saved-cards-btn" onclick="viewSavedCards()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                    </svg>
+            View Saved Cards
+                </button>
+        <button class="show-all-btn" onclick="showAllCards()">
+                    <svg viewBox="0 0 24 24">
+                <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+            Show All Cards
+        </button>
+            </div>
+    </section>
+    
+    <h2 class="section-heading">All Psychology Cards</h2>
+    
+    <div class="cards-wrapper">
+    <div class="cards-container">
+        <!-- Cards will be dynamically generated here -->
+        </div>
+    </div>
+
+
+<!-- 📌 Footer -->
+<footer class="footer">
+    <p>Made with ✨ and brain glitches.</p>
+
+    <nav class="footer-nav">
+        <a href="whywedo.html">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div>
+        <a href="https://substack.com/@riadumitrescu" target="_blank" class="footer-button">
+            🐾 More weird brain stuff → Substack
+        </a>
+    </div>
+</footer>
+
+<!-- Add script references for card database and generator -->
+<script src="js/card-data.js"></script>
+<script src="js/bookmark-functionality.js"></script>
+<script src="js/card-generator.js"></script>
+
+</body>
+</html>

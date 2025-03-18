@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - The Psychology Playbook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Patrick+Hand&family=Montserrat:wght@700;800;900&family=Quicksand:wght@500;700&display=swap');
+        
+        body {
+            background: url('assets/paper.jpg'); /* Replace with actual image path */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: repeat; /* Ensures the paper effect looks natural */
+
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 80px; /* For navbar space */
+        }
+
+        /* 📌 Sticky Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(
+                90deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            ) 1;
+        }
+
+        /* Logo */
+        .logo {
+            height: 45px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            padding: 8px 15px;
+            border-radius: 18px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Individual color for each nav link */
+        .nav-links li:nth-child(1) a::before {
+            background: #D5B9CB;
+        }
+        
+        .nav-links li:nth-child(2) a::before {
+            background: #E4D6C0;
+        }
+        
+        .nav-links li:nth-child(3) a::before {
+            background: #9BC5C6;
+        }
+        
+        .nav-links li:nth-child(4) a::before {
+            background: #C6D5B9;
+        }
+
+        .nav-links a::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            opacity: 0.8;
+            transition: height 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-links a:hover {
+            color: #222;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover::before {
+            height: 100%;
+        }
+
+        /* 📌 Responsive Menu Button */
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            color: #333;
+        }
+        
+        .menu-icon:hover {
+            transform: rotate(90deg);
+            color: #9BC5C6;
+        }
+
+        /* Page header with gradient */
+        .about-header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-title {
+            font-size: 4rem;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            padding: 0 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                45deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            );
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 8s ease infinite, brain-pulse 3s ease-in-out infinite;
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes brain-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .about-subtitle {
+            font-size: 1.6rem;
+            color: #444;
+            max-width: 700px;
+            line-height: 1.6;
+            font-style: italic;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0 auto 2rem;
+        }
+
+        /* Content wrapper */
+        .content-wrapper {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section styling */
+        .section {
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-heading::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(
+                90deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            );
+            border-radius: 2px;
+        }
+
+        /* About content grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+            outline: 2px solid rgba(96, 80, 62, 0.3);
+            outline-offset: 4px;
+        }
+
+        .about-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            text-align: left;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #333;
+            background: linear-gradient(120deg, rgba(155, 197, 198, 0.2) 0%, rgba(155, 197, 198, 0.2) 100%);
+            padding: 3px 0;
+        }
+
+        /* Feature cards */
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid;
+        }
+
+        .feature-card:nth-child(1) {
+            border-color: #D5B9CB;
+        }
+
+        .feature-card:nth-child(2) {
+            border-color: #9BC5C6;
+        }
+
+        .feature-card:nth-child(3) {
+            border-color: #C6D5B9;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Quote section */
+        .quote-section {
+            background: linear-gradient(
+                45deg, 
+                rgba(213, 185, 203, 0.2),
+                rgba(155, 197, 198, 0.2)
+            );
+            padding: 60px 30px;
+            border-radius: 16px;
+            margin: 80px 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-size: 1.8rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            font-style: italic;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .quote-text::before {
+            content: """;
+            font-size: 5rem;
+            font-family: Georgia, serif;
+            position: absolute;
+            top: -40px;
+            left: -20px;
+            color: rgba(155, 197, 198, 0.3);
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-button {
+            padding: 16px 48px 16px 32px;
+            font-size: 1.4rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            margin-top: 25px;
+        }
+
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            );
+            background-size: 300% 300%;
+            z-index: -1;
+            transition: all 0.6s ease;
+            animation: gradient-shift 8s ease infinite;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover::before {
+            background-position: 100% 50%;
+        }
+
+        .cta-button::after {
+            content: "→";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover::after {
+            transform: translateY(-50%) translateX(5px);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 2;
+            color: #333;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+
+        /* Footer styling */
+        .footer {
+            background: linear-gradient(
+                to right,
+                rgba(213, 185, 203, 0.2),
+                rgba(228, 214, 192, 0.2),
+                rgba(155, 197, 198, 0.2),
+                rgba(198, 213, 185, 0.2)
+            );
+            border-top: 4px solid;
+            border-image: linear-gradient(
+                90deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            ) 1;
+            text-align: center;
+            padding: 2rem 0;
+            width: 100%;
+            margin-top: 2.5rem;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer p {
+            font-size: 1.25rem;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer p::after {
+            content: "✨";
+            position: absolute;
+            right: -25px;
+            top: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer p:hover::after {
+            transform: rotate(30deg) scale(1.2);
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .footer-nav a {
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            color: #444;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            padding: 5px 10px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .footer-nav a::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(
+                90deg, 
+                #D5B9CB, 
+                #9BC5C6
+            );
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .footer-nav a:hover {
+            color: #333;
+            transform: translateY(-2px);
+        }
+        
+        .footer-nav a:hover::before {
+            width: 80%;
+        }
+
+        .footer-button {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(
+                45deg, 
+                #D5B9CB 0%, 
+                #E4D6C0 25%, 
+                #9BC5C6 50%, 
+                #C6D5B9 75%, 
+                #D5B9CB 100%
+            );
+            background-size: 300% 300%;
+            color: #333;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: none;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .footer-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            background-position: 100% 50%;
+        }
+        
+        .footer-button::after {
+            content: "→";
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-button:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .about-image {
+                max-width: 80%;
+                margin: 0 auto;
+                display: block;
+            }
+            
+            .features-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .quote-text {
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: white;
+                width: 200px;
+                padding: 15px;
+                border-radius: 0 0 8px 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            .nav-links.show {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+            
+            .about-title {
+                font-size: 3rem;
+            }
+            
+            .about-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+            
+            .features-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .about-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .quote-text {
+                font-size: 1.4rem;
+            }
+            
+            .feature-card {
+                padding: 25px 20px;
+            }
+            
+            .cta-button {
+                font-size: 1.2rem;
+                padding: 14px 40px 14px 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 📌 Sticky Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="whywedo.html">
+                <img src="your-logo.png" alt="Logo" class="logo"> <!-- Replace with actual logo -->
+            </a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="whywedo.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#book">Book</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="about-header">
+        <h1 class="about-title"><span class="gradient-text">About The Psychology Playbook</span></h1>
+        <p class="about-subtitle">Understanding human behavior through cognitive science, one brain glitch at a time.</p>
+    </header>
+
+    <div class="content-wrapper">
+        <!-- About Section -->
+        <section class="section">
+            <h2 class="section-heading">Our Story</h2>
+            <div class="about-grid">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Psychology Playbook Concept" class="about-image">
+                </div>
+                <div class="about-text">
+                    <p>The Psychology Playbook began with a simple observation: <span class="highlight">our brains don't always work the way we think they do</span>. As psychology enthusiasts and cognitive science researchers, we found ourselves collecting fascinating examples of cognitive biases, logical fallacies, and mental shortcuts that affect our everyday decisions.</p>
+                    
+                    <p>What started as a personal collection of notes and observations gradually evolved into a comprehensive "playbook" of psychological phenomena that shape human behavior. We realized that understanding these mental patterns could help people make better decisions, improve relationships, and generally navigate life with more awareness.</p>
+                    
+                    <p>Our mission expanded: to make cognitive science accessible and applicable to everyone, not just academics or psychology professionals. Through interactive cards, engaging content, and practical examples, we aim to reveal the hidden mechanisms of the mind in a way that's both educational and entertaining.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Approach Section -->
+        <section class="section">
+            <h2 class="section-heading">Our Approach</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3 class="feature-title">Evidence-Based</h3>
+                    <p class="feature-text">We draw from peer-reviewed research, established psychological theories, and documented case studies to ensure accuracy and reliability in all our content.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🧩</span>
+                    <h3 class="feature-title">Practical Application</h3>
+                    <p class="feature-text">Our focus is on translating complex psychological concepts into actionable insights you can apply in your daily life, work, and relationships.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎮</span>
+                    <h3 class="feature-title">Interactive Learning</h3>
+                    <p class="feature-text">We believe engagement is key to retention, which is why we present information through interactive cards, relatable examples, and hands-on exercises.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="quote-section">
+            <blockquote class="quote-text">
+                The mind is not a vessel to be filled, but a fire to be kindled. Understanding our cognitive biases doesn't just inform us—it transforms how we see the world and ourselves.
+            </blockquote>
+            <p class="quote-author">— The Psychology Playbook Team</p>
+        </section>
+
+        <!-- Team Section -->
+        <section class="section">
+            <h2 class="section-heading">Behind The Playbook</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Our interdisciplinary team brings together expertise from cognitive psychology, behavioral economics, neuroscience, and education. We're united by our passion for understanding the human mind and making that knowledge accessible to everyone.</p>
+                    
+                    <p>Led by researchers with backgrounds in experimental psychology and cognitive science, our content creators work alongside designers and educators to transform complex concepts into engaging, digestible formats.</p>
+                    
+                    <p>We believe that <span class="highlight">understanding why we think and behave the way we do</span> is the first step toward making better decisions, improving mental well-being, and building stronger relationships. Our diverse perspectives ensure that our content remains comprehensive, accurate, and relevant to real-life situations.</p>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Psychology Team Collaboration" class="about-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2 class="section-heading">Ready to Explore Your Brain?</h2>
+            <p class="about-subtitle">Discover cognitive biases, mental shortcuts, and the fascinating quirks that shape your decisions.</p>
+            <a href="whywedo.html" class="cta-button"><span>Start Flipping Cards</span></a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Made with ✨ and brain glitches.</p>
+
+        <nav class="footer-nav">
+            <a href="whywedo.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div>
+            <a href="https://substack.com/@riadumitrescu" target="_blank" class="footer-button">
+                🐾 More weird brain stuff → Substack
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle function
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+            
+            // Add animation to menu icon
+            const menuIcon = document.querySelector('.menu-icon');
+            if (navLinks.classList.contains('show')) {
+                menuIcon.innerHTML = '✕';
+                menuIcon.style.transform = 'rotate(90deg)';
+            } else {
+                menuIcon.innerHTML = '☰';
+                menuIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+</html> 
