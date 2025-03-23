@@ -1,0 +1,514 @@
+/* Social Media Portfolio Styles */
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+/* Simple Navbar */
+#simple-navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 15px 0;
+}
+
+#simple-navbar .navbar-brand {
+  font-weight: 600;
+  color: #000;
+  font-size: 1.3rem;
+}
+
+#simple-navbar .nav-link {
+  color: #333;
+  font-weight: 400;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+#simple-navbar .nav-link:hover {
+  color: #000;
+}
+
+#simple-navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+#simple-navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+#simple-navbar .navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+#simple-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Hero Section */
+#social-hero {
+  height: 50vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 76px;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('assets/instagram_reels/socialmedia.png') center center/cover no-repeat;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.social-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.social-hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.social-hero-content p {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+/* Stats Section */
+.social-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.social-card-link:hover {
+  transform: translateY(-10px);
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-platform-card {
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.social-card-link:hover .social-platform-card {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.social-platform-card.instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+}
+
+.social-platform-card.youtube {
+  background: linear-gradient(45deg, #FF0000, #CC0000);
+  color: white;
+}
+
+.platform-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.platform-header i {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.platform-header h3 {
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.profile-link {
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 300;
+}
+
+.profile-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+/* Marketing Videos Section */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.video-item {
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  height: 0;
+  padding-bottom: 177.78%; /* 16:9 Aspect Ratio for videos */
+}
+
+.video-item video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.video-item:hover .video-overlay {
+  transform: translateY(0);
+}
+
+.video-item:hover video {
+  transform: scale(1.05);
+}
+
+.video-overlay h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.play-btn {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.play-btn:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+/* Instagram Reels Section */
+.reels-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.reel-item {
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  height: 0;
+  padding-bottom: 177.78%; /* 9:16 Aspect Ratio for reels */
+  transition: transform 0.3s ease;
+}
+
+.reel-item:hover {
+  transform: translateY(-5px);
+}
+
+.reel-item video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.reel-overlay {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  max-width: 90%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.reel-item:hover .reel-overlay {
+  opacity: 1;
+}
+
+.reel-item:hover video {
+  transform: scale(1.05);
+}
+
+/* Content Strategy Section */
+.strategy-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 2rem;
+  height: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.strategy-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.strategy-icon {
+  background-color: #f9f3e7;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.strategy-icon i {
+  font-size: 2rem;
+  color: #333;
+}
+
+.strategy-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.strategy-card p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #555;
+}
+
+/* CTA Section */
+#social-cta {
+  background-color: #f9f3e7;
+  padding: 4rem 0;
+  border-radius: 15px;
+}
+
+#social-cta h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#social-cta p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #333;
+  transform: scale(1.05);
+  color: white;
+  text-decoration: none;
+}
+
+/* Footer Styles */
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  margin: 0 10px;
+  color: #333;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-5px);
+}
+
+/* Modal for Video Playback */
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.modal-content {
+  width: 80%;
+  max-width: 900px;
+  position: relative;
+}
+
+.modal-video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.close-modal {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .social-hero-content h1 {
+    font-size: 2.8rem;
+  }
+  
+  .social-hero-content p {
+    font-size: 1.2rem;
+  }
+  
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  #social-hero {
+    height: 40vh;
+  }
+  
+  .social-hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .social-hero-content p {
+    font-size: 1rem;
+  }
+  
+  .stats-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .video-grid, .reels-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  #social-cta h2 {
+    font-size: 2rem;
+  }
+  
+  #social-cta p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .video-grid, .reels-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .social-hero-content h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Video Lazy Loading */
+.lazy-video {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lazy-video.loaded {
+  opacity: 1;
+} 
