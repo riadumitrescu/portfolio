@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylique – Product Opportunity Matrix</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #FFFBF4;
+      color: #4F3D3C;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1, h2, h3 {
+      color: #2E2B29;
+      margin-bottom: 10px;
+    }
+
+    .line1 {
+      height: 2px;
+      width: 60px;
+      background-color: #4F3D3C;
+      margin-bottom: 30px;
+    }
+
+    .white-side-paragraph {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 900px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #FFFBF4;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #bbb;
+      padding: 12px;
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    .comparison-table th {
+      background-color: #2E2B29;
+      color: #FFFFFF;
+      font-weight: bold;
+    }
+
+    .comparison-table tr:nth-child(even) {
+      background-color: #FFF8EE;
+    }
+
+    .comparison-table tr:nth-child(odd) {
+      background-color: #FFFBF4;
+    }
+
+    .star-cell {
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .comparison-table th, .comparison-table td {
+        font-size: 14px;
+        padding: 8px;
+      }
+
+      .star-cell {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <table class="comparison-table">
+    <tr class="header">
+      <th>Feature Theme</th>
+      <th>User Requests</th>
+      <th>Priority</th>
+    </tr>
+    <tr>
+      <td>Smart Outfit Suggestions</td>
+      <td>AI that recommends weather-based and occasion-specific looks</td>
+      <td class="star-cell">⭐⭐⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td>Closet Customization</td>
+      <td>Sub-closets, item reordering, seasonal separation, offline mode</td>
+      <td class="star-cell">⭐⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td>Photo Handling & Editing</td>
+      <td>Flip items, remove background, pin, allow custom categories</td>
+      <td class="star-cell">⭐⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td>Trust & Platform Reliability</td>
+      <td>Reduce crashes, improve login, enable backup & sync</td>
+      <td class="star-cell">⭐⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td>Style Inclusivity</td>
+      <td>Gender-specific styles, regional features parity, brand controls</td>
+      <td class="star-cell">⭐⭐⭐</td>
+    </tr>
+  </table>
+</body>
+</html>
