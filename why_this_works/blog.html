@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - The Psychology Playbook</title>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" as="style">
+    
+    <!-- Load fonts with display swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Patrick+Hand&family=Montserrat:wght@700;800;900&family=Quicksand:wght@500;700&display=swap" media="print" onload="this.media='all'">
+    
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="your-logo.png">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Patrick+Hand&family=Montserrat:wght@700;800;900&family=Quicksand:wght@500;700&display=swap');
         
@@ -627,6 +638,144 @@
                 width: 100%;
             }
         }
+
+        /* Custom styles for Substack embed */
+        .substack-embed-container {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #EEE;
+            margin-bottom: 40px;
+        }
+        
+        .substack-embed-title {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #60503E;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+        }
+        
+        .substack-iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background: white;
+        }
+        
+        .substack-iframe-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .iframe-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 2;
+        }
+        
+        .iframe-loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(155, 197, 198, 0.3);
+            border-radius: 50%;
+            border-top-color: #9BC5C6;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* YouTube Video Gallery Styles */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+            line-height: 1.3;
+            color: #333;
+        }
+        
+        .video-info p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #444;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        @media (max-width: 1100px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -634,14 +783,14 @@
     <nav class="navbar">
         <div class="nav-left">
             <a href="whywedo.html">
-                <img src="your-logo.png" alt="Logo" class="logo"> <!-- Replace with actual logo -->
+                <img src="your-logo.png" alt="Logo" class="logo" loading="lazy"> <!-- Replace with actual logo -->
             </a>
         </div>
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <ul class="nav-links">
             <li><a href="whywedo.html">Home</a></li>
             <li><a href="blog.html">Blog</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="#book">Book</a></li>
         </ul>
     </nav>
@@ -652,22 +801,87 @@
         <p class="blog-subtitle">Delving deeper into the fascinating workings of human psychology, behavior, and cognitive biases.</p>
     </header>
 
-    <!-- Blog Posts Container -->
-    <div class="blog-container" id="blogPosts">
-        <!-- Posts will be loaded here -->
-        <div class="loading-container">
-            <div class="loading-spinner"></div>
-            <p>Loading latest posts...</p>
+    <!-- Blog Posts Container - YouTube Videos (Fixed with direct YouTube links) -->
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center;">
+        <h2 style="color: #60503E; margin-bottom: 30px; font-family: 'Montserrat', sans-serif;">Psychology Videos</h2>
+        
+        <!-- YouTube Video Gallery - Using YouTube's recommended embed method -->
+        <div class="video-gallery" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 20px 0 60px 0;">
+            <!-- Video 1 -->
+            <div style="background: rgba(255, 255, 255, 0.95); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); transition: all 0.4s ease;">
+                <a href="https://www.youtube.com/watch?v=vo4pMVb0R6M" target="_blank" style="display: block; position: relative; overflow: hidden;">
+                    <img src="https://img.youtube.com/vi/vo4pMVb0R6M/mqdefault.jpg" 
+                         data-src="https://img.youtube.com/vi/vo4pMVb0R6M/maxresdefault.jpg"
+                         style="width: 100%; height: auto; display: block; border-radius: 15px 15px 0 0; transition: transform 0.5s ease;" 
+                         loading="lazy">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s ease;"></div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: all 0.3s ease;">
+                        <div style="width: 70px; height: 70px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FF0000">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                <div style="padding: 20px; text-align: left; border-top: 1px solid rgba(0,0,0,0.05);">
+                    <h3 style="margin: 0 0 8px 0; font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: #333;">Intro to Psychology</h3>
+                    <p style="margin: 0; font-size: 0.95rem; color: #666; font-family: 'Quicksand', sans-serif;">Crash Course Psychology #1</p>
+                </div>
+            </div>
+            
+            <!-- Video 2 -->
+            <div style="background: rgba(255, 255, 255, 0.95); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); transition: all 0.4s ease;">
+                <a href="https://www.youtube.com/watch?v=hFV71QPvX2I" target="_blank" style="display: block; position: relative; overflow: hidden;">
+                    <img src="https://img.youtube.com/vi/hFV71QPvX2I/mqdefault.jpg"
+                         data-src="https://img.youtube.com/vi/hFV71QPvX2I/maxresdefault.jpg"
+                         style="width: 100%; height: auto; display: block; border-radius: 15px 15px 0 0; transition: transform 0.5s ease;" 
+                         loading="lazy">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s ease;"></div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: all 0.3s ease;">
+                        <div style="width: 70px; height: 70px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FF0000">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                <div style="padding: 20px; text-align: left; border-top: 1px solid rgba(0,0,0,0.05);">
+                    <h3 style="margin: 0 0 8px 0; font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: #333;">Psychological Research</h3>
+                    <p style="margin: 0; font-size: 0.95rem; color: #666; font-family: 'Quicksand', sans-serif;">Crash Course Psychology #2</p>
+                </div>
+            </div>
+            
+            <!-- Video 3 -->
+            <div style="background: rgba(255, 255, 255, 0.95); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); transition: all 0.4s ease;">
+                <a href="https://www.youtube.com/watch?v=rAdvpMa4ROg" target="_blank" style="display: block; position: relative; overflow: hidden;">
+                    <img src="https://img.youtube.com/vi/rAdvpMa4ROg/mqdefault.jpg"
+                         data-src="https://img.youtube.com/vi/rAdvpMa4ROg/maxresdefault.jpg"
+                         style="width: 100%; height: auto; display: block; border-radius: 15px 15px 0 0; transition: transform 0.5s ease;" 
+                         loading="lazy">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s ease;"></div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: all 0.3s ease;">
+                        <div style="width: 70px; height: 70px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FF0000">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                <div style="padding: 20px; text-align: left; border-top: 1px solid rgba(0,0,0,0.05);">
+                    <h3 style="margin: 0 0 8px 0; font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: #333;">The Chemical Mind</h3>
+                    <p style="margin: 0; font-size: 0.95rem; color: #666; font-family: 'Quicksand', sans-serif;">Crash Course Psychology #3</p>
+                </div>
+            </div>
         </div>
+        
+        <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #D5B9CB, #9BC5C6); color: white; padding: 14px 28px; border-radius: 30px; text-decoration: none; font-weight: bold; font-family: 'Montserrat', sans-serif; margin-top: 20px; box-shadow: 0 5px 15px rgba(155, 197, 198, 0.4); transition: all 0.3s ease;">
+            Watch Full Playlist on YouTube
+        </a>
     </div>
 
-    <!-- Pagination -->
-    <div class="pagination" id="pagination">
-        <button class="pagination-btn disabled" id="prevBtn">Previous</button>
-        <button class="pagination-btn active">1</button>
-        <button class="pagination-btn">2</button>
-        <button class="pagination-btn">3</button>
-        <button class="pagination-btn" id="nextBtn">Next</button>
+    <!-- Pagination - hidden when using iframe -->
+    <div class="pagination" id="pagination" style="display: none;">
+        <!-- Pagination is hidden as we're using a load more button -->
     </div>
 
     <!-- Newsletter Section -->
@@ -687,318 +901,111 @@
         <nav class="footer-nav">
             <a href="whywedo.html">Home</a>
             <a href="blog.html">Blog</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="about.html">About</a>
+            <a href="#book">Book</a>
         </nav>
 
         <div>
-            <a href="https://substack.com/@riadumitrescu" target="_blank" class="footer-button">
+            <a href="https://riadumitrescu.substack.com" target="_blank" class="footer-button">
                 🐾 More weird brain stuff → Substack
             </a>
         </div>
     </footer>
 
+    <!-- JavaScript for menu toggle and form handling -->
     <script>
-        // Mobile menu toggle function
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('show');
-            
-            // Add animation to menu icon
-            const menuIcon = document.querySelector('.menu-icon');
-            if (navLinks.classList.contains('show')) {
-                menuIcon.innerHTML = '✕';
-                menuIcon.style.transform = 'rotate(90deg)';
-            } else {
-                menuIcon.innerHTML = '☰';
-                menuIcon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Fetch blog posts from Substack RSS feed
         document.addEventListener('DOMContentLoaded', function() {
-            fetchSubstackPosts();
-        });
-
-        async function fetchSubstackPosts() {
-            const blogContainer = document.getElementById('blogPosts');
-            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-            const substackRssUrl = 'https://irinadumitrescu.substack.com/feed';
-            
-            try {
-                // First try without CORS proxy
-                let response;
-                try {
-                    response = await fetch(substackRssUrl);
-                } catch (directError) {
-                    // If direct request fails, try with CORS proxy
-                    console.log('Direct request failed, trying with CORS proxy');
-                    response = await fetch(corsProxy + substackRssUrl);
-                }
+            // Mobile menu toggle function
+            window.toggleMenu = function() {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.classList.toggle('show');
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const rssText = await response.text();
-                const parser = new DOMParser();
-                const rssDoc = parser.parseFromString(rssText, 'text/xml');
-                
-                // Clear loading indicator
-                blogContainer.innerHTML = '';
-                
-                // Process the RSS items
-                const items = rssDoc.querySelectorAll('item');
-                
-                // Map categories to our tag colors
-                const categoryMap = {
-                    'psychology': 'Thoughts',
-                    'cognitive bias': 'Thoughts',
-                    'behavior': 'Action',
-                    'social psychology': 'People',
-                    'decision making': 'Choices'
-                };
-                
-                // If no items found, display error
-                if (items.length === 0) {
-                    fallbackToSamplePosts();
-                    return;
-                }
-                
-                items.forEach(item => {
-                    const title = item.querySelector('title')?.textContent || 'Untitled Post';
-                    const link = item.querySelector('link')?.textContent || 'https://substack.com/@riadumitrescu';
-                    const pubDate = item.querySelector('pubDate')?.textContent || '';
-                    
-                    // Format date
-                    const date = pubDate ? new Date(pubDate) : new Date();
-                    const formattedDate = date.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                    
-                    // Get content and create excerpt
-                    let content = item.querySelector('content\\:encoded, encoded')?.textContent || 
-                                 item.querySelector('description')?.textContent || '';
-                    
-                    // Strip HTML and create excerpt
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = content;
-                    content = tempDiv.textContent || tempDiv.innerText || '';
-                    const excerpt = content.substring(0, 200) + '...';
-                    
-                    // Get categories or default to "Thoughts"
-                    const categories = Array.from(item.querySelectorAll('category'))
-                        .map(cat => cat.textContent.toLowerCase());
-                    
-                    // Match category to our tag system or default to "Thoughts"
-                    let tag = 'Thoughts';  // Default
-                    for (const cat of categories) {
-                        if (categoryMap[cat]) {
-                            tag = categoryMap[cat];
-                            break;
-                        }
-                    }
-                    
-                    // Extract image if possible
-                    let imageUrl = 'https://placehold.co/600x400?text=Psychology+Blog';
-                    
-                    // Try to find an image in the content
-                    tempDiv.innerHTML = item.querySelector('content\\:encoded, encoded')?.textContent || '';
-                    const firstImg = tempDiv.querySelector('img');
-                    if (firstImg && firstImg.src) {
-                        imageUrl = firstImg.src;
-                    }
-                    
-                    // Create the blog post element
-                    const postElement = document.createElement('article');
-                    postElement.className = 'blog-post';
-                    
-                    postElement.innerHTML = `
-                        <span class="blog-post-tag">${tag}</span>
-                        <img src="${imageUrl}" alt="${title}" class="blog-post-img" onerror="this.src='https://placehold.co/600x400?text=Psychology+Blog'">
-                        <div class="blog-post-content">
-                            <span class="blog-post-date">${formattedDate}</span>
-                            <h2 class="blog-post-title">${title}</h2>
-                            <p class="blog-post-excerpt">${excerpt}</p>
-                            <a href="${link}" class="blog-post-link" target="_blank">Read More</a>
-                        </div>
-                    `;
-                    
-                    blogContainer.appendChild(postElement);
-                });
-                
-                // Setup pagination if we have enough posts
-                updatePagination(items.length);
-                
-            } catch (error) {
-                console.error('Error fetching Substack RSS feed:', error);
-                fallbackToSamplePosts();
-            }
-        }
-        
-        function fallbackToSamplePosts() {
-            console.log('Falling back to sample posts');
-            const blogContainer = document.getElementById('blogPosts');
-            
-            blogContainer.innerHTML = `
-                <div class="error-container">
-                    <h3>Unable to connect to Substack</h3>
-                    <p>We're having trouble connecting to the blog right now. Please check back later or visit the Substack directly.</p>
-                    <a href="https://substack.com/@riadumitrescu" class="blog-post-link" style="margin-top: 20px;">Visit Substack</a>
-                </div>
-            `;
-            
-            // Load sample posts after error message
-            setTimeout(loadSamplePosts, 500);
-        }
-        
-        function loadSamplePosts() {
-            const blogContainer = document.getElementById('blogPosts');
-            
-            // Sample blog post data as fallback
-            const posts = [
-                {
-                    title: "Why Defaults Are More Powerful Than You Think",
-                    excerpt: "Default options significantly influence our decisions without us even realizing it. This cognitive phenomenon called the default effect explains why organ donation rates vary dramatically between countries...",
-                    image: "assets/default_effect.jpg",
-                    date: "May 15, 2023",
-                    tag: "Choices",
-                    url: "https://substack.com/@riadumitrescu"
-                },
-                {
-                    title: "The Weird Reason We Fear Missing Out",
-                    excerpt: "FOMO isn't just a modern social media phenomenon. It's rooted in ancient survival mechanisms that once protected us from being excluded from the tribe. Learn how this evolutionary adaptation...",
-                    image: "assets/fomo.jpg",
-                    date: "April 28, 2023",
-                    tag: "People",
-                    url: "https://substack.com/@riadumitrescu"
-                },
-                {
-                    title: "How Your Brain Creates False Memories",
-                    excerpt: "Your memories aren't as reliable as you think. Each time you recall an event, your brain actually reconstructs it, potentially introducing new elements or distortions. This process, called memory reconsolidation...",
-                    image: "assets/false_memories.jpg",
-                    date: "April 10, 2023",
-                    tag: "Thoughts",
-                    url: "https://substack.com/@riadumitrescu"
-                },
-                {
-                    title: "The Surprising Science of Procrastination",
-                    excerpt: "Procrastination isn't about laziness—it's about emotion regulation. When we procrastinate, we're actually choosing to avoid negative emotions associated with a task. This psychological insight can help you overcome...",
-                    image: "assets/procrastination.jpg",
-                    date: "March 22, 2023",
-                    tag: "Action",
-                    url: "https://substack.com/@riadumitrescu"
-                },
-                {
-                    title: "Why We're Terrible at Predicting Our Future Feelings",
-                    excerpt: "Humans consistently misjudge how events will affect their emotional state. This phenomenon, called affective forecasting, leads us to overestimate the impact of both positive and negative events on our happiness...",
-                    image: "assets/affective_forecasting.jpg",
-                    date: "March 8, 2023",
-                    tag: "Thoughts",
-                    url: "https://substack.com/@riadumitrescu"
-                },
-                {
-                    title: "The Hidden Psychology of Pricing",
-                    excerpt: "Price anchors, charm prices, and bundle framing aren't just marketing tricks—they exploit fundamental cognitive biases that affect how we perceive value. Understanding these psychological mechanisms can make you a more conscious consumer...",
-                    image: "assets/pricing_psychology.jpg",
-                    date: "February 17, 2023",
-                    tag: "Choices",
-                    url: "https://substack.com/@riadumitrescu"
-                }
-            ];
-
-            // Clear error container if exists
-            const errorContainer = blogContainer.querySelector('.error-container');
-            if (errorContainer) {
-                blogContainer.removeChild(errorContainer);
-            }
-
-            // Create and append blog post elements
-            posts.forEach(post => {
-                const postElement = document.createElement('article');
-                postElement.className = 'blog-post';
-
-                // Create placeholder image URL if none provided
-                const imageUrl = post.image || 'https://placehold.co/600x400?text=Psychology+Blog';
-
-                postElement.innerHTML = `
-                    <span class="blog-post-tag">${post.tag}</span>
-                    <img src="${imageUrl}" alt="${post.title}" class="blog-post-img">
-                    <div class="blog-post-content">
-                        <span class="blog-post-date">${post.date}</span>
-                        <h2 class="blog-post-title">${post.title}</h2>
-                        <p class="blog-post-excerpt">${post.excerpt}</p>
-                        <a href="${post.url}" class="blog-post-link" target="_blank">Read More</a>
-                    </div>
-                `;
-
-                blogContainer.appendChild(postElement);
-            });
-            
-            updatePagination(posts.length);
-        }
-        
-        function updatePagination(postCount) {
-            const paginationElement = document.getElementById('pagination');
-            const pageSize = 6; // Posts per page
-            const totalPages = Math.ceil(postCount / pageSize);
-            
-            // Only show pagination if we have more than one page
-            if (totalPages <= 1) {
-                paginationElement.style.display = 'none';
-                return;
-            }
-            
-            // Update pagination buttons
-            let paginationHTML = `
-                <button class="pagination-btn disabled" id="prevBtn">Previous</button>
-            `;
-            
-            for (let i = 1; i <= Math.min(totalPages, 5); i++) {
-                if (i === 1) {
-                    paginationHTML += `<button class="pagination-btn active">1</button>`;
+                // Add animation to menu icon
+                const menuIcon = document.querySelector('.menu-icon');
+                if (navLinks.classList.contains('show')) {
+                    menuIcon.innerHTML = '✕';
+                    menuIcon.style.transform = 'rotate(90deg)';
                 } else {
-                    paginationHTML += `<button class="pagination-btn">${i}</button>`;
+                    menuIcon.innerHTML = '☰';
+                    menuIcon.style.transform = 'rotate(0deg)';
                 }
             }
             
-            paginationHTML += `
-                <button class="pagination-btn" id="nextBtn">Next</button>
-            `;
-            
-            paginationElement.innerHTML = paginationHTML;
-            
-            // Attach event listeners
-            document.getElementById('prevBtn').addEventListener('click', function() {
-                if (!this.classList.contains('disabled')) {
-                    // Previous page logic would go here
-                    alert('In a full implementation, this would load the previous page of posts from your Substack.');
-                }
-            });
-            
-            document.getElementById('nextBtn').addEventListener('click', function() {
-                // Next page logic would go here
-                alert('In a full implementation, this would load the next page of posts from your Substack.');
-            });
-            
-            document.querySelectorAll('.pagination-btn:not(#prevBtn):not(#nextBtn)').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelector('.pagination-btn.active').classList.remove('active');
-                    this.classList.add('active');
-                    
-                    // Page change logic would go here
-                    alert('In a full implementation, this would load page ' + this.textContent + ' of posts from your Substack.');
+            // Progressive image loading
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
                 });
             });
-        }
 
-        // Newsletter form functionality
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for subscribing to the newsletter!');
-            this.reset();
+            images.forEach(img => imageObserver.observe(img));
+            
+            // Update the footer Substack link to ensure it's correct
+            const substackButton = document.querySelector('.footer-button');
+            if (substackButton) {
+                substackButton.href = "https://riadumitrescu.substack.com";
+            }
+            
+            // Enhanced hover effects for video cards
+            const videoCards = document.querySelectorAll('.video-gallery > div');
+            videoCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+                    
+                    const img = this.querySelector('img');
+                    if (img) {
+                        img.style.transform = 'scale(1.05)';
+                    }
+                    
+                    const overlay = this.querySelector('div > div:first-of-type');
+                    if (overlay) {
+                        overlay.style.opacity = '1';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.12)';
+                    
+                    const img = this.querySelector('img');
+                    if (img) {
+                        img.style.transform = '';
+                    }
+                    
+                    const overlay = this.querySelector('div > div:first-of-type');
+                    if (overlay) {
+                        overlay.style.opacity = '0';
+                    }
+                });
+            });
+            
+            // Playlist button hover effect
+            const playlistButton = document.querySelector('.video-gallery + a');
+            if (playlistButton) {
+                playlistButton.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 10px 20px rgba(155, 197, 198, 0.5)';
+                });
+                
+                playlistButton.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '0 5px 15px rgba(155, 197, 198, 0.4)';
+                });
+            }
+            
+            // Newsletter form functionality
+            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for subscribing to the newsletter!');
+                this.reset();
+            });
         });
     </script>
 </body>

@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Psychology Playbook</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Patrick+Hand&display=swap');
+        
+        body {
+        
+            background: url('assets/paper.jpg'); /* Replace with actual image path */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: repeat; /* Ensures the paper effect looks natural */
+
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #222;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #4A90E2, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: popIn 0.8s ease-in-out;
+        }
+
+        .subheading {
+            font-size: 1.5rem;
+            color: #444;
+            max-width: 650px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-button {
+            padding: 14px 24px;
+            font-size: 1.3rem;
+            background: #FFC107;
+            color: #333;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .cta-button:hover {
+            background: #E67E22;
+            transform: scale(1.1) rotate(-2deg);
+        }
+
+        .learn-more {
+            padding: 12px 24px;
+            font-size: 1rem;
+            background: #FFC107;
+            color: #333;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+            margin-top: 15px;
+            width: 90%;
+        }
+
+        .learn-more:hover {
+            background: #E67E22;
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 60px 80px; /* More space between rows (60px) and columns (80px) */
+            max-width: 1200px; /* Ensures the layout remains centered and readable */
+            padding: 50px 20px;
+        }
+
+        .card {
+            width: 320px; /* Base width */
+            aspect-ratio: 2.8 / 4; /* Keeps the new shape */
+            max-width: 90%; /* Makes it responsive */
+            perspective: 1000px; /* Keep existing 3D effect */
+            cursor: pointer;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-front, .card-back {
+            background: #C6D5B9 !important; /* New background color */
+            border-radius: 17px !important; /* Match new design */
+            outline: 2px solid #60503E !important; /* Darker border */
+            outline-offset: -2px !important; /* Slightly inset effect */
+        }
+        .card-front, .card-back {
+        position: absolute !important; /* Ensures both sides overlap */
+        width: 100% !important; /* Matches card size */
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        backface-visibility: hidden !important;
+    }
+
+        .card-front {
+            background-color: #FDF6E3;
+            color: #333;
+            border: 2px solid #E6C28B;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-front img {
+            background: #E6EFDF !important;
+            border-radius: 31px !important;
+            box-shadow: inset -3px 6px 5px rgba(73, 60, 47, 0.2) !important;
+            outline: 2px solid #60503E !important;
+            outline-offset: -2px !important;
+            object-fit: contain !important;
+
+            width: 90%;
+            height: 60%;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+
+        .card-front p {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card-front p,
+        .card-back p {
+            color: #60503E !important; /* Updated color */
+            font-family: 'Poppins', sans-serif !important;
+        }
+        .card-front {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 20px !important;
+        }
+        @media (max-width: 600px) {
+        .card {
+            width: 90% !important; /* Makes cards scale properly */
+        }
+        .card-front, .card-back {
+            outline-width: 1.5px !important; /* Prevents thick borders on small screens */
+        }
+    }
+
+
+        .card-back {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            padding: 20px !important;
+        }
+
+
+
+        .card-back {
+            background-color: white;
+            color: black;
+            transform: rotateY(180deg);
+            border: 2px solid #E6C28B;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+
+        .card-back .concept-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4A90E2;
+            margin-bottom: 10px;
+        }
+
+        .card-back .section {
+            padding: 10px;
+            border-bottom: 2px solid #E6C28B;
+        }
+
+        .card-back .section:last-child {
+            border-bottom: none;
+        }
+
+        .card-back p {
+            font-size: 1rem;
+            line-height: 1.5;
+            font-family: 'Poppins', sans-serif;
+            text-align: left;
+        }
+        /* 📌 Sticky Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95); /* Slight transparency */
+            backdrop-filter: blur(8px); /* Soft glass effect */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+        }
+
+        /* Logo */
+        .logo {
+            height: 45px;
+            cursor: pointer;
+        }
+
+                /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0 20px; /* Add padding on both sides */
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 8px 15px; /* Added padding around text */
+            border-radius: 6px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            background: #E6C28B;
+            color: #222;
+        }
+
+        /* Fix for last item (Book) so it doesn’t touch the edge */
+        .nav-links li:last-child {
+            margin-right: 15px; /* Push "Book" inward from the right */
+        }
+
+
+        /* 📌 Responsive Menu Button */
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* 📌 Mobile-Friendly Navigation */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: white;
+                width: 200px;
+                padding: 15px;
+                border-radius: 0 0 8px 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            .nav-links.show {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        /* Prevents Content from Hiding Under Navbar */
+        body {
+            padding-top: 80px;
+        }
+/* 📌 Explore More Section - Wider Notebook Style */
+.explore-more {
+    text-align: center;
+    background: #FAF3E0; /* Soft beige notebook color */
+    padding: 50px 40px;
+    margin-top: 50px;
+    border-radius: 15px;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.1);
+    max-width: 1100px; /* 🆕 Increased width */
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px dashed #E6C28B; /* Notebook dashed border */
+}
+
+/* Bigger and More Balanced Title */
+.explore-more h2 {
+    font-size: 2.5rem;
+    color: #222;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space for emoji */
+}
+
+.explore-more p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* 📌 Wider Grid Layout for Pocket Cards */
+.explore-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 900px; /* 🆕 Increased grid width */
+    margin: auto;
+}
+
+/* Pocket Card Buttons */
+.explore-card {
+    background: #FDF6E3; /* Soft off-white notebook color */
+    color: #333;
+    font-size: 1rem; /* Keep text compact */
+    font-weight: bold;
+    padding: 10px 18px; /* More balanced spacing */
+    border-radius: 8px;
+    border: 2px solid #E6C28B; /* Hand-drawn border */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1); /* Cute sticky-note effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap; /* Ensures single-line text */
+    min-width: 160px; /* Ensures a nice width */
+}
+
+/* 🎨 Color Variation Per Card */
+/* 📌 Updated Explore Card Colors */
+.explore-card:nth-child(1) { background: #DED6F3; border-color: #574F7D; } /* 💭 Thoughts */
+.explore-card:nth-child(2) { background: #F7D5D9; border-color: #AA5D69; } /* 🎭 People */
+.explore-card:nth-child(3) { background: #D3F3E0; border-color: #4B7D68; } /* ⚡ Action */
+.explore-card:nth-child(4) { background: #F9E8C9; border-color: #A78446; } /* 💰 Choices */
+
+
+/* Hover Effect - Pocket Card Pop */
+.explore-card:hover {
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* 📌 Responsive Adjustments */
+@media (max-width: 768px) {
+    .explore-grid {
+        justify-content: center;
+        gap: 10px;
+        max-width: 750px; /* Slightly reduced width */
+    }
+    .explore-card {
+        min-width: 140px;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .explore-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .explore-card {
+        width: 80%;
+        min-width: unset;
+    }
+}
+/* 📌 Explore More - Mini Flip Cards */
+.mini-cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Cards Per Row */
+    gap: 50px 50px; /* Increased vertical and horizontal spacing */
+    max-width: 1150px;
+    margin: auto;
+    padding: 50px 0;
+}
+
+
+/* ✅ Properly Adjusted Mini Flip Cards */
+.mini-card {
+    width: 270px; /* Adjusted width */
+    height: 380px; /* Adjusted height */
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+/* Inner Flip Effect */
+.mini-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.mini-card:hover .mini-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* ✅ Front & Back of Mini Cards */
+.mini-card-front, .mini-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Front Side */
+.mini-card-front {
+    background-color: #FDF6E3;
+    color: #333;
+    border: 2px solid #E6C28B;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+}
+
+/* ✅ Image Takes Up 50% of the Card */
+.mini-card-front img {
+    width: 100%; /* Ensures full width */
+    height: 50%; /* Exactly half of the card */
+    object-fit: cover; /* Ensures the entire image is shown without stretching */
+    object-position: top; /* Ensures the top part of the image is shown */
+    border-radius: 12px 12px 0 0; /* Rounds only the top corners */
+}
+
+
+/* ✅ Properly Sized Title */
+.mini-card-front h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ✅ Back Side */
+.mini-card-back {
+    background-color: white;
+    color: black;
+    transform: rotateY(180deg);
+    border: 2px solid #E6C28B;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ✅ Title on Back */
+.mini-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4A90E2;
+    margin-bottom: 8px;
+}
+
+/* ✅ Adjusted Sections Inside Back */
+.mini-section {
+    font-size: 0.85rem;
+    color: #333;
+    padding: 6px 0;
+    border-bottom: 1px solid #E6C28B;
+    text-align: left;
+    width: 100%;
+    line-height: 1.3;
+}
+
+/* Remove border from last section */
+.mini-section:last-child {
+    border-bottom: none;
+}
+
+/* ✅ Adjusted "Read More" Button */
+.mini-learn-more {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+    background: #FFC107;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.3s ease;
+}
+
+.mini-learn-more:hover {
+    background: #E67E22;
+}
+
+/* 📌 Responsive Adjustments */
+@media (max-width: 1080px) {
+    .mini-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px 24px; /* More space on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .mini-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mini-cards-container {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #FDF6E3; /* Soft beige notebook color */
+    border-top: 4px solid #E6C28B; /* Hand-drawn effect */
+    text-align: center;
+    padding: 2rem 0;
+    width: 100%;
+    margin-top: 2.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+    font-size: 1.25rem;
+    font-weight: bold;
+    font-family: 'Patrick Hand', cursive;
+    color: #333;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.footer-nav a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #444;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-nav a:hover {
+    color: #E67E22;
+}
+
+.footer-button {
+    display: inline-flex;
+    align-items: center;
+    background: #FFC107;
+    color: #333;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 2px solid #E6C28B;
+    margin-top: 1.5rem;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.footer-button:hover {
+    background: #E67E22;
+    transform: scale(1.05) rotate(-1deg);
+}
+
+/* Bookmark Button */
+
+/* Bookmark Button (Upper Right Corner) */
+.bookmark-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FFC107;
+    border: 2px solid #E6C28B;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Default (Unbookmarked) */
+.bookmark-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: #333;
+    transition: fill 0.3s ease-in-out;
+}
+
+/* Active (Bookmarked) */
+.bookmark-btn.active {
+    background: #E67E22;
+}
+
+.bookmark-btn.active svg {
+    fill: white;
+}
+
+.bookmark-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Video Button (Upper Left Corner) */
+.video-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #FF0000; /* YouTube red */
+    border: 2px solid #C70000; /* Slightly darker border */
+    padding: 6px; /* Reduced padding */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Smaller width */
+    height: 30px; /* Smaller height */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* SVG Icon Inside the Button */
+.video-btn svg {
+    width: 14px; /* Smaller icon */
+    height: 14px;
+    fill: white; /* White play icon */
+    transition: fill 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.video-btn:hover {
+    transform: scale(1.1);
+    background: #CC0000; /* Darker red on hover */
+}
+
+
+    </style>
+<script>
+        document.querySelectorAll(".explore-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                alert(`You selected: ${button.textContent}`);
+            });
+        });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+
+    // Apply saved bookmarks on page load
+    document.querySelectorAll(".card").forEach((card, index) => {
+        const bookmarkBtn = card.querySelector(".bookmark-btn");
+
+        if (bookmarks.includes(index)) {
+            bookmarkBtn.classList.add("active");
+        }
+
+        bookmarkBtn.dataset.index = index;
+    });
+});
+
+function toggleBookmark(element) {
+    let index = Number(element.dataset.index);
+    let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+
+    if (bookmarks.includes(index)) {
+        // Remove from bookmarks
+        bookmarks = bookmarks.filter(i => i !== index);
+        element.classList.remove("active");
+    } else {
+        // Add to bookmarks
+        bookmarks.push(index);
+        element.classList.add("active");
+    }
+
+    // Save updated bookmarks
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+}
+
+</script>
+    
+</head>
+<body>
+    <!-- 📌 Sticky Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="your-logo.png" alt="Logo" class="logo"> <!-- Replace with actual logo -->
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#book">Book</a></li>
+        </ul>
+    </nav>
+
+
+    <h1>Your brain does weird stuff.</h1>
+    <p class="subheading">Flip a card to find out why.</p>
+    <button id="shuffle-btn" class="cta-button">🎲 Surprise Me!</button>
+    
+    <div class="cards-container">
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="assets/forgetting_curve.png" alt="Forgetting Curve" class="w-full rounded-xl my-4">
+                    <p>Why do you forget things so fast?</p>
+                </div>
+                <div class="card-back">
+                    <p class="concept-title">Forgetting Curve</p>
+                    <div class="section"><p>📖 <span class="highlight">Key Idea:</span> We forget 50% of what we learn in an hour unless we review it.</p></div>
+                    <div class="section"><p>🤔 <span class="highlight">Example:</span> Ever crammed for a test and forgot everything the next day?</p></div>
+                    <div class="section"><p>💡 <span class="highlight">Try This:</span> Revisit notes within a day to keep info fresh!</p></div>
+                    <button class="learn-more">Read more</button>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <!-- Duplicate other cards here as needed -->
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="cat-forgetting.png" alt="Forgetting Curve">
+                    <p>Why do you forget things so fast?</p>
+                </div>
+                <div class="card-back">
+                    <p class="concept-title">Forgetting Curve</p>
+                    <div class="section"><p>📖 <span class="highlight">Key Idea:</span> We forget 50% of what we learn in an hour unless we review it.</p></div>
+                    <div class="section"><p>🤔 <span class="highlight">Example:</span> Ever crammed for a test and forgot everything the next day?</p></div>
+                    <div class="section"><p>💡 <span class="highlight">Try This:</span> Revisit notes within a day to keep info fresh!</p></div>
+                    <button class="learn-more">Read more</button>
+                
+                    <!-- Bookmark Button (Now in the Upper-Right Corner) -->
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                    <!-- Video Button (Upper Left Corner) -->
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="cat-forgetting.png" alt="Forgetting Curve">
+                    <p>Why do you forget things so fast?</p>
+                </div>
+                <div class="card-back">
+                    <p class="concept-title">Forgetting Curve</p>
+                    <div class="section"><p>📖 <span class="highlight">Key Idea:</span> We forget 50% of what we learn in an hour unless we review it.</p></div>
+                    <div class="section"><p>🤔 <span class="highlight">Example:</span> Ever crammed for a test and forgot everything the next day?</p></div>
+                    <div class="section"><p>💡 <span class="highlight">Try This:</span> Revisit notes within a day to keep info fresh!</p></div>
+                    <button class="learn-more">Read more</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <section class="explore-more">
+        <h2>📖 Want More Pocket Cards?</h2>
+        <p>Flip through more brain hacks and insights to level up your thinking! ✨</p>
+        <div class="explore-grid">
+            <div class="explore-card">💭 <span>Thoughts</span></div>
+            <div class="explore-card">🎭 <span>People</span></div>
+            <div class="explore-card">⚡ <span>Action</span></div>
+            <div class="explore-card">💰 <span>Choices</span></div>
+        </div>
+    </section>
+    
+
+<!-- 📌 Mini Flip Cards Section (Prevents Footer Overlap) -->
+<section class="w-full flex flex-col items-center">
+    <div class="mini-cards-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mb-10">
+<!-- 📌 Explore More - Mini Flip Cards -->
+<div class="mini-cards-container">
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <img src="assets/forgetting_curve.png" alt="Forgetting Curve">
+                <h3>Forgetting Curve</h3>
+            </div>
+            <div class="mini-card-back">
+                <h3 class="mini-title">Forgetting Curve</h3>
+                <div class="mini-section">
+                    <p>📖 <strong>Key Idea:</strong> We forget 50% of what we learn in an hour unless we review it.</p>
+                </div>
+                <div class="mini-section">
+                    <p>🤔 <strong>Example:</strong> Ever crammed for a test and forgot everything the next day?</p>
+                </div>
+                <div class="mini-section">
+                    <p>💡 <strong>Try This:</strong> Revisit notes within a day to keep info fresh!</p>
+                </div>
+                <button class="mini-learn-more">Read more</button>
+                <!-- Bookmark Button (Now in the Upper-Right Corner) -->
+                <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                    </svg>
+                </button>
+                <!-- Video Button (Upper Left Corner) -->
+                <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                    </svg>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <img src="assets/decision_making.png" alt="Decision Making">
+                <h3>Decision-Making</h3>
+            </div>
+            <div class="mini-card-back">
+                <h3 class="mini-title">Decision-Making</h3>
+                <div class="mini-section">
+                    <p>🧠 <strong>Key Idea:</strong> Our brain relies on shortcuts that can lead to errors.</p>
+                </div>
+                <div class="mini-section">
+                    <p>🔍 <strong>Example:</strong> Why do we fall for fake news?</p>
+                </div>
+                <div class="mini-section">
+                    <p>💡 <strong>Try This:</strong> Question assumptions before making choices.</p>
+                </div>
+                <button class="mini-learn-more">Read more</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <img src="assets/memory.png" alt="Memory">
+                <h3>Memory & Learning</h3>
+            </div>
+            <div class="mini-card-back">
+                <h3 class="mini-title">Memory & Learning</h3>
+                <div class="mini-section">
+                    <p>📚 <strong>Key Idea:</strong> Spaced repetition helps retain information longer.</p>
+                </div>
+                <div class="mini-section">
+                    <p>💭 <strong>Example:</strong> Flashcards help reinforce memory over time.</p>
+                </div>
+                <div class="mini-section">
+                    <p>💡 <strong>Try This:</strong> Review material at increasing intervals.</p>
+                </div>
+                <button class="mini-learn-more">Read more</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <img src="assets/productivity.png" alt="Productivity">
+                <h3>Productivity Hacks</h3>
+            </div>
+            <div class="mini-card-back">
+                <h3 class="mini-title">Productivity Hacks</h3>
+                <div class="mini-section">
+                    <p>⚡ <strong>Key Idea:</strong> The 2-Minute Rule can help you beat procrastination.</p>
+                </div>
+                <div class="mini-section">
+                    <p>⏳ <strong>Example:</strong> Start tasks immediately if they take less than 2 minutes.</p>
+                </div>
+                <div class="mini-section">
+                    <p>💡 <strong>Try This:</strong> Break large tasks into tiny steps.</p>
+                </div>
+                <button class="mini-learn-more">Read more</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <img src="assets/creativity.png" alt="Creativity">
+                <h3>Creativity Boosters</h3>
+            </div>
+            <div class="mini-card-back">
+                <h3 class="mini-title">Creativity Boosters</h3>
+                <div class="mini-section">
+                    <p>💡 <strong>Key Idea:</strong> Divergent thinking leads to more innovative ideas.</p>
+                </div>
+                <div class="mini-section">
+                    <p>🎨 <strong>Example:</strong> Brainstorm multiple solutions before choosing one.</p>
+                </div>
+                <div class="mini-section">
+                    <p>💡 <strong>Try This:</strong> Try random word associations for fresh ideas.</p>
+                </div>
+                <button class="mini-learn-more">Read more</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <img src="assets/critical_thinking.png" alt="Critical Thinking">
+                <h3>Critical Thinking</h3>
+            </div>
+            <div class="mini-card-back">
+                <h3 class="mini-title">Critical Thinking</h3>
+                <div class="mini-section">
+                    <p>🔎 <strong>Key Idea:</strong> Improve decision-making by questioning assumptions.</p>
+                </div>
+                <div class="mini-section">
+                    <p>🧐 <strong>Example:</strong> Identify biases in news articles.</p>
+                </div>
+                <div class="mini-section">
+                    <p>💡 <strong>Try This:</strong> Always ask "Why?" five times.</p>
+                </div>
+                <button class="mini-learn-more">Read more</button>
+            </div>
+        </div>
+    </div>
+</div>    </div>
+</section>
+
+<!-- 📌 Footer -->
+<footer class="footer">
+    <p>Made with ✨ and brain glitches.</p>
+
+    <nav class="footer-nav">
+        <a href="#">Home</a>
+        <a href="#">Explore</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div>
+        <a href="https://substack.com" target="_blank" class="footer-button">
+            🐾 More weird brain stuff → Substack
+        </a>
+    </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why This Works - The Psychology Behind What Grabs Attention</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+        .hover-zoom {
+            transition: transform 0.3s ease-in-out;
+        }
+        .hover-zoom:hover {
+            transform: scale(1.05);
+        }
+        .hidden { display: none; }
+        .active-category {
+            background-color: #2563eb !important;
+            color: white !important;
+        }
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: #2563eb;
+            width: 0%;
+            z-index: 1000;
+        }
+    </style>
+    <script>
+        function filterCategory(category) {
+            document.querySelectorAll('.article').forEach(article => {
+                if (category === 'all' || article.classList.contains(category)) {
+                    article.classList.remove('hidden');
+                } else {
+                    article.classList.add('hidden');
+                }
+            });
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active-category');
+            });
+            document.getElementById(category).classList.add('active-category');
+        }
+        
+        window.onscroll = function() {
+            let scrollProgress = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+            document.getElementById("progress-bar").style.width = scrollProgress + "%";
+        };
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-[Inter]">
+    <div id="progress-bar" class="progress-bar"></div>
+    
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4 mx-4 mt-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <h1 class="text-3xl font-bold text-gray-800">Why This Works</h1>
+            <nav>
+                <ul class="flex space-x-6 text-gray-700 font-medium">
+                    <li><a href="#" class="hover:text-blue-600">Home</a></li>
+                    <li><a href="#" class="hover:text-blue-600">Categories</a></li>
+                    <li><a href="#" class="hover:text-blue-600">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="bg-blue-600 text-white py-20 text-center mx-4 mt-6">
+        <h2 class="text-5xl font-bold">The Science Behind Why Some Ideas Stick</h2>
+        <p class="mt-4 text-lg">Breaking down the hidden psychology behind storytelling, branding, and engagement.</p>
+    </section>
+    
+    <!-- Blog Categories -->
+    <section class="container mx-auto py-10 px-6">
+        <h3 class="text-3xl font-semibold mb-6">Explore Topics</h3>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <button id="all" onclick="filterCategory('all')" class="category-btn bg-white p-3 rounded-full shadow-md text-sm font-medium">All</button>
+            <button id="communication" onclick="filterCategory('communication')" class="category-btn bg-white p-3 rounded-full shadow-md text-sm font-medium">🎤 Communication</button>
+            <button id="tech" onclick="filterCategory('tech')" class="category-btn bg-white p-3 rounded-full shadow-md text-sm font-medium">📱 Tech & Media</button>
+            <button id="marketing" onclick="filterCategory('marketing')" class="category-btn bg-white p-3 rounded-full shadow-md text-sm font-medium">🛒 Persuasion & Branding</button>
+            <button id="design" onclick="filterCategory('design')" class="category-btn bg-white p-3 rounded-full shadow-md text-sm font-medium">🎨 Design & UX</button>
+        </div>
+    </section>
+    
+    <!-- Featured Articles -->
+    <section class="container mx-auto py-10 px-6">
+        <h3 class="text-3xl font-semibold mb-6">What Makes Ideas Stick?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-md hover-zoom article communication">
+                <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-lg">Communication</span>
+                <img src="why_this_works/assets/forgetting_curve.png" alt="Forgetting Curve" class="w-full rounded-xl my-4">
+                <h4 class="text-xl font-bold">How TED Talks Use Storytelling to Hack Your Brain</h4>
+                <p class="text-gray-600 mt-2 leading-relaxed">A deep dive into pacing, voice modulation, and why some speeches go viral.</p>
+                <a href="#" class="text-blue-600 font-semibold mt-3 block">Read More →</a>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md hover-zoom article tech">
+                <span class="text-xs bg-green-500 text-white px-2 py-1 rounded-lg">Tech & Media</span>
+                <img src="https://via.placeholder.com/400x250?text=TikTok" alt="TikTok" class="w-full rounded-xl my-4">
+                <h4 class="text-xl font-bold">The Hidden Psychology of Scrolling: Why TikTok is Addictive</h4>
+                <p class="text-gray-600 mt-2 leading-relaxed">Exploring dopamine loops, endless feeds, and the science of attention.</p>
+                <a href="#" class="text-blue-600 font-semibold mt-3 block">Read More →</a>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md hover-zoom article marketing">
+                <span class="text-xs bg-red-500 text-white px-2 py-1 rounded-lg">Branding</span>
+                <img src="https://via.placeholder.com/400x250?text=Luxury+Brand" alt="Luxury" class="w-full rounded-xl my-4">
+                <h4 class="text-xl font-bold">Why Premium Brands Feel Expensive (Even When They're Not)</h4>
+                <p class="text-gray-600 mt-2 leading-relaxed">How minimalism, exclusivity, and perception shape luxury marketing.</p>
+                <a href="#" class="text-blue-600 font-semibold mt-3 block">Read More →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6 mt-10 text-center mx-4">
+        <p>&copy; 2025 Why This Works. All rights reserved.</p>
+    </footer>
+</body>
+</html>

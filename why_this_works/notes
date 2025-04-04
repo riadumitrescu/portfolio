@@ -1,0 +1,1424 @@
+<!-- 
+<!-- 📌 Mini Flip Cards Section (Prevents Footer Overlap) -->
+<section class="w-full flex flex-col items-center">
+    <div class="mini-cards-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mb-10">
+<!-- 📌 Explore More - Mini Flip Cards -->
+<div class="mini-cards-container">
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Memory</div>
+                
+                <div class="mini-card-image-container">
+                        <img src="assets/forgetting_curve.png" alt="Forgetting Curve">
+                        </div>
+                        
+                <div class="mini-card-title">Why do you forget things so fast?</div>
+                <div class="mini-card-subtitle">The Forgetting Curve</div>
+                </div>
+            <div class="mini-card-back">
+                <!-- Action buttons at the top -->
+                <div class="card-actions">
+                <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                    </svg>
+                </a>
+                
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                    </div>
+
+                <!-- Main content with proper spacing from top buttons -->
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Forgetting Curve</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📖 Main Idea</div>
+                        <div class="section-content">We forget 50% of what we learn in an hour unless we review it.</div>
+                        <div class="section-divider"></div>
+                </div>
+
+                    <div class="mini-card-section">
+                        <div class="section-title">🤔 Example</div>
+                        <div class="section-content">Ever crammed for a test and forgot everything the next day?</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Revisit notes within a day to keep info fresh!</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+                          </div>
+                          
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Decision</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/decision_making.png" alt="Decision Making">
+                          </div>
+                          
+                <div class="mini-card-title">Why do we make bad choices?</div>
+                <div class="mini-card-subtitle">Decision-Making</div>
+                          </div>
+            <div class="mini-card-back">
+                <!-- Action buttons at the top -->
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                        </div>
+
+                <!-- Main content with proper spacing from top buttons -->
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Decision-Making</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🧠 Key Idea</div>
+                        <div class="section-content">Our brain relies on shortcuts that can lead to errors.</div>
+                        <div class="section-divider"></div>
+                      </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔍 Example</div>
+                        <div class="section-content">Why do we fall for fake news?</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try This</div>
+                        <div class="section-content">Question assumptions before making choices.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Learning</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/memory.png" alt="Memory">
+                </div>
+                
+                <div class="mini-card-title">How to remember more?</div>
+                <div class="mini-card-subtitle">Memory & Learning</div>
+            </div>
+            <div class="mini-card-back">
+                <!-- Action buttons at the top -->
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                        <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                            </svg>
+                        </button>
+                </div>
+
+                <!-- Main content with proper spacing from top buttons -->
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Memory & Learning</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📚 Key Idea</div>
+                        <div class="section-content">Spaced repetition helps retain information longer.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💭 Example</div>
+                        <div class="section-content">Flashcards help reinforce memory over time.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try This</div>
+                        <div class="section-content">Review material at increasing intervals.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Focus</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/productivity.png" alt="Productivity">
+                </div>
+                
+                <div class="mini-card-title">How to beat procrastination?</div>
+                <div class="mini-card-subtitle">Productivity Hacks</div>
+            </div>
+            <div class="mini-card-back">
+                <!-- Action buttons at the top -->
+                <div class="card-actions">
+                        <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                            </svg>
+                        </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Main content with proper spacing from top buttons -->
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Productivity Hacks</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">⚡ Key Idea</div>
+                        <div class="section-content">The 2-Minute Rule can help you beat procrastination.</div>
+                        <div class="section-divider"></div>
+            </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">⏳ Example</div>
+                        <div class="section-content">Start tasks immediately if they take less than 2 minutes.</div>
+                        <div class="section-divider"></div>
+        </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try This</div>
+                        <div class="section-content">Break large tasks into tiny steps.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Ideas</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/creativity.png" alt="Creativity">
+        </div>
+                
+                <div class="mini-card-title">How to have better ideas?</div>
+                <div class="mini-card-subtitle">Creativity Boosters</div>
+            </div>
+            <div class="mini-card-back">
+                <!-- Action buttons at the top -->
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Main content with proper spacing from top buttons -->
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Creativity Boosters</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Key Idea</div>
+                        <div class="section-content">Divergent thinking leads to more innovative ideas.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🎨 Example</div>
+                        <div class="section-content">Brainstorm multiple solutions before choosing one.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try This</div>
+                        <div class="section-content">Try random word associations for fresh ideas.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Thinking</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/critical_thinking.png" alt="Critical Thinking">
+                </div>
+                
+                <div class="mini-card-title">How to think more clearly?</div>
+                <div class="mini-card-subtitle">Critical Thinking</div>
+            </div>
+            <div class="mini-card-back">
+                <!-- Action buttons at the top -->
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Main content with proper spacing from top buttons -->
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Critical Thinking</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔎 Key Idea</div>
+                        <div class="section-content">Improve decision-making by questioning assumptions.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🧐 Example</div>
+                        <div class="section-content">Identify biases in news articles.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try This</div>
+                        <div class="section-content">Always ask "Why?" five times.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Thoughts</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/framing_effect.png" alt="Framing Effect">
+                </div>
+                
+                <div class="mini-card-title">The Framing Effect</div>
+                <div class="mini-card-subtitle">How Words Shape Decisions</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                    </svg>
+                </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Framing Effect</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">The way something is worded changes how we feel about it.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">"90% fat-free" sounds better than "contains 10% fat," even though they mean the same thing.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Be aware of how marketing and media influence your decisions.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Thoughts</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/availability_heuristic.png" alt="Availability Heuristic">
+                </div>
+                
+                <div class="mini-card-title">The Availability Heuristic</div>
+                <div class="mini-card-subtitle">Recent Memories Matter</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                    </svg>
+                </a>
+                
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+            </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Availability Heuristic</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">We assume things are more common if they easily come to mind.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">After seeing news about shark attacks, you overestimate the risk of swimming in the ocean.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Check actual data before making decisions based on fear or recent events.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Thoughts</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/zeigarnik_effect.png" alt="Zeigarnik Effect">
+                </div>
+                
+                <div class="mini-card-title">The Zeigarnik Effect</div>
+                <div class="mini-card-subtitle">Unfinished Tasks</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Zeigarnik Effect</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Unfinished tasks or unanswered questions stick in our minds.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">TV show cliffhangers make you think about the next episode all week.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">If a task feels overwhelming, start it—your brain will want to finish.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Thoughts</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/hindsight_bias.png" alt="Hindsight Bias">
+                </div>
+                
+                <div class="mini-card-title">Hindsight Bias</div>
+                <div class="mini-card-subtitle">I Knew It All Along</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Hindsight Bias</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">After something happens, we think we "knew it all along."</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">After a breakup, you tell yourself the red flags were obvious.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Recognize that predicting the future is harder than it seems.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">People</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/halo_effect.png" alt="Halo Effect">
+                </div>
+                
+                <div class="mini-card-title">The Halo Effect</div>
+                <div class="mini-card-subtitle">First Impressions Matter</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Halo Effect</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">A good first impression makes us assume other good traits.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">If someone is attractive, we might assume they are also kind and smart.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Judge people based on actions, not just appearances.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">People</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/dunning_kruger.png" alt="Dunning-Kruger Effect">
+                </div>
+                
+                <div class="mini-card-title">The Dunning-Kruger Effect</div>
+                <div class="mini-card-subtitle">Confidence vs. Competence</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Dunning-Kruger Effect</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Beginners think they know everything, while experts doubt themselves.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">A new chess player believes they're a prodigy, while a grandmaster feels there's still so much to learn.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Stay humble and keep learning—confidence doesn't always mean competence.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">People</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/pygmalion_effect.png" alt="Pygmalion Effect">
+                </div>
+                
+                <div class="mini-card-title">The Pygmalion Effect</div>
+                <div class="mini-card-subtitle">Expectations Matter</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Pygmalion Effect</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">People rise (or fall) to meet expectations placed on them.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">A teacher who believes in a student can boost their performance.</div>
+                        <div class="section-divider"></div>
+                </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Set high expectations for yourself and others—it can lead to growth.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">People</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/endowment_effect.png" alt="Endowment Effect">
+                </div>
+                
+                <div class="mini-card-title">The Endowment Effect</div>
+                <div class="mini-card-subtitle">Value of Ownership</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Endowment Effect</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">We overvalue things just because we own them.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">You feel your old phone is worth way more than its market price.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Be objective when valuing things—ownership creates bias.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">People</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/ostrich_effect.png" alt="Ostrich Effect">
+                </div>
+                
+                <div class="mini-card-title">The Ostrich Effect</div>
+                <div class="mini-card-subtitle">Avoiding Bad News</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Ostrich Effect</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Ignoring bad news feels easier than facing it.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Avoiding checking your bank account after overspending.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Face problems early—ignoring them only makes things worse.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Action</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/parkinsons_law.png" alt="Parkinson's Law">
+                </div>
+                
+                <div class="mini-card-title">Parkinson's Law</div>
+                <div class="mini-card-subtitle">Time Management</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Parkinson's Law</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Work expands to fill the time available.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">If given a week for an assignment, you'll take a week—even if you could finish in a day.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Set tighter deadlines to boost productivity.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Action</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/pomodoro.png" alt="Pomodoro Technique">
+                </div>
+                
+                <div class="mini-card-title">The Pomodoro Technique</div>
+                <div class="mini-card-subtitle">Focus & Breaks</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">The Pomodoro Technique</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Short work sessions with breaks improve focus.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Study for 25 minutes, then take a 5-minute break.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Use a timer to work in bursts and avoid burnout.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Choices</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/choice_paralysis.png" alt="Choice Paralysis">
+                </div>
+                
+                <div class="mini-card-title">Choice Paralysis</div>
+                <div class="mini-card-subtitle">Decision Making</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Choice Paralysis</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Too many options can freeze decision-making.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Staring at a restaurant menu with 100+ items.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Limit options to 3-5 choices to make decisions easier.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Choices</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/sunk_cost.png" alt="Sunk Cost Fallacy">
+                </div>
+                
+                <div class="mini-card-title">Sunk Cost Fallacy</div>
+                <div class="mini-card-subtitle">Investment Decisions</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Sunk Cost Fallacy</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Continuing something just because you've invested in it.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Watching a bad movie just because you paid for it.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Focus on future benefits, not past investments.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Choices</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/anchoring.png" alt="Anchoring Bias">
+                </div>
+                
+                <div class="mini-card-title">Anchoring Bias</div>
+                <div class="mini-card-subtitle">Price Perception</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Anchoring Bias</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">First information influences later decisions.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Seeing a $1000 price tag makes $500 seem cheap.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Research independently before making decisions.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Thoughts</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/confirmation_bias.png" alt="Confirmation Bias">
+                </div>
+                
+                <div class="mini-card-title">Confirmation Bias</div>
+                <div class="mini-card-subtitle">Information Filtering</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Confirmation Bias</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Seeking information that confirms our beliefs.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Only reading news that matches your political views.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Actively seek opposing viewpoints to challenge beliefs.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Thoughts</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/recency_bias.png" alt="Recency Bias">
+                </div>
+                
+                <div class="mini-card-title">Recency Bias</div>
+                <div class="mini-card-subtitle">Memory Impact</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Recency Bias</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Recent events influence decisions more than past ones.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Judging a stock based on its latest performance.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Consider long-term patterns, not just recent events.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Thoughts</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/overconfidence.png" alt="Overconfidence Bias">
+                </div>
+                
+                <div class="mini-card-title">Overconfidence Bias</div>
+                <div class="mini-card-subtitle">Self-Assessment</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Overconfidence Bias</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Overestimating our abilities and knowledge.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Thinking you can learn a language in a week.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Seek feedback and acknowledge limitations.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Action</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/implementation_intentions.png" alt="Implementation Intentions">
+                </div>
+                
+                <div class="mini-card-title">Implementation Intentions</div>
+                <div class="mini-card-subtitle">Goal Setting</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Implementation Intentions</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Planning specific actions for goals.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">"When I get home, I will exercise for 30 minutes."</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Use "when-then" planning for better follow-through.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Action</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/habit_stacking.png" alt="Habit Stacking">
+                </div>
+                
+                <div class="mini-card-title">Habit Stacking</div>
+                <div class="mini-card-subtitle">Behavior Change</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Habit Stacking</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Building new habits on existing ones.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Doing push-ups after brushing teeth.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Link new habits to established routines.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mini-card">
+        <div class="mini-card-inner">
+            <div class="mini-card-front">
+                <div class="mini-card-tag">Action</div>
+                
+                <div class="mini-card-image-container">
+                <img src="assets/keystone_habits.png" alt="Keystone Habits">
+                </div>
+                
+                
+                <div class="mini-card-title">Keystone Habits</div>
+                <div class="mini-card-subtitle">Positive Change</div>
+            </div>
+            <div class="mini-card-back">
+                <div class="card-actions">
+                    <a class="video-btn" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 16.5V7.5L16 12L10 16.5Z"/>
+                        </svg>
+                    </a>
+                    
+                    <button class="bookmark-btn" onclick="toggleBookmark(this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 2C5.44772 2 5 2.44772 5 3V21C5 21.7403 5.80653 22.1765 6.44721 21.7764L12 18.118L17.5528 21.7764C18.1935 22.1765 19 21.7403 19 21V3C19 2.44772 18.5523 2 18 2H6Z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mini-card-back-content">
+                    <div class="mini-card-title">Keystone Habits</div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">📌 Explanation</div>
+                        <div class="section-content">Small habits that trigger positive changes.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">🔹 Example</div>
+                        <div class="section-content">Making your bed leads to better organization.</div>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="mini-card-section">
+                        <div class="section-title">💡 Try this</div>
+                        <div class="section-content">Identify and focus on habits that create positive ripples.</div>
+                        <!-- <div class="section-divider"></div> -->
+                    </div>
+                    
+                    <div class="read-more-btn">Read more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    </div>
+</section> 
