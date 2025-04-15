@@ -1,0 +1,60 @@
+# Project Roadmap
+
+## Changes
+
+- Added `tryhero.html` - A full-screen white hero section with parallax scroll effect
+  - Implemented using GSAP, ScrollTrigger, and Lenis for smooth scrolling
+  - Created a three-layer parallax effect with background image, foreground PNG, and centered text
+  - Added a gradient fade overlay for seamless transition to content
+  - Made fully responsive for mobile devices
+- Updated `tryhero.html` to match the Osmo style parallax effect
+  - Changed structure to match the reference example with proper layer ordering
+  - Placed text between background and foreground layers (behind the foreground image)
+  - Used white text with subtle shadow for better visibility
+  - Applied precise parallax speed values to create more dramatic effect
+  - Used Mukta font from the main website for consistency
+- Added descriptive subtitles to the hero section
+  - Added "Designer" and "World Traveler" text under the name
+  - Positioned subtitles to the right for visual balance
+  - Used lighter font weight to create typographic hierarchy
+  - Made responsive for all screen sizes
+- Improved typography in the hero title
+  - Added proper spacing between first and last name using CSS
+  - Used semantic spans with appropriate classes for better control
+  - Ensured consistent spacing across different browsers and devices
+  - Increased spacing between first and last name for better visual separation
+- Enhanced responsive behavior
+  - Improved image scaling across different device sizes
+  - Added breakpoints for small, medium, and large screens
+  - Adjusted image height and positioning for optimal display at all sizes
+  - Ensured consistent appearance from desktop to mobile
+- Integrated parallax hero into main portfolio
+  - Added the hero section to the main index.html page in the #intro section
+  - Integrated all necessary CSS styles in the head section
+  - Added GSAP, ScrollTrigger, and Lenis script dependencies
+  - Maintained the existing site structure without disrupting other sections
+- Optimized mobile layout
+  - Repositioned name text to the top left on mobile devices
+  - Kept subtitle text in its original position for visual balance
+  - Used media queries to target only mobile screens (480px and below)
+  - Maintained desktop layout for larger screens
+
+## Why
+
+- The parallax hero section provides a visually engaging introduction to the portfolio
+- The smooth scrolling effect creates a modern, premium feel
+- Responsive design ensures the hero section works well on all devices
+- White background matches portfolio aesthetic and ensures content transitions smoothly
+- The updated parallax effect with text behind the foreground image creates more depth and visual interest
+- Following the Osmo example structure provides a more polished, professional result
+- Adding descriptive subtitles provides immediate context for visitors about who you are
+- Proper spacing between name components improves readability and visual rhythm
+- Enhanced responsive behavior ensures the hero section looks great on all devices
+- Integrating directly into the index page creates a cohesive user experience without requiring navigation to a separate page
+- Mobile layout optimization improves readability and visual hierarchy on small screens
+
+## App Sections Affected
+
+- Intro section of the main portfolio page (index.html)
+- The parallax hero acts as the main landing view for portfolio visitors
+- Replaced the previous intro content with an immersive, interactive hero section 

@@ -78,6 +78,180 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="footer.css">
 
+  <!-- Parallax Hero Styles -->
+  <style>
+    .parallax {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parallax__header {
+      z-index: 2;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      display: flex;
+      position: relative;
+    }
+
+    .parallax__visuals {
+      width: 100%;
+      max-width: none;
+      height: 120%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .parallax__black-line-overflow {
+      z-index: 20;
+      background-color: #fff;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+    }
+
+    .parallax__layers {
+      width: 100%;
+      max-width: none;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .parallax__layer-img {
+      pointer-events: none;
+      object-fit: cover;
+      width: 100%;
+      max-width: none;
+      height: 117.5%;
+      position: absolute;
+      top: -17.5%;
+      left: 0;
+    }
+
+    .parallax__layer-title {
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .parallax__title {
+      pointer-events: auto;
+      text-align: center;
+      text-transform: none;
+      margin-top: 0;
+      margin-bottom: .1em;
+      margin-right: .075em;
+      font-family: 'Mukta', sans-serif;
+      font-size: 11vw;
+      font-weight: 800;
+      line-height: 1;
+      position: relative;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .parallax__fade {
+      z-index: 30;
+      width: 100%;
+      height: 20%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.738) 19%, rgba(255, 255, 255, 0.541) 34%, rgba(255, 255, 255, 0.382) 47%, rgba(255, 255, 255, 0.278) 56.5%, rgba(255, 255, 255, 0.194) 65%, rgba(255, 255, 255, 0.126) 73%, rgba(255, 255, 255, 0.075) 80.2%, rgba(255, 255, 255, 0.042) 86.1%, rgba(255, 255, 255, 0.021) 91%, rgba(255, 255, 255, 0.008) 95.2%, rgba(255, 255, 255, 0.002) 98.2%, transparent 100%);
+    }
+
+    .parallax__subtitle-container {
+      position: absolute;
+      right: 10%;
+      top: 60%;
+      text-align: right;
+    }
+
+    .parallax__subtitle {
+      color: #fff;
+      font-family: 'Mukta', sans-serif;
+      font-size: 2.5vw;
+      font-weight: 300;
+      line-height: 1.2;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      margin: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .parallax__layer-img {
+        height: 110%;
+        object-position: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .parallax__title {
+        font-size: 14vw;
+      }
+      
+      .parallax__subtitle {
+        font-size: 4vw;
+      }
+      
+      .parallax__subtitle-container {
+        right: 8%;
+        top: 60%;
+      }
+      
+      .parallax__layer-img {
+        height: 100%;
+        top: 0;
+        object-position: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .parallax__layer-title {
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-top: 20%;
+        padding-left: 5%;
+      }
+      
+      .parallax__title {
+        text-align: left;
+      }
+      
+      .parallax__layer-img {
+        height: 90%;
+        object-position: center center;
+      }
+      
+      /* Keep subtitle container in the original position */
+      .parallax__subtitle-container {
+        right: 8%;
+        top: 60%;
+        text-align: right;
+      }
+    }
+
+    .first-name {
+      display: inline-block;
+      margin-right: 1em;
+    }
+    
+    .last-name {
+      display: inline-block;
+    }
+  </style>
+
   <!-- Tiny thumbnail for blur-up effect -->
   <style>
     #intro .blur-load {
@@ -110,13 +284,32 @@
   </nav>
 
   <section id="intro" class="mb-5">
-
-      <!-- Video element -->
-      <video id="maria-video" autoplay muted loop playsinline preload="auto" class="w-100 video-bg" style="z-index: 0;">
-        <source src="assets/maria_dumitrescu_video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-
+    <!-- Parallax Hero Section -->
+    <div class="parallax">
+      <section class="parallax__header">
+        <div class="parallax__visuals">
+          <div class="parallax__black-line-overflow"></div>
+          <div data-parallax-layers class="parallax__layers">
+            <!-- Background layer - slowest movement -->
+            <img src="assets/cool_hero/background.png" loading="eager" width="800" data-parallax-layer="1" alt="" class="parallax__layer-img">
+            
+            <!-- Text layer - medium movement -->
+            <div data-parallax-layer="2" class="parallax__layer-title">
+              <h2 class="parallax__title"><span class="first-name">Maria</span><span class="last-name">Dumitrescu</span></h2>
+              <div class="parallax__subtitle-container">
+                <p class="parallax__subtitle">designer,  </p>
+                <p class="parallax__subtitle">storyteller,</p>
+                <p class="parallax__subtitle">world traveller.</p>
+              </div>
+            </div>
+            
+            <!-- Foreground layer - fastest movement -->
+            <img src="assets/cool_hero/me.png" loading="eager" width="800" data-parallax-layer="3" alt="" class="parallax__layer-img">
+          </div>
+          <div class="parallax__fade"></div>
+        </div>
+      </section>
+    </div>
   </section>
   
 
@@ -627,6 +820,57 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="code.js"></script>
   <script src="blur-up.js"></script>
+  
+  <!-- GSAP and ScrollTrigger for Parallax effect -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Register GSAP Plugins
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Initialize Lenis for smooth scrolling
+      const lenis = new Lenis();
+      
+      // Connect Lenis to GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      // Parallax Layers
+      document.querySelectorAll('[data-parallax-layers]').forEach((triggerElement) => {
+        let tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: triggerElement,
+            start: "0% 0%",
+            end: "100% 0%",
+            scrub: 0
+          }
+        });
+        
+        const layers = [
+          { layer: "1", yPercent: 20 },  // Background - slowest
+          { layer: "2", yPercent: 40 },  // Text - medium
+          { layer: "3", yPercent: 70 }   // Foreground - fastest
+        ];
+        
+        layers.forEach((layerObj, idx) => {
+          tl.to(
+            triggerElement.querySelectorAll(`[data-parallax-layer="${layerObj.layer}"]`),
+            {
+              yPercent: layerObj.yPercent,
+              ease: "none"
+            },
+            idx === 0 ? undefined : "<"
+          );
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

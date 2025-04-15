@@ -1,0 +1,23 @@
+# Project Mandates
+
+## UI/UX Requirements
+
+- Parallax hero sections should:
+  - Be full-screen on initial load
+  - Have smooth scrolling between sections
+  - Be responsive across all device sizes
+  - Transition seamlessly into content sections
+
+## Technical Requirements
+
+- Use GSAP + ScrollTrigger for parallax effects
+- Use Lenis for smooth scrolling
+- Ensure all scripts are loaded via CDN
+- Structure HTML semantically for accessibility
+  
+## Visual Design
+
+- Maintain white background for clean aesthetic
+- Layer images with appropriate z-index for depth
+- Use smooth fade transitions between sections
+- Text should be properly contrasted against backgrounds 
