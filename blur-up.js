@@ -20,45 +20,45 @@ document.addEventListener('DOMContentLoaded', function() {
               img.src = img.dataset.src;
             }
             
+            // Ensure proper size
+            img.style.height = '100%';
+            img.style.width = '100%';
+            img.style.objectFit = 'cover';
+            
             img.onload = function() {
               container.classList.add('loaded');
             };
-
-            // If the image already has src attribute, consider it loaded
-            if (img.src && !img.dataset.src) {
-              container.classList.add('loaded');
-            }
           } else if (media.tagName === 'VIDEO') {
             // For videos
             const video = media;
             
-            // Get all sources
-            const sources = video.querySelectorAll('source');
-            let hasHlsSource = false;
-            
-            // Check if there's an HLS source (Mux stream)
-            sources.forEach(source => {
-              if (source.type === 'application/x-mpegURL' || source.type === 'application/vnd.apple.mpegurl') {
-                hasHlsSource = true;
-              }
-            });
-            
             // If video has data-src for source, load it
-            sources.forEach(source => {
-              if (source.dataset.src) {
-                source.src = source.dataset.src;
-              }
-            });
+            const sources = video.querySelectorAll('source');
+            let sourcesLoaded = 0;
+            
+            if (sources.length > 0) {
+              sources.forEach(source => {
+                if (source.dataset.src) {
+                  source.src = source.dataset.src;
+                  source.onload = function() {
+                    sourcesLoaded++;
+                    if (sourcesLoaded === sources.length) {
+                      video.load();
+                    }
+                  };
+                }
+              });
+            }
             
             // Mark as loaded when video can play
             video.oncanplay = function() {
               container.classList.add('loaded');
             };
             
-            // For browsers that don't trigger oncanplay or for HLS streams
+            // For browsers that don't trigger oncanplay
             setTimeout(() => {
               container.classList.add('loaded');
-            }, hasHlsSource ? 500 : 1000); // Faster timeout for HLS streams
+            }, 1000);
             
             // Start loading video
             video.load();
