@@ -134,7 +134,7 @@ body {
 
 .card-img-top, .card-img-top1 {
   width: 100%; /* Ensures the image fits the width of the container */
-  height: 350px; /* Fixed consistent height for all card images */
+  height: 350px; /* Set fixed height for all card images */
   object-fit: cover; /* Ensures the image covers the container without distortion */
   object-position: center; /* Centers the image within the container */
   border-top-left-radius: 20px;
@@ -809,7 +809,7 @@ li:hover .tag-list {
   overflow: hidden;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  height: 350px; /* Same fixed height as card-img-top */
+  height: 350px; /* Match the height of the card images */
 }
 
 .blur-load::before {
@@ -860,10 +860,12 @@ li:hover .tag-list {
   }
 }
 
-/* Brand cards specific styles */
-#brands .blur-load,
-#brands .card-img-top,
-#brands .card-img-top1 {
-  height: 250px; /* Shorter height for brand cards */
+/* Special case for the hero video */
+#intro .blur-load {
+  height: auto; /* Override the fixed height for the hero video */
+}
+
+#intro .blur-load video {
+  height: auto; /* Override height for the video */
 }
 
