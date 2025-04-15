@@ -40,8 +40,8 @@ if [ ! -f "assets/studypaws_mockup-tiny.jpg" ]; then
 fi
 
 # AI UX
-if [ ! -f "assets/uiux_profile-tiny.jpg" ]; then
-    convert assets/uiux_profile.svg -resize 20x -quality 5 assets/uiux_profile-tiny.jpg
+if [ ! -f "assets/profile_ai_ux-tiny.jpg" ]; then
+    convert assets/profile_ai_ux.webp -resize 20x -quality 5 assets/profile_ai_ux-tiny.jpg
 fi
 
 # Andak

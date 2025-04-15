@@ -109,11 +109,14 @@
     </div>
   </nav>
 
-  
   <section id="intro" class="mb-5">
-    <div class="blur-load w-100" style="background-image: url('assets/maria_video_tiny.jpg');">
-      <video autoplay muted loop playsinline class="w-100 video-bg">
-        <source data-src="assets/maria_dumitrescu_1.mp4" type="video/mp4">
+    <div class="blur-load w-100" style="position: relative;">
+      <!-- Placeholder image -->
+      <img id="video-placeholder" src="assets/maria_dumitrescu_picture.png" class="w-100" style="position: absolute; top: 0; left: 0; width: 100%; height: auto; z-index: 1;" />
+
+      <!-- Video element -->
+      <video id="maria-video" autoplay muted loop playsinline class="w-100 video-bg" style="z-index: 0;">
+        <source src="assets/maria_dumitrescu_1.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -130,9 +133,9 @@
           <a href="stylique.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/stylique_rock-tiny.jpg');">
-                <img data-src="./assets/stylique_rock.png" 
+                <img src="./assets/stylique_rock.png" 
                      class="card-img-top" 
-                   alt="Stylique">
+                     alt="Stylique">
               </div>
               <div class="card-body" style="height: 165px;">
                 <h5 class="card-title">Stylique (Work In Progress)</h5>
@@ -197,7 +200,7 @@
           <a href="https://riadumitrescu.github.io/uiuxfeedback/results" class="card-link" target="_blank">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/profile_ai_ux-tiny.jpg');">
-                <img data-src="./assets/profile_ai_ux.webp" 
+                <img data-src="./assets/aiuxsmallimg.jpg" 
                      class="card-img-top1" 
                      alt="AI UX">
               </div>
@@ -609,6 +612,17 @@
       </div>
     </div>
   </footer>
+
+
+  <script>
+    const video = document.getElementById('maria-video');
+    const placeholder = document.getElementById('video-placeholder');
+
+    video.addEventListener('canplaythrough', () => {
+      placeholder.style.display = 'none'; // hide the image once video is ready
+      video.style.zIndex = 1;
+    });
+  </script>
   <script src="script.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
