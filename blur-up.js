@@ -23,37 +23,42 @@ document.addEventListener('DOMContentLoaded', function() {
             img.onload = function() {
               container.classList.add('loaded');
             };
+
+            // If the image already has src attribute, consider it loaded
+            if (img.src && !img.dataset.src) {
+              container.classList.add('loaded');
+            }
           } else if (media.tagName === 'VIDEO') {
             // For videos
             const video = media;
             
-            // If video has data-src for source, load it
+            // Get all sources
             const sources = video.querySelectorAll('source');
-            let sourcesLoaded = 0;
+            let hasHlsSource = false;
             
-            if (sources.length > 0) {
-              sources.forEach(source => {
-                if (source.dataset.src) {
-                  source.src = source.dataset.src;
-                  source.onload = function() {
-                    sourcesLoaded++;
-                    if (sourcesLoaded === sources.length) {
-                      video.load();
-                    }
-                  };
-                }
-              });
-            }
+            // Check if there's an HLS source (Mux stream)
+            sources.forEach(source => {
+              if (source.type === 'application/x-mpegURL' || source.type === 'application/vnd.apple.mpegurl') {
+                hasHlsSource = true;
+              }
+            });
+            
+            // If video has data-src for source, load it
+            sources.forEach(source => {
+              if (source.dataset.src) {
+                source.src = source.dataset.src;
+              }
+            });
             
             // Mark as loaded when video can play
             video.oncanplay = function() {
               container.classList.add('loaded');
             };
             
-            // For browsers that don't trigger oncanplay
+            // For browsers that don't trigger oncanplay or for HLS streams
             setTimeout(() => {
               container.classList.add('loaded');
-            }, 1000);
+            }, hasHlsSource ? 500 : 1000); // Faster timeout for HLS streams
             
             // Start loading video
             video.load();
