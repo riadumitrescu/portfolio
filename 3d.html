@@ -101,7 +101,11 @@
 <!-- main video -->
 <section class="white-side-section">
   <div class="images-container">
-    <video src="./assets/3d/videoproduct.mp4" class="memory-image" autoplay loop muted></video>
+    <video class="memory-image" autoplay loop muted playsinline>
+      <source src="./assets/3d/webm/videoproduct.webm" type="video/webm">
+      <source src="./assets/3d/videoproduct.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 </section>
 
