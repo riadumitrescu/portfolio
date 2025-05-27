@@ -70,7 +70,7 @@
   </script>
   
   <!-- Preload critical resources -->
-  <link rel="preload" href="assets/maria_dumitrescu-h265.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="assets/maria_dumitrescu_video.mp4" as="video" type="video/mp4">
   <link rel="preload" href="assets/circleprofilepic.png" as="image">
   <link rel="preload" href="styles.css" as="style">
   
@@ -197,6 +197,11 @@
     }
 
     @media (max-width: 768px) {
+      .parallax__layer-img.background-img {
+        /* Simpler background for narrow screens */
+        content: url("assets/cool_hero/background.jpg");
+      }
+      
       .parallax__title {
         font-size: 14vw;
       }
@@ -218,6 +223,8 @@
     }
 
     @media (max-width: 480px) {
+      /* Remove the background image switch since it's now in the 768px media query */
+      
       .parallax__layer-title {
         justify-content: flex-start;
         align-items: flex-start;
@@ -249,6 +256,12 @@
     
     .last-name {
       display: inline-block;
+    }
+
+    /* Add styles for background image switching based on screen size */
+    .parallax__layer-img.background-img {
+      /* Desktop background by default */
+      content: url("assets/cool_hero/backgroundwithtext.jpg");
     }
   </style>
 
@@ -291,7 +304,7 @@
           <div class="parallax__black-line-overflow"></div>
           <div data-parallax-layers class="parallax__layers">
             <!-- Background layer - slowest movement -->
-            <img src="assets/cool_hero/backgroundwithtext.jpg" loading="eager" width="800" data-parallax-layer="1" alt="" class="parallax__layer-img">
+            <img src="assets/cool_hero/backgroundwithtextcities.jpg" loading="eager" width="800" data-parallax-layer="1" alt="" class="parallax__layer-img background-img">
             
             <!-- Text layer - medium movement -->
             <div data-parallax-layer="2" class="parallax__layer-title">

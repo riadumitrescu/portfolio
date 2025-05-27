@@ -38,6 +38,12 @@
   - Kept subtitle text in its original position for visual balance
   - Used media queries to target only mobile screens (480px and below)
   - Maintained desktop layout for larger screens
+- Implemented responsive background images
+  - Used backgroundwithtext.jpg for wider screens (above 768px)
+  - Used background.jpg for narrower screens (768px and below)
+  - Utilized CSS content property for smooth image switching
+  - Applied appropriate CSS class for easy identification and styling
+  - Tied image switching to screen width instead of device type
 
 ## Why
 
@@ -52,6 +58,7 @@
 - Enhanced responsive behavior ensures the hero section looks great on all devices
 - Integrating directly into the index page creates a cohesive user experience without requiring navigation to a separate page
 - Mobile layout optimization improves readability and visual hierarchy on small screens
+- Width-based background switching ensures appropriate visuals regardless of device orientation
 
 ## App Sections Affected
 
