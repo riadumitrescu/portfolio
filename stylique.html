@@ -156,14 +156,29 @@ We conducted in-depth competitive research by scraping over 500 user reviews fro
   </ul>
 
 
-    <div class="images-container">
-      <img src="./assets/stylique/2.png" class="memory-image">
-    </div>
-    <div class="images-container">
-      <img src="./assets/stylique/3.png" class="memory-image">
-    </div>
-    <div class="images-container">
-      <img src="./assets/stylique/4.png" class="memory-image">
+    <div class="carousel-container">
+      <div class="carousel-wrapper">
+        <div class="carousel-slide">
+          <img src="./assets/stylique/2.png" alt="Stylique Design 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="./assets/stylique/3.png" alt="Stylique Design 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="./assets/stylique/4.png" alt="Stylique Design 3">
+        </div>
+        <button class="carousel-button prev" aria-label="Previous slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="#8D4630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="carousel-button next" aria-label="Next slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="#8D4630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="carousel-dots"></div>
     </div>
 </section>
 
@@ -431,6 +446,7 @@ We conducted in-depth competitive research by scraping over 500 user reviews fro
         </div>
     </div>
   </footer>
+  <script src="stylique.js"></script>
   <script src="gist.js"></script>
 
 <!-- Add Bootstrap's JavaScript library and jQuery -->
