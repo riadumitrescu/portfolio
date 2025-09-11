@@ -1361,7 +1361,7 @@ body {
 /* Single Image Display */
 .memory-image {
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px; /* Reduced from 1000px to make standalone images a bit smaller */
   height: auto;
   border-radius: 20px;
   box-shadow: 0 12px 40px rgba(141, 70, 48, 0.15);
@@ -3572,6 +3572,11 @@ html {
   box-shadow: 0 16px 48px rgba(141, 70, 48, 0.18);
 }
 
+/* Slightly smaller standalone images (not in dual/triple grids) */
+.images-container:not(.dual):not(.triple) .memory-image {
+  max-width: 720px;
+}
+
 /* Image captions styling */
 .image-caption {
   font-family: 'Inter', sans-serif;
@@ -4037,6 +4042,37 @@ section {
 .process-step {
   margin: 4rem 0;
   text-align: center;
+}
+
+/* Final wireframes grid - two rows, smaller images */
+.final-wireframes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto 2rem auto;
+  align-items: start;
+}
+
+.final-wireframes-grid .memory-image {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.final-wireframes-grid .image-caption {
+  margin-top: 10px;
+}
+
+@media (max-width: 992px) {
+  .final-wireframes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .final-wireframes-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .process-step:first-child {
