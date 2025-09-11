@@ -2,7 +2,34 @@
 
 ## Changes
 
-### Sanofi-IDEO Case Study Improvements (Latest)
+### Whimsical Background Circles Enhancement (Latest)
+- **Added whimsical background circles around individual project cards**: 
+  - Replaced large section-wide background circles with smaller, targeted circles around each project card
+  - Created fainted blue-pink and yellow gradient circles with different sizes for visual variety
+  - Positioned circles around individual cards rather than entire sections to prevent visual clutter
+- **Enhanced visual appeal**:
+  - Used alternating circle patterns for odd/even cards (blue-pink vs yellow-blue combinations)
+  - Added gentle floating animations with different speeds for organic movement
+  - Applied blur effects and low opacity (0.2) for subtle, non-intrusive lighting effect
+- **Fixed overflow issues**:
+  - Ensured circles aren't cut off by section boundaries using `overflow: visible`
+  - Added proper z-index layering so circles appear behind content
+  - Made sections responsive with smaller circles on mobile devices
+- **Added section title enhancement**:
+  - Wrapped section titles with special gradient background circles
+  - Applied subtle golden whimsical effects around titles like "Most Recent Product Design Projects"
+  - Used larger, more diffused circles for title areas with longer animation cycles
+- **Applied to all project sections**:
+  - Most Recent Projects section with alternating blue-pink and yellow circles
+  - UI UX Projects section with yellow-blue gradient combinations  
+  - Other Projects section with multi-color soft gradients
+  - Brands section with golden whimsical styling
+- **Responsive design**:
+  - Reduced circle sizes and blur intensity on mobile devices
+  - Maintained visual consistency across all screen sizes
+  - Preserved card functionality and hover effects
+
+### Sanofi-IDEO Case Study Improvements
 - **Updated cover image**: Changed Sanofi-IDEO card on index.html to use `cover-sanofi-ideo.jpg`
 - **Improved "Humanizing Through Storyboards" section**:
   - Added 4 storyboard images instead of 2 for better visual storytelling

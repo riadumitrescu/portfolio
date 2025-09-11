@@ -77,9 +77,350 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="footer.css">
-
+  
   <!-- Parallax Hero Styles -->
   <style>
+    /* Whimsical Background Circles for Individual Cards */
+    .project-card-wrapper {
+      position: relative;
+      overflow: visible !important;
+    }
+    
+    /* FIXED: Override blur-load overflow that was hiding circles */
+    .project-card-wrapper .blur-load {
+      overflow: visible !important;
+    }
+    
+    /* Small whimsical circles around project cards - Fixed visibility */
+    .project-card-wrapper::before,
+    .project-card-wrapper::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.3;
+      filter: blur(15px);
+      transition: all 0.8s ease;
+    }
+    
+    /* Additional circle elements using CSS pseudo-selectors for more frequency */
+    .project-card-wrapper {
+      position: relative;
+      overflow: visible !important;
+    }
+    
+    .project-card-wrapper::before,
+    .project-card-wrapper::after {
+      opacity: 0.25;
+      filter: blur(18px);
+    }
+    
+    /* Create additional circles using multiple pseudo-elements */
+    .project-card-wrapper .card::before,
+    .project-card-wrapper .card::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.2;
+      filter: blur(20px);
+      transition: all 0.6s ease;
+    }
+    
+    /* Interactive hover effects - circles become more visible on hover */
+    .project-card-wrapper:hover::before,
+    .project-card-wrapper:hover::after {
+      opacity: 0.4;
+      filter: blur(12px);
+      transform: scale(1.1);
+    }
+    
+    .project-card-wrapper:hover .card::before,
+    .project-card-wrapper:hover .card::after {
+      opacity: 0.3;
+      filter: blur(15px);
+      transform: scale(1.05);
+    }
+    
+    /* Pastel Teal/Greenish-blue circles for odd cards */
+    .project-card-wrapper:nth-child(odd)::before {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(95, 158, 160, 0.4) 0%, rgba(102, 205, 170, 0.3) 50%, rgba(175, 238, 238, 0.2) 100%);
+      top: -40px;
+      right: -50px;
+      animation: float-dance 8s ease-in-out infinite;
+    }
+    
+    .project-card-wrapper:nth-child(odd)::after {
+      width: 130px;
+      height: 130px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(255, 228, 181, 0.25) 100%);
+      bottom: -30px;
+      left: -40px;
+      animation: float-drift 12s ease-in-out infinite reverse;
+    }
+    
+    /* Additional circles for odd cards */
+    .project-card-wrapper:nth-child(odd) .card::before {
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(176, 224, 230, 0.3) 0%, rgba(95, 158, 160, 0.2) 100%);
+      top: -10px;
+      left: -20px;
+      animation: float-wiggle 10s ease-in-out infinite;
+    }
+    
+    .project-card-wrapper:nth-child(odd) .card::after {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(255, 228, 181, 0.25) 0%, rgba(255, 215, 0, 0.18) 100%);
+      bottom: 10px;
+      right: -15px;
+      animation: float-pulse 15s ease-in-out infinite reverse;
+    }
+    
+    /* Pastel Golden-yellow and soft beige circles for even cards */
+    .project-card-wrapper:nth-child(even)::before {
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 228, 181, 0.3) 50%, rgba(245, 222, 179, 0.2) 100%);
+      top: -35px;
+      left: -45px;
+      animation: float-sway 9s ease-in-out infinite;
+    }
+    
+    .project-card-wrapper:nth-child(even)::after {
+      width: 110px;
+      height: 110px;
+      background: radial-gradient(circle, rgba(95, 158, 160, 0.35) 0%, rgba(102, 205, 170, 0.25) 100%);
+      bottom: -25px;
+      right: -35px;
+      animation: float-orbit 14s ease-in-out infinite reverse;
+    }
+    
+    /* Additional circles for even cards */
+    .project-card-wrapper:nth-child(even) .card::before {
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(circle, rgba(245, 222, 179, 0.3) 0%, rgba(95, 158, 160, 0.2) 100%);
+      top: -15px;
+      right: -25px;
+      animation: float-bounce 11s ease-in-out infinite;
+    }
+    
+    .project-card-wrapper:nth-child(even) .card::after {
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle, rgba(175, 238, 238, 0.25) 0%, rgba(255, 228, 181, 0.18) 100%);
+      bottom: 5px;
+      left: -20px;
+      animation: float-spiral 13s ease-in-out infinite reverse;
+    }
+    
+    /* Special styling for section titles - Enhanced visibility */
+    .section-title-wrapper {
+      position: relative;
+      display: inline-block;
+      overflow: visible;
+    }
+    
+    .section-title-wrapper::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.25) 0%, rgba(95, 158, 160, 0.2) 30%, rgba(176, 224, 230, 0.15) 60%, rgba(255, 228, 181, 0.1) 100%);
+      top: -80px;
+      left: -80px;
+      z-index: -1;
+      filter: blur(25px);
+      animation: float-breathe 18s ease-in-out infinite;
+      pointer-events: none;
+      transition: all 0.8s ease;
+    }
+    
+    .section-title-wrapper::after {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(95, 158, 160, 0.2) 0%, rgba(255, 228, 181, 0.15) 100%);
+      top: -30px;
+      right: -60px;
+      z-index: -1;
+      filter: blur(20px);
+      animation: float-shimmer 22s ease-in-out infinite reverse;
+      pointer-events: none;
+      transition: all 0.6s ease;
+    }
+    
+    /* Interactive hover for section titles */
+    .section-title-wrapper:hover::before {
+      opacity: 0.4;
+      filter: blur(20px);
+      transform: scale(1.05);
+    }
+    
+    .section-title-wrapper:hover::after {
+      opacity: 0.35;
+      filter: blur(18px);
+      transform: scale(1.08);
+    }
+    
+    /* Dynamic and varied animation keyframes */
+    @keyframes float-dance {
+      0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      25% { transform: translate(15px, -10px) scale(1.05) rotate(2deg); }
+      50% { transform: translate(-10px, -15px) scale(0.95) rotate(-1deg); }
+      75% { transform: translate(-15px, 10px) scale(1.03) rotate(1deg); }
+    }
+    
+    @keyframes float-drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      20% { transform: translate(8px, -12px) scale(1.02); }
+      40% { transform: translate(-6px, -8px) scale(0.98); }
+      60% { transform: translate(-12px, 6px) scale(1.01); }
+      80% { transform: translate(10px, 8px) scale(0.99); }
+    }
+    
+    @keyframes float-wiggle {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      10% { transform: translate(3px, -2px) scale(1.01); }
+      20% { transform: translate(-2px, 3px) scale(0.99); }
+      30% { transform: translate(4px, 1px) scale(1.02); }
+      40% { transform: translate(-1px, -3px) scale(0.98); }
+      50% { transform: translate(2px, 4px) scale(1.01); }
+      60% { transform: translate(-3px, -1px) scale(0.99); }
+      70% { transform: translate(1px, -4px) scale(1.01); }
+      80% { transform: translate(4px, 2px) scale(0.99); }
+      90% { transform: translate(-2px, 3px) scale(1.01); }
+    }
+    
+    @keyframes float-pulse {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.12; }
+      25% { transform: translate(5px, -8px) scale(1.08); opacity: 0.18; }
+      50% { transform: translate(-3px, -5px) scale(0.92); opacity: 0.08; }
+      75% { transform: translate(-8px, 5px) scale(1.05); opacity: 0.15; }
+    }
+    
+    @keyframes float-sway {
+      0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      33% { transform: translate(12px, -6px) scale(1.03) rotate(3deg); }
+      66% { transform: translate(-8px, 12px) scale(0.97) rotate(-2deg); }
+    }
+    
+    @keyframes float-orbit {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(10px, -15px) scale(1.04); }
+      50% { transform: translate(0, -8px) scale(0.96); }
+      75% { transform: translate(-10px, 15px) scale(1.02); }
+    }
+    
+    @keyframes float-bounce {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      15% { transform: translate(4px, -12px) scale(1.06); }
+      30% { transform: translate(-2px, 0px) scale(0.94); }
+      45% { transform: translate(6px, -8px) scale(1.03); }
+      60% { transform: translate(-4px, 2px) scale(0.97); }
+      75% { transform: translate(2px, -6px) scale(1.02); }
+      90% { transform: translate(-1px, 4px) scale(0.98); }
+    }
+    
+    @keyframes float-spiral {
+      0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      25% { transform: translate(8px, -8px) scale(1.02) rotate(90deg); }
+      50% { transform: translate(0px, -16px) scale(0.98) rotate(180deg); }
+      75% { transform: translate(-8px, -8px) scale(1.01) rotate(270deg); }
+    }
+    
+    @keyframes float-breathe {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+      50% { transform: translate(5px, -3px) scale(1.08); opacity: 0.15; }
+    }
+    
+    @keyframes float-shimmer {
+      0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.12; }
+      33% { transform: translate(8px, -5px) scale(1.04) rotate(1deg); opacity: 0.18; }
+      66% { transform: translate(-5px, 8px) scale(0.96) rotate(-1deg); opacity: 0.08; }
+    }
+    
+    /* Ensure sections don't cut off circles */
+    .project-section {
+      overflow: visible !important;
+      padding: 60px 0;
+    }
+    
+    .project-section .container {
+      overflow: visible !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .project-card-wrapper::before,
+      .project-card-wrapper::after {
+        filter: blur(12px);
+        opacity: 0.18;
+      }
+      
+      .project-card-wrapper .card::before,
+      .project-card-wrapper .card::after {
+        filter: blur(15px);
+        opacity: 0.12;
+      }
+      
+      .project-card-wrapper:nth-child(odd)::before { width: 120px; height: 120px; }
+      .project-card-wrapper:nth-child(odd)::after { width: 90px; height: 90px; }
+      .project-card-wrapper:nth-child(even)::before { width: 100px; height: 100px; }
+      .project-card-wrapper:nth-child(even)::after { width: 80px; height: 80px; }
+      
+      .project-card-wrapper:nth-child(odd) .card::before { width: 50px; height: 50px; }
+      .project-card-wrapper:nth-child(odd) .card::after { width: 40px; height: 40px; }
+      .project-card-wrapper:nth-child(even) .card::before { width: 60px; height: 60px; }
+      .project-card-wrapper:nth-child(even) .card::after { width: 45px; height: 45px; }
+      
+      /* Mobile hover effects are more pronounced */
+      .project-card-wrapper:hover::before,
+      .project-card-wrapper:hover::after {
+        opacity: 0.3;
+        filter: blur(10px);
+      }
+      
+      .project-card-wrapper:hover .card::before,
+      .project-card-wrapper:hover .card::after {
+        opacity: 0.25;
+        filter: blur(12px);
+      }
+      
+      .section-title-wrapper::before { 
+        width: 180px; 
+        height: 180px; 
+        filter: blur(20px);
+        opacity: 0.15;
+      }
+      
+      .section-title-wrapper::after { 
+        width: 100px; 
+        height: 100px; 
+        filter: blur(18px);
+        opacity: 0.12;
+      }
+      
+      .section-title-wrapper:hover::before {
+        opacity: 0.25;
+        filter: blur(18px);
+      }
+      
+      .section-title-wrapper:hover::after {
+        opacity: 0.2;
+        filter: blur(15px);
+      }
+    }
+
     .parallax {
       width: 100%;
       position: relative;
@@ -327,13 +668,13 @@
   
 
 <!-- Most Recent Projects -->
-<section id="recent-projects" class="mb-5">
+<section id="recent-projects" class="mb-5 project-section">
   <div class="container">
-    <h2 class="text-center mb-4">Most Recent Product DesignProjects</h2>
+    <h2 class="text-center mb-4"><span class="section-title-wrapper">Most Recent Product Design Projects</span></h2>
     <div class="row">
 
       <!-- Card - Nuuko -->
-      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4 project-card-wrapper">
         <a href="nuuko.html" class="card-link">
           <div class="card">
             <div class="blur-load" style="background-image: url('./assets/nuuko/Hero-section-show-app.jpg');">
@@ -361,7 +702,7 @@
       </div>
 
       <!-- Card - Sanofi x IDEO -->
-      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4 project-card-wrapper">
         <a href="sanofi-ideo.html" class="card-link">
           <div class="card">
             <div class="blur-load" style="background-image: url('./assets/sanofi-ideo/cover-sanofi-ideo.jpg');">
@@ -394,12 +735,12 @@
 </section>
 
   <!-- Second Section with UI UX Projects -->
-  <section id="projects" class="mb-5">
+  <section id="projects" class="mb-5 project-section">
     <div class="container">
-      <h2 class="text-center mb-4">UI UX Projects</h2>
+      <h2 class="text-center mb-4"><span class="section-title-wrapper">UI UX Projects</span></h2>
       <div class="row">
         <!-- Stylique-->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="stylique.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/stylique_rock-tiny.jpg');">
@@ -422,7 +763,7 @@
           </a>
         </div>
         <!-- Card 1 - Lotus -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="lotus.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/lotus/lotus_profile_pic-tiny.jpg');">
@@ -444,7 +785,7 @@
             </div>
           </a>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="gist.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/girst_mockup-tiny.jpg');">
@@ -469,7 +810,7 @@
         </div>
 
         <!-- Card 3 - StudyPaws -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="focuspaws.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/studypaws_mockup-tiny.jpg');">
@@ -492,7 +833,7 @@
             </div>
           </a>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="https://riadumitrescu.github.io/uiuxfeedback/results" class="card-link" target="_blank">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/profile_ai_ux-tiny.jpg');">
@@ -515,7 +856,7 @@
           </a>
         </div>
  <!-- Card 3 - web -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="andak.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/andak/laptop-mockup-andak-tiny.jpg');">
@@ -585,12 +926,12 @@
     </div>
   </div>
   <!-- Other Projects Section -->
-  <section id="other-projects" class="mb-5">
+  <section id="other-projects" class="mb-5 project-section">
     <div class="container">
-      <h2 class="text-center mb-4">Other Projects</h2>
+      <h2 class="text-center mb-4"><span class="section-title-wrapper">Other Projects</span></h2>
       <div class="row">
         <!-- Card 1 - MEMORIES -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="memories.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/memories/memoriescharacters-tiny.jpg');">
@@ -606,7 +947,7 @@
         </div>
 
         <!-- Love at first sight -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="love.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/love/cover-tiny.jpg');">
@@ -620,7 +961,7 @@
           </a>
         </div>
         <!-- 3D -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="3d.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/3d/teashop-tiny.jpg');">
@@ -638,7 +979,7 @@
 
         <!-- Additional Cards -->
         <!-- Card 4 -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="finearts.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/fine_arts/silence-tiny.jpg');">
@@ -653,7 +994,7 @@
         </div>
 
         <!-- Card 5 -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="letters.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/letters/final-tiny.jpg');">
@@ -669,7 +1010,7 @@
         </div>
         <!-- Card 6 -->
 
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="emag24.html" class="card-link">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/emag2024logo-tiny.jpg');">
@@ -766,12 +1107,12 @@
   </section>
 
   <!-- Brands -->
-  <section id="projects" class="mb-5">
+  <section id="brands" class="mb-5 project-section">
     <div class="container">
-      <h2 class="text-center mb-4">Brands</h2>
+      <h2 class="text-center mb-4"><span class="section-title-wrapper">Brands</span></h2>
       <div class="row">
         <!-- Card 1 - Marie Lee Store -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="https://www.etsy.com/shop/marieleeshop" class="card-link" target="_blank">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/brand/ML-tiny.jpg');">
@@ -785,7 +1126,7 @@
           </a>
         </div>
         <!-- lets uni -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="https://www.instagram.com/letsuni.eu/" class="card-link" target="_blank">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/letsuni/letsuni-tiny.jpg');">
@@ -799,7 +1140,7 @@
           </a>
         </div>
         <!-- instagram -->
-        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="https://www.instagram.com/ria.dms/" class="card-link" target="_blank">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/instagram/INSTAGRAM-tiny.jpg');">
