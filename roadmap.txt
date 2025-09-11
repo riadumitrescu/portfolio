@@ -2,6 +2,17 @@
 
 ## Changes
 
+### Sanofi-IDEO Case Study Improvements (Latest)
+- **Updated cover image**: Changed Sanofi-IDEO card on index.html to use `cover-sanofi-ideo.jpg`
+- **Improved "Humanizing Through Storyboards" section**:
+  - Added 4 storyboard images instead of 2 for better visual storytelling
+  - Made images smaller and more organized (max-width: 300px instead of 500px)
+  - Added descriptive captions for each storyboard image
+  - Improved grid layout with better spacing and centering
+  - Added hover effects for better interactivity
+  - Enhanced mobile responsiveness
+  - Images now include: Patient Journey, Companion Character Development, Scenario Exploration, and Character Design Process
+
 - Added `tryhero.html` - A full-screen white hero section with parallax scroll effect
   - Implemented using GSAP, ScrollTrigger, and Lenis for smooth scrolling
   - Created a three-layer parallax effect with background image, foreground PNG, and centered text
