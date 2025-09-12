@@ -1380,6 +1380,232 @@ body {
   box-shadow: 0 15px 45px rgba(141, 70, 48, 0.18);
 }
 
+/* Feedback Analysis Cards */
+.feedback-analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 3rem auto;
+  align-items: stretch;
+}
+
+.feedback-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 4px solid transparent;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.feedback-card.loves {
+  border-left-color: #28a745;
+}
+
+.feedback-card.frustrates {
+  border-left-color: #dc3545;
+}
+
+.feedback-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.feedback-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.feedback-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.feedback-card.loves .feedback-icon {
+  background: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.feedback-card.frustrates .feedback-icon {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+.feedback-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.feedback-title {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2C2C2C;
+  margin: 0;
+}
+
+.feedback-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.feedback-list li {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4A4A4A;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.feedback-list li:before {
+  content: "•";
+  color: #8D4630;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.feedback-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Core Challenge Section */
+.core-challenge-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 3rem auto;
+  max-width: 900px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #8D4630;
+  text-align: center;
+}
+
+.challenge-title {
+  font-family: 'Crimson Text', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2C2C2C;
+  margin-bottom: 1.5rem;
+}
+
+.challenge-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #4A4A4A;
+  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Prototype Preview Styling */
+.prototype-preview {
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.prototype-screenshot {
+  position: relative;
+  display: inline-block;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.prototype-screenshot:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.prototype-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 600px;
+}
+
+.prototype-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.prototype-screenshot:hover .prototype-overlay {
+  opacity: 1;
+}
+
+.play-button {
+  transition: transform 0.3s ease;
+}
+
+.prototype-screenshot:hover .play-button {
+  transform: scale(1.1);
+}
+
+.prototype-link {
+  display: inline-block;
+  margin: 1.5rem 0;
+  padding: 1rem 2rem;
+  background: #8D4630;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(141, 70, 48, 0.3);
+}
+
+.prototype-link:hover {
+  background: #6B3524;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(141, 70, 48, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.prototype-info {
+  background: rgba(248, 245, 240, 0.6);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.prototype-description-enhanced {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4A4A4A;
+  margin: 0;
+}
+
 /* Dual Image Layout for Portrait Images */
 .images-container.dual {
   display: grid;
@@ -1533,6 +1759,14 @@ body {
   .images-container.triple {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+}
+
+/* Tablet responsive for triple image layout */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .images-container.triple {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
   }
 
   .memory-image {
@@ -2059,9 +2293,7 @@ body {
   color: #2C2C2C;
   margin-bottom: 15px;
   line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .insight-block.primary .insight-block-text {
@@ -2822,10 +3054,11 @@ body {
 
 .quotes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin: 40px auto;
   padding: 0 20px;
+  max-width: 1200px;
 }
 
 .quote-bubble {
@@ -2985,6 +3218,15 @@ html {
     grid-template-columns: 1fr;
     gap: 25px;
     padding: 0 15px;
+  }
+}
+
+/* Tablet responsive for quotes grid */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .quotes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 0 20px;
   }
 
   .quote-bubble {
@@ -4143,6 +4385,61 @@ section {
 }
 
 @media (max-width: 768px) {
+  /* Feedback cards mobile responsiveness */
+  .feedback-analysis-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem auto;
+  }
+  
+  .feedback-card {
+    padding: 1.5rem;
+  }
+  
+  .feedback-title {
+    font-size: 1.25rem;
+  }
+  
+  .feedback-list li {
+    font-size: 0.95rem;
+  }
+  
+  /* Core Challenge mobile responsiveness */
+  .core-challenge-section {
+    padding: 2rem 1.5rem;
+    margin: 2rem auto;
+  }
+  
+  .challenge-title {
+    font-size: 1.75rem;
+  }
+  
+  .challenge-text {
+    font-size: 1rem;
+  }
+  
+  /* Prototype preview mobile responsiveness */
+  .prototype-preview {
+    margin: 1.5rem auto;
+  }
+  
+  .prototype-image {
+    max-width: 100%;
+  }
+  
+  .prototype-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .prototype-info {
+    padding: 1rem;
+  }
+  
+  .prototype-description-enhanced {
+    font-size: 0.95rem;
+  }
+  
   .process-step {
     margin: 3rem 0;
   }

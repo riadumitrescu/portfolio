@@ -1012,3 +1012,54 @@ li:hover .tag-list {
     }
 }
 
+/* Recent Project Cards - Wider Layout */
+.recent-project-card {
+    margin-bottom: 2rem;
+    padding: 0 10px; /* Add some breathing room between cards */
+}
+
+.recent-project-card .card {
+    max-width: none;
+    transition: all 0.3s ease;
+}
+
+.recent-project-card .card-body {
+    padding: 1.5rem;
+}
+
+.recent-project-card .card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.recent-project-card .description-text {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Enhanced hover effect for recent project cards */
+.recent-project-card .card:hover {
+    transform: scale(1.03);
+    box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive adjustments for recent project cards */
+@media (max-width: 992px) {
+    .recent-project-card.col-lg-5 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .recent-project-card .card-body {
+        padding: 1.25rem;
+    }
+    
+    .recent-project-card .card-title {
+        font-size: 1.2rem;
+    }
+}
+
