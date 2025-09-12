@@ -1514,6 +1514,32 @@ body {
   margin: 0 auto;
 }
 
+/* Title Feather Character */
+.feather-character-title {
+  width: 72px;
+  height: 72px;
+  vertical-align: middle;
+  margin-left: 16px;
+  opacity: 0.9;
+  animation: float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.feather-character-title:hover {
+  opacity: 1;
+  transform: scale(1.15);
+  animation-play-state: paused;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 /* Prototype Preview Styling */
 .prototype-preview {
   max-width: 800px;

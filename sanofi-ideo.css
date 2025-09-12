@@ -4087,3 +4087,29 @@ body {
     padding: 20px;
   }
 }
+
+/* Device Character for Title */
+.device-character-title {
+  width: 180px;
+  height: 180px;
+  vertical-align: middle;
+  margin-left: 24px;
+  opacity: 0.9;
+  animation: float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.device-character-title:hover {
+  opacity: 1;
+  transform: scale(1.15);
+  animation-play-state: paused;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
