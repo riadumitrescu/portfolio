@@ -717,7 +717,7 @@ img {
   box-shadow: 0 8px 32px rgba(46, 91, 186, 0.15);
 }
 
-/* Mobile Responsive */
+/* Enhanced Mobile Responsive */
 @media (max-width: 768px) {
   .flow-section {
     padding: 3rem 0;
@@ -751,10 +751,44 @@ img {
   
   .flow-stakeholder-image {
     height: 180px;
+    object-fit: cover;
+    width: 100%;
   }
   
   .flow-generation-image {
     height: 280px;
+    object-fit: cover;
+    width: 100%;
+  }
+  
+  /* Enhanced image handling */
+  .flow-process-image,
+  .flow-hero-image,
+  .generation-detail-image,
+  .journey-map-image,
+  .exploration-image,
+  .mechanism-image,
+  .solution-image,
+  .prototype-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Better hero navigation on mobile */
+  .flow-hero-navigation {
+    padding: 1rem 1.5rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .flow-nav-step {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
   }
 }
 
@@ -1558,19 +1592,25 @@ img {
 .storyboard-intro-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border-radius: 24px;
-  padding: 3rem;
+  padding: 2.5rem;
   box-shadow: 0 8px 32px rgba(46, 91, 186, 0.12);
   border: 1px solid rgba(46, 91, 186, 0.1);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: center;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto;
+  transition: all 0.3s ease;
+}
+
+.storyboard-intro-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(46, 91, 186, 0.18);
 }
 
 .storyboard-intro-content {
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .intro-badge {
@@ -1877,6 +1917,19 @@ img {
   top: 0;
   left: 0;
   z-index: 5;
+  padding: 80px 60px 60px 60px;
+  box-sizing: border-box;
+}
+
+.storyboard-image {
+  max-width: calc(100vw - 120px);
+  max-height: calc(100vh - 140px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
 
@@ -1985,106 +2038,183 @@ img {
   transform: scale(1.2);
 }
 
-/* Mobile responsive for new components */
+/* Enhanced Mobile Responsive for Storyboard Experience */
 @media (max-width: 768px) {
+  /* Storyboard intro card - better mobile layout */
   .storyboard-intro-card {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    margin: 0 1rem;
+    border-radius: 16px;
   }
   
   .storyboard-intro-content {
-    padding: 1rem;
+    padding: 0.5rem;
+    text-align: center;
   }
   
   .intro-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
   }
   
   .intro-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
   }
   
+  .story-features {
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .feature-item {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .feature-text {
+    font-size: 0.85rem;
+  }
+  
+  .storyboard-cta-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .storyboard-preview {
+    border-radius: 12px;
+    margin-top: 1rem;
+  }
+  
+  /* Modal header - cleaner mobile layout */
   .storyboard-header {
-    padding: 1rem 1.5rem 0.5rem 1.5rem;
+    padding: 1rem 1rem 0.75rem 1rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 80%, transparent 100%);
   }
   
   .storyboard-modal-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    text-align: center;
   }
   
   .progress-info {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .story-counter {
+    font-size: 0.85rem;
+    min-width: auto;
+    text-align: center;
   }
   
   .progress-bar-container {
-    width: 100%;
-    max-width: none;
+    flex: none;
+    width: 200px;
   }
   
+  .progress-bar {
+    height: 3px;
+  }
+  
+  /* Main content area - optimized for mobile viewing */
   .storyboard-main {
-    padding: 0.5rem;
+    padding: 0;
+    background: #000;
   }
   
   .story-image-container {
     width: 100vw;
     height: 100vh;
+    padding: 60px 0 40px 0; /* Account for header and safe areas */
+    box-sizing: border-box;
   }
   
   .storyboard-image {
-    width: 95vw !important;
-    height: 95vh !important;
-    min-width: 95vw;
-    min-height: 95vh;
-    max-width: none !important;
-    max-height: none !important;
+    width: calc(100vw - 20px) !important;
+    height: auto !important;
+    max-height: calc(100vh - 140px) !important;
+    max-width: calc(100vw - 20px) !important;
+    object-fit: contain !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
   
+  /* Enhanced navigation buttons */
   .nav-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    border: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav-btn:hover:not(:disabled) {
+    background: white;
+    transform: translateY(-50%) scale(1.05);
   }
   
   .nav-btn-left {
-    left: 1rem;
+    left: 10px;
   }
   
   .nav-btn-right {
-    right: 1rem;
+    right: 10px;
   }
   
+  /* Bottom controls - hidden on mobile for cleaner experience */
   .storyboard-bottom-controls {
-    padding: 1rem 1.5rem;
-    flex-direction: column;
-    gap: 1rem;
+    display: none !important;
   }
   
-  .control-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-  }
-  
-  .page-indicator {
-    order: -1;
-  }
-  
-  .page-dots {
-    gap: 0.3rem;
-  }
-  
-  .page-dot {
-    width: 6px;
-    height: 6px;
-  }
-  
-  .lightbox-close,
+  /* Close button */
   .storyboard-close {
-    font-size: 20px;
-    width: 36px;
-    height: 36px;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    border-radius: 20px;
+  }
+  
+  .storyboard-close:hover {
+    background: white;
+    transform: scale(1.05);
+  }
+}
+
+/* Tablet responsive adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .storyboard-intro-card {
+    padding: 2.5rem 2rem;
+    margin: 0 2rem;
+  }
+  
+  .storyboard-image {
+    width: 90vw !important;
+    max-height: 80vh !important;
+  }
+  
+  .nav-btn {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .nav-btn-left {
+    left: 20px;
+  }
+  
+  .nav-btn-right {
+    right: 20px;
   }
 }
 
@@ -2381,7 +2511,7 @@ body {
 }
 
 .quote-content::before {
-  content: """;
+  content: "\201C";
   font-family: 'Crimson Text', serif;
   font-size: 3rem;
   color: rgba(46, 91, 186, 0.3);
@@ -2474,6 +2604,27 @@ body {
 
 .bubble-7:hover {
   transform: rotate(-0.8deg) translateY(-8px) scale(1.02);
+}
+
+/* Balance and center quote bubbles on wide screens */
+@media (min-width: 992px) {
+  .interactive-quotes-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+  }
+
+  /* Make each bubble span two columns for a clean 3-column layout */
+  .interactive-quotes-container .quote-bubble {
+    grid-column: span 2 !important;
+  }
+
+  /* Center the last single bubble on the final row (when count mod 3 = 1) */
+  .interactive-quotes-container .quote-bubble:nth-child(7) {
+    grid-column: 3 / span 2;
+  }
 }
 
 /* Mobile responsiveness for quote bubbles */
@@ -3313,28 +3464,30 @@ body {
   box-shadow: 0 12px 40px rgba(46, 91, 186, 0.18);
 }
 
-/* Responsive styles for mobile devices */
+/* Enhanced responsive styles for mobile devices */
 @media (max-width: 768px) {
   .white-side-section {
-    padding: 80px 20px;
+    padding: 60px 20px;
   }
 
   .hero-mockup-section {
-    max-width: 280px;
-    margin: 40px auto 0;
+    max-width: 320px; /* Slightly larger for better visibility */
+    margin: 30px auto 0;
   }
 
   .white-side-title {
     max-width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     white-space: normal;
     overflow: visible;
+    font-size: clamp(2rem, 8vw, 3rem) !important;
   }
 
   .white-side-smalltitle {
     max-width: 100%;
     white-space: normal;
     overflow: visible;
+    font-size: clamp(1.3rem, 5vw, 1.8rem) !important;
   }
 
   .white-side-paragraph {

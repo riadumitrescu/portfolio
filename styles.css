@@ -378,12 +378,62 @@ body {
 }
 
 /* Additional Styles to Maintain Layout */
+/* Enhanced Mobile Responsive Styles */
 @media (max-width: 768px) {
+  /* Fix card layout issues on mobile */
   .card {
-    width: 80%; /* Slightly larger width for tablets */
-    margin: 15px auto; /* Center the cards and add some margin */
+    width: 95%; /* Better mobile width */
+    margin: 10px auto; /* Optimized spacing */
+    border-radius: 16px; /* Consistent rounded corners */
   }
   
+  .card-img-top {
+    height: 220px; /* Better mobile image height */
+    object-fit: cover; /* Ensure proper image scaling */
+  }
+  
+  /* Fix hero/parallax section on mobile */
+  .parallax {
+    height: 60vh !important; /* Shorter hero on mobile */
+    min-height: 400px;
+  }
+  
+  .parallax__title {
+    font-size: 12vw !important; /* Better mobile title size */
+    text-align: center;
+  }
+  
+  .parallax__subtitle {
+    font-size: 4vw !important;
+    text-align: center;
+  }
+  
+  .parallax__subtitle-container {
+    position: static !important; /* Remove absolute positioning on mobile */
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .parallax__layer-img {
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+  
+  /* Fix project cards consistency */
+  .recent-project-card .card-body {
+    padding: 1rem;
+    min-height: 180px; /* Consistent card height */
+  }
+  
+  .project-tags {
+    gap: 6px;
+    margin-top: 10px;
+  }
+  
+  .project-tag {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
 }
 
 

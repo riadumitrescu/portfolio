@@ -1,3 +1,115 @@
+## Sanofi IDEO – Center and Balance Patient Quote Bubbles (Sep 2025)
+
+- What changed
+  - Centered the quotes grid container and constrained it to `max-width: 1200px` on large screens
+  - Switched to a 6-column grid with each bubble spanning 2 columns for even 3-up rows
+  - Explicitly centered the last single bubble so left/right sides feel balanced
+  - Fixed typographic quote mark before each bubble using the proper Unicode opening quote
+
+- Why it was changed
+  - The quotes felt left-heavy; user asked to center and have roughly equal weight on both sides. This creates a visually balanced, intentional composition matching the rest of the case study.
+
+- Affected areas
+  - `sanofi-ideo.css` styles for `.interactive-quotes-container`, `.quote-bubble`, and `.quote-content::before`
+
+## Complete Mobile Responsive Overhaul (Sep 2025)
+
+- What changed across index.html, nuuko.html, and sanofi-ideo.html
+  - **index.html fixes:**
+    - Fixed hero/parallax section mobile layout: reduced height to 60vh, centered title/subtitle text
+    - Improved project card consistency: standardized 95% width, 220px image height, consistent padding
+    - Enhanced project tags: smaller font size (0.7rem), better spacing on mobile
+    - Fixed card image ratios with proper object-fit: cover scaling
+  
+  - **nuuko.html comprehensive mobile fixes:**
+    - Hero section: single column layout, centered content, smaller feather character (60px)
+    - Image containers: forced single column on mobile, proper padding (20px), enhanced image sizing
+    - Navigation: better wrapped layout, smaller nav steps (0.75rem font)
+    - Meta grid: centered 2-column layout on mobile for better information architecture
+    - Enhanced image handling: 100% width, auto height, proper object-fit across all image types
+  
+  - **sanofi-ideo.html mobile enhancements:**
+    - Comprehensive image fix: all images (process, hero, detail, journey, exploration, etc.) now scale properly 
+    - Enhanced typography: fluid font sizing with clamp() for titles and subtitles
+    - Better hero navigation: wrapped layout, smaller touch targets optimized for mobile
+    - Improved spacing: reduced padding from 80px to 60px in white sections for better mobile viewing
+    - Fixed all grid layouts: stakeholders, needs, generations convert to single column
+
+- Why it was changed
+  - User reported mobile responsiveness issues: "images are a bit weird", "hero doesn't work very well", "cards are different ratio"
+  - Mobile experience was broken with overflow, inconsistent image sizing, poor touch targets
+  - Typography didn't scale properly causing readability issues on small screens
+  - Card layouts were inconsistent creating poor visual hierarchy
+
+- Affected areas
+  - `styles.css`: Enhanced @media queries for cards, hero, navigation, and images
+  - `nuuko.css`: Comprehensive mobile overhaul in multiple @media sections
+  - `sanofi-ideo.css`: Enhanced image handling and mobile-optimized layouts
+
+## Storyboard Mobile Experience Overhaul (Sep 2025)
+
+- What changed in sanofi-ideo.html storyboard experience
+  - **Mobile-optimized intro card:**
+    - Reduced padding from 3rem to 1.5rem for better mobile spacing
+    - Single column layout with centered content and full-width CTA button
+    - Better feature list spacing and typography scaling
+    - Enhanced hover states and improved visual hierarchy
+  
+  - **Completely redesigned mobile modal:**
+    - Cleaner header with centered title and better progress bar (200px width)
+    - Optimized image container with proper safe area padding (60px top, 40px bottom)
+    - Image sizing: calc(100vw - 20px) width with auto height and contain object-fit
+    - Enhanced navigation: 44x44px buttons with white background and subtle shadows
+    - Hidden bottom controls on mobile for cleaner, touch-optimized experience
+  
+  - **Desktop improvements:**
+    - Better desktop image sizing: calc(100vw - 120px) max-width with proper padding
+    - Enhanced hover states for intro card with translateY animation
+    - Improved overall spacing and visual consistency
+    - Added tablet breakpoint (769px-1024px) for optimal mid-range viewing
+  
+  - **Better visual hierarchy:**
+    - Reduced font sizes appropriately for mobile (title: 1.2rem, description: 0.95rem)
+    - Enhanced contrast with white navigation buttons on dark background
+    - Improved shadow and border radius consistency throughout
+
+- Why it was changed
+  - User reported "storyboard experience on mobile" was poor and "paddings look so bad"
+  - Previous mobile layout had cramped spacing, poor touch targets, and difficult navigation
+  - Images were not properly sized for mobile viewing with awkward overflow
+  - Typography hierarchy didn't scale well causing readability issues
+  - Bottom navigation was cluttered and hard to use on mobile devices
+
+- Affected areas
+  - `sanofi-ideo.css`: Complete overhaul of `.storyboard-*` mobile styles and desktop improvements
+
+## Hero Portrait Positioning Fix (Sep 2025)
+
+- What changed in index.html hero section
+  - **Optimized portrait sizing and positioning:**
+    - Reduced overall image height from 117.5% to 110% to show more of the figure
+    - Moved portrait layer up: top position from -17.5% to -8% for general layers
+    - Added specific portrait layer targeting: 105% height, -5% top position
+    - Improved object positioning: center 25% for better facial framing
+  
+  - **Enhanced responsive behavior:**
+    - **Desktop (>1024px)**: 105% height, -5% top, center 25% positioning  
+    - **Tablet (769px-1024px)**: 100% height, -2% top, center 30% positioning
+    - **Mobile (481px-768px)**: 90% height, 5% top, center 35% positioning
+    - **Small mobile (≤480px)**: 75% height, 15% top, center 40% positioning
+  
+  - **Background layer optimization:**
+    - Reduced background height to 110% (from 117.5%) for better proportion
+    - Adjusted background top positioning to -8% for improved balance
+
+- Why it was changed
+  - User reported the hero "looks a bit weird" and "I am very cut off"
+  - Previous positioning cut off too much of the portrait, especially lower body
+  - Image was too large and positioned too low, hiding important parts of the figure
+  - Needed better responsive scaling that shows more of the person across all devices
+
+- Affected areas
+  - `index.html`: Comprehensive `.parallax__layer-img` positioning overhaul with layer-specific targeting
 # Project Roadmap
 
 ## Changes

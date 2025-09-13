@@ -66,7 +66,7 @@ body {
   width: 100%; /* Ensure the underline is full width */
 }
 
-/* Responsive font size */
+/* Comprehensive Mobile Responsive Fixes */
 @media (max-width: 768px) {
   .navbar-nav .nav-link {
     font-size: 16px; /* Decrease font size for smaller screens */
@@ -78,6 +78,78 @@ body {
 
   .title-section {
     padding-top: 120px; /* Adjust padding for smaller screens */
+  }
+  
+  /* Fix hero section mobile layout */
+  .unified-hero-section {
+    padding: 6rem 0 3rem 0 !important;
+  }
+  
+  .hero-container {
+    padding: 0 1rem;
+  }
+  
+  .main-title-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .title-content {
+    padding-right: 0;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 3rem) !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+    text-align: left;
+  }
+  
+  .features-pills {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .feature-pill {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .side-content {
+    padding-left: 0;
+    border-left: none;
+    border-top: 2px solid #e9ecef;
+    padding-top: 2rem;
+  }
+  
+  .project-meta .meta-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .hero-philosophy-quote {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .hero-palette {
+    align-items: center;
+  }
+  
+  .colors-row {
+    justify-content: center;
+  }
+  
+  .feather-character-title {
+    width: 60px !important;
+    height: 60px !important;
+    margin-left: 10px;
   }
 }
 
@@ -2907,11 +2979,44 @@ body {
     font-size: 14px;
   }
 
-  /* Mobile image sizing */
+  /* Enhanced mobile image sizing and container fixes */
   .images-container {
-    padding: 30px; /* Reduced padding on mobile but still enough for shadows */
-    margin: 15px 0;
-    flex-direction: column; /* ensure vertical layout on mobile */
+    padding: 20px; /* Better mobile padding */
+    margin: 20px auto;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .images-container.dual {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 20px;
+  }
+
+  .images-container.triple {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 20px;
+  }
+
+  .memory-image,
+  .memory-image.enhanced {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(141, 70, 48, 0.12);
+  }
+
+  /* Fix navigation spacing */
+  .hero-navigation {
+    padding: 1rem 1.5rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .nav-step {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
   }
 
   .memory-image,

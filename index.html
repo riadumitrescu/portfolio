@@ -470,10 +470,17 @@
       object-fit: cover;
       width: 100%;
       max-width: none;
-      height: 117.5%;
+      height: 110%;
       position: absolute;
-      top: -17.5%;
+      top: -8%;
       left: 0;
+    }
+    
+    /* Specific positioning for the portrait layer */
+    .parallax__layer-img[data-parallax-layer="3"] {
+      height: 110%;
+      top: -8%;
+      object-position: center 45%;
     }
 
     .parallax__layer-title {
@@ -532,8 +539,14 @@
 
     @media (max-width: 1024px) {
       .parallax__layer-img {
-        height: 110%;
-        object-position: center;
+        height: 108%;
+        top: -6%;
+      }
+      
+      .parallax__layer-img[data-parallax-layer="3"] {
+        height: 105%;
+        top: -5%;
+        object-position: center 40%;
       }
     }
 
@@ -557,9 +570,14 @@
       }
       
       .parallax__layer-img {
-        height: 100%;
+        height: 98%;
         top: 0;
-        object-position: center;
+      }
+      
+      .parallax__layer-img[data-parallax-layer="3"] {
+        height: 95%;
+        top: -1%;
+        object-position: center 45%;
       }
     }
 
@@ -578,8 +596,14 @@
       }
       
       .parallax__layer-img {
-        height: 90%;
-        object-position: center center;
+        height: 85%;
+        top: 5%;
+      }
+      
+      .parallax__layer-img[data-parallax-layer="3"] {
+        height: 80%;
+        top: 5%;
+        object-position: center 50%;
       }
       
       /* Keep subtitle container in the original position */
