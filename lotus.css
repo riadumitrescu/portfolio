@@ -529,3 +529,96 @@ body {
     width: 80%; /* fill more space on mobile */
   }
 }
+
+/* Lotus TL;DR Section Styles */
+.lotus-tldr-section {
+  background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.lotus-tldr-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lotus-tldr-badge {
+  display: inline-block;
+  background: #28A745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.lotus-tldr-content {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(40, 167, 69, 0.1);
+  border-left: 4px solid #28A745;
+}
+
+.lotus-tldr-title {
+  color: #28A745;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Crimson Text', serif;
+}
+
+.lotus-tldr-description {
+  color: #2C3E50;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.lotus-tldr-role {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #E8F5E8;
+}
+
+.lotus-role-icon {
+  color: #28A745;
+  flex-shrink: 0;
+}
+
+.lotus-tldr-role span {
+  color: #2C3E50;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Mobile responsiveness for Lotus TL;DR */
+@media (max-width: 768px) {
+  .lotus-tldr-section {
+    padding: 2rem 1rem;
+  }
+  
+  .lotus-tldr-content {
+    padding: 1.5rem;
+  }
+  
+  .lotus-tldr-title {
+    font-size: 1.25rem;
+  }
+  
+  .lotus-tldr-description {
+    font-size: 1rem;
+  }
+  
+  .lotus-tldr-role {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

@@ -118,6 +118,30 @@
   </div>
 </section>
 
+<!-- TL;DR Section -->
+<section class="tldr-section">
+  <div class="tldr-container">
+    <div class="tldr-row">
+      <div class="tldr-badge">TL;DR</div>
+      <div class="tldr-content">
+        <h3 class="tldr-title">Nuuko (Homepage Highlight)</h3>
+        <p class="tldr-description">
+          Designed an emotion-first journaling app that combines cozy aesthetics with delayed AI insights and gentle streak rewards. Increased first-entry completion rate from 31% → 78% in early testing.
+        </p>
+        <div class="tldr-role">
+          <div class="role-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span><strong>My Role:</strong> Product Designer & Founder — led research, design system, UX flows, prototypes, branding.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- The Problem Section -->
 <section id="problem" class="white-side-section">
   <h2 class="white-side-title">THE PROBLEM</h2>
@@ -228,17 +252,6 @@
     </div>
   </div>
   
-  <div class="research-highlight">
-    <div class="highlight-stat">
-      <span class="big-number">74%</span>
-      <p>of people have tried journaling</p>
-    </div>
-    <div class="highlight-arrow">→</div>
-    <div class="highlight-stat">
-      <span class="big-number">66%</span>
-      <p>stopped within weeks</p>
-    </div>
-  </div>
 
   <div class="images-container triple">
     <img src="./assets/nuuko/nuuko-insights-pattern-sketches.jpg" class="memory-image enhanced" alt="Hand sketches visualizing insights: journaling more when it rains, most-used words, topic clusters">
@@ -456,11 +469,8 @@
     <p class="image-caption" style="text-align: center; margin-top: 20px; font-style: italic;">Fig. 1 — Market benchmarks: onboarding and journaling patterns across competitors</p>
 
     <!-- Additional Competitive Analysis Images -->
-    <div class="images-container">
+    <div class="images-container dual">
       <img src="./assets/nuuko/mostwantedfeaturesinjournaingapp.png" class="memory-image enhanced" alt="Most wanted features in journaling apps based on user feedback">
-    </div>
-
-    <div class="images-container">
       <img src="./assets/nuuko/tableuserreviews.png" class="memory-image enhanced" alt="User reviews analysis table">
     </div>
 
@@ -554,13 +564,18 @@
   <div class="line1"></div>
 
   <h3 class="white-side-smalltitle">From Fear to Safety</h3>
-  <p class="white-side-paragraph lead-text">
-    How do you design an experience that removes fear instead of adding features? These four principles became my north star.
-  </p>
-
-  <!-- Design Principles Poster -->
-  <div class="images-container">
-    <img src="./assets/nuuko/nuuko-design-principles-poster.jpg" class="memory-image enhanced" alt="Poster of Nuuko's principles: Safe, Gentle, Slow, Nook, Delightful">
+  
+  <!-- Design Principles Content Row -->
+  <div class="principles-content-row">
+    <div class="principles-text">
+      <p class="white-side-paragraph lead-text">
+        How do you design an experience that removes fear instead of adding features? These four principles became my north star.
+      </p>
+    </div>
+    
+    <div class="principles-image">
+      <img src="./assets/nuuko/nuuko-design-principles-poster.jpg" class="memory-image enhanced" alt="Poster of Nuuko's principles: Safe, Gentle, Slow, Nook, Delightful">
+    </div>
   </div>
 
   <div class="principles-grid">
@@ -632,8 +647,9 @@
     The visual metaphor needed to feel familiar yet fresh, structured yet warm. Through extensive exploration, I tested multiple directions before landing on the perfect combination.
   </p>
 
-  <div class="images-container">
+  <div class="images-container dual">
     <img src="./assets/nuuko/nuuko-metaphor-exploration-sketches.jpg" class="memory-image enhanced" alt="Explorations of metaphors (bookshelf, feather, candles, garden, constellations)">
+    <img src="./assets/nuuko/nuuko-feature-concepts-sheet.jpg" class="memory-image enhanced" alt="Feature concepts and sketches showing core features brought to life">
   </div>
 
   <div class="metaphor-exploration-content">
@@ -652,10 +668,6 @@
         </p>
       </div>
     </div>
-  </div>
-
-  <div class="images-container">
-    <img src="./assets/nuuko/nuuko-feature-concepts-sheet.jpg" class="memory-image enhanced" alt="Feature concepts and sketches showing core features brought to life">
   </div>
 </section>
 
@@ -723,9 +735,38 @@
       Through interviews and testing, I identified key user types and their specific needs around privacy, emotional expression, and journaling habits.
     </p>
     
-    <div class="images-container dual">
-      <img src="./assets/nuuko/nuuko-privacy-persona-sheet.jpg" class="memory-image" alt="Proto-personas: privacy maximalist & casual hesitant">
-      <img src="./assets/nuuko/proto-persona-2.jpg" class="memory-image" alt="Proto-persona variant showing different user types">
+    <!-- User Personas Carousel -->
+    <div class="persona-carousel-container">
+      <div class="persona-carousel">
+        <div class="persona-slide active">
+          <img src="./assets/nuuko/User Persona - Template.jpg" class="memory-image" alt="Primary user persona showing journaling needs and behaviors">
+        </div>
+        <div class="persona-slide">
+          <img src="./assets/nuuko/User Persona - Template-1.jpg" class="memory-image" alt="Secondary user persona focused on privacy and emotional expression">
+        </div>
+        <div class="persona-slide">
+          <img src="./assets/nuuko/User Persona - Template-2.jpg" class="memory-image" alt="Tertiary user persona representing casual and hesitant journalers">
+        </div>
+      </div>
+      
+      <!-- Navigation buttons -->
+      <div class="persona-nav">
+        <button class="persona-nav-btn prev" onclick="changePersona(-1)" aria-label="Previous persona">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <div class="persona-dots">
+          <span class="persona-dot active" onclick="currentPersona(1)"></span>
+          <span class="persona-dot" onclick="currentPersona(2)"></span>
+          <span class="persona-dot" onclick="currentPersona(3)"></span>
+        </div>
+        <button class="persona-nav-btn next" onclick="changePersona(1)" aria-label="Next persona">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -789,10 +830,11 @@
       </ul>
     </div>
     
-    <div class="images-container">
-      <img src="./assets/nuuko/sketches.png" class="memory-image" alt="Emotional reward sketches and explorations">
-      <p class="image-caption">Emotional reward explorations: from sketches to implemented features</p>
+    <div class="images-container dual">
+      <img src="./assets/nuuko/nuuko-streak-exploration.jpg" class="memory-image" alt="Nuuko streak exploration designs and concepts">
+      <img src="./assets/nuuko/nuuko-nav-bar-exploration.jpg" class="memory-image" alt="Nuuko navigation bar exploration and icon designs">
     </div>
+    <p class="image-caption">Emotional reward explorations: from sketches to implemented features</p>
   </div>
 
   <!-- Visual Design -->
@@ -956,14 +998,14 @@
     <div class="videos-container">
       <div class="video-item">
         <video autoplay muted loop playsinline class="prototype-video">
-          <source src="./assets/nuuko/prototype-video-walkthrough.mov" type="video/mp4">
+          <source src="./assets/nuuko/prototype-video-walkthrough.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         <p class="video-caption">Complete app walkthrough showing user flow</p>
       </div>
       <div class="video-item">
         <video autoplay muted loop playsinline class="prototype-video">
-          <source src="./assets/nuuko/onboarding-prototype-video.mov" type="video/mp4">
+          <source src="./assets/nuuko/onboarding-prototype-video.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         <p class="video-caption">Onboarding experience demonstration</p>

@@ -126,3 +126,45 @@ function initializeImageZoom() {
         }
     });
 }
+
+// Persona Carousel functionality
+let currentPersonaSlide = 1;
+
+function changePersona(direction) {
+    const slides = document.querySelectorAll('.persona-slide');
+    const dots = document.querySelectorAll('.persona-dot');
+    
+    // Remove active class from current slide and dot
+    slides[currentPersonaSlide - 1].classList.remove('active');
+    dots[currentPersonaSlide - 1].classList.remove('active');
+    
+    // Update current slide index
+    currentPersonaSlide += direction;
+    
+    // Handle wrap around
+    if (currentPersonaSlide > slides.length) {
+        currentPersonaSlide = 1;
+    } else if (currentPersonaSlide < 1) {
+        currentPersonaSlide = slides.length;
+    }
+    
+    // Add active class to new slide and dot
+    slides[currentPersonaSlide - 1].classList.add('active');
+    dots[currentPersonaSlide - 1].classList.add('active');
+}
+
+function currentPersona(slideNumber) {
+    const slides = document.querySelectorAll('.persona-slide');
+    const dots = document.querySelectorAll('.persona-dot');
+    
+    // Remove active class from current slide and dot
+    slides[currentPersonaSlide - 1].classList.remove('active');
+    dots[currentPersonaSlide - 1].classList.remove('active');
+    
+    // Set new current slide
+    currentPersonaSlide = slideNumber;
+    
+    // Add active class to new slide and dot
+    slides[currentPersonaSlide - 1].classList.add('active');
+    dots[currentPersonaSlide - 1].classList.add('active');
+}

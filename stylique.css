@@ -516,3 +516,96 @@ body {
     margin: 20px auto;
   }
 }
+
+/* Stylique TL;DR Section Styles */
+.stylique-tldr-section {
+  background: linear-gradient(135deg, #FFF3E6 0%, #FFF8F1 100%);
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.stylique-tldr-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.stylique-tldr-badge {
+  display: inline-block;
+  background: #FF7A00;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.stylique-tldr-content {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(255, 122, 0, 0.1);
+  border-left: 4px solid #FF7A00;
+}
+
+.stylique-tldr-title {
+  color: #FF7A00;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Crimson Text', serif;
+}
+
+.stylique-tldr-description {
+  color: #2C3E50;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.stylique-tldr-role {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #FFF3E6;
+}
+
+.stylique-role-icon {
+  color: #FF7A00;
+  flex-shrink: 0;
+}
+
+.stylique-tldr-role span {
+  color: #2C3E50;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Mobile responsiveness for Stylique TL;DR */
+@media (max-width: 768px) {
+  .stylique-tldr-section {
+    padding: 2rem 1rem;
+  }
+  
+  .stylique-tldr-content {
+    padding: 1.5rem;
+  }
+  
+  .stylique-tldr-title {
+    font-size: 1.25rem;
+  }
+  
+  .stylique-tldr-description {
+    font-size: 1rem;
+  }
+  
+  .stylique-tldr-role {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
