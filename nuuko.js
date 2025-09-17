@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Image zoom functionality
 function initializeImageZoom() {
     // Select all images that should be zoomable
-    const zoomableImages = document.querySelectorAll('.memory-image, .side-image, .carousel-slide img');
+    const zoomableImages = document.querySelectorAll('.memory-image, .side-image, .carousel-slide img, .insight-img, .evidence-img, .survey-image-large');
     
     // Create zoom overlay
     const overlay = document.createElement('div');
