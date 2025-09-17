@@ -532,7 +532,7 @@ body {
 
 /* Lotus TL;DR Section Styles */
 .lotus-tldr-section {
-  background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
+  background: linear-gradient(135deg, #F0F8F0 0%, #E8F5E8 100%);
   padding: 3rem 2rem;
   margin-bottom: 2rem;
 }
@@ -545,7 +545,7 @@ body {
 
 .lotus-tldr-badge {
   display: inline-block;
-  background: #28A745;
+  background: #83BB9E;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -560,12 +560,12 @@ body {
   background: white;
   padding: 2rem 2.5rem;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(40, 167, 69, 0.1);
-  border-left: 4px solid #28A745;
+  box-shadow: 0 4px 20px rgba(131, 187, 158, 0.1);
+  border-left: 4px solid #83BB9E;
 }
 
 .lotus-tldr-title {
-  color: #28A745;
+  color: #83BB9E;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -588,7 +588,7 @@ body {
 }
 
 .lotus-role-icon {
-  color: #28A745;
+  color: #83BB9E;
   flex-shrink: 0;
 }
 
