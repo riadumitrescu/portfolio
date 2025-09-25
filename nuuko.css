@@ -1,3 +1,45 @@
+/* Unified, prettier chat/quote bubbles (scoped override) */
+.quotes-section .quote-bubble,
+.quote-bubble {
+  max-width: 58ch !important; /* keep readable width */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0.9rem 1.1rem !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFBF5 100%) !important;
+  border: 1px solid #E8D3BF !important;
+  border-left: 4px solid #D4A574 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 16px rgba(141, 70, 48, 0.10) !important;
+}
+
+.quotes-section .quote-bubble p,
+.quote-bubble p {
+  max-width: 55ch !important;
+  color: #3A4B3A !important;
+  font-size: 0.95rem !important;
+  line-height: 1.45 !important;
+}
+
+/* Small speech-tail for charm */
+.quotes-section .quote-bubble::after,
+.quote-bubble::after {
+  content: '';
+  position: absolute;
+  left: 26px;
+  bottom: -8px;
+  width: 16px; height: 16px;
+  background: #FFFFFF;
+  border-left: 1px solid #E8D3BF;
+  border-bottom: 1px solid #E8D3BF;
+  transform: rotate(45deg);
+  box-shadow: 3px 3px 10px rgba(141,70,48,0.05);
+}
+
+/* Mobile: full-width fit */
+@media (max-width: 680px) {
+  .quotes-section .quote-bubble,
+  .quote-bubble { max-width: 100% !important; }
+}
 .research-insights-section .images-container.dual {
   max-width: min(1280px, 96vw) !important;
   width: 100%;
@@ -163,10 +205,17 @@ img, video { max-width: 100%; height: auto; }
   .quote-bubble p { font-size: 14px !important; line-height: 1.35 !important; word-break: break-word; }
 }
 
+/* Constrain chat bubble width and center for better readability */
+.quotes-grid .quote-bubble { max-width: 65ch; margin-left: auto; margin-right: auto; break-inside: avoid; }
+
 .white-side-section p,
 .quote-bubble p,
 .feature-description,
 .insight-block-text { overflow-wrap: anywhere; word-break: break-word; }
+
+/* Center chats/bubbles within page width */
+.quotes-section { max-width: 1200px; margin-left: auto; margin-right: auto; }
+.quotes-grid { justify-items: center !important; justify-content: center !important; }
 
 /* =============================
    SECTION 2 IMPROVEMENT: "What Users Love / What Frustrates Them"
