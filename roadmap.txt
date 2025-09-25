@@ -1,3 +1,29 @@
+## Hero Section Enhancement - Added Descriptive Text and Action Buttons (Dec 2024)
+
+- What changed
+  - Added new descriptive text: "Design engineer building playful, human-centered products at the intersection of design and code."
+  - Added three action buttons: "View My Work", "Resume", and "Contact"
+  - Positioned new content below existing subtitle text (designer, storyteller, world traveller)
+  - Implemented responsive design with proper mobile scaling
+  - Added hover effects and smooth transitions for buttons
+  - Added dark overlay (rgba(0, 0, 0, 0.3)) to background image for better text readability
+  - Set proper z-index layering: background overlay (z-index: 1), images (z-index: 2), text/buttons (z-index: 10)
+
+- Why it was changed
+  - User wanted to make the hero section clearer about what the portfolio is about
+  - Needed direct action buttons to guide visitors to key sections
+  - Wanted to maintain the existing aesthetic while adding functional clarity
+  - Background was too bright, making white text hard to read
+  - Needed proper layering so text appears above everything while keeping central figure bright
+
+- Affected areas
+  - `index.html`: Hero section subtitle container (lines 677-687)
+  - `index.html`: Added CSS styles for button interactions and responsive design (lines 632-676)
+  - `index.html`: Added dark overlay and z-index layering (lines 468-479, 490, 509, 543)
+  - `index.html`: Reorganized text positioning to avoid overlap with central figure (lines 540-541, 743-748, 584-585, 677-681, 690-693)
+  - `index.html`: Moved name and central figure higher up to prevent text stacking (lines 500-511, 527, 543, 496-497, 585, 597, 608)
+  - `index.html`: Reorganized right-side text with better spacing and hierarchy (lines 744-755, 679-691, 700-711)
+
 ## Sanofi IDEO – Center and Balance Patient Quote Bubbles (Sep 2025)
 
 - What changed

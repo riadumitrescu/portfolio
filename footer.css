@@ -154,10 +154,11 @@ ul {
     color: black;
     text-align: center;
     margin: 4; /* Remove margin for better centering */
-    padding: 40px 10px; /* Add padding for better readability */
-    padding-bottom: 12px;
-    padding-left: 12px;
-    font-size: 1.1em; /* Increase font size */
+    padding: 40px 15px; /* Increased padding for better readability */
+    padding-bottom: 16px;
+    padding-left: 16px;
+    font-size: 1.2em; /* Increased font size */
+    line-height: 1.6; /* Better line spacing */
   }
   
   .footer .col-md-4 {
@@ -195,10 +196,11 @@ ul {
     background-color: white; /* White background */
     color: black; /* Black text */
     border: 2px solid black; /* Black border */
-    padding: 8px 16px; /* Adjusted padding */
+    padding: 12px 24px; /* Increased padding for better touch targets */
     border-radius: 30px; /* Rounded corners */
     transition: background-color 0.3s ease, color 0.3s ease; /* Transition for color change */
-    font-size: 14px; /* Adjusted font size */
+    font-size: 16px; /* Increased font size */
+    font-weight: 500; /* Better font weight */
     margin-bottom: 12px;
   }
   

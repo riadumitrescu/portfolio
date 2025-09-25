@@ -38,8 +38,8 @@
     <!-- Main Title Card -->
     <div class="main-title-card">
       <div class="title-content">
-        <h1 class="hero-title">Nuuko <img src="./assets/nuuko/feather-character.svg" alt="Nuuko feather character" class="feather-character-title"></h1>
-        <p class="hero-subtitle">I've tried journaling for years, but nothing stuck. Apps felt like productivity trackers. Paper felt cozy, but I always quit. When I asked friends, they said the same thing: everyone wants to journal, almost nobody keeps it up. Nuuko started from that frustration — could I design something that feels as cozy as paper, but easier to stay with?</p>
+        <h1 class="hero-title">nuuko <img src="./assets/nuuko/feather-character.svg" alt="Nuuko feather character" class="feather-character-title"></h1>
+        <p class="hero-subtitle">designing a journaling app that doesn't make you feel terrible</p>
         
         <!-- Key Features Pills -->
         <div class="features-pills">
@@ -113,45 +113,32 @@
 
 <!-- Hero Mockup -->
 <section class="hero-mockup-section">
-  <div class="images-container hero-main">
-    <img src="./assets/nuuko/Hero-section-show-app.jpg" class="memory-image hero-image" alt="Nuuko app showcase - main hero image showing the complete journaling experience">
+  <div class="hero-main">
+    <img src="./assets/nuuko/final-wireframes/todayentry.png" class="hero-side-image" alt="Nuuko today entry screen">
+    <img src="./assets/nuuko/Hero-section-show-app.jpg" class="hero-center-image" alt="Nuuko app showcase - main hero image showing the complete journaling experience">
+    <img src="./assets/nuuko/final-wireframes/wrappeed.png" class="hero-side-image" alt="Nuuko wrapped insights screen">
   </div>
 </section>
 
-<!-- TL;DR Section -->
-<section class="tldr-section">
-  <div class="tldr-container">
-    <div class="tldr-row">
-      <div class="tldr-badge">TL;DR</div>
-      <div class="tldr-content">
-        <h3 class="tldr-title">Nuuko (Homepage Highlight)</h3>
-        <p class="tldr-description">
-          Designed an emotion-first journaling app that combines cozy aesthetics with delayed AI insights and gentle streak rewards. Increased first-entry completion rate from 31% → 78% in early testing.
-        </p>
-        <div class="tldr-role">
-          <div class="role-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-          </div>
-          <span><strong>My Role:</strong> Product Designer & Founder — led research, design system, UX flows, prototypes, branding.</span>
-        </div>
-      </div>
-    </div>
+<!-- Compact Summary (full-width, minimal padding) -->
+<section class="white-side-section">
+  <div class="lead-text" style="max-width:70ch;margin:0 auto;">
+    Designed an emotion-first journaling app that combines cozy aesthetics with delayed AI insights and gentle streak rewards. Increased first-entry completion rate from 31% → 78% in early testing.
   </div>
 </section>
+
+<!-- TL;DR Section removed intentionally -->
 
 <!-- The Problem Section -->
 <section id="problem" class="white-side-section">
-  <h2 class="white-side-title">THE PROBLEM</h2>
+  <h2 class="white-side-title">the cycle i couldn't break</h2>
   <div class="line1"></div>
   
   <!-- Problem Overview -->
   <div class="problem-overview">
-    <div class="problem-intro">
-      <h3 class="problem-headline">The Journaling Paradox</h3>
-      <p class="problem-description">Everyone knows journaling helps, but most people quit. The reasons weren't about laziness — they were emotional barriers that current tools only made worse.</p>
+    <div class="problem-intro section-intro-split">
+      <h3 class="problem-headline">journaling and i have this weird relationship</h3>
+      <p class="problem-description">i've bought beautiful notebooks that sit empty on my shelf. downloaded apps promising to change my life, then deleted them when the guilt got too heavy. started entries with good intentions, disappeared for weeks, felt worse about myself. my friends had identical stories. we all knew journaling was supposed to help — with stress, with figuring things out, with just being more aware of our lives. but somehow we kept failing at this thing that seemed so simple. that's when i started wondering: what if it's not us? what if these tools are actually making it harder to be vulnerable?</p>
     </div>
     
     <div class="problem-grid">
@@ -178,7 +165,7 @@
             <span class="stat-number">66%</span>
             <span class="stat-label">stopped within weeks</span>
           </div>
-          <div class="stat-item wide">
+          <div class="stat-item">
             <span class="stat-number">500+</span>
             <span class="stat-label">reviews analyzed</span>
           </div>
@@ -214,14 +201,15 @@
 
 <!-- User Quotes Section -->
 <section class="white-side-section">
-  <h2 class="white-side-title">WHAT USERS REALLY THINK</h2>
+  <h2 class="white-side-title">diving deep into the problem</h2>
   <div class="line1"></div>
 
-  <h3 class="white-side-smalltitle">Real Frustrations, Real Needs</h3>
-  <p class="white-side-paragraph lead-text">
-    I ran polls, read 500+ reviews, and talked to friends. The message was consistent: people want to journal, but apps make it intimidating. Here are the voices that shaped Nuuko.
-  </p>
+  <div class="section-intro-split">
+    <h3 class="white-side-smalltitle">how i approached it</h3>
+    <p class="white-side-paragraph lead-text">i decided to actually research this properly instead of just assuming. created google forms, posted on instagram, analyzed 500+ app store reviews, had real conversations with people about their journaling struggles. the data was telling. 74% of people had tried journaling. 66% stopped within weeks. but the why was more interesting than the numbers.</p>
+  </div>
 
+  <div class="quotes-two-col">
   <!-- Frustrations Section -->
   <div class="quotes-category">
     <h4 class="quotes-category-title">
@@ -295,6 +283,7 @@
       </div>
     </div>
   </div>
+  </div>
 
   <!-- Survey Data Images -->
   <div class="images-container dual">
@@ -314,15 +303,15 @@
 
 <!-- Competitive Landscape Section -->
 <section class="white-side-section">
-  <h2 class="white-side-title">COMPETITIVE LANDSCAPE</h2>
+  <h2 class="white-side-title">mapping what already exists</h2>
   <div class="line1"></div>
 
   <!-- Market Research Overview -->
   <div class="market-analysis-section">
-    <h3 class="white-side-smalltitle">Analyzing the Market</h3>
-    <p class="white-side-paragraph">
-      I mapped 10+ apps. Some were too clinical (Stoic, Daylio). Some overloaded users with features (Notion, Journey). Others gamified it like Duolingo, which made journaling feel like performance. Nobody was balancing warmth with structure. That was the gap.
-    </p>
+  <div class="section-intro-split">
+    <h3 class="white-side-smalltitle">what i found</h3>
+    <p class="white-side-paragraph">i downloaded and tested every journaling app i could find. daylio with its clinical mood tracking. journey with feature overload. apps that turned your feelings into productivity metrics or gamified vulnerability like duolingo. analyzed their onboarding flows, tried to understand what made people abandon them. the pattern was clear: they all treated journaling like a task instead of an emotional experience — clinical interfaces when you needed warmth; blank pages staring at you; numbers that reduced your complex inner world to data points.</p>
+  </div>
     
     <!-- Market Research Image -->
     <div class="images-container">
@@ -348,6 +337,12 @@
           <li>Reliable data sync across devices</li>
         </ul>
       </div>
+
+      <!-- The Discovery - moved into the same row as a center card -->
+      <div class="feedback-card discovery">
+        <h4 class="feedback-title">The Discovery</h4>
+        <p class="discovery-text">Most apps chase productivity or gamification. What was missing? A place that feels safe when you're vulnerable. Nuuko fills that gap.</p>
+      </div>
       
       <div class="feedback-card frustrates">
         <div class="feedback-header">
@@ -367,13 +362,6 @@
           <li>Cold, productivity-focused interfaces that feel clinical</li>
         </ul>
       </div>
-    </div>
-
-    <div class="key-insight-callout">
-      <h4 class="insight-callout-title">The Discovery</h4>
-      <p class="insight-callout-text">
-        Most apps chase productivity or gamification. What was missing? An app that felt safe when you're vulnerable. That's what Nuuko was designed to fill.
-      </p>
     </div>
 
     <!-- Competitive Benchmarks Grid -->
@@ -406,15 +394,15 @@
 
 <!-- What Users Want Section -->
 <section class="white-side-section">
-  <h2 class="white-side-title">WHAT USERS WANT</h2>
+  <h2 class="white-side-title">the research insights that changed everything</h2>
   <div class="line1"></div>
 
   <!-- Research Synthesis Overview -->
   <div class="research-synthesis-section">
-    <h3 class="white-side-smalltitle">Three Things I Learned</h3>
-    <p class="white-side-paragraph">
-      After talking to dozens of people and analyzing their feedback, three clear patterns emerged. These insights became the foundation for every design decision in Nuuko.
-    </p>
+  <div class="section-intro-split">
+    <h3 class="white-side-smalltitle">three patterns that became my foundation</h3>
+    <p class="white-side-paragraph">after talking to dozens of people and analyzing hundreds of responses, three patterns emerged that guided every decision.</p>
+  </div>
 
     <!-- Featured Research Images -->
     <div class="images-container dual">
@@ -430,20 +418,20 @@
     <div class="key-insights-grid">
       <div class="insight-block primary">
         <div class="insight-number">01</div>
-        <h4 class="insight-block-title">People quit when starting feels like a test</h4>
-        <p class="insight-block-text">Make the first step gentle. A warm prompt feels like a friend asking how you're doing, not an assignment waiting to be graded.</p>
+        <h4 class="insight-block-title">starting feels like a test</h4>
+        <p class="insight-block-text">blank pages aren't neutral — they're intimidating. people need gentle prompts that feel like a friend asking about your day, not homework.</p>
       </div>
 
       <div class="insight-block primary">
         <div class="insight-number">02</div>
-        <h4 class="insight-block-title">They're here to process feelings, not hit goals</h4>
-        <p class="insight-block-text">Focus on emotions, not productivity. People want to feel heard and understood, not optimized and tracked.</p>
+        <h4 class="insight-block-title">people are processing emotions, not hitting goals</h4>
+        <p class="insight-block-text">numbers strip away human complexity. colors and feelings honor it while still revealing patterns.</p>
       </div>
 
       <div class="insight-block primary">
         <div class="insight-number">03</div>
-        <h4 class="insight-block-title">If privacy isn't obvious, they won't open up</h4>
-        <p class="insight-block-text">Design trust on the surface. When someone's being vulnerable, they need to see—not just read about—how their data is protected.</p>
+        <h4 class="insight-block-title">trust has to be visible</h4>
+        <p class="insight-block-text">when someone writes their most private thoughts, they need to see how that information is protected — not buried in fine print.</p>
       </div>
     </div>
   </div>
@@ -451,16 +439,17 @@
 
 <!-- Character Exploration Section -->
 <section id="ideation" class="white-side-section">
-  <h2 class="white-side-title">CHARACTER EXPLORATION</h2>
+  <h2 class="white-side-title">prototyping the personality</h2>
   <div class="line1"></div>
 
-  <h3 class="white-side-smalltitle">Designing the Emotional Companion</h3>
-  <p class="white-side-paragraph lead-text">
-    Every great journaling app needs a companion that feels like a trusted friend. Through extensive exploration, I developed the feather character that would guide users through their emotional journey.
-  </p>
+  <div class="section-intro-split">
+    <h3 class="white-side-smalltitle">finding a companion</h3>
+    <p class="white-side-paragraph lead-text">every app dealing with vulnerability needs some kind of companion. i sketched dozens of concepts before landing on the feather — soft, connected to writing, approachable without being childish. i also tested visual metaphors; the bookshelf worked because it promised something meaningful: your thoughts becoming a personal library that grows richer over time.</p>
+  </div>
 
-  <div class="images-container">
+  <div class="images-container dual equal-height-pair">
     <img src="./assets/nuuko/assets-character-sketches.jpg" class="memory-image enhanced" alt="Character sketches and persona development showing feather companion evolution">
+    <img src="./assets/nuuko/Character-exploration-ver.jpg" class="memory-image enhanced portrait" alt="Vertical character exploration sheet">
   </div>
 
   <div class="character-exploration-content">
@@ -484,24 +473,45 @@
 
 <!-- Design Principles Section -->
 <section id="process" class="white-side-section">
-  <h2 class="white-side-title">DESIGN PRINCIPLES</h2>
+  <h2 class="white-side-title">crafting the language of safety</h2>
   <div class="line1"></div>
 
-  <h3 class="white-side-smalltitle">From Fear to Safety</h3>
+  <div class="section-intro-split">
+    <h3 class="white-side-smalltitle">from fear to safety</h3>
+    <p class="white-side-paragraph lead-text">
+      How do you design an experience that removes fear instead of adding features? These four principles became my north star.
+    </p>
+  </div>
   
   <!-- Design Principles Content Row -->
   <div class="principles-content-row">
-    <div class="principles-text">
-      <p class="white-side-paragraph lead-text">
-        How do you design an experience that removes fear instead of adding features? These four principles became my north star.
-      </p>
-    </div>
     
     <div class="principles-image">
       <img src="./assets/nuuko/nuuko-design-principles-poster.jpg" class="memory-image enhanced" alt="Poster of Nuuko's principles: Safe, Gentle, Slow, Nook, Delightful">
     </div>
+
+    <!-- Compact list to the right of the image on desktop/tablet -->
+    <div class="principles-compact">
+      <div class="principle-mini">
+        <h4>Cozy, not clinical</h4>
+        <p>Warm colors and gentle typography create a safe emotional space, like writing in your favorite nook rather than a sterile office.</p>
+      </div>
+      <div class="principle-mini">
+        <h4>Guided, not forced</h4>
+        <p>Three thoughtful prompts offer direction without pressure. Users can skip, modify, or follow—the app adapts to their emotional state.</p>
+      </div>
+      <div class="principle-mini">
+        <h4>Trust on the surface</h4>
+        <p>Privacy isn't buried in settings. It's visible, clear, and reinforced through design—because vulnerability requires trust.</p>
+      </div>
+      <div class="principle-mini">
+        <h4>Flexible structure</h4>
+        <p>Simple streaks that encourage without pressure—no rigid schedules or guilt. The app celebrates any reflection, whether it's a word or a paragraph.</p>
+      </div>
+    </div>
   </div>
 
+  <!-- Full cards grid (shown on mobile; hidden on larger screens) -->
   <div class="principles-grid">
     <div class="principle-card">
       <div class="principle-icon">
@@ -597,13 +607,11 @@
 
 <!-- Design Process Section - Redesigned -->
 <section class="white-side-section">
-  <h2 class="white-side-title">DESIGN PROCESS</h2>
+  <h2 class="white-side-title">the pivots that made it work</h2>
   <div class="line1"></div>
 
-  <h3 class="white-side-smalltitle">Three Key Turning Points</h3>
-  <p class="white-side-paragraph lead-text">
-    Designing Nuuko meant making hundreds of small decisions, but three big pivots shaped everything. Each time, user feedback showed me I was solving the wrong problem—or solving it the wrong way.
-  </p>
+  <h3 class="white-side-smalltitle">three key shifts</h3>
+  <p class="white-side-paragraph lead-text">from homework to conversation. from streaks to presence. from instant to patient. these became the backbone of nuuko.</p>
 
   <!-- Key Turning Points -->
   <div class="key-insights-grid">
@@ -890,31 +898,27 @@
   <div class="line1"></div>
 
   <h3 class="white-side-smalltitle">Grounding Design in Lived Experience</h3>
-  <p class="white-side-paragraph lead-text">
-    To ground the design in lived experience, I storyboarded common journaling contexts that revealed how Nuuko could become a true companion rather than just a tool.
-  </p>
-
-  <div class="images-container dual">
-    <img src="./assets/nuuko/nuuko-closing-storyboard.jpg" class="memory-image enhanced" alt="Closing flow: ending the day lighter, feather on nightstand">
-    <img src="./assets/nuuko/nuuko-closing-storyboard-variant.jpg" class="memory-image enhanced" alt="Alternate ending storyboard">
+  <div class="user-journeys" style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:start;">
+    <div class="images-container dual" style="margin:0;">
+      <img src="./assets/nuuko/nuuko-closing-storyboard.jpg" class="memory-image enhanced" alt="Closing flow: ending the day lighter, feather on nightstand">
+      <img src="./assets/nuuko/nuuko-closing-storyboard-variant.jpg" class="memory-image enhanced" alt="Alternate ending storyboard">
+    </div>
+    <div>
+      <p class="white-side-paragraph" style="margin:0 0 12px 0;">to ground the design in lived experience, i storyboarded common journaling contexts that revealed how nuuko could become a true companion rather than just a tool.</p>
+      <p class="white-side-paragraph" style="margin:0;">these storyboards validated that nuuko isn't just a tool, but a companion that fits emotional rhythms of daily life.</p>
+    </div>
   </div>
-
-  <p class="white-side-paragraph">
-    These storyboards validated that Nuuko isn't just a tool, but a companion that fits emotional rhythms of daily life.
-  </p>
 
   <p class="image-caption" style="text-align: center; margin-top: 20px; font-style: italic;">Fig. 6 — User journeys showing how Nuuko supports morning reflection and night decompression</p>
 </section>
 
 <!-- Final Experience Section -->
 <section id="solution" class="white-side-section">
-  <h2 class="white-side-title">FINAL EXPERIENCE</h2>
+  <h2 class="white-side-title">what emerged from all this care</h2>
   <div class="line1"></div>
 
-  <h3 class="white-side-smalltitle">A Journey from Fear to Flow</h3>
-  <p class="white-side-paragraph lead-text">
-    Nuuko doesn't just solve journaling problems—it transforms the entire emotional experience. Here's how each feature works together to create a safe, engaging space for reflection.
-  </p>
+  <h3 class="white-side-smalltitle">designed for feelings first</h3>
+  <p class="white-side-paragraph lead-text">prompts that adapt to your energy; emotions as colors instead of data; insights that wait for readiness; celebrations that honor growth; privacy that's obvious, not hidden.</p>
 
   <!-- Prototype Video Demonstrations -->
   <div class="prototype-videos-section">
@@ -944,10 +948,10 @@
         <h4 class="feature-title">Gentle Entry</h4>
       </div>
       <p class="feature-description">
-        Three thoughtful prompts replace the dreaded blank page. "How are you feeling right now?" "What's one thing that went well today?" "What's on your mind?" Simple questions that feel like a friend asking, not an assignment.
+        Three gentle prompts help you start fast — like a friend asking how you are, not a task to complete.
       </p>
       <div class="feature-benefit">
-        <span class="benefit-label">Impact:</span> 78% reduction in "don't know what to write" complaints in early testing
+        <span class="benefit-label">Impact:</span> 78% fewer “I don’t know what to write” moments
       </div>
     </div>
 
@@ -957,10 +961,10 @@
         <h4 class="feature-title">Visual Mood Flow</h4>
       </div>
       <p class="feature-description">
-        Mood tracking through colors and simple gestures. Tap a hue that matches your feeling, watch it bloom on screen. Over time, see your emotional patterns as beautiful data visualizations, not clinical charts.
+        Track feelings with colors. Tap a hue and see it grow. Over time, patterns appear — beautiful, not clinical.
       </p>
       <div class="feature-benefit">
-        <span class="benefit-label">Impact:</span> Users engage 3x more with visual mood tracking vs traditional scales
+        <span class="benefit-label">Impact:</span> 3× more engagement than traditional mood scales
       </div>
     </div>
 
@@ -970,10 +974,10 @@
         <h4 class="feature-title">Patient AI Insights</h4>
       </div>
       <p class="feature-description">
-        AI waits. After building a gentle streak habit, thoughtful insights appear: "You seem more reflective on rainy days" or "Your gratitude entries often mention nature." Wisdom that feels earned, not instant.
+        AI that waits. After a steady streak, it shares calm, earned insights like patterns and prompts.
       </p>
       <div class="feature-benefit">
-        <span class="benefit-label">Impact:</span> Delayed gratification increases long-term engagement by 40%
+        <span class="benefit-label">Impact:</span> +40% long‑term engagement with “earned” insights
       </div>
     </div>
 
@@ -983,10 +987,10 @@
         <h4 class="feature-title">Monthly Celebrations</h4>
       </div>
       <p class="feature-description">
-        Personal "wrapped" cards celebrate your inner journey. Beautiful summaries of growth, challenges faced, and moments of joy. Screenshot-worthy reflections you'll want to keep.
+        Monthly “wrapped” cards capture growth, challenges, and joy — something you’ll want to keep.
       </p>
       <div class="feature-benefit">
-        <span class="benefit-label">Impact:</span> 85% of users save their monthly cards as personal keepsakes
+        <span class="benefit-label">Impact:</span> 85% save their monthly card
       </div>
     </div>
 
@@ -996,10 +1000,10 @@
         <h4 class="feature-title">Trust by Design</h4>
       </div>
       <p class="feature-description">
-        Privacy settings are front and center, not buried. Offline mode, clear data policies, and the ability to export everything. Your thoughts belong to you, and the design makes that obvious.
+        Privacy up front: offline mode, clear controls, and full export. Your words stay yours.
       </p>
       <div class="feature-benefit">
-        <span class="benefit-label">Impact:</span> 92% feel "completely safe" sharing emotions in early user testing
+        <span class="benefit-label">Impact:</span> 92% feel completely safe sharing
       </div>
     </div>
   </div>
@@ -1163,12 +1167,12 @@
 
 <!-- Insights Section -->
 <section id="insights" class="white-side-section insights-section">
-  <h2 class="white-side-title">INSIGHTS FROM TESTING</h2>
+  <h2 class="white-side-title">validation through real testing</h2>
   <div class="line1"></div>
 
   <!-- Survey Description -->
   <div class="survey-description">
-    <p>I surveyed 59 people who tested the web app via Google Form to understand their experience and gather actionable feedback.</p>
+    <p>built a basic web prototype to test core concepts; surveyed 59 people who tried it. the most meaningful feedback wasn’t about features—it was this: “this actually feels like it wants to hear from me.”</p>
   </div>
 
   <!-- Survey Visual -->
