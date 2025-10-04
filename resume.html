@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="resume.css">
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
@@ -30,35 +31,231 @@
         </div>
     </nav>
 
-    <section class="title-section">
-        <div class="title-container">
-            <h1 class="site-title">Resume</h1>
+    <!-- Hero Section with Profile Photo -->
+    <section class="resume-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center">
+                    <div class="profile-circle">
+                        <img src="./assets/circleprofilepic.png" alt="Maria Dumitrescu" class="profile-image">
+                    </div>
         </div>
-        <div class="line"></div>
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1 class="hero-name">Maria Dumitrescu</h1>
+                        <p class="hero-location">San Francisco, CA</p>
+                        <div class="contact-info">
+                            <p><strong>Email:</strong> <a href="mailto:maria@uni.minerva.edu">maria@uni.minerva.edu</a></p>
+                            <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mariadumitrescusf" target="_blank">linkedin.com/in/mariadumitrescusf</a></p>
+                            <p><strong>Website:</strong> <a href="https://mariadumitrescu.com" target="_blank">mariadumitrescu.com</a></p>
+            </div>
+                        <a href="./assets/resume/Maria_Dumitrescu_Resume_Product_Design.pdf" target="_blank" class="btn btn-download">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
+                                <path d="M17.5 12.5v3.75a1.25 1.25 0 01-1.25 1.25H3.75A1.25 1.25 0 012.5 16.25V12.5M10 13.75V2.5M10 13.75l-3.75-3.75M10 13.75l3.75-3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            View Resume
+                        </a>
+            </div>
+        </div>
+            </div>
+        </div>
     </section>
 
-    <div class="container resume-container">
-        <div class="row mb-4">
-            <div class="col-md-8">
-                <p class="resume-intro">
-                    I'm a Product Designer and Developer with a passion for creating intuitive and delightful user experiences. 
-                    Below you can preview my resume or download it for a closer look.
-                </p>
+    <!-- Education Section -->
+    <section class="resume-section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/Minerva-University-Logo-scaled.jpg" alt="Minerva University">
+                </div>
+                <div class="experience-content">
+                    <h3>Minerva University (1% Acceptance Rate)</h3>
+                    <p class="location">San Francisco, CA</p>
+                    <p class="degree">B.Sc. Computer Science & Design (Expected May 2027), GPA: 3.8</p>
+                    <p class="focus">Focus: Human-Centered Design · UX Research · Data-Driven Design · Interaction Design · HCI · Statistics</p>
+                </div>
             </div>
-            <div class="col-md-4 text-md-right">
-                <a href="./assets/resume.pdf" download class="btn btn-download">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
-                        <path d="M17.5 12.5v3.75a1.25 1.25 0 01-1.25 1.25H3.75A1.25 1.25 0 012.5 16.25V12.5M10 13.75V2.5M10 13.75l-3.75-3.75M10 13.75l3.75-3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Download Resume
-                </a>
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/National_Taiwan_University_seal.svg (1).png" alt="National Taiwan University">
+                </div>
+                <div class="experience-content">
+                    <h3>National Taiwan University</h3>
+                    <p class="location">Taipei, TW</p>
+                    <p class="degree">Exchange Research (Neuroscience & Data Science)</p>
+                    <p class="description">Applied ERP signals to study attention & error detection in HCI; findings informed UX feedback design.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="pdf-container">
-            <iframe src="./assets/resume.pdf" type="application/pdf" width="100%" height="800px"></iframe>
+    <!-- Experience Section -->
+    <section class="resume-section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/anthropic_event.avif" alt="Anthropic">
+                </div>
+                <div class="experience-content">
+                    <h3>Anthropic</h3>
+                    <p class="location">San Francisco, CA</p>
+                    <p class="position">Product Design Partner for Claude Community Events</p>
+                    <p class="duration">Sep 2025 – Present</p>
+                    <ul class="achievements">
+                        <li>Designed marketing assets & event branding for Anthropic community events, boosting attendance by 50%.</li>
+                        <li>Created visual identity & typography systems for event collateral to enhance consistency and polish.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/zyra_nippon.png" alt="Nippon Foundation AI Startup">
+                </div>
+                <div class="experience-content">
+                    <h3>Nippon Foundation AI Startup (Plug and Play–mentored)</h3>
+                    <p class="location">Tokyo, JP</p>
+                    <p class="position">Product Design Intern</p>
+                    <p class="duration">Jun 2025 – Aug 2025</p>
+                    <ul class="achievements">
+                        <li>Drove end-to-end UX design for AI-driven UGC platform; shipped 10+ prototypes impacting 200+ users.</li>
+                        <li>Led 25+ interviews and 5 usability tests; mapped journeys that drove 3 major design iterations.</li>
+                        <li>Partnered with PMs & engineers; design outputs shaped MVP roadmap and supported ¥2.3M pre-seed raise.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/bearvfx.jpeg" alt="BEARVFX">
+                </div>
+                <div class="experience-content">
+                    <h3>BEARVFX (Microsoft & Oracle Partner)</h3>
+                    <p class="location">Taipei, TW</p>
+                    <p class="position">User Experience Design & PM Intern</p>
+                    <p class="duration">Sep 2024 – Dec 2024</p>
+                    <ul class="achievements">
+                        <li>Designed scalable workflows for AI lecture tool; cut instructor setup time by 40% across 200+ classes.</li>
+                        <li>Ran 10+ feedback sessions; delivered 3 iterations and prototypes to improve clarity and access.</li>
+                        <li>Presented design proposals and usability findings to cross-functional teams (PM, engineering).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/riverproject.png" alt="Princeton University">
+                </div>
+                <div class="experience-content">
+                    <h3>Princeton University - River Project</h3>
+                    <p class="location">Princeton, NJ</p>
+                    <p class="position">UI/UX & Front-End Intern</p>
+                    <p class="duration">Jun 2024 – Sep 2024</p>
+                    <ul class="achievements">
+                        <li>Redesigned student learning platform for 500+ students; delivered responsive layouts & scalable design system.</li>
+                        <li>Conducted 20+ user tests with students/faculty; improvements drove 25% higher engagement.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/minerva_project.png" alt="Minerva Project">
+                </div>
+                <div class="experience-content">
+                    <h3>Minerva Project (Global EdTech Company)</h3>
+                    <p class="location">San Francisco, CA</p>
+                    <p class="position">Product & Visual Design Intern</p>
+                    <p class="duration">Sep 2023 – Sep 2024</p>
+                    <ul class="achievements">
+                        <li>Improved onboarding for 15+ schools, 500K+ learners; ran A/B tests & 45+ interviews to boost retention.</li>
+                        <li>Leveraged design systems and patterns with 100+ components & 50+ LMS templates to scale across 3 platforms.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects & Leadership Section -->
+    <section class="resume-section">
+        <div class="container">
+            <h2 class="section-title">Projects & Leadership</h2>
+            
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/sanofi-ideo/cover-sanofi-ideo.jpg" alt="Sanofi x IDEO">
+                </div>
+                <div class="experience-content">
+                    <h3>Sanofi × IDEO Global Design Challenge (2025)</h3>
+                    <p class="achievement">Top 10 finalist; led 25+ patient interviews, market analysis, and rapid prototyping cycles for biologics device.</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/nuuko/Hero-section-show-app.jpg" alt="Nuuko Journaling App">
+                </div>
+                <div class="experience-content">
+                    <h3>Nuuko Journaling App (2025)</h3>
+                    <p class="achievement">Shipped MVP journaling app on React + Supabase; designed flows and prototypes used by 100+ testers.</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/meihodo.png" alt="Meihodo Japanese Luxury Resort">
+                </div>
+                <div class="experience-content">
+                    <h3>Meihodo Japanese Luxury Resort (2025)</h3>
+                    <p class="achievement">Redesigned website and Information Architecture; delivered cross-platform UX blending accessibility with polish.</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/resume/sparc-fabric-hike.jpg" alt="Fabric/Sparc Scholar">
+                </div>
+                <div class="experience-content">
+                    <h3>Fabric/Sparc Scholar — Anthropic, Cisco, Citadel (2025)</h3>
+                    <p class="achievement">Selected top 2% globally for elite UX/data program with focus on product management and bias-aware design.</p>
         </div>
     </div>
+
+            <div class="experience-item">
+                <div class="experience-image">
+                    <img src="./assets/aiuxsmallimg.jpg" alt="AI UI/UX Feedback Tool">
+                </div>
+                <div class="experience-content">
+                    <h3>AI UI/UX Feedback Tool (2025)</h3>
+                    <p class="achievement">Developed real-time web critique tool using ML models; tested interaction flows with 10+ designers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Certifications Section -->
+    <section class="resume-section">
+        <div class="container">
+            <h2 class="section-title">Skills & Certifications</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Design</h4>
+                    <p>Figma, Sketch, Adobe Creative Suite, Illustrator, Photoshop, Prototypes, Wireframes, Usability Testing, User Centered Research, Interaction Design, Accessibility, Design Systems, High-Fidelity Design, FigJam, Graphic Design</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Technical</h4>
+                    <p>HTML/CSS, JavaScript, React, Tailwind, C++, Cursor, Prompt Engineering, Data Visualization</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Certifications</h4>
+                    <p>Google UX Design, Figma Advanced, BCG Strategic Experience Design, IBM Design Thinking</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer Section -->
     <footer class="footer custom-footer bg-light py-4 mt-5">
