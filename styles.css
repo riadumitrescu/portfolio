@@ -108,24 +108,41 @@ body {
 }
 
 
-/* Transparent Navbar */
+/* Disable transparent navbar effect globally */
 .navbar.transparent {
-  background-color: transparent !important;
-  color: white;
+  background-color: #fff !important;
+  color: #000 !important;
 }
 
 .navbar.transparent a.navbar-brand,
 .navbar.transparent .navbar-nav .nav-link {
-  color: white !important;
+  color: #000 !important;
 }
+
+/* Prevent any script toggling classes from changing brand color */
+#navbar * { color: inherit; }
+#navbar { color: #000 !important; }
+
+/* Normalize navbar brand and links to black across pages */
+#navbar, #navbar .navbar-brand, #navbar #navbar-brand-text, #navbar .nav-link,
+#navbar.transparent, #navbar.transparent .navbar-brand, #navbar.transparent .navbar-nav .nav-link,
+.navbar .navbar-brand, .navbar .navbar-nav .nav-link {
+  color: #000 !important;
+}
+#navbar a.navbar-brand, #navbar a.navbar-brand:link, #navbar a.navbar-brand:visited,
+#navbar a.navbar-brand:hover, #navbar a.navbar-brand:active {
+  color: #000 !important;
+}
+#navbar { background: #fff !important; }
 
 
 .card {
   color: black;
-  border-radius: 20px; /* Rounded corners for cards */
-  border: 2px solid black; /* Black border */
-  transition: all 0.3s ease; /* Smooth transition for hover effect */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+  border-radius: 20px;
+  border: 1.5px solid rgba(58, 42, 35, 0.15); /* Soft brown border matching site palette */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); /* Soft shadow with brand color */
+  background: #fff;
 }
 
 .card-link .card-body {
@@ -157,9 +174,9 @@ body {
 
 /* Hover Effect */
 .card:hover {
-  border: 2px solid white; /* White border on hover */
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
-  transform: scale(1.05); /* Slightly bigger on hover */
+  border: 1.5px solid rgba(141, 70, 48, 0.25);
+  box-shadow: 0 8px 32px rgba(141, 70, 48, 0.15);
+  transform: translateY(-4px);
 }
 
 /* Shake Animation */
@@ -929,11 +946,12 @@ li:hover .tag-list {
 
 .project-tag {
     display: inline-block;
-    padding: 3px 10px;
-    background-color: #f5f5f5;
+    padding: 5px 12px;
+    background-color: rgba(244, 231, 209, 0.4);
+    border: 1px solid rgba(141, 70, 48, 0.15);
     border-radius: 100px;
-    font-size: 0.7rem;
-    color: #666;
+    font-size: 0.75rem;
+    color: #5a4a42;
     font-weight: 500;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -942,7 +960,8 @@ li:hover .tag-list {
 }
 
 .project-tag:hover {
-    background-color: #eeeeee;
+    background-color: rgba(244, 231, 209, 0.6);
+    border-color: rgba(141, 70, 48, 0.25);
     transform: translateY(-1px);
 }
 
@@ -1079,7 +1098,7 @@ li:hover .tag-list {
 }
 
 .recent-project-card .card-body {
-    padding: 2rem;
+    padding: 2rem 2rem 1.75rem;
 }
 
 .recent-project-card .card-title {
@@ -1091,17 +1110,55 @@ li:hover .tag-list {
 
 .recent-project-card .description-text {
     font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
 }
 
 /* Enhanced hover effect for recent project cards */
 .recent-project-card .card:hover {
-    transform: scale(1.03);
-    box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.25);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(141, 70, 48, 0.18);
+    border-color: rgba(141, 70, 48, 0.3);
 }
 
-/* Responsive adjustments for recent project cards */
+/* Project section intro text - responsive */
+.project-section-intro {
+    max-width: 72ch;
+    margin: 0 auto 1.75rem;
+    color: #666;
+    line-height: 1.6;
+    font-size: clamp(14px, 1.1vw, 17px);
+    padding: 0 16px;
+}
+
+/* Comprehensive responsive styles for all screen sizes */
+
+/* Large screens - prevent text from getting too big */
+@media (min-width: 1600px) {
+    .section-title-wrapper { font-size: 42px !important; }
+    .project-section-intro { font-size: 17px !important; }
+    .recent-project-card .card-title { font-size: 1.5rem !important; }
+    .recent-project-card .description-text { font-size: 1.1rem !important; }
+}
+
+/* Desktop & Laptop (1024px - 1600px) */
+@media (max-width: 1600px) and (min-width: 1024px) {
+    .section-title-wrapper { font-size: clamp(32px, 3vw, 38px); }
+    .project-section-intro { font-size: clamp(15px, 1.2vw, 17px); }
+    .recent-project-card .card-title { font-size: clamp(1.2rem, 1.3vw, 1.4rem); }
+    .recent-project-card .description-text { font-size: clamp(1rem, 1.1vw, 1.1rem); }
+}
+
+/* Tablet landscape & smaller laptops (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .section-title-wrapper { font-size: clamp(28px, 3.5vw, 34px); }
+    .project-section-intro { font-size: clamp(14px, 1.6vw, 16px); padding: 0 24px; }
+    .recent-project-card .card-title { font-size: clamp(1.1rem, 1.5vw, 1.3rem); }
+    .recent-project-card .description-text { font-size: clamp(0.95rem, 1.2vw, 1.05rem); }
+    .recent-project-card .card-body { padding: 1.75rem; }
+}
+
+/* Responsive adjustments for tablets and mobile */
 @media (max-width: 992px) {
     .recent-project-card.col-lg-5 {
         -ms-flex: 0 0 50%;
@@ -1110,20 +1167,42 @@ li:hover .tag-list {
     }
 }
 
+/* Tablet portrait & mobile landscape (600px - 768px) */
+@media (max-width: 768px) and (min-width: 600px) {
+    .section-title-wrapper { font-size: clamp(24px, 4.5vw, 30px); }
+    .project-section-intro { font-size: clamp(13px, 2.4vw, 15px); padding: 0 20px; max-width: 90%; }
+    .recent-project-card .card-body { padding: 1.5rem; }
+    .recent-project-card .card-title { font-size: clamp(1.05rem, 2.2vw, 1.25rem); margin-bottom: 0.9rem; }
+    .recent-project-card .description-text { font-size: clamp(0.9rem, 1.8vw, 1rem); line-height: 1.6; margin-bottom: 0.9rem; }
+    .project-tag { font-size: clamp(0.75rem, 1.5vw, 0.85rem); padding: 6px 12px; }
+}
+
+/* Mobile portrait (420px - 600px) */
+@media (max-width: 600px) {
+    .section-title-wrapper { font-size: clamp(22px, 5.5vw, 28px); }
+    .project-section-intro { font-size: clamp(12px, 3vw, 14px); padding: 0 16px; max-width: 95%; line-height: 1.5; }
+    .recent-project-card .card-body { padding: 1.25rem; }
+    .recent-project-card .card-title { font-size: clamp(1rem, 4vw, 1.2rem); margin-bottom: 0.8rem; line-height: 1.25; }
+    .recent-project-card .description-text { font-size: clamp(0.85rem, 3.2vw, 0.95rem); line-height: 1.55; margin-bottom: 0.8rem; }
+    .project-tag { font-size: clamp(0.7rem, 2.8vw, 0.8rem); padding: 5px 10px; }
+}
+
+/* Small mobile (< 420px) */
+@media (max-width: 420px) {
+    .section-title-wrapper { font-size: clamp(20px, 6.5vw, 26px); }
+    .project-section-intro { font-size: clamp(11px, 3.4vw, 13px); padding: 0 14px; line-height: 1.4; }
+    .recent-project-card .card-body { padding: 1.1rem; }
+    .recent-project-card .card-title { font-size: clamp(0.95rem, 4.5vw, 1.1rem); margin-bottom: 0.7rem; }
+    .recent-project-card .description-text { font-size: clamp(0.8rem, 3.6vw, 0.9rem); line-height: 1.5; margin-bottom: 0.7rem; }
+    .project-tag { font-size: clamp(0.65rem, 3vw, 0.75rem); padding: 4px 9px; }
+}
+
+/* Ensure cards stack properly on mobile */
 @media (max-width: 768px) {
-    .recent-project-card .card-body {
-        padding: 1.5rem;
-    }
-    
-    .recent-project-card .card-title {
-        font-size: 1.3rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .recent-project-card .description-text {
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 0.8rem;
+    .recent-project-card {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 }
 

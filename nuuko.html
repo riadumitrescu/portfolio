@@ -10,6 +10,387 @@
     <link rel="stylesheet" href="nuuko.css">
     <link rel="stylesheet" href="custom.css">
     <link rel="stylesheet" href="footer.css">
+  <style>
+    /* Comprehensive responsive design for Nuuko - All screen sizes */
+    
+    /* Fix vertical text breaking issue */
+    * {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
+    }
+    
+    /* Prevent text from breaking into single letters */
+    .problem-description,
+    .white-side-paragraph,
+    .lead-text,
+    .section-intro-split p,
+    .problem-card,
+    .quote-bubble,
+    .card-text {
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      hyphens: auto !important;
+    }
+    
+    /* Large screens - prevent excessive scaling */
+    @media (min-width: 1600px) {
+      .unified-hero-section .hero-title { font-size: 64px !important; }
+      .unified-hero-section .hero-subtitle { font-size: 20px !important; }
+      .unified-hero-section .feature-pill { font-size: 16px !important; }
+      .white-side-title { font-size: 42px !important; }
+      .white-side-smalltitle { font-size: 24px !important; }
+      .white-side-section .lead-text { font-size: 19px !important; }
+    }
+    
+    /* Tablet landscape (1024px - 1280px) */
+    @media (max-width: 1280px) and (min-width: 1024px) {
+      .unified-hero-section .hero-title { font-size: clamp(42px, 5.5vw, 56px); }
+      .unified-hero-section .hero-subtitle { font-size: clamp(16px, 1.6vw, 18px); }
+      .unified-hero-section .main-title-card { gap: 20px; }
+      .white-side-title { font-size: clamp(32px, 3.8vw, 38px); }
+      .white-side-section .lead-text { font-size: clamp(15px, 1.5vw, 17px); }
+    }
+    
+    /* Tablet portrait & smaller laptops (768px - 1024px) */
+    @media (max-width: 1024px) and (min-width: 768px) {
+      .unified-hero-section .hero-container { padding: 88px 24px 32px; }
+      .unified-hero-section .main-title-card { grid-template-columns: 1fr; gap: 24px; }
+      .unified-hero-section .hero-title { font-size: clamp(38px, 6vw, 48px); line-height: 1.1; }
+      .unified-hero-section .hero-subtitle { font-size: clamp(15px, 2vw, 17px); }
+      .unified-hero-section .feature-pill { font-size: clamp(13px, 1.5vw, 15px); padding: 10px 16px; }
+      .white-side-title { font-size: clamp(28px, 4.5vw, 34px); }
+      .white-side-smalltitle { font-size: clamp(18px, 2.5vw, 22px); }
+      .white-side-section .lead-text { font-size: clamp(14px, 1.8vw, 16px); line-height: 1.6; }
+    }
+    
+    /* Mobile landscape & small tablets (600px - 768px) */
+    @media (max-width: 768px) and (min-width: 600px) {
+      .unified-hero-section .hero-container { padding: 80px 20px 28px; }
+      .unified-hero-section .main-title-card { display: grid; grid-template-columns: 1fr; gap: 18px; }
+      .unified-hero-section .title-content { text-align: left; }
+      .unified-hero-section .hero-title { font-size: clamp(32px, 7.5vw, 42px); line-height: 1; }
+      .unified-hero-section .hero-subtitle { font-size: clamp(14px, 2.8vw, 16px); margin-top: 6px; }
+      .unified-hero-section .side-content { margin-top: 8px; }
+      .unified-hero-section .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+      .unified-hero-section .meta-label { font-size: 11px; }
+      .unified-hero-section .meta-value { font-size: 13px; }
+      .unified-hero-section .features-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
+      .unified-hero-section .feature-pill { white-space: nowrap; padding: 9px 14px; font-size: clamp(12px, 2.2vw, 14px); }
+      .unified-hero-section .hero-navigation { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; margin-top: 10px; }
+      .unified-hero-section .nav-step { flex: 0 0 auto; padding: 11px 16px; font-size: clamp(12px, 2.4vw, 14px); }
+      .mission-banner { margin-top: 12px; padding: 12px 16px; }
+      .mission-statement-text { font-size: clamp(13px, 2.6vw, 15px); }
+      .hero-mockup-section .hero-main { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 8px 0; }
+      .hero-mockup-section .hero-center-image, .hero-mockup-section .hero-side-image { width: 100%; height: auto; display: block; }
+      .white-side-title { font-size: clamp(24px, 5.2vw, 32px); }
+      .white-side-smalltitle { font-size: clamp(16px, 3.2vw, 20px); }
+      .white-side-section .lead-text { font-size: clamp(13px, 2.5vw, 15px); line-height: 1.5; }
+    }
+    
+    /* Mobile portrait (420px - 600px) */
+    @media (max-width: 600px) {
+      .unified-hero-section .hero-container { padding: 72px 16px 24px; }
+      .unified-hero-section .main-title-card { display: grid; grid-template-columns: 1fr; gap: 16px; }
+      .unified-hero-section .title-content { text-align: left; }
+      .unified-hero-section .hero-title { font-size: clamp(28px, 9vw, 38px); line-height: .95; }
+      .unified-hero-section .hero-subtitle { font-size: clamp(13px, 3.5vw, 16px); margin-top: 4px; }
+      .unified-hero-section .side-content { margin-top: 4px; }
+      .unified-hero-section .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+      .unified-hero-section .meta-label { font-size: 10px; }
+      .unified-hero-section .meta-value { font-size: 12px; }
+      .unified-hero-section .features-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+      .unified-hero-section .feature-pill { white-space: nowrap; padding: 8px 12px; border-radius: 999px; font-size: clamp(11px, 3.2vw, 13px); border: 1px solid rgba(0,0,0,0.12); background: #fff; }
+      .unified-hero-section .hero-navigation { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; margin-top: 8px; }
+      .unified-hero-section .nav-step { flex: 0 0 auto; padding: 10px 14px; border-radius: 999px; font-size: clamp(11px, 3.4vw, 13px); }
+      .mission-banner { margin-top: 10px; padding: 10px 12px; }
+      .mission-statement-text { font-size: clamp(12px, 3.4vw, 14px); }
+      .hero-mockup-section .hero-main { display: grid; grid-template-columns: 1fr; gap: 8px; padding: 6px 0; }
+      .hero-mockup-section .hero-center-image, .hero-mockup-section .hero-side-image { width: 100%; height: auto; display: block; }
+      .white-side-section .images-container.dual, .white-side-section .images-container.triple, .images-container.dual, .images-container.triple { display: grid; grid-template-columns: 1fr; gap: 10px; }
+      .white-side-title { font-size: clamp(22px, 6.5vw, 28px); }
+      .white-side-smalltitle { font-size: clamp(15px, 4.2vw, 18px); }
+      .white-side-section .lead-text { font-size: clamp(12px, 3.6vw, 14px); line-height: 1.5; padding: 0 2px; }
+      
+      /* Fix problem section on mobile */
+      .section-intro-split { 
+        grid-template-columns: 1fr !important; 
+        gap: 12px !important;
+        max-width: 100% !important;
+      }
+      .problem-headline { font-size: clamp(18px, 5vw, 22px) !important; }
+      .problem-description { 
+        font-size: clamp(13px, 3.5vw, 15px) !important; 
+        line-height: 1.6 !important;
+        text-align: left !important;
+      }
+      .problem-grid { 
+        grid-template-columns: 1fr !important; 
+        gap: 14px !important;
+      }
+      .problem-card { 
+        padding: 16px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .card-title { font-size: clamp(15px, 4vw, 17px) !important; }
+      .stats-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+      
+      /* Fix quote bubbles on mobile */
+      .quote-bubble { 
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 14px !important;
+        font-size: clamp(12px, 3.4vw, 14px) !important;
+        margin: 8px 0 !important;
+      }
+      .quotes-two-col { 
+        grid-template-columns: 1fr !important; 
+        gap: 12px !important;
+        padding: 0 16px !important;
+      }
+      
+      /* Fix "More Case Studies" section */
+      .recent-project-card { 
+        max-width: 100% !important;
+        margin-bottom: 20px !important;
+      }
+      .recent-project-card .card { 
+        width: 100% !important;
+        margin: 0 auto !important;
+      }
+      .recent-project-card img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+      }
+    }
+    
+    /* Small mobile (< 420px) */
+    @media (max-width: 420px) {
+      .unified-hero-section .hero-container { padding: 68px 14px 20px; }
+      .unified-hero-section .hero-title { font-size: clamp(24px, 10.5vw, 34px); }
+      .unified-hero-section .hero-subtitle { font-size: clamp(12px, 4vw, 15px); }
+      .unified-hero-section .meta-grid { grid-template-columns: 1fr; gap: 8px; }
+      .unified-hero-section .feature-pill { font-size: clamp(10px, 3.6vw, 12px); padding: 7px 11px; }
+      .unified-hero-section .nav-step { padding: 9px 12px; font-size: clamp(10px, 3.8vw, 12px); }
+      .mission-statement-text { font-size: clamp(11px, 3.8vw, 13px); }
+      .white-side-title { font-size: clamp(20px, 7.5vw, 26px); }
+      .white-side-smalltitle { font-size: clamp(14px, 4.8vw, 17px); }
+      .white-side-section .lead-text { font-size: clamp(11px, 4vw, 13px); }
+      
+      /* Extra fixes for very small screens */
+      .problem-headline { font-size: clamp(16px, 5.5vw, 20px) !important; }
+      .problem-description { font-size: clamp(12px, 3.8vw, 14px) !important; }
+      .problem-card { padding: 14px !important; }
+      .quote-bubble { 
+        padding: 12px !important;
+        font-size: clamp(11px, 3.6vw, 13px) !important;
+      }
+    }
+    
+    /* Ensure images are always responsive */
+    @media (max-width: 768px) {
+      .hero-mockup-section img,
+      .white-side-section img,
+      .images-container img { 
+        max-width: 100% !important; 
+        height: auto !important;
+        display: block !important;
+      }
+      
+      /* Prevent horizontal scroll */
+      body { overflow-x: hidden !important; }
+      .white-side-section { 
+        padding-left: 16px !important; 
+        padding-right: 16px !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+      }
+      
+      /* Fix all text containers */
+      .problem-overview,
+      .section-intro-split,
+      .white-side-section > *,
+      .problem-grid,
+      .quotes-section {
+        max-width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* Compact layout - reduce vertical spacing */
+      .white-side-section {
+        padding: 2.5rem 5% !important;
+        margin-bottom: 1.5rem !important;
+      }
+      .white-side-title {
+        margin-bottom: 1rem !important;
+      }
+      .white-side-smalltitle {
+        margin-bottom: 0.75rem !important;
+      }
+      .white-side-paragraph, .lead-text {
+        margin-bottom: 1rem !important;
+      }
+      .images-container {
+        margin: 1.5rem 0 !important;
+      }
+      .line1 {
+        margin: 0.75rem 0 1.25rem !important;
+      }
+      
+      /* Use width better - side-by-side layouts */
+      .section-intro-split {
+        grid-template-columns: 0.4fr 1fr !important;
+        gap: 2rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+      .problem-grid {
+        gap: 1rem !important;
+        margin: 1rem 0 !important;
+      }
+      .images-container.dual {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1rem !important;
+      }
+      .images-container.triple {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 1rem !important;
+      }
+      
+      /* Compact quote sections */
+      .quotes-two-col {
+        gap: 1rem !important;
+        margin: 1rem 0 !important;
+      }
+      .quote-bubble {
+        padding: 1rem !important;
+        margin: 0.5rem 0 !important;
+      }
+      
+      /* Compact insight blocks */
+      .insight-block {
+        padding: 1.25rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      /* Compact feature showcase */
+      .features-showcase {
+        gap: 1rem !important;
+        margin: 1.5rem 0 !important;
+      }
+      .feature-section {
+        padding: 1rem !important;
+      }
+      
+      /* Compact process steps */
+      .process-step {
+        margin-bottom: 2rem !important;
+      }
+      
+      /* Make color swatches clickable */
+      .color-swatch {
+        cursor: pointer !important;
+        border: 2px solid transparent !important;
+        transition: all 0.2s ease !important;
+      }
+      .color-swatch:hover {
+        transform: scale(1.1) !important;
+        border-color: rgba(0,0,0,0.3) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+      }
+      .color-swatch:active {
+        transform: scale(0.95) !important;
+      }
+      
+      /* Fix User Journeys section layout */
+      .user-journeys {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+      
+      /* Fix title icons and emojis */
+      .white-side-title {
+        display: block !important;
+        word-break: normal !important;
+      }
+      
+      /* Fix feature showcase grid */
+      .features-showcase {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding: 0 16px !important;
+      }
+      
+      /* Fix video containers */
+      .videos-container,
+      .prototype-videos-section {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding: 0 !important;
+      }
+      .prototype-video,
+      .video-item {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      /* Fix "More Case Studies" section specifically */
+      #projects { 
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      #projects .container { 
+        padding: 0 16px !important;
+        max-width: 100% !important;
+      }
+      #projects .row { 
+        margin: 0 !important;
+        width: 100% !important;
+      }
+      #projects h2 { 
+        font-size: clamp(24px, 6vw, 32px) !important;
+        padding: 0 16px !important;
+      }
+      #projects .project-card-wrapper,
+      #projects .recent-project-card {
+        padding: 0 !important;
+        margin: 0 0 20px 0 !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+      }
+      #projects .card {
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 16px !important;
+      }
+      #projects .card-img-top {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        border-radius: 16px 16px 0 0 !important;
+      }
+      #projects .card-body {
+        padding: 16px !important;
+      }
+      #projects .card-title {
+        font-size: clamp(16px, 4.5vw, 20px) !important;
+        line-height: 1.3 !important;
+        margin-bottom: 10px !important;
+      }
+      #projects .description-text {
+        font-size: clamp(13px, 3.5vw, 15px) !important;
+        line-height: 1.5 !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
@@ -43,9 +424,9 @@
         
         <!-- Key Features Pills -->
         <div class="features-pills">
-          <span class="feature-pill">✦ Emotion-first design</span>
-          <span class="feature-pill">🔒 Privacy by design</span>
-          <span class="feature-pill">🌿 Gentle guidance</span>
+          <span class="feature-pill">Emotion-first design</span>
+          <span class="feature-pill">Privacy by design</span>
+          <span class="feature-pill">Gentle guidance</span>
         </div>
       </div>
       
@@ -84,11 +465,11 @@
         <div class="hero-palette">
           <div class="palette-label">Color Palette</div>
           <div class="colors-row">
-            <div class="color-swatch" style="background-color: #8D4630;" title="#8D4630"></div>
-            <div class="color-swatch" style="background-color: #F4E7D1;" title="#F4E7D1"></div>
-            <div class="color-swatch" style="background-color: #3A4B3A;" title="#3A4B3A"></div>
-            <div class="color-swatch" style="background-color: #F8F5F0;" title="#F8F5F0"></div>
-            <div class="color-swatch" style="background-color: #D4A574;" title="#D4A574"></div>
+            <button class="color-swatch" style="background-color: #8D4630;" title="#8D4630" onclick="navigator.clipboard.writeText('#8D4630'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #F4E7D1;" title="#F4E7D1" onclick="navigator.clipboard.writeText('#F4E7D1'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #3A4B3A;" title="#3A4B3A" onclick="navigator.clipboard.writeText('#3A4B3A'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #F8F5F0;" title="#F8F5F0" onclick="navigator.clipboard.writeText('#F8F5F0'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #D4A574;" title="#D4A574" onclick="navigator.clipboard.writeText('#D4A574'); this.title='Copied!'"></button>
           </div>
         </div>
       </div>
@@ -107,6 +488,15 @@
       <blockquote class="mission-statement-text">
         "Most journaling apps push productivity. Nuuko is different: it's built for feelings first."
       </blockquote>
+    </div>
+    
+    <!-- CTA Prototype - Moved to top for visibility -->
+    <div class="hero-prototype-cta" style="margin-top: 24px; padding: 24px; background: linear-gradient(135deg, #F4E7D1 0%, #FFF9ED 100%); border-radius: 16px; border: 2px solid #D4A574; text-align: center;">
+      <h4 style="margin: 0 0 12px 0; font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 700; color: #3A2A23;">✨ Try the Live Prototype</h4>
+      <p style="margin: 0 0 16px 0; font-size: clamp(0.9rem, 1.2vw, 1rem); color: #666;">Experience Nuuko's gentle onboarding and core features</p>
+      <a href="https://nuuko-v1.vercel.app/" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 14px 32px; background: #8D4630; color: #fff; text-decoration: none; border-radius: 999px; font-weight: 700; font-size: clamp(0.95rem, 1.1vw, 1.05rem); transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(141, 70, 48, 0.3);" onmouseover="this.style.background='#6B3424'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(141, 70, 48, 0.4)'" onmouseout="this.style.background='#8D4630'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 16px rgba(141, 70, 48, 0.3)'">
+        Launch Interactive Prototype →
+      </a>
     </div>
   </div>
 </section>

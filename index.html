@@ -70,7 +70,8 @@
   </script>
   
   <!-- Preload critical resources -->
-  <link rel="preload" href="assets/maria_dumitrescu_video.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="assets/Why I Design_Maria Dumitrescu – Video Cover Letter_optimized.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="assets/why_i_design_thumbnail.jpg" as="image">
   <link rel="preload" href="assets/circleprofilepic.png" as="image">
   <link rel="preload" href="styles.css" as="style">
   
@@ -80,6 +81,14 @@
   
   <!-- Parallax Hero Styles -->
   <style>
+    /* Ensure navbar brand always visible over hero */
+    #navbar { z-index: 1100; background: #fff !important; }
+    #navbar #navbar-brand-text, #navbar .nav-link { color: #000 !important; }
+    .navbar-light .navbar-brand, .navbar-light .navbar-brand #navbar-brand-text { color: #000 !important; }
+    /* Force black even if a script toggles transparent or dark variants */
+    #navbar.transparent, #navbar.transparent .navbar-brand, #navbar.transparent .navbar-nav .nav-link, #navbar.transparent #navbar-brand-text { color: #000 !important; }
+    #navbar a.navbar-brand, #navbar a.navbar-brand:link, #navbar a.navbar-brand:visited, #navbar a.navbar-brand:hover, #navbar a.navbar-brand:active { color: #000 !important; }
+    .navbar .navbar-brand { display: inline-block; font-weight: 800; letter-spacing: .2px; }
     /* Whimsical Background Circles for Individual Cards */
     .project-card-wrapper {
       position: relative;
@@ -574,62 +583,38 @@
         content: url("assets/cool_hero/background.jpg");
       }
       
-      .parallax__title {
-        font-size: 14vw;
-      }
+      .parallax__title { font-size: 12.5vw; }
       
-      .parallax__subtitle {
-        font-size: 4vw;
-      }
+      .parallax__subtitle { font-size: 3.8vw; }
       
-      .parallax__subtitle-container {
-        right: 6%;
-        top: 40%;
-      }
+      .parallax__subtitle-container { right: 6%; top: 34%; }
       
-      .parallax__layer-img {
-        height: 98%;
-        top: 0;
-      }
+      .parallax__layer-img { height: 98%; top: -2%; }
       
       .parallax__layer-img[data-parallax-layer="3"] {
-        height: 95%;
-        top: -8%;
-        object-position: center 35%;
+        height: 100%;
+        top: -18%;
+        object-position: center 25%;
       }
     }
 
     @media (max-width: 480px) {
       /* Remove the background image switch since it's now in the 768px media query */
       
-      .parallax__layer-title {
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding-top: 15%;
-        padding-left: 5%;
-      }
+      .parallax__layer-title { justify-content: flex-start; align-items: flex-start; padding-top: 10%; padding-left: 5%; }
       
-      .parallax__title {
-        text-align: left;
-      }
+      .parallax__title { text-align: left; font-size: 14vw !important; }
       
-      .parallax__layer-img {
-        height: 85%;
-        top: 5%;
-      }
+      .parallax__layer-img { height: 90%; top: -6%; }
       
       .parallax__layer-img[data-parallax-layer="3"] {
-        height: 80%;
-        top: 5%;
-        object-position: center 50%;
+        height: 98%;
+        top: -24%;
+        object-position: center 22%;
       }
       
       /* Keep subtitle container in the original position */
-      .parallax__subtitle-container {
-        right: 8%;
-        top: 60%;
-        text-align: right;
-      }
+      .parallax__subtitle-container { right: 6%; top: 42%; text-align: right; }
     }
 
     .first-name {
@@ -770,6 +755,300 @@
         padding: 0.95em 1.15em !important;
       }
     }
+    /* Homepage mobile hero refinements */
+    @media (max-width: 768px) {
+      .hero-secondary-actions a { touch-action: manipulation; min-height: 44px; display: inline-flex; align-items: center; }
+      .hero-content-wrapper { padding-left: 0 !important; padding-right: 0 !important; }
+    }
+    @media (max-width: 480px) {
+      .hero-secondary-actions a { font-size: 4.2vw !important; padding: 0.95em 1.15em !important; }
+    }
+    /* Full-bleed video hero - Redesigned */
+    .video-hero-section { margin-bottom: 0; }
+    .video-hero { 
+      position: relative; 
+      width: 100%; 
+      height: 100vh; 
+      min-height: 600px; 
+      overflow: hidden; 
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-hero__media { 
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+    }
+    .video-hero__overlay { 
+      position: absolute; 
+      inset: 0; 
+      background: linear-gradient(to top, rgba(255,251,244,1) 0%, rgba(255,251,244,0.95) 10%, rgba(255,251,244,0.85) 20%, rgba(255,251,244,0.7) 30%, rgba(255,251,244,0.5) 40%, rgba(255,251,244,0.25) 45%, transparent 50%);
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .video-hero__overlay.hidden {
+      opacity: 0;
+    }
+    .video-hero__content-wrapper {
+      position: absolute;
+      bottom: 15%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(16px, 2.2vh, 24px);
+      max-width: 650px;
+      width: 90%;
+      text-align: center;
+    }
+    .video-hero__actions {
+      margin-top: clamp(-12px, -1.5vh, -6px);
+    }
+    .video-hero__title { 
+      color: #000; 
+      font-family: 'Mukta', sans-serif; 
+      font-weight: 800; 
+      letter-spacing: -0.02em; 
+      text-shadow: 0 2px 8px rgba(255,251,244,0.8), 0 1px 2px rgba(255,251,244,0.5);
+      font-size: clamp(36px, 5.5vw, 72px); 
+      line-height: 1.05; 
+      text-align: center;
+      margin: 0;
+      transition: opacity 0.5s ease;
+    }
+    .video-hero__title.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .video-hero__subtitle { 
+      color: #1a1a1a; 
+      font-weight: 600; 
+      font-size: clamp(18px, 1.8vw, 24px); 
+      letter-spacing: .02em; 
+      line-height: 1.4;
+      text-shadow: 0 1px 4px rgba(255,251,244,0.6), 0 0 2px rgba(255,251,244,0.4);
+      margin: 0 auto;
+      text-align: center;
+      width: 100%;
+      transition: opacity 0.5s ease;
+    }
+    .video-hero__subtitle.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .video-hero__meta { 
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 2vh, 20px);
+      width: 100%;
+      align-items: center;
+    }
+    .video-hero__actions { 
+      display: flex; 
+      gap: 16px; 
+      align-items: center;
+      justify-content: center;
+      margin-top: clamp(8px, 2vh, 16px);
+      width: auto;
+      flex-wrap: wrap;
+    }
+    .video-hero__button { 
+      appearance: none; 
+      border: 2px solid #000; 
+      color: #fff; 
+      background: #000; 
+      font-weight: 700; 
+      letter-spacing: .01em; 
+      border-radius: 999px; 
+      padding: clamp(14px, 1.4vw, 18px) clamp(28px, 2.5vw, 36px); 
+      font-size: clamp(15px, 1.2vw, 17px); 
+      cursor: pointer; 
+      transition: all .25s cubic-bezier(0.4, 0, 0.2, 1); 
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      white-space: nowrap;
+      min-width: 160px;
+      outline: none;
+    }
+    .video-hero__button:focus {
+      outline: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2), 0 0 0 3px rgba(0,0,0,0.1);
+    }
+    .video-hero__button:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+      background: #1a1a1a;
+    }
+    .video-hero__button.is-active { 
+      background: #000; 
+      color: #fff;
+      border-color: #000;
+    }
+    .video-hero__button-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .video-hero__speed-button {
+      appearance: none;
+      border: 2px solid #000;
+      color: #000;
+      background: transparent;
+      font-weight: 600;
+      letter-spacing: .01em;
+      border-radius: 999px;
+      padding: clamp(14px, 1.4vw, 18px) clamp(20px, 2vw, 24px);
+      font-size: clamp(14px, 1.1vw, 16px);
+      cursor: pointer;
+      transition: all .25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 60px;
+      outline: none;
+    }
+    .video-hero__speed-button:focus {
+      outline: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2), 0 0 0 3px rgba(0,0,0,0.1);
+    }
+    .video-hero__speed-button:hover {
+      transform: translateY(-3px);
+      background: #000;
+      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+      color: #fff;
+    }
+    .video-hero__link { 
+      appearance: none; 
+      text-decoration: none; 
+      border: 2px solid #000; 
+      color: #000 !important; 
+      background: transparent; 
+      font-weight: 700; 
+      letter-spacing: .01em; 
+      border-radius: 999px; 
+      padding: clamp(14px, 1.4vw, 18px) clamp(28px, 2.5vw, 36px); 
+      font-size: clamp(15px, 1.2vw, 17px); 
+      transition: all .25s cubic-bezier(0.4, 0, 0.2, 1); 
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 160px;
+      outline: none;
+    }
+    .video-hero__link:focus {
+      outline: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2), 0 0 0 3px rgba(0,0,0,0.1);
+    }
+    .video-hero__link:hover { 
+      transform: translateY(-3px); 
+      background: #000;
+      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+      color: #fff !important;
+      text-decoration: none !important;
+    }
+    @media (max-width: 1024px) {
+      .video-hero__content-wrapper {
+        bottom: 6%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 540px;
+        width: 88%;
+      }
+      .video-hero__title { font-size: clamp(32px, 6.5vw, 56px); }
+    }
+    @media (max-width: 768px) {
+      .video-hero { 
+        height: 90vh; 
+        min-height: 500px; 
+      }
+      .video-hero__content-wrapper {
+        bottom: 5%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 90%;
+        width: 90%;
+        gap: clamp(16px, 2.5vh, 24px);
+      }
+      .video-hero__title { 
+        font-size: clamp(28px, 8vw, 48px); 
+      }
+      .video-hero__subtitle {
+        font-size: clamp(16px, 4vw, 18px);
+        width: 100%;
+        margin: 0 auto;
+      }
+      .video-hero__actions { 
+        flex-direction: column; 
+        gap: 10px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+      .video-hero__button,
+      .video-hero__speed-button,
+      .video-hero__link {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+        text-align: center;
+        padding: 14px 22px;
+        font-size: 15px;
+        min-width: auto;
+      }
+    }
+    @media (max-width: 480px) {
+      .video-hero { 
+        height: 85vh; 
+        min-height: 460px; 
+      }
+      .video-hero__content-wrapper {
+        bottom: 4%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 92%;
+        width: 92%;
+      }
+      .video-hero__title { 
+        font-size: clamp(24px, 9.5vw, 40px); 
+      }
+      .video-hero__subtitle {
+        font-size: clamp(13px, 4.2vw, 16px);
+      }
+      .video-hero__button,
+      .video-hero__speed-button,
+      .video-hero__link {
+        padding: 12px 18px;
+        font-size: 14px;
+      }
+    }
+    @media (min-width: 1600px) {
+      .video-hero__content-wrapper {
+        max-width: 580px;
+      }
+      .video-hero__title { font-size: 72px; }
+      .video-hero__subtitle { font-size: 19px; max-width: 480px; }
+      .video-hero__button { padding: 16px 28px; font-size: 17px; }
+      .video-hero__link { padding: 16px 28px; font-size: 17px; }
+    }
   </style>
 
   <!-- Tiny thumbnail for blur-up effect -->
@@ -784,8 +1063,8 @@
 
 
   <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <span id="navbar-brand-text">Maria Dumitrescu</span>
+    <a class="navbar-brand d-flex align-items-center text-dark" href="#" style="color:#000 !important;">
+      <span id="navbar-brand-text" class="text-dark" style="color:#000 !important;">Maria Dumitrescu</span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -797,55 +1076,50 @@
           <a class="nav-link" href="aboutme.html">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./assets/Maria_Product_Design.pdf" target="_blank">Resume</a>
+          <a class="nav-link" href="#recent-projects">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="resume.html">Resume</a>
         </li>
       </ul>
     </div>
   </nav>
 
-  <section id="intro" class="mb-5">
-    <!-- Parallax Hero Section -->
-    <div class="parallax">
-      <section class="parallax__header">
-        <div class="parallax__visuals">
-          <div class="parallax__black-line-overflow"></div>
-          <div data-parallax-layers class="parallax__layers">
-            <!-- Background layer - slowest movement -->
-            <img src="assets/cool_hero/background.jpg" loading="eager" width="800" data-parallax-layer="1" alt="" class="parallax__layer-img background-img">
-            
-            <!-- Text layer - medium movement -->
-            <div data-parallax-layer="2" class="parallax__layer-title">
-              <div class="hero-content-wrapper" style="position: absolute; top: 22%; right: 9%; left: auto; width: 38%; z-index: 10; text-align: right;">
-                <h2 class="hero-name" style="font-size: 7vw; font-weight: 800; line-height: 0.86; margin: 0 0 0.35em 0; color: #fff; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); font-family: 'Mukta', sans-serif; text-align: right;">Maria<br>Dumitrescu</h2>
-                <p class="hero-description" style="font-size: 1.35vw; margin: 0 0 0.9em 0; font-weight: 400; line-height: 1.45; color: rgba(255, 255, 255, 0.95); text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); text-align: right; max-width: 34vw; margin-left: auto;">
-                  Building playful, human-centered products at the intersection of design and code across the world.
-                </p>
-                <div class="hero-actions" style="display: flex; flex-direction: column; gap: 1em; align-items: flex-end;">
-                  <a href="#recent-projects" class="hero-btn-primary" style="background: rgba(255, 255, 255, 0.96); color: #1a1a1a; padding: 1.15em 2.4em; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.25vw; transition: all 0.3s ease; border: none; box-shadow: 0 6px 25px rgba(0, 0, 0, 0.18); display: inline-block; text-align: center; width: fit-content;">View My Work</a>
-                  <div class="hero-secondary-actions" style="display: flex; gap: 0.9em; align-items: center; justify-content: flex-end;">
-                    <a href="./assets/Maria_Product_Design.pdf" target="_blank" class="hero-btn-secondary" style="color: rgba(255, 255, 255, 0.95); text-decoration: none; font-size: 1vw; font-weight: 500; transition: all 0.3s ease; padding: 0.8em 1.2em; border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 26px; backdrop-filter: blur(8px); background: rgba(0,0,0,0.4);">Resume</a>
-                    <span style="color: rgba(255, 255, 255, 0.65); font-size: 0.9vw;">•</span>
-                    <a href="mailto:mariadumitrescuoffice@gmail.com" class="hero-btn-secondary" style="color: rgba(255, 255, 255, 0.95); text-decoration: none; font-size: 1vw; font-weight: 500; transition: all 0.3s ease; padding: 0.8em 1.2em; border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 26px; backdrop-filter: blur(8px); background: rgba(0,0,0,0.4);">Contact</a>
+  <section id="intro" class="mb-5 video-hero-section">
+    <div class="video-hero">
+      <video id="heroVideo" class="video-hero__media" playsinline muted preload="metadata" poster="assets/why_i_design_thumbnail.jpg">
+        <source src="assets/Why I Design_Maria Dumitrescu – Video Cover Letter_optimized.mp4" type="video/mp4">
+      </video>
+      <div class="video-hero__overlay"></div>
+      
+      <div class="video-hero__content-wrapper">
+        <h1 class="video-hero__title">Why I Design?</h1>
+        <div class="video-hero__meta">
+          <p class="video-hero__subtitle">A 120-second video cover letter on my design journey.</p>
+          <div class="video-hero__actions">
+              <button id="videoToggleButton" class="video-hero__button" aria-pressed="false" aria-label="Play video with sound">
+                <svg class="video-hero__button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path id="buttonIconPath" d="M8 5v14l11-7z"/>
+                </svg>
+                <span id="videoToggleText">Play</span>
+              </button>
+              <button id="speedButton" class="video-hero__speed-button" aria-label="Change playback speed">
+                <span id="speedText">1x</span>
+              </button>
+            <a href="#recent-projects" class="video-hero__link">View Projects</a>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- Foreground layer - fastest movement -->
-            <img src="assets/cool_hero/me.png" loading="eager" width="800" data-parallax-layer="3" alt="" class="parallax__layer-img">
-          </div>
-          <div class="parallax__fade"></div>
-        </div>
-      </section>
     </div>
   </section>
   
 
 <!-- Most Recent Projects -->
-<section id="recent-projects" class="mb-5 project-section">
+  <section id="recent-projects" class="mb-4 project-section" style="padding: 3rem 0 2rem;">
   <div class="container">
-    <h2 class="text-center mb-4"><span class="section-title-wrapper">Most Recent Product Design Projects</span></h2>
-    <div class="row justify-content-center">
+    <h2 class="text-center mb-2"><span class="section-title-wrapper">Selected Projects</span></h2>
+    <p class="text-center project-section-intro" style="margin-bottom: 1.75rem;">Product-led case studies focused on outcomes, not outputs. Clear rationale, measurable impact, and craft at every layer.</p>
+    <div class="row justify-content-center" style="row-gap: 1.5rem;">
 
       <!-- Card - Nuuko -->
       <div class="col-sm-12 col-md-6 col-lg-6 mb-4 project-card-wrapper recent-project-card">
@@ -909,10 +1183,10 @@
 </section>
 
   <!-- Second Section with UI UX Projects -->
-  <section id="projects" class="mb-5 project-section">
+  <section id="projects" class="mb-4 project-section" style="padding: 2.5rem 0 2rem;">
     <div class="container">
-      <h2 class="text-center mb-4"><span class="section-title-wrapper">UI UX Projects</span></h2>
-      <div class="row">
+      <h2 class="text-center mb-2"><span class="section-title-wrapper">Other Projects</span></h2>
+      <div class="row" style="row-gap: 1.5rem;">
         <!-- Stylique-->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="stylique.html" class="card-link">
@@ -1100,10 +1374,10 @@
     </div>
   </div>
   <!-- Other Projects Section -->
-  <section id="other-projects" class="mb-5 project-section">
+  <section id="other-projects" class="mb-4 project-section" style="padding: 2.5rem 0 2rem;">
     <div class="container">
-      <h2 class="text-center mb-4"><span class="section-title-wrapper">Other Projects</span></h2>
-      <div class="row">
+      <h2 class="text-center mb-2"><span class="section-title-wrapper">Other Projects</span></h2>
+      <div class="row" style="row-gap: 1.5rem;">
         <!-- Card 1 - MEMORIES -->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="memories.html" class="card-link">
@@ -1201,90 +1475,62 @@
 
   </section>
 
-  <!-- YouTube Videos Section -->
-  <section id="youtube-videos" class="mb-5">
+
+  <!-- Graphic Design Volunteering - Clean Design -->
+  <section class="mb-4 project-section" style="padding: 3rem 0 2.5rem; background: #fafafa;">
     <div class="container">
-      <h2 class="text-center mb-4">Design Stories</h2>
-      <p class="text-center mb-5">Watch my creative process and design philosophy in action</p>
-      <div class="row">
-        <!-- Why I Design Video -->
-        <div class="col-sm-12 col-md-6 mb-4">
-          <div class="video-card">
-            <div class="video-container">
-              <iframe 
-                src="https://www.youtube.com/embed/QHVlc0lZNAk" 
-                title="Why I Design - Maria Dumitrescu"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-              </iframe>
+      <h2 class="text-center mb-2" style="font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: #3A2A23;">Graphic Design Volunteering</h2>
+      <p class="text-center mb-4" style="max-width: 600px; margin: 0 auto; font-size: clamp(1rem, 1.2vw, 1.15rem); color: #666; line-height: 1.6;">Instagram posts I designed as a freelancer in 2022 - 2023 (Adobe Photoshop, Adobe Illustrator)</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+        <div class="design-card" style="position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; background: #fff; box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); border: 1px solid rgba(141, 70, 48, 0.1); transition: all 0.3s ease;">
+          <img src="./assets/graphic_design/teteatete.jpeg" alt="Tête-à-Tête poster design" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-            <div class="video-info">
-              <h5 class="video-title">Why I Design</h5>
-              <p class="video-description">A personal exploration of my design philosophy and what drives my creative process.</p>
+        <div class="design-card" style="position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; background: #fff; box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); border: 1px solid rgba(141, 70, 48, 0.1); transition: all 0.3s ease;">
+          <img src="./assets/graphic_design/beneathself.jpeg" alt="Beneath The Self poster design" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
+        <div class="design-card" style="position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; background: #fff; box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); border: 1px solid rgba(141, 70, 48, 0.1); transition: all 0.3s ease;">
+          <img src="./assets/graphic_design/godcomplex.jpeg" alt="God Complex magazine design" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
+        <div class="design-card" style="position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; background: #fff; box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); border: 1px solid rgba(141, 70, 48, 0.1); transition: all 0.3s ease;">
+          <img src="./assets/graphic_design/knowyourself.jpeg" alt="Know Yourself webinar poster" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
-        
-        <!-- Dancing Paintings Video -->
-        <div class="col-sm-12 col-md-6 mb-4">
-          <div class="video-card">
-            <div class="video-container">
-              <iframe 
-                src="https://www.youtube.com/embed/0_7PKwB4-EI" 
-                title="Dancing Paintings - Maria Dumitrescu"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-              </iframe>
+        <div class="design-card" style="position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; background: #fff; box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); border: 1px solid rgba(141, 70, 48, 0.1); transition: all 0.3s ease;">
+          <img src="./assets/graphic_design/liceeni.jpeg" alt="Liceeni promotional design" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-            <div class="video-info">
-              <h5 class="video-title">Dancing Paintings</h5>
-              <p class="video-description">Watch me bring my paintings to life through movement and dance.</p>
+        <div class="design-card" style="position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; background: #fff; box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); border: 1px solid rgba(141, 70, 48, 0.1); transition: all 0.3s ease;">
+          <img src="./assets/graphic_design/magazinecrop.jpg" alt="Magazine layout design" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
+        <div class="design-card" style="position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; background: #fff; box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); border: 1px solid rgba(141, 70, 48, 0.1); transition: all 0.3s ease;">
+          <img src="./assets/graphic_design/readysteady.jpeg" alt="Ready Steady poster" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
+        <div class="design-card" style="position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; background: #fff; box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08); border: 1px solid rgba(141, 70, 48, 0.1); transition: all 0.3s ease;">
+          <img src="./assets/graphic_design/victim.jpeg" alt="Victim Complex design" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
       </div>
     </div>
   </section>
 
-  <section class="body-gallery">
-    <h2 class="responsive-padding text-center mb-4">Graphic Design Volunteering</h2>
-    <p class="responsive-padding text-center mb-4">Instagram posts I designed as a freelancer in 2022 - 2023 (Adobe Photoshop, Adobe Illustrator)</p>
-
-    <div class="gallery">
-      <span style="--i:1">
-        <img src="./assets/graphic_design/teteatete.jpeg" alt="Graphic Design 1" />
-      </span>
-      <span style="--i:2">
-        <img src="./assets/graphic_design/beneathself.jpeg" alt="Graphic Design 2" />
-      </span>
-      <span style="--i:3">
-        <img src="./assets/graphic_design/godcomplex.jpeg" alt="Graphic Design 3" />
-      </span>
-      <span style="--i:4">
-        <img src="./assets/graphic_design/knowyourself.jpeg" alt="Graphic Design 4" />
-      </span>
-      <span style="--i:5">
-        <img src="./assets/graphic_design/liceeni.jpeg" alt="Graphic Design 5" />
-      </span>
-      <span style="--i:6">
-        <img src="./assets/graphic_design/magazinecrop.jpg" alt="Graphic Design 6" />
-      </span>
-      <span style="--i:7">
-        <img src="./assets/graphic_design/readysteady.jpeg" alt="Graphic Design 7" />
-      </span>
-      <span style="--i:8">
-        <img src="./assets/graphic_design/victim.jpeg" alt="Graphic Design 8" />
-      </span>
-    </div>
-  </section>
+  <style>
+    .design-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(141, 70, 48, 0.15) !important;
+      border-color: rgba(141, 70, 48, 0.2) !important;
+    }
+    
+    @media (max-width: 768px) {
+      .design-card {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+        gap: 1rem !important;
+      }
+    }
+  </style>
 
   <!-- Brands -->
-  <section id="brands" class="mb-5 project-section">
+  <section id="brands" class="mb-4 project-section" style="padding: 2.5rem 0 2rem;">
     <div class="container">
-      <h2 class="text-center mb-4"><span class="section-title-wrapper">Brands</span></h2>
-      <div class="row">
+      <h2 class="text-center mb-2"><span class="section-title-wrapper">Brands I built</span></h2>
+      <div class="row" style="row-gap: 1.5rem;">
         <!-- Card 1 - Marie Lee Store -->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
           <a href="https://www.etsy.com/shop/marieleeshop" class="card-link" target="_blank">
@@ -1486,13 +1732,104 @@
 
 
   <script>
-    const video = document.getElementById('maria-video');
-    const placeholder = document.getElementById('video-placeholder');
+    // Video hero controls with optimization and hide/show functionality
+    (function(){
+      const vid = document.getElementById('heroVideo');
+      const btn = document.getElementById('videoToggleButton');
+      const btnText = document.getElementById('videoToggleText');
+      const btnIconPath = document.getElementById('buttonIconPath');
+      const speedBtn = document.getElementById('speedButton');
+      const speedText = document.getElementById('speedText');
+      const overlay = document.querySelector('.video-hero__overlay');
+      const title = document.querySelector('.video-hero__title');
+      const subtitle = document.querySelector('.video-hero__subtitle');
+      
+      if (!vid || !btn || !btnText || !btnIconPath) return;
 
-    video.addEventListener('canplaythrough', () => {
-      placeholder.style.display = 'none'; // hide the image once video is ready
-      video.style.zIndex = 1;
-    });
+      // Speed control
+      const speeds = [0.9, 1, 1.25, 1.5, 1.75];
+      let currentSpeedIndex = 1; // Start at 1x speed
+      
+      if (speedBtn && speedText) {
+        speedBtn.addEventListener('click', () => {
+          currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
+          const newSpeed = speeds[currentSpeedIndex];
+          vid.playbackRate = newSpeed;
+          speedText.textContent = newSpeed + 'x';
+        });
+      }
+
+      // SVG icons
+      const playIcon = 'M8 5v14l11-7z';
+      const pauseIcon = 'M6 4h4v16H6V4zm8 0h4v16h-4V4z';
+
+      // Start paused and muted until user clicks
+      vid.pause();
+      vid.muted = true;
+      
+      // Optimize video loading
+      vid.loading = 'lazy';
+      
+      // Preload video when user hovers over play button
+      let hasPreloaded = false;
+      btn.addEventListener('mouseenter', () => {
+        if (!hasPreloaded && vid.readyState < 3) {
+          vid.preload = 'auto';
+          hasPreloaded = true;
+        }
+      });
+
+      function activateSoundAndPlay(){
+        try {
+          vid.muted = false;
+          const playPromise = vid.paused ? vid.play() : Promise.resolve();
+          Promise.resolve(playPromise).then(()=>{
+            btnText.textContent = 'Pause';
+            btnIconPath.setAttribute('d', pauseIcon);
+            btn.setAttribute('aria-pressed','true');
+            btn.setAttribute('aria-label','Pause video and mute');
+            btn.classList.add('is-active');
+            
+            // Hide overlay, title, and subtitle when playing
+            if (overlay) overlay.classList.add('hidden');
+            if (title) title.classList.add('hidden');
+            if (subtitle) subtitle.classList.add('hidden');
+          });
+        } catch(e) {}
+      }
+
+      function muteAndPause(){
+        try {
+          vid.pause();
+          vid.muted = true;
+          btnText.textContent = 'Play';
+          btnIconPath.setAttribute('d', playIcon);
+          btn.setAttribute('aria-pressed','false');
+          btn.setAttribute('aria-label','Play video with sound');
+          btn.classList.remove('is-active');
+          
+          // Show overlay, title, and subtitle when paused
+          if (overlay) overlay.classList.remove('hidden');
+          if (title) title.classList.remove('hidden');
+          if (subtitle) subtitle.classList.remove('hidden');
+        } catch(e) {}
+      }
+
+      btn.addEventListener('click', ()=>{
+        if (vid.muted || vid.paused) {
+          activateSoundAndPlay();
+        } else {
+          muteAndPause();
+        }
+      });
+
+      // Return to initial state when video ends
+      vid.addEventListener('ended', () => {
+        muteAndPause();
+        // Reset video to beginning
+        vid.currentTime = 0;
+      });
+    })();
   </script>
   <script src="script.js"></script>
 
@@ -1502,65 +1839,20 @@
   <script src="code.js"></script>
   <script src="blur-up.js"></script>
   
-  <!-- GSAP and ScrollTrigger for Parallax effect -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-  
+  <!-- Parallax and smooth scrolling removed as per user request -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Register GSAP Plugins
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // Initialize Lenis for smooth scrolling
-      const lenis = new Lenis();
-      
-      // Connect Lenis to GSAP ScrollTrigger
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0);
-
-      // Smooth scroll for "View My Work" button using Lenis
-      const viewWorkLink = document.querySelector('.hero-btn-primary[href="#recent-projects"]');
-      if (viewWorkLink) {
-        viewWorkLink.addEventListener('click', (e) => {
+      // Simple smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href !== '#' && document.querySelector(href)) {
           e.preventDefault();
-          lenis.scrollTo('#recent-projects', {
-            offset: -70, // account for fixed navbar
-            duration: 1.2,
-            easing: (t) => 1 - Math.pow(1 - t, 3) // easeOutCubic
-          });
-        });
-      }
-
-      // Parallax Layers
-      document.querySelectorAll('[data-parallax-layers]').forEach((triggerElement) => {
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: triggerElement,
-            start: "0% 0%",
-            end: "100% 0%",
-            scrub: 0
+            document.querySelector(href).scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
           }
-        });
-        
-        const layers = [
-          { layer: "1", yPercent: 20 },  // Background - slowest
-          { layer: "2", yPercent: 40 },  // Text - medium
-          { layer: "3", yPercent: 70 }   // Foreground - fastest
-        ];
-        
-        layers.forEach((layerObj, idx) => {
-          tl.to(
-            triggerElement.querySelectorAll(`[data-parallax-layer="${layerObj.layer}"]`),
-            {
-              yPercent: layerObj.yPercent,
-              ease: "none"
-            },
-            idx === 0 ? undefined : "<"
-          );
         });
       });
     });
