@@ -1829,6 +1829,30 @@
         // Reset video to beginning
         vid.currentTime = 0;
       });
+
+      // Auto-pause when user scrolls down to projects section
+      let isVideoVisible = true;
+      const videoSection = document.querySelector('.video-hero');
+      const projectsSection = document.querySelector('#recent-projects');
+      
+      if (videoSection && projectsSection) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.target === videoSection) {
+              isVideoVisible = entry.isIntersecting;
+              
+              // If video is not visible and is playing, pause it
+              if (!isVideoVisible && !vid.paused && !vid.muted) {
+                muteAndPause();
+              }
+            }
+          });
+        }, {
+          threshold: 0.3 // Trigger when 30% of video section is out of view
+        });
+        
+        observer.observe(videoSection);
+      }
     })();
   </script>
   <script src="script.js"></script>
