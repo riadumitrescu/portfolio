@@ -514,6 +514,359 @@
         font-size: 14px;
       }
     }
+    
+    /* Case Study Progress Bar - Beautiful & Functional */
+    .case-study-progress-bar {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .case-study-progress-bar.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .progress-bar-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 1rem 0;
+    }
+    
+    /* Progress Track & Fill */
+    .progress-track {
+      position: absolute;
+      left: 8px;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      width: 3px;
+      background: rgba(232, 211, 191, 0.3);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(141, 70, 48, 0.08);
+    }
+    
+    .progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(180deg, #D4A574 0%, #8D4630 100%);
+      border-radius: 3px;
+      transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(141, 70, 48, 0.3);
+    }
+    
+    /* Step Wrapper */
+    .progress-step-wrapper {
+      position: relative;
+      z-index: 10;
+      margin-bottom: 2.75rem;
+    }
+    
+    .progress-step-wrapper:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Step Navigation */
+    .progress-step-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none !important;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Progress Dot */
+    .progress-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #FFF7EF;
+      border: 3px solid #E8D3BF;
+      flex-shrink: 0;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 3px 8px rgba(141, 70, 48, 0.12);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .progress-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Progress Label */
+    .progress-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #8D4630;
+      opacity: 0.5;
+      white-space: nowrap;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.01em;
+    }
+    
+    /* Sub Steps */
+    .progress-sub-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      margin-left: 2rem;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+    
+    .progress-sub-step {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.625rem;
+      color: #D4A574;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      position: relative;
+      padding-left: 0.75rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .progress-sub-step::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: #D4A574;
+      font-size: 1rem;
+      line-height: 0.625rem;
+      transition: all 0.25s ease;
+    }
+    
+    /* Hover States */
+    .progress-step-nav:hover .progress-dot {
+      transform: scale(1.15);
+      border-color: #D4A574;
+      box-shadow: 0 4px 14px rgba(141, 70, 48, 0.25);
+    }
+    
+    .progress-step-nav:hover .progress-label {
+      opacity: 1;
+      transform: translateX(-3px);
+    }
+    
+    /* Active State */
+    .progress-step-wrapper.active .progress-dot {
+      background: linear-gradient(135deg, #8D4630 0%, #6B3424 100%);
+      border-color: #8D4630;
+      box-shadow: 0 4px 16px rgba(141, 70, 48, 0.4);
+      transform: scale(1.2);
+    }
+    
+    .progress-step-wrapper.active .progress-dot::after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .progress-step-wrapper.active .progress-label {
+      opacity: 1;
+      font-weight: 700;
+      color: #8D4630;
+    }
+    
+    .progress-step-wrapper.active .progress-sub-steps {
+      opacity: 1;
+      max-height: 200px;
+      pointer-events: auto;
+    }
+    
+    .progress-step-wrapper.active .progress-sub-step {
+      opacity: 0.65;
+      transform: translateX(0);
+    }
+    
+    .progress-sub-step:hover {
+      opacity: 1 !important;
+      color: #8D4630;
+      transform: translateX(2px);
+      text-decoration: none;
+    }
+    
+    .progress-sub-step:hover::before {
+      color: #8D4630;
+      transform: scale(1.3);
+    }
+    
+    .progress-step-wrapper.active .progress-sub-step:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    
+    .progress-step-wrapper.active .progress-sub-step:nth-child(2) {
+      transition-delay: 0.15s;
+    }
+    
+    .progress-step-wrapper.active .progress-sub-step:nth-child(3) {
+      transition-delay: 0.2s;
+    }
+    
+    /* Visited State */
+    .progress-step-wrapper.visited .progress-dot {
+      background: #F4E7D1;
+      border-color: #D4A574;
+    }
+    
+    .progress-step-wrapper.visited .progress-label {
+      opacity: 0.75;
+    }
+    
+    /* Color Tooltip Styles */
+    .color-swatch {
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .color-swatch:hover {
+      transform: scale(1.15);
+      z-index: 1000;
+    }
+    
+    .color-swatch::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) scale(0.95);
+      background: #3A2A23;
+      color: #FFF7EF;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      max-width: 300px;
+      white-space: normal;
+      text-align: left;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1001;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      font-weight: 400;
+      width: max-content;
+      max-width: 300px;
+      word-wrap: break-word;
+    }
+    
+    .color-swatch::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 7px solid transparent;
+      border-top-color: #3A2A23;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1002;
+    }
+    
+    .color-swatch:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    
+    .color-swatch:hover::before {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
+    
+    /* Prevent tooltip overflow on mobile */
+    @media (max-width: 768px) {
+      .color-swatch::after {
+        max-width: 250px;
+        font-size: 0.7rem;
+        padding: 10px 12px;
+      }
+    }
+    
+    /* Responsive: Hide on tablets and mobile */
+    @media (max-width: 1280px) {
+      .case-study-progress-bar {
+        display: none;
+      }
+    }
+    
+    /* Adjustments for larger screens */
+    @media (min-width: 1400px) {
+      .case-study-progress-bar {
+        right: 1.25rem;
+      }
+      
+      .progress-step-wrapper {
+        margin-bottom: 3.5rem;
+      }
+      
+      .progress-dot {
+        width: 20px;
+        height: 20px;
+      }
+      
+      .progress-label {
+        font-size: 0.8rem;
+      }
+      
+      .progress-sub-step {
+        font-size: 0.675rem;
+      }
+      
+      .progress-track {
+        width: 3.5px;
+      }
+    }
+    
+    /* Extra large screens */
+    @media (min-width: 1920px) {
+      .case-study-progress-bar {
+        right: 2rem;
+      }
+      
+      .progress-step-wrapper {
+        margin-bottom: 4rem;
+      }
+      
+      .progress-dot {
+        width: 22px;
+        height: 22px;
+      }
+      
+      .progress-label {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -589,11 +942,11 @@
         <div class="hero-palette">
           <div class="palette-label">Color Palette</div>
           <div class="colors-row">
-            <button class="color-swatch" style="background-color: #8D4630;" title="#8D4630" onclick="navigator.clipboard.writeText('#8D4630'); this.title='Copied!'"></button>
-            <button class="color-swatch" style="background-color: #F4E7D1;" title="#F4E7D1" onclick="navigator.clipboard.writeText('#F4E7D1'); this.title='Copied!'"></button>
-            <button class="color-swatch" style="background-color: #3A4B3A;" title="#3A4B3A" onclick="navigator.clipboard.writeText('#3A4B3A'); this.title='Copied!'"></button>
-            <button class="color-swatch" style="background-color: #F8F5F0;" title="#F8F5F0" onclick="navigator.clipboard.writeText('#F8F5F0'); this.title='Copied!'"></button>
-            <button class="color-swatch" style="background-color: #D4A574;" title="#D4A574" onclick="navigator.clipboard.writeText('#D4A574'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #8D4630;" data-color="#8D4630" data-tooltip="Terracotta Brown — The color of worn leather journals and aged paper. This grounding hue represents the reliability and permanence of journaling, creating a sense of warmth and safety where vulnerability feels welcome." onclick="navigator.clipboard.writeText('#8D4630'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #F4E7D1;" data-color="#F4E7D1" data-tooltip="Cream — Like vintage parchment, this soft cream evokes the tactile feel of writing by hand. It creates a calm, non-intimidating space that invites reflection without feeling clinical or sterile." onclick="navigator.clipboard.writeText('#F4E7D1'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #3A4B3A;" data-color="#3A4B3A" data-tooltip="Forest Green — Nature's color of growth and renewal. This muted green suggests the gentle process of personal development through journaling, like watching plants grow over time—steady, organic, and life-affirming." onclick="navigator.clipboard.writeText('#3A4B3A'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #F8F5F0;" data-color="#F8F5F0" data-tooltip="Ivory — The blank page that welcomes all thoughts. This near-white acts as a neutral canvas, reducing visual noise so users can focus on their inner voice. It's the space where thoughts become visible." onclick="navigator.clipboard.writeText('#F8F5F0'); this.title='Copied!'"></button>
+            <button class="color-swatch" style="background-color: #D4A574;" data-color="#D4A574" data-tooltip="Golden Tan — The warmth of morning light on paper. This accent color guides attention gently, like bookmarks in a favorite journal. It highlights without overwhelming, supporting the quiet ritual of reflection." onclick="navigator.clipboard.writeText('#D4A574'); this.title='Copied!'"></button>
           </div>
         </div>
       </div>
@@ -624,6 +977,62 @@
     </div>
   </div>
 </section>
+
+<!-- Case Study Progress Bar -->
+<div class="case-study-progress-bar" id="caseStudyProgressBar">
+  <div class="progress-bar-container">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <div class="progress-step-wrapper" data-section="problem">
+      <a href="#problem" class="progress-step-nav">
+        <span class="progress-dot"></span>
+        <span class="progress-label">Problem</span>
+      </a>
+      <div class="progress-sub-steps">
+        <a href="#user-research" class="progress-sub-step">User Research</a>
+        <a href="#competitive-analysis" class="progress-sub-step">Competitive Analysis</a>
+        <a href="#key-insights" class="progress-sub-step">Key Insights</a>
+      </div>
+    </div>
+    
+    <div class="progress-step-wrapper" data-section="ideation">
+      <a href="#ideation" class="progress-step-nav">
+        <span class="progress-dot"></span>
+        <span class="progress-label">Ideation</span>
+      </a>
+      <div class="progress-sub-steps">
+        <a href="#ideation" class="progress-sub-step">Character Design</a>
+      </div>
+    </div>
+    
+    <div class="progress-step-wrapper" data-section="process">
+      <a href="#process" class="progress-step-nav">
+        <span class="progress-dot"></span>
+        <span class="progress-label">Design Process</span>
+      </a>
+      <div class="progress-sub-steps">
+        <a href="#process" class="progress-sub-step">Design Principles</a>
+        <a href="#visual-metaphors" class="progress-sub-step">Visual Metaphors</a>
+        <a href="#iterations" class="progress-sub-step">Iterations & Pivots</a>
+        <a href="#wireframing" class="progress-sub-step">Wireframing</a>
+      </div>
+    </div>
+    
+    <div class="progress-step-wrapper" data-section="solution">
+      <a href="#solution" class="progress-step-nav">
+        <span class="progress-dot"></span>
+        <span class="progress-label">Solution</span>
+      </a>
+      <div class="progress-sub-steps">
+        <a href="#solution" class="progress-sub-step">Final Features</a>
+        <a href="#prototype" class="progress-sub-step">Prototype</a>
+        <a href="#validation" class="progress-sub-step">Validation</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Hero Mockup -->
 <section class="hero-mockup-section">
@@ -714,7 +1123,7 @@
 </section>
 
 <!-- User Quotes Section -->
-<section class="white-side-section">
+<section id="user-research" class="white-side-section">
   <h2 class="white-side-title">diving deep into the problem</h2>
   <div class="line1"></div>
 
@@ -835,7 +1244,7 @@
 </section>
 
 <!-- Competitive Landscape Section -->
-<section class="white-side-section">
+<section id="competitive-analysis" class="white-side-section">
   <h2 class="white-side-title">mapping what already exists</h2>
   <div class="line1"></div>
 
@@ -926,7 +1335,7 @@
 </section>
 
 <!-- What Users Want Section -->
-<section class="white-side-section">
+<section id="key-insights" class="white-side-section">
   <h2 class="white-side-title">the research insights that changed everything</h2>
   <div class="line1"></div>
 
@@ -1105,7 +1514,7 @@
 </section>
 
 <!-- Metaphor Exploration Section -->
-<section class="white-side-section">
+<section id="visual-metaphors" class="white-side-section">
   <h2 class="white-side-title">METAPHOR EXPLORATION</h2>
   <div class="line1"></div>
 
@@ -1139,7 +1548,7 @@
 </section>
 
 <!-- Design Process Section - Redesigned -->
-<section class="white-side-section">
+<section id="iterations" class="white-side-section">
   <h2 class="white-side-title">the pivots that made it work</h2>
   <div class="line1"></div>
 
@@ -1316,7 +1725,7 @@
 </section>
 
 <!-- Final Wireframes Section -->
-<section class="white-side-section">
+<section id="wireframing" class="white-side-section">
   <h2 class="white-side-title">FINAL WIREFRAMES</h2>
   <div class="line1"></div>
 
@@ -1544,7 +1953,7 @@
 </section>
 
 <!-- Early Web Prototype Section -->
-<section class="white-side-section">
+<section id="prototype" class="white-side-section">
   <h2 class="white-side-title">EARLY WEB PROTOTYPE</h2>
   <div class="line1"></div>
 
@@ -1699,7 +2108,7 @@
 </section>
 
 <!-- Insights Section -->
-<section id="insights" class="white-side-section insights-section">
+<section id="validation" class="white-side-section insights-section">
   <h2 class="white-side-title">validation through real testing</h2>
   <div class="line1"></div>
 
@@ -1786,6 +2195,55 @@
     <blockquote class="personal-quote">
       "Nuuko showed me that the best products don't just solve problems—they hold space for human experiences that are messy and deeply personal. That's a design philosophy I'll carry forward."
     </blockquote>
+  </div>
+</section>
+
+<!-- Next Steps Section -->
+<section class="white-side-section">
+  <h2 class="white-side-title">Next Steps</h2>
+  <div class="line1"></div>
+
+  <div class="section-intro-split">
+    <h3 class="white-side-smalltitle">bringing AI to life</h3>
+    <p class="white-side-paragraph lead-text">Nuuko's next phase is all about bringing the AI parts to life and turning the prototype into a real, working product. Until now, most of the testing was focused on the design, the tone, and how people actually feel while journaling. The next step is to build the deeper AI features and turn Nuuko into a tool that not only stores entries but actually understands them.</p>
+  </div>
+
+  <div class="key-insights-grid" style="margin-top: 2rem;">
+    <div class="insight-block primary">
+      <div class="insight-number">01</div>
+      <h4 class="insight-block-title">Add real AI-supported prompts</h4>
+      <p class="insight-block-text">Right now the prompts are static. I will build adaptive prompts that change based on your mood, what you wrote before, and your writing style. This will make it much easier to start an entry, even on busy days.</p>
+    </div>
+
+    <div class="insight-block primary">
+      <div class="insight-number">02</div>
+      <h4 class="insight-block-title">Build early "Wrapped" style insights</h4>
+      <p class="insight-block-text">The prototype only shows simple patterns. The next step is to use AI to notice topics, themes, emotions, and timing, and then turn them into weekly and monthly summaries. These insights will help users understand themselves over time, not just in the moment.</p>
+    </div>
+
+    <div class="insight-block primary">
+      <div class="insight-number">03</div>
+      <h4 class="insight-block-title">Create long-term "coaching" insights</h4>
+      <p class="insight-block-text">Over several weeks, Nuuko will start noticing cycles, repeating stressors, or changes in mood. The goal is to give gentle, specific advice based on real patterns, not generic self-help lines.</p>
+    </div>
+
+    <div class="insight-block primary">
+      <div class="insight-number">04</div>
+      <h4 class="insight-block-title">Launch a web-first version</h4>
+      <p class="insight-block-text">To move fast, I will build and host a full web app first. This lets me test with a larger group of students, fix problems quickly, and collect real data on how people write, reflect, and return to the app.</p>
+    </div>
+
+    <div class="insight-block primary">
+      <div class="insight-number">05</div>
+      <h4 class="insight-block-title">Make AI responsible by design</h4>
+      <p class="insight-block-text">All insights will be slow, optional, and user-controlled. I will also publish a small open-source guide showing how to build emotional AI that is safe, supportive, and non manipulative.</p>
+    </div>
+
+    <div class="insight-block primary">
+      <div class="insight-number">06</div>
+      <h4 class="insight-block-title">Grow toward the "moonshot" vision</h4>
+      <p class="insight-block-text">In the long term, Nuuko can become a real companion: a life tracker based on your actual words, a system that remembers your past selves, a guide that helps you stay aligned with your goals, a space that can tell when you are drifting or overwhelmed, and a personal archive that grows with you over years.</p>
+    </div>
   </div>
 </section>
 
@@ -2035,6 +2493,200 @@
       // Return to paused state when video ends
       vid.addEventListener('ended', () => {
         muteAndPause();
+      });
+    })();
+  </script>
+
+  <!-- Case Study Progress Bar Script -->
+  <script>
+    (function() {
+      const progressBar = document.getElementById('caseStudyProgressBar');
+      const progressFill = document.getElementById('progressFill');
+      const stepWrappers = document.querySelectorAll('.progress-step-wrapper');
+      const stepNavs = document.querySelectorAll('.progress-step-nav');
+      const sections = {
+        problem: document.getElementById('problem'),
+        ideation: document.getElementById('ideation'),
+        process: document.getElementById('process'),
+        solution: document.getElementById('solution')
+      };
+      
+      if (!progressBar || !stepWrappers.length) return;
+      
+      let visitedSections = new Set();
+      let currentActiveSection = null;
+      
+      // Show progress bar after scrolling past hero section
+      const heroSection = document.querySelector('.hero-mockup-section');
+      const showProgressBar = () => {
+        if (!heroSection) return;
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        if (window.scrollY > heroBottom - 200) {
+          progressBar.classList.add('visible');
+        } else {
+          progressBar.classList.remove('visible');
+        }
+      };
+      
+      // Determine which section is currently in view and calculate progress
+      const getActiveSection = () => {
+        const scrollPos = window.scrollY + window.innerHeight / 3;
+        let active = null;
+        let maxTop = -Infinity;
+        let progress = 0;
+        
+        Object.entries(sections).forEach(([id, section]) => {
+          if (!section) return;
+          const rect = section.getBoundingClientRect();
+          const sectionTop = rect.top + window.scrollY;
+          
+          if (sectionTop <= scrollPos && sectionTop > maxTop) {
+            maxTop = sectionTop;
+            active = id;
+          }
+        });
+        
+        // Fallback
+        if (!active && sections.solution) {
+          const solutionTop = sections.solution.getBoundingClientRect().top + window.scrollY;
+          if (scrollPos > solutionTop - 100) {
+            active = 'solution';
+          }
+        }
+        
+        return active || 'problem';
+      };
+      
+      // Calculate smooth progress percentage
+      const calculateProgressPercentage = () => {
+        const activeId = getActiveSection();
+        const sectionOrder = ['problem', 'ideation', 'process', 'solution'];
+        const activeIndex = sectionOrder.indexOf(activeId);
+        
+        if (activeIndex === -1) return 0;
+        
+        const activeSection = sections[activeId];
+        if (!activeSection) return (activeIndex / 3) * 100;
+        
+        const sectionTop = activeSection.offsetTop;
+        const sectionHeight = activeSection.offsetHeight;
+        const scrollPos = window.scrollY + window.innerHeight / 3;
+        
+        // Calculate how far through the current section we are
+        const sectionProgress = Math.max(0, Math.min(1, (scrollPos - sectionTop) / sectionHeight));
+        
+        // Base progress + current section progress
+        const baseProgress = activeIndex / 3;
+        const additionalProgress = sectionProgress / 3;
+        
+        return Math.min(100, (baseProgress + additionalProgress) * 100);
+      };
+      
+      // Update progress bar states
+      const updateProgressBar = () => {
+        const activeId = getActiveSection();
+        const progressPercentage = calculateProgressPercentage();
+        
+        // Update progress fill
+        if (progressFill) {
+          progressFill.style.height = `${progressPercentage}%`;
+        }
+        
+        // Mark all sections up to and including active as visited
+        const sectionOrder = ['problem', 'ideation', 'process', 'solution'];
+        const activeIndex = sectionOrder.indexOf(activeId);
+        sectionOrder.slice(0, activeIndex + 1).forEach(id => visitedSections.add(id));
+        
+        // Update active state
+        if (activeId !== currentActiveSection) {
+          stepWrappers.forEach(wrapper => {
+            const sectionId = wrapper.getAttribute('data-section');
+            wrapper.classList.remove('active', 'visited');
+            
+            if (sectionId === activeId) {
+              wrapper.classList.add('active');
+            } else if (visitedSections.has(sectionId)) {
+              wrapper.classList.add('visited');
+            }
+          });
+          
+          currentActiveSection = activeId;
+        }
+      };
+      
+      // Smooth scroll handler for progress steps and sub-steps
+      stepNavs.forEach((nav) => {
+        nav.addEventListener('click', (e) => {
+          e.preventDefault();
+          const wrapper = nav.closest('.progress-step-wrapper');
+          const targetId = wrapper.getAttribute('data-section');
+          const targetSection = sections[targetId];
+          
+          if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 100;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+            
+            visitedSections.add(targetId);
+          }
+        });
+      });
+      
+      // Handle sub-step clicks
+      const subSteps = document.querySelectorAll('.progress-sub-step');
+      subSteps.forEach(step => {
+        step.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = step.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              const offsetTop = targetElement.offsetTop - 100;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+              
+              // Mark parent section as visited
+              const wrapper = step.closest('.progress-step-wrapper');
+              if (wrapper) {
+                const sectionId = wrapper.getAttribute('data-section');
+                visitedSections.add(sectionId);
+              }
+            }
+          }
+        });
+      });
+      
+      // Throttled scroll handler
+      let ticking = false;
+      const handleScroll = () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            showProgressBar();
+            updateProgressBar();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+      
+      // Initial state
+      updateProgressBar();
+      showProgressBar();
+      
+      // Event listeners
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      window.addEventListener('resize', updateProgressBar, { passive: true });
+      
+      // Update on load
+      window.addEventListener('load', () => {
+        updateProgressBar();
+        showProgressBar();
       });
     })();
   </script>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ria - Links</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #f7f3f0 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 4px solid white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #6b5b4f;
+            line-height: 1.6;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-bottom: 40px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 30px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .link-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .link-card:active {
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            min-width: 40px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .link-content {
+            flex: 1;
+        }
+
+        .link-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 4px;
+        }
+
+        .link-description {
+            font-size: 14px;
+            color: #7a7a7a;
+            line-height: 1.4;
+        }
+
+        .arrow {
+            font-size: 20px;
+            color: #c4b5a8;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 480px) {
+            .tagline {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            .link-card {
+                padding: 18px 20px;
+            }
+
+            .link-title {
+                font-size: 16px;
+            }
+
+            .link-description {
+                font-size: 13px;
+            }
+
+            .icon {
+                min-width: 36px;
+                width: 36px;
+                height: 36px;
+            }
+
+            .icon svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .profile-image {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #9a8d82;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Profile Picture - Replace with your image path -->
+            <img src="assets/profile-pics/me-instagram.JPG" alt="Ria" class="profile-image">
+            <p class="tagline">I share things that help you understand yourself better</p>
+        </div>
+
+        <!-- Latest YouTube Video -->
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/I5Bd6D11d0s"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Nuuko App Link -->
+        <a href="https://www.nuuko.app/" class="link-card" target="_blank" rel="noopener noreferrer">
+            <div class="icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5l6.74-6.76z" stroke="#6b5b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="16" y1="8" x2="2" y2="22" stroke="#6b5b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="link-content">
+                <div class="link-title">Try my app for free</div>
+                <div class="link-description">A journaling app that actually aims at keeping you consistent</div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <!-- YouTube Channel Link -->
+        <a href="https://www.youtube.com/@ria-dms" class="link-card" target="_blank" rel="noopener noreferrer">
+            <div class="icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" stroke="#6b5b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#6b5b4f"/>
+                </svg>
+            </div>
+            <div class="link-content">
+                <div class="link-title">Subscribe on YouTube</div>
+                <div class="link-description">@ria-dms</div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <!-- Instagram Link -->
+        <a href="https://www.instagram.com/ria.dms/" class="link-card" target="_blank" rel="noopener noreferrer">
+            <div class="icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#6b5b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#6b5b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="17.5" cy="6.5" r="1.5" fill="#6b5b4f"/>
+                </svg>
+            </div>
+            <div class="link-content">
+                <div class="link-title">Follow on Instagram</div>
+                <div class="link-description">@ria.dms</div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+    </div>
+</body>
+</html>
