@@ -974,9 +974,9 @@
       .video-hero__title { font-size: clamp(32px, 6.5vw, 56px); }
     }
     @media (max-width: 768px) {
-      .video-hero { 
-        height: 90vh; 
-        min-height: 500px; 
+      .video-hero {
+        height: 90vh;
+        min-height: 500px;
       }
       .video-hero__content-wrapper {
         bottom: 5%;
@@ -987,37 +987,51 @@
         width: 90%;
         gap: clamp(16px, 2.5vh, 24px);
       }
-      .video-hero__title { 
-        font-size: clamp(28px, 8vw, 48px); 
+      .video-hero__title {
+        font-size: clamp(28px, 8vw, 48px);
       }
       .video-hero__subtitle {
         font-size: clamp(16px, 4vw, 18px);
         width: 100%;
         margin: 0 auto;
       }
-      .video-hero__actions { 
-        flex-direction: column; 
-        gap: 10px;
+      .video-hero__actions {
+        flex-direction: row;
+        gap: 8px;
         width: 100%;
         align-items: center;
         justify-content: center;
+        flex-wrap: nowrap;
       }
       .video-hero__button,
       .video-hero__speed-button,
       .video-hero__link {
-        width: 100%;
-        max-width: 300px;
+        width: auto;
+        max-width: none;
         justify-content: center;
         text-align: center;
-        padding: 14px 22px;
-        font-size: 15px;
+        padding: 10px 14px;
+        font-size: 13px;
         min-width: auto;
+        flex: 1;
+        max-width: 120px;
+      }
+      .video-hero__button {
+        gap: 4px;
+      }
+      .video-hero__button-icon {
+        width: 16px;
+        height: 16px;
+      }
+      /* Hide About Me section on mobile */
+      iframe[src="liquidsection.html"] {
+        display: none;
       }
     }
     @media (max-width: 480px) {
-      .video-hero { 
-        height: 85vh; 
-        min-height: 460px; 
+      .video-hero {
+        height: 85vh;
+        min-height: 460px;
       }
       .video-hero__content-wrapper {
         bottom: 4%;
@@ -1027,17 +1041,25 @@
         max-width: 92%;
         width: 92%;
       }
-      .video-hero__title { 
-        font-size: clamp(24px, 9.5vw, 40px); 
+      .video-hero__title {
+        font-size: clamp(24px, 9.5vw, 40px);
       }
       .video-hero__subtitle {
         font-size: clamp(13px, 4.2vw, 16px);
       }
+      .video-hero__actions {
+        gap: 6px;
+      }
       .video-hero__button,
       .video-hero__speed-button,
       .video-hero__link {
-        padding: 12px 18px;
-        font-size: 14px;
+        padding: 8px 10px;
+        font-size: 12px;
+        max-width: 100px;
+      }
+      .video-hero__button-icon {
+        width: 14px;
+        height: 14px;
       }
     }
     @media (min-width: 1600px) {

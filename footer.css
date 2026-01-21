@@ -215,6 +215,33 @@ ul {
     .btn-learn-more {
       margin-top: 20px; /* Adjusted margin for smaller screens */
     }
+
+    /* Center footer content on mobile */
+    .custom-footer .row {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .custom-footer .col-md-3,
+    .custom-footer .col-md-6 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .custom-footer .example-2 {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .footer-text {
+      padding: 20px 15px;
+      text-align: center;
+    }
   }
   
   .card {

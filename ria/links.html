@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ria - Links</title>
+    <link rel="icon" href="../assets/circleprofilepic.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --white: #ffffff;
+            --cream: #fdfcfa;
+            --ivory: #f9f7f4;
+            --sand: #f3f0eb;
+            --ink: #1a1816;
+            --charcoal: #2d2a26;
+            --stone: #5c5650;
+            --mist: #8a857d;
+            --gold: #c9a962;
+            --gold-glow: #d4bc7d;
+            --gold-soft: rgba(201, 169, 98, 0.12);
+            --border: #eae7e2;
+            --shadow-sm: 0 2px 8px rgba(26, 24, 22, 0.06);
+            --shadow-md: 0 4px 20px rgba(26, 24, 22, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: block;
+            object-fit: cover;
+            border: 3px solid var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.375rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .moon-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+        }
+
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--stone);
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 1.25rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .link-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .link-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .link-card.featured {
+            background: var(--gold-soft);
+            border-color: var(--gold-glow);
+        }
+
+        .link-card.featured:hover {
+            background: var(--white);
+        }
+
+        .icon {
+            min-width: 44px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: var(--ivory);
+            transition: all 0.3s ease;
+        }
+
+        .icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .icon.moon {
+            background: var(--gold-soft);
+            color: var(--gold);
+        }
+
+        .icon.app {
+            background: var(--gold-soft);
+            color: var(--gold);
+        }
+
+        .link-card:hover .icon.app {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .icon.youtube {
+            background: rgba(255, 0, 0, 0.06);
+            color: var(--stone);
+        }
+
+        .link-card:hover .icon.youtube {
+            background: #ff0000;
+            color: var(--white);
+        }
+
+        .icon.instagram {
+            background: linear-gradient(135deg, rgba(131, 58, 180, 0.08), rgba(253, 29, 29, 0.08));
+            color: var(--stone);
+        }
+
+        .link-card:hover .icon.instagram {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d);
+            color: var(--white);
+        }
+
+        .link-content {
+            flex: 1;
+        }
+
+        .link-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 2px;
+        }
+
+        .link-description {
+            font-size: 0.8rem;
+            color: var(--mist);
+            line-height: 1.4;
+        }
+
+        .arrow {
+            font-size: 1.1rem;
+            color: var(--mist);
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover .arrow {
+            color: var(--ink);
+            transform: translateX(4px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--mist);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 30px 16px;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+
+            .link-card {
+                padding: 0.875rem 1rem;
+            }
+
+            .link-title {
+                font-size: 0.9rem;
+            }
+
+            .link-description {
+                font-size: 0.75rem;
+            }
+
+            .icon {
+                min-width: 40px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .profile-image {
+                width: 88px;
+                height: 88px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="../assets/profile-pics/me-instagram.JPG" alt="Ria" class="profile-image">
+            <div class="brand">
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <span class="brand-name">ria</span>
+            </div>
+            <p class="tagline">I share things that help you understand yourself better</p>
+        </div>
+
+        <!-- Latest YouTube Video -->
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/CTVUbn3iOTs"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Free Guides Link - Featured -->
+        <a href="index.html" class="link-card featured">
+            <div class="icon moon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </div>
+            <div class="link-content">
+                <div class="link-title">Free Journaling Guides</div>
+                <div class="link-description">Gentle prompts for overthinkers who want clarity</div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <!-- Nuuko App Link -->
+        <a href="https://www.nuuko.app/" class="link-card" target="_blank" rel="noopener noreferrer">
+            <div class="icon app">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5l6.74-6.76z"/>
+                    <line x1="16" y1="8" x2="2" y2="22"/>
+                </svg>
+            </div>
+            <div class="link-content">
+                <div class="link-title">Try my app for free</div>
+                <div class="link-description">A journaling app that keeps you consistent</div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <!-- YouTube Channel Link -->
+        <a href="https://www.youtube.com/@ria-dms" class="link-card" target="_blank" rel="noopener noreferrer">
+            <div class="icon youtube">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/>
+                </svg>
+            </div>
+            <div class="link-content">
+                <div class="link-title">Subscribe on YouTube</div>
+                <div class="link-description">@ria-dms</div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <!-- Instagram Link -->
+        <a href="https://www.instagram.com/ria.dms/" class="link-card" target="_blank" rel="noopener noreferrer">
+            <div class="icon instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+            </div>
+            <div class="link-content">
+                <div class="link-title">Follow on Instagram</div>
+                <div class="link-description">@ria.dms</div>
+            </div>
+            <div class="arrow">→</div>
+        </a>
+
+        <div class="footer">
+            <p>made with care</p>
+        </div>
+    </div>
+</body>
+</html>

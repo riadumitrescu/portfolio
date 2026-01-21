@@ -991,25 +991,38 @@ li:hover .tag-list {
 /* Responsive adjustments for tags */
 @media (max-width: 768px) {
     .project-tags {
-        gap: 6px;
-        margin-top: 12px;
+        gap: 5px;
+        margin-top: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-    
+
+    .project-tags::-webkit-scrollbar {
+        display: none;
+    }
+
     .project-tag {
-        padding: 4px 10px;
-        font-size: 0.75rem;
+        padding: 6px 12px;
+        font-size: 0.72rem;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
-    
+
     .card-body {
         padding: 1.25rem !important;
         min-height: 160px;
     }
-    
+
     .card-title {
         font-size: 1.2rem;
         margin-bottom: 0.7rem;
     }
-    
+
     .description-text {
         font-size: 0.95rem;
         margin-bottom: 0.7rem;
@@ -1174,7 +1187,8 @@ li:hover .tag-list {
     .recent-project-card .card-body { padding: 1.5rem; }
     .recent-project-card .card-title { font-size: clamp(1.05rem, 2.2vw, 1.25rem); margin-bottom: 0.9rem; }
     .recent-project-card .description-text { font-size: clamp(0.9rem, 1.8vw, 1rem); line-height: 1.6; margin-bottom: 0.9rem; }
-    .project-tag { font-size: clamp(0.75rem, 1.5vw, 0.85rem); padding: 6px 12px; }
+    .project-tags { flex-wrap: nowrap; overflow-x: auto; }
+    .project-tag { font-size: 0.72rem; padding: 6px 12px; flex-shrink: 0; }
 }
 
 /* Mobile portrait (420px - 600px) */
@@ -1184,7 +1198,8 @@ li:hover .tag-list {
     .recent-project-card .card-body { padding: 1.25rem; }
     .recent-project-card .card-title { font-size: clamp(1rem, 4vw, 1.2rem); margin-bottom: 0.8rem; line-height: 1.25; }
     .recent-project-card .description-text { font-size: clamp(0.85rem, 3.2vw, 0.95rem); line-height: 1.55; margin-bottom: 0.8rem; }
-    .project-tag { font-size: clamp(0.7rem, 2.8vw, 0.8rem); padding: 5px 10px; }
+    .project-tags { flex-wrap: nowrap; overflow-x: auto; }
+    .project-tag { font-size: 0.68rem; padding: 5px 10px; flex-shrink: 0; }
 }
 
 /* Small mobile (< 420px) */
@@ -1194,7 +1209,8 @@ li:hover .tag-list {
     .recent-project-card .card-body { padding: 1.1rem; }
     .recent-project-card .card-title { font-size: clamp(0.95rem, 4.5vw, 1.1rem); margin-bottom: 0.7rem; }
     .recent-project-card .description-text { font-size: clamp(0.8rem, 3.6vw, 0.9rem); line-height: 1.5; margin-bottom: 0.7rem; }
-    .project-tag { font-size: clamp(0.65rem, 3vw, 0.75rem); padding: 4px 9px; }
+    .project-tags { flex-wrap: nowrap; overflow-x: auto; }
+    .project-tag { font-size: 0.65rem; padding: 4px 9px; flex-shrink: 0; }
 }
 
 /* Ensure cards stack properly on mobile */
