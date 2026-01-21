@@ -39,17 +39,17 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-container">
-      <a href="index.html" class="nav-brand">
+      <a href="/ria/" class="nav-brand">
         <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
         ria
       </a>
       <ul class="nav-links">
-        <li><a href="index.html" class="nav-link active">home</a></li>
-        <li><a href="about.html" class="nav-link">about</a></li>
+        <li><a href="/ria/" class="nav-link active">home</a></li>
+        <li><a href="/ria/about" class="nav-link">about</a></li>
         <li><a href="https://www.nuuko.app/blog.html" class="nav-link" target="_blank">journal</a></li>
-        <li><a href="reels.html" class="nav-link">reels</a></li>
+        <li><a href="/ria/reels" class="nav-link">reels</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle menu">
         <span></span>
@@ -61,10 +61,10 @@
   <!-- Mobile Menu -->
   <div class="mobile-menu">
     <ul class="mobile-nav-links">
-      <li><a href="index.html">home</a></li>
-      <li><a href="about.html">about</a></li>
+      <li><a href="/ria/">home</a></li>
+      <li><a href="/ria/about">about</a></li>
       <li><a href="https://www.nuuko.app/blog.html" target="_blank">journal</a></li>
-      <li><a href="reels.html">reels</a></li>
+      <li><a href="/ria/reels">reels</a></li>
     </ul>
     <div class="mobile-social">
       <a href="https://www.instagram.com/ria.dms/" target="_blank" aria-label="Instagram">
@@ -446,11 +446,11 @@
       })
       .then(() => {
         // Redirect to download page with name parameter
-        window.location.href = `download.html?name=${encodeURIComponent(firstName)}`;
+        window.location.href = `/ria/download?name=${encodeURIComponent(firstName)}`;
       })
       .catch(() => {
         // Even on error (no-cors can't read response), redirect to download page
-        window.location.href = `download.html?name=${encodeURIComponent(firstName)}`;
+        window.location.href = `/ria/download?name=${encodeURIComponent(firstName)}`;
       });
     });
   </script>
