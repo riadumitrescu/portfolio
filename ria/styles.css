@@ -1309,6 +1309,20 @@ h3 {
   color: var(--mist);
 }
 
+.footer-pr {
+  margin-top: 0.5rem;
+}
+
+.footer-pr a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-pr a:hover {
+  color: var(--ink);
+}
+
 /* ===========================================
    DOWNLOAD PAGE
    =========================================== */
@@ -1560,6 +1574,57 @@ h3 {
 
 .next-link svg {
   color: var(--gold);
+}
+
+/* ===========================================
+   REELS PAGE
+   =========================================== */
+.reels-hero {
+  padding: 9rem 0 3rem;
+  background: var(--gradient-cream);
+  position: relative;
+}
+
+.reels-hero::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 500px;
+  max-height: 500px;
+  background: radial-gradient(circle, rgba(201, 169, 98, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.reels-intro {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--stone);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.reels-content {
+  padding: 4rem 0 5rem;
+  background: var(--white);
+}
+
+.reels-cta {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.reels-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--mist);
+  line-height: 1.7;
+  font-style: italic;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 /* ===========================================

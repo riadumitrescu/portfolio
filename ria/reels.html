@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Reels | Ria</title>
+  <link rel="icon" href="../assets/circleprofilepic.png">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Instagram Reels - Journaling & Emotional Wellness | Ria">
+  <meta name="description" content="Watch short-form content about journaling, emotional wellness, and self-reflection.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        ria
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">home</a></li>
+        <li><a href="about.html" class="nav-link">about</a></li>
+        <li><a href="https://www.nuuko.app/blog.html" class="nav-link" target="_blank">journal</a></li>
+        <li><a href="reels.html" class="nav-link active">reels</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">home</a></li>
+      <li><a href="about.html">about</a></li>
+      <li><a href="https://www.nuuko.app/blog.html" target="_blank">journal</a></li>
+      <li><a href="reels.html">reels</a></li>
+    </ul>
+    <div class="mobile-social">
+      <a href="https://www.instagram.com/ria.dms/" target="_blank" aria-label="Instagram">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.youtube.com/@ria-dms/" target="_blank" aria-label="YouTube">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+          <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Reels Hero -->
+  <section class="reels-hero">
+    <div class="container">
+      <p class="section-title">short-form content</p>
+      <h1 class="section-heading">instagram reels</h1>
+      <p class="reels-intro">quick thoughts on journaling, emotional wellness, and finding clarity</p>
+    </div>
+  </section>
+
+  <!-- Reels Grid -->
+  <section class="reels-content">
+    <div class="container">
+      <div class="reels-cta">
+        <a href="https://www.instagram.com/ria.dms/reels/" target="_blank" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          <span>watch all reels on instagram</span>
+        </a>
+      </div>
+
+      <p class="reels-note">find short videos about journaling prompts, emotional check-ins, and gentle reminders for when you're feeling stuck</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <span class="footer-brand">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        ria
+      </span>
+      <p>made with care</p>
+      <p class="footer-pr">PR: <a href="mailto:mariadumitrescuoffice@gmail.com">mariadumitrescuoffice@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    });
+
+    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      });
+    });
+
+    // Nav scroll effect
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+
+</html>
