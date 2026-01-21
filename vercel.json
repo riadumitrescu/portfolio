@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/ria",
+      "destination": "/ria/index.html"
+    },
+    {
+      "source": "/ria/:path*",
+      "destination": "/ria/:path*"
+    }
+  ]
+}
