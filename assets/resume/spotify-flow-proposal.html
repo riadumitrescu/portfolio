@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Pathways - Product Design Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #121212;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 0;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cover Page */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #121212;
+            height: 297mm;
+        }
+
+        .cover-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(30, 215, 96, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .cover-glow-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(30, 215, 96, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            pointer-events: none;
+        }
+
+        /* Main Square */
+        .main-square {
+            width: 480px;
+            height: 480px;
+            background: linear-gradient(135deg, #1ED760 0%, #1DB954 100%);
+            border-radius: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            box-shadow:
+                0 60px 120px rgba(30, 215, 96, 0.25),
+                0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .spotify-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 40px;
+        }
+
+        .brand-name {
+            font-size: 64px;
+            font-weight: 900;
+            color: #000000;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        .feature-name {
+            font-size: 32px;
+            font-weight: 600;
+            color: #000000;
+            opacity: 0.7;
+            margin-bottom: 48px;
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: #000000;
+            opacity: 0.4;
+            border-radius: 2px;
+            margin-bottom: 40px;
+        }
+
+        .proposal-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #000000;
+            opacity: 0.6;
+            margin-bottom: 8px;
+        }
+
+        .author-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .cover-footer {
+            position: absolute;
+            bottom: 48px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .cover-footer p {
+            font-size: 13px;
+            color: #6a6a6a;
+            margin-bottom: 4px;
+        }
+
+        /* Content Pages */
+        .content-page {
+            padding: 48px 56px;
+            background: #121212;
+            height: 297mm;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .page-logo {
+            width: 28px;
+            height: 28px;
+        }
+
+        .page-number {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6a6a6a;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #1ED760;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+            color: #1ED760;
+        }
+
+        p {
+            font-size: 14px;
+            color: #a7a7a7;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .lead {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #242424 0%, #1a1a1a 100%);
+            border-radius: 16px;
+            padding: 28px;
+            border-left: 3px solid #1ED760;
+            margin: 24px 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .highlight-box p {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .stat-box {
+            background: #242424;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .stat-value {
+            font-size: 40px;
+            font-weight: 800;
+            color: #1ED760;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #a7a7a7;
+            font-weight: 500;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .feature-card {
+            background: #242424;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #333;
+        }
+
+        .feature-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            font-size: 20px;
+        }
+
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        ul li {
+            font-size: 14px;
+            color: #a7a7a7;
+            line-height: 1.6;
+            padding: 8px 0 8px 20px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #1ED760;
+            border-radius: 50%;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, #1ED760 0%, #1DB954 100%);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .impact-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 4px;
+        }
+
+        .impact-label {
+            font-size: 12px;
+            color: #000000;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="page cover">
+        <div class="cover-glow"></div>
+        <div class="cover-glow-2"></div>
+
+        <div class="main-square">
+            <svg class="spotify-logo" viewBox="0 0 100 100" fill="#000000">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#000000" stroke-width="4"/>
+                <path d="M35 30l40 20-40 20V30z" fill="#000000"/>
+            </svg>
+
+            <div class="brand-name">Music Streaming</div>
+            <div class="feature-name">Pathways</div>
+
+            <div class="divider"></div>
+
+            <div class="proposal-label">Product Design Proposal</div>
+            <div class="author-name">Maria Dumitrescu</div>
+        </div>
+
+        <div class="cover-footer">
+            <p>Turn Listeners Into Fans</p>
+            <p>Product Design Intern Application • 2026</p>
+        </div>
+    </div>
+
+    <!-- Page 1: Problem -->
+    <div class="page content-page">
+        <div class="page-header">
+            <svg class="page-logo" viewBox="0 0 24 24" fill="#1ED760">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 8l6 4-6 4V8z" fill="currentColor"/>
+            </svg>
+            <div class="page-number">01</div>
+        </div>
+
+        <div class="section-label">The Problem</div>
+        <h2>Discovery is Broken</h2>
+        <p class="lead">Music discovery has shifted to social platforms, but the journey from "I like this song" to "I'm a fan" is broken. Listening has become passive, algorithmic, and disconnected from artist identity.</p>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-value">82%</div>
+                <div class="stat-label">of Gen Z discovers music on social media</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">19%</div>
+                <div class="stat-label">go on to explore more from that artist</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">100K+</div>
+                <div class="stat-label">tracks uploaded to Spotify daily</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h3>The Core Insight</h3>
+            <p>Spotify excels at helping you find songs. But finding a song isn't the same as finding an artist. The listener-to-fan conversion funnel has no designed experience.</p>
+        </div>
+
+        <h3 style="margin-top: 32px;">Key Pain Points</h3>
+        <ul>
+            <li><strong>Shallow listening:</strong> Gen Z's listening is passive, nostalgic, and algorithm-driven—fans aren't building deep connections with artists</li>
+            <li><strong>Discovery drop-off:</strong> After hearing a song on TikTok, most listeners never explore the artist's catalog</li>
+            <li><strong>Artist cold-start:</strong> 100,000+ new tracks daily means emerging artists face impossible competition for visibility</li>
+            <li><strong>Algorithm opacity:</strong> Users don't understand why they're recommended certain music, reducing trust and engagement</li>
+        </ul>
+
+        <p style="margin-top: 24px; font-size: 12px; color: #6a6a6a;"><strong>Sources:</strong> MIDiA Research, Spotify for Artists, Deloitte Digital Media Trends 2024, Record of the Day Gen Z Study</p>
+    </div>
+
+    <!-- Page 2: Solution -->
+    <div class="page content-page">
+        <div class="page-header">
+            <svg class="page-logo" viewBox="0 0 24 24" fill="#1ED760">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 8l6 4-6 4V8z" fill="currentColor"/>
+            </svg>
+            <div class="page-number">02</div>
+        </div>
+
+        <div class="section-label">The Solution</div>
+        <h2>Introducing Pathways</h2>
+        <p class="lead">When Spotify detects you're connecting with a new artist, Pathways offers a guided journey into their world—not just more songs, but context, story, and connection that transforms casual listeners into invested fans.</p>
+
+        <div class="two-column">
+            <div class="feature-card">
+                <h4><span class="feature-icon">🎯</span> Smart Entry Points</h4>
+                <p>Curated starting points: "Essential tracks," "Where it all began," "Hidden gems," and "Latest evolution"—each with context that helps listeners understand what they're hearing.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="feature-icon">📖</span> The Artist's Story</h4>
+                <p>Surface the human behind the music: influences, collaborators, creative journey. Gen Z craves authenticity—Pathways delivers the context that builds real connection.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="feature-icon">🧬</span> Your Connection</h4>
+                <p>Show listeners WHY this artist resonates: "You discovered them through..." Making the algorithm transparent and the journey personal.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="feature-icon">🌍</span> Expand the World</h4>
+                <p>Guide listeners to adjacent artists and scenes. Help emerging artists get discovered by connecting them to artists their potential fans already love.</p>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 24px;">
+            <h3>How It Works</h3>
+            <p>When a listener shows high engagement signals (repeated plays, saves, full listens), Pathways activates on the artist profile—transforming a static page into a guided journey of discovery with progress tracking.</p>
+        </div>
+
+        <h3 style="margin-top: 24px;">Design Principles</h3>
+        <ul>
+            <li><strong>Progressive disclosure:</strong> Works without interaction, but rewards those who want to go deeper</li>
+            <li><strong>Transparent intelligence:</strong> Show users what the algorithm is doing and why</li>
+            <li><strong>Context over catalog:</strong> Curate with meaning, not just popularity metrics</li>
+        </ul>
+    </div>
+
+    <!-- Page 3: Impact -->
+    <div class="page content-page">
+        <div class="page-header">
+            <svg class="page-logo" viewBox="0 0 24 24" fill="#1ED760">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 8l6 4-6 4V8z" fill="currentColor"/>
+            </svg>
+            <div class="page-number">03</div>
+        </div>
+
+        <div class="section-label">Expected Impact</div>
+        <h2>Why This Matters</h2>
+        <p class="lead">Pathways addresses the core tension in modern streaming: infinite catalog, shallow connection. By designing the listener-to-fan journey, we unlock value for listeners, artists, and Spotify.</p>
+
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-value">↑ 2.5x</div>
+                <div class="impact-label">Super listener conversion</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-value">↑ 40%</div>
+                <div class="impact-label">Artist catalog depth</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-value">↓ 35%</div>
+                <div class="impact-label">New listener drop-off</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-value">↑ 60%</div>
+                <div class="impact-label">Emerging artist discovery</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Strategic Alignment</h3>
+            <p>Pathways directly supports Spotify's 2026 focus on "intentional listening" articulated by co-CEOs Alex Norström and Gustav Söderström. It leverages existing data, enhances the premium value proposition, and creates a moat against social-first competitors.</p>
+        </div>
+
+        <h3 style="margin-top: 32px;">Value Creation</h3>
+        <div class="two-column">
+            <div class="feature-card">
+                <h4>For Listeners</h4>
+                <p>Deeper, more meaningful music experiences. A sense of progress and discovery. Transparent recommendations they can trust.</p>
+            </div>
+            <div class="feature-card">
+                <h4>For Artists</h4>
+                <p>Better fan conversion. Emerging artists connected to their natural audience. Catalog depth over single-song virality.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid #333; text-align: center;">
+            <p style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Let's build this together.</p>
+            <p style="font-size: 13px; color: #6a6a6a; margin-bottom: 0;">Maria Dumitrescu • Product Design Intern Application • 2026</p>
+        </div>
+    </div>
+</body>
+</html>
