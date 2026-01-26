@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Flow Canvas — Maria Dumitrescu</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            color: white;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ===== HERO CARD ===== */
+        .hero-card {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.3),
+                0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        /* Flow Icon */
+        .flow-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
+        }
+
+        .flow-icon svg {
+            width: 56px;
+            height: 56px;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #1a1a2e;
+            letter-spacing: -0.5px;
+        }
+
+        .card-subtitle {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+            max-width: 280px;
+            line-height: 1.5;
+        }
+
+        .proposal-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .proposal-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.1;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .proposal-subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 48px;
+            line-height: 1.5;
+        }
+
+        .author-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 32px 48px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .author-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .author-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .author-role {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* ===== FOOTER INFO ===== */
+        .footer-info {
+            position: absolute;
+            bottom: 48px;
+            display: flex;
+            gap: 48px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .footer-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 10px;
+        }
+
+        .footer-value {
+            font-weight: 500;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .microsoft-square {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Card -->
+    <div class="hero-card">
+        <div class="flow-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+        </div>
+        <span class="card-title">Flow Canvas</span>
+        <span class="card-subtitle">Contextual AI for Windows</span>
+        <span class="proposal-badge">Design Proposal</span>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <h1 class="proposal-title">Windows Flow Canvas</h1>
+        <p class="proposal-subtitle">
+            A contextual AI layer that stays in your workflow instead of pulling you out of it. Reimagining Copilot integration for reduced context switching and enhanced productivity.
+        </p>
+
+        <div class="author-section">
+            <p class="author-label">Designed by</p>
+            <h2 class="author-name">Maria Dumitrescu</h2>
+            <p class="author-role">Product Design Intern Application — Windows Design Team</p>
+        </div>
+    </div>
+
+    <!-- Footer Info -->
+    <div class="footer-info">
+        <div class="footer-item">
+            <span class="footer-label">Position</span>
+            <span class="footer-value">Product Design Intern</span>
+        </div>
+        <div class="footer-item">
+            <span class="footer-label">Team</span>
+            <span class="footer-value">Windows Design</span>
+        </div>
+        <div class="footer-item">
+            <span class="footer-label">Date</span>
+            <span class="footer-value">January 2026</span>
+        </div>
+    </div>
+</body>
+</html>
