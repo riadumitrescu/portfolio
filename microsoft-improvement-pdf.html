@@ -131,6 +131,7 @@
             border-radius: 16px;
             padding: 32px 48px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 32px;
         }
 
         .author-label {
@@ -150,6 +151,55 @@
         .author-role {
             font-size: 14px;
             opacity: 0.8;
+        }
+
+        /* ===== LINK BUTTON ===== */
+        .view-proposal-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 32px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+        }
+
+        .view-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .link-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+            transition: all 0.2s;
+        }
+
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .link-text {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .link-icon {
+            width: 20px;
+            height: 20px;
         }
 
         /* ===== FOOTER INFO ===== */
@@ -216,6 +266,16 @@
             <p class="author-label">Designed by</p>
             <h2 class="author-name">Maria Dumitrescu</h2>
             <p class="author-role">Product Design Intern Application — Windows Design Team</p>
+        </div>
+
+        <div class="view-proposal-section">
+            <p class="view-label">View Full Proposal Online</p>
+            <a href="https://mariadumitrescu.com/microsoft-improvement.html" class="link-button">
+                <svg class="link-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                </svg>
+                <span class="link-text">mariadumitrescu.com/microsoft-improvement.html</span>
+            </a>
         </div>
     </div>
 
