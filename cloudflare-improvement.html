@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare Copilot — A Design Proposal by Maria Dumitrescu</title>
+    <link rel="icon" href="./assets/circleprofilepic.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* ===== CLOUDFLARE DESIGN SYSTEM ===== */
+        :root {
+            /* Cloudflare Brand Colors */
+            --cf-orange: #F6821F;
+            --cf-orange-dark: #D96A18;
+            --cf-orange-light: #FFB366;
+            --cf-orange-lightest: #FFF4E6;
+
+            /* Cloudflare Neutrals */
+            --cf-black: #0F0F0F;
+            --cf-gray-1: #1A1A1A;
+            --cf-gray-2: #2A2A2A;
+            --cf-gray-3: #3D3D3D;
+            --cf-gray-4: #6B6B6B;
+            --cf-gray-5: #9CA3AF;
+            --cf-gray-6: #D1D5DB;
+            --cf-gray-7: #E5E7EB;
+            --cf-gray-8: #F3F4F6;
+            --cf-gray-9: #F9FAFB;
+            --cf-white: #FFFFFF;
+
+            /* Semantic Colors */
+            --cf-success: #10B981;
+            --cf-warning: #F59E0B;
+            --cf-error: #EF4444;
+            --cf-info: #3B82F6;
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+            /* Corners */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--cf-gray-9);
+            color: var(--cf-gray-1);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .cf-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--cf-white);
+            border-bottom: 1px solid var(--cf-gray-7);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cf-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .cf-nav-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--cf-orange), var(--cf-orange-dark));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cf-nav-icon svg {
+            width: 18px;
+            height: 18px;
+            color: white;
+        }
+
+        .cf-nav-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--cf-gray-1);
+        }
+
+        .cf-nav-links {
+            margin-left: auto;
+            display: flex;
+            gap: 32px;
+        }
+
+        .cf-nav-link {
+            font-size: 14px;
+            color: var(--cf-gray-4);
+            text-decoration: none;
+            transition: color 0.15s;
+            font-weight: 500;
+        }
+
+        .cf-nav-link:hover {
+            color: var(--cf-orange);
+            text-decoration: none;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            min-height: 100vh;
+            padding: 120px 48px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 50%, #2A2A2A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(246, 130, 31, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(246, 130, 31, 0.1);
+            border: 1px solid rgba(246, 130, 31, 0.3);
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--cf-orange);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--cf-orange);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.15); }
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            color: white;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(90deg, #FFFFFF, #F6821F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            color: var(--cf-gray-5);
+            max-width: 700px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hero-meta-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--cf-gray-4);
+        }
+
+        .hero-meta-value {
+            font-size: 15px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cf-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cf-button-primary {
+            background: var(--cf-orange);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cf-button-primary:hover {
+            background: var(--cf-orange-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+            text-decoration: none;
+        }
+
+        .cf-button-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cf-button-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .cf-section {
+            padding: 100px 48px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--cf-orange);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--cf-gray-1);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--cf-gray-4);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== PROBLEM CARDS ===== */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .problem-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--cf-gray-7);
+        }
+
+        .problem-card:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-4px);
+            border-color: var(--cf-orange-light);
+        }
+
+        .problem-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--cf-orange-lightest);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .problem-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--cf-gray-1);
+            margin-bottom: 12px;
+        }
+
+        .problem-card-text {
+            font-size: 14px;
+            color: var(--cf-gray-4);
+            line-height: 1.6;
+        }
+
+        .problem-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--cf-gray-7);
+        }
+
+        .problem-stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--cf-orange);
+        }
+
+        .problem-stat-label {
+            font-size: 13px;
+            color: var(--cf-gray-4);
+        }
+
+        /* ===== SOLUTION SECTION ===== */
+        .solution-section {
+            background: var(--cf-gray-1);
+            padding: 100px 48px;
+        }
+
+        .solution-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .solution-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 968px) {
+            .solution-hero {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .solution-text h2 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .solution-text p {
+            font-size: 18px;
+            color: var(--cf-gray-5);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .solution-principles {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .principle-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--cf-gray-2);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--cf-gray-3);
+        }
+
+        .principle-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--cf-orange), var(--cf-orange-dark));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .principle-text {
+            font-size: 14px;
+            color: var(--cf-gray-5);
+            font-weight: 500;
+        }
+
+        .principle-text strong {
+            color: white;
+        }
+
+        /* ===== MOCKUP SECTION ===== */
+        .mockup-container {
+            background: var(--cf-gray-2);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            box-shadow: var(--shadow-2xl);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--cf-gray-3);
+        }
+
+        .mockup-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(246, 130, 31, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .mockup-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mockup-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--cf-orange);
+            margin-bottom: 8px;
+        }
+
+        .mockup-title {
+            font-size: 24px;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Cloudflare Dashboard Mockup */
+        .cf-dashboard {
+            background: var(--cf-gray-1);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-2xl);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cf-dashboard-header {
+            height: 56px;
+            background: var(--cf-black);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 24px;
+            border-bottom: 1px solid var(--cf-gray-3);
+        }
+
+        .dashboard-logo {
+            font-weight: 700;
+            color: var(--cf-orange);
+            font-size: 18px;
+        }
+
+        .dashboard-search {
+            flex: 1;
+            max-width: 400px;
+            height: 36px;
+            background: var(--cf-gray-2);
+            border: 1px solid var(--cf-gray-3);
+            border-radius: var(--radius-md);
+            padding: 0 12px;
+            color: var(--cf-gray-5);
+            font-size: 14px;
+        }
+
+        .dashboard-content {
+            height: 500px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+        }
+
+        .dashboard-sidebar {
+            background: var(--cf-black);
+            border-right: 1px solid var(--cf-gray-3);
+            padding: 16px;
+        }
+
+        .sidebar-item {
+            padding: 10px 12px;
+            color: var(--cf-gray-5);
+            font-size: 13px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .sidebar-item:hover {
+            background: var(--cf-gray-2);
+            color: white;
+        }
+
+        .sidebar-item.active {
+            background: var(--cf-gray-2);
+            color: var(--cf-orange);
+        }
+
+        .dashboard-main {
+            padding: 24px;
+            background: var(--cf-gray-1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Copilot Assistant */
+        .copilot-assistant {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 380px;
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-2xl);
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .copilot-header {
+            background: linear-gradient(135deg, var(--cf-orange), var(--cf-orange-dark));
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .copilot-icon {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cf-orange);
+            font-size: 16px;
+        }
+
+        .copilot-title {
+            flex: 1;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .copilot-body {
+            padding: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .copilot-message {
+            margin-bottom: 16px;
+        }
+
+        .copilot-message-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .copilot-avatar {
+            width: 24px;
+            height: 24px;
+            background: var(--cf-orange-lightest);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .copilot-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--cf-gray-1);
+        }
+
+        .copilot-message-text {
+            font-size: 14px;
+            color: var(--cf-gray-3);
+            line-height: 1.5;
+            padding-left: 32px;
+        }
+
+        .copilot-suggestions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-left: 32px;
+            margin-top: 12px;
+        }
+
+        .copilot-suggestion {
+            padding: 10px 14px;
+            background: var(--cf-gray-9);
+            border: 1px solid var(--cf-gray-7);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            color: var(--cf-gray-2);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .copilot-suggestion:hover {
+            background: var(--cf-orange-lightest);
+            border-color: var(--cf-orange-light);
+        }
+
+        .copilot-input-container {
+            padding: 16px;
+            border-top: 1px solid var(--cf-gray-7);
+            display: flex;
+            gap: 8px;
+        }
+
+        .copilot-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--cf-gray-7);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .copilot-input:focus {
+            border-color: var(--cf-orange);
+        }
+
+        .copilot-send {
+            width: 36px;
+            height: 36px;
+            background: var(--cf-orange);
+            border: none;
+            border-radius: var(--radius-md);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s;
+        }
+
+        .copilot-send:hover {
+            background: var(--cf-orange-dark);
+        }
+
+        /* ===== FEATURES GRID ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 64px;
+        }
+
+        @media (max-width: 968px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-card {
+            background: var(--cf-gray-2);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--cf-gray-3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--cf-orange);
+            transform: translateY(-4px);
+        }
+
+        .feature-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--cf-gray-3);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: var(--cf-gray-5);
+            line-height: 1.6;
+        }
+
+        /* ===== COMPARISON SECTION ===== */
+        .comparison-section {
+            background: white;
+            padding: 100px 48px;
+        }
+
+        .comparison-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-card {
+            padding: 40px;
+            border-radius: var(--radius-xl);
+            position: relative;
+        }
+
+        .comparison-card.before {
+            background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+            border: 2px solid #FCA5A5;
+        }
+
+        .comparison-card.after {
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+            border: 2px solid #6EE7B7;
+        }
+
+        .comparison-label {
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .comparison-card.before .comparison-label {
+            color: var(--cf-error);
+        }
+
+        .comparison-card.after .comparison-label {
+            color: var(--cf-success);
+        }
+
+        .comparison-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--cf-gray-1);
+        }
+
+        .comparison-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: var(--cf-gray-2);
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ===== ROADMAP SECTION ===== */
+        .roadmap-section {
+            background: var(--cf-gray-9);
+            padding: 100px 48px;
+        }
+
+        .roadmap-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            margin-top: 64px;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--cf-orange), var(--cf-orange-dark));
+        }
+
+        .roadmap-item {
+            display: flex;
+            gap: 32px;
+            padding: 32px 0;
+            position: relative;
+        }
+
+        .roadmap-dot {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 3px solid var(--cf-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--cf-orange);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .roadmap-card {
+            flex: 1;
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .roadmap-phase {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--cf-orange);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--cf-gray-1);
+            margin-bottom: 12px;
+        }
+
+        .roadmap-description {
+            font-size: 14px;
+            color: var(--cf-gray-4);
+            line-height: 1.6;
+        }
+
+        /* ===== TECH STACK SECTION ===== */
+        .tech-section {
+            background: var(--cf-gray-1);
+            padding: 80px 48px;
+        }
+
+        .tech-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tech-title {
+            font-size: 32px;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .tech-subtitle {
+            font-size: 16px;
+            color: var(--cf-gray-5);
+            margin-bottom: 48px;
+        }
+
+        .tech-grid {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tech-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--cf-gray-2);
+            border: 1px solid var(--cf-gray-3);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            transition: all 0.3s;
+        }
+
+        .tech-item:hover .tech-icon {
+            transform: scale(1.1);
+            border-color: var(--cf-orange);
+        }
+
+        .tech-label {
+            font-size: 13px;
+            color: var(--cf-gray-5);
+            font-weight: 500;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            background: white;
+            padding: 100px 48px;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .about-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--cf-orange), var(--cf-orange-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-placeholder {
+            font-size: 64px;
+            color: white;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--cf-gray-1);
+            margin-bottom: 8px;
+        }
+
+        .about-role {
+            font-size: 16px;
+            color: var(--cf-orange);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .about-bio {
+            font-size: 15px;
+            color: var(--cf-gray-4);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .about-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .about-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--cf-gray-9);
+            border-radius: var(--radius-md);
+            color: var(--cf-gray-2);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .about-link:hover {
+            background: var(--cf-orange);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* ===== FOOTER ===== */
+        .cf-footer {
+            background: var(--cf-gray-1);
+            padding: 48px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--cf-gray-5);
+            margin-bottom: 16px;
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            color: var(--cf-gray-4);
+        }
+
+        /* ===== SOURCES SECTION ===== */
+        .sources-section {
+            background: var(--cf-gray-8);
+            padding: 48px;
+        }
+
+        .sources-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .sources-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--cf-gray-2);
+            margin-bottom: 24px;
+        }
+
+        .sources-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .source-link {
+            font-size: 13px;
+            color: var(--cf-orange);
+            text-decoration: none;
+        }
+
+        .source-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 24px 60px;
+            }
+
+            .cf-section {
+                padding: 60px 24px;
+            }
+
+            .solution-section,
+            .comparison-section,
+            .roadmap-section,
+            .about-section {
+                padding: 60px 24px;
+            }
+
+            .mockup-container {
+                padding: 24px;
+            }
+
+            .copilot-assistant {
+                width: 100%;
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+            }
+
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-sidebar {
+                display: none;
+            }
+
+            .cf-nav-links {
+                display: none;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="cf-nav">
+        <a href="index.html" class="cf-nav-logo">
+            <div class="cf-nav-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </div>
+            <span class="cf-nav-title">Design Proposal</span>
+        </a>
+        <div class="cf-nav-links">
+            <a href="#problem" class="cf-nav-link">Research</a>
+            <a href="#solution" class="cf-nav-link">Solution</a>
+            <a href="#roadmap" class="cf-nav-link">Roadmap</a>
+            <a href="#about" class="cf-nav-link">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Product Design Intern Application
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-title-gradient">Cloudflare Copilot</span>
+            </h1>
+            <p class="hero-subtitle">
+                An AI assistant built on Workers AI that lives in your dashboard, understands your infrastructure, and helps you navigate complexity with confidence.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Designer</span>
+                    <span class="hero-meta-value">Maria Dumitrescu</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Position</span>
+                    <span class="hero-meta-value">Product Design Intern</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Team</span>
+                    <span class="hero-meta-value">Product Experience</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Focus</span>
+                    <span class="hero-meta-value">Simplifying Complexity</span>
+                </div>
+            </div>
+            <div class="hero-cta-group">
+                <a href="#solution" class="cf-button cf-button-primary">
+                    <span>View Solution</span>
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#problem" class="cf-button cf-button-secondary">
+                    <span>Read Research</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="cf-section">
+        <div class="section-header">
+            <p class="section-label">Research Insights</p>
+            <h2 class="section-title">The Dashboard Complexity Challenge</h2>
+            <p class="section-description">
+                Through user research, community feedback analysis, and competitive benchmarking, I identified critical friction points that prevent users from leveraging Cloudflare's powerful capabilities.
+            </p>
+        </div>
+
+        <div class="problem-grid fade-in">
+            <div class="problem-card">
+                <div class="problem-icon">🗂️</div>
+                <h3 class="problem-card-title">Navigation Overload</h3>
+                <p class="problem-card-text">
+                    Years of feature additions have created a cluttered dashboard. Settings are buried beneath multiple clicks, and users with 50+ sites struggle to navigate efficiently.
+                </p>
+                <div class="problem-stat">
+                    <span class="problem-stat-number">3-4x</span>
+                    <span class="problem-stat-label">more clicks needed vs old dashboard</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">📈</div>
+                <h3 class="problem-card-title">Steep Learning Curve</h3>
+                <p class="problem-card-text">
+                    Compared to Vercel's "smooth and easy" experience, Cloudflare requires research to understand whether to use Pages vs Workers, increasing time to first deployment.
+                </p>
+                <div class="problem-stat">
+                    <span class="problem-stat-number">Steeper</span>
+                    <span class="problem-stat-label">curve than competitors like Vercel/Netlify</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">⚙️</div>
+                <h3 class="problem-card-title">Manual Configuration Burden</h3>
+                <p class="problem-card-text">
+                    Manual setup of static routes for Magic WAN and split tunneling increases labor and human error probability. Technical teams lack visibility into essential information.
+                </p>
+                <div class="problem-stat">
+                    <span class="problem-stat-number">High</span>
+                    <span class="problem-stat-label">risk of configuration errors</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">🧩</div>
+                <h3 class="problem-card-title">Policy Management Complexity</h3>
+                <p class="problem-card-text">
+                    The policy dashboard is cumbersome and difficult to manage in large organizations. Essential information is missing from key interfaces like on-ramp connection views.
+                </p>
+                <div class="problem-stat">
+                    <span class="problem-stat-number">Difficult</span>
+                    <span class="problem-stat-label">for enterprise-scale management</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">🎯</div>
+                <h3 class="problem-card-title">No Contextual Guidance</h3>
+                <p class="problem-card-text">
+                    Unlike competitors, there's no intelligent assistant to help users understand technical concepts or suggest optimal configurations. Users are left to navigate alone.
+                </p>
+                <div class="problem-stat">
+                    <span class="problem-stat-number">Zero</span>
+                    <span class="problem-stat-label">AI assistance in current dashboard</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">📚</div>
+                <h3 class="problem-card-title">Terminology Confusion</h3>
+                <p class="problem-card-text">
+                    Recent terminology changes faced user backlash and had to be reverted. Complex domain concepts like Zero Trust require translation for non-technical stakeholders.
+                </p>
+                <div class="problem-stat">
+                    <span class="problem-stat-number">Reverted</span>
+                    <span class="problem-stat-label">recent terminology changes due to complaints</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution-section">
+        <div class="solution-content">
+            <div class="solution-hero">
+                <div class="solution-text">
+                    <h2>Introducing<br><strong>Cloudflare Copilot</strong></h2>
+                    <p>
+                        An AI assistant powered by Cloudflare's own Workers AI that lives directly in the dashboard, understands your infrastructure context, and guides you through complex configurations with confidence.
+                    </p>
+                    <div class="solution-principles">
+                        <div class="principle-item">
+                            <div class="principle-icon">🧠</div>
+                            <span class="principle-text"><strong>Infrastructure-Aware:</strong> Knows your zones, workers, and configuration state</span>
+                        </div>
+                        <div class="principle-item">
+                            <div class="principle-icon">💬</div>
+                            <span class="principle-text"><strong>Conversational:</strong> Natural language commands replace multi-step processes</span>
+                        </div>
+                        <div class="principle-item">
+                            <div class="principle-icon">📖</div>
+                            <span class="principle-text"><strong>Educational:</strong> Explains technical concepts in accessible language</span>
+                        </div>
+                        <div class="principle-item">
+                            <div class="principle-icon">⚡</div>
+                            <span class="principle-text"><strong>Workers AI Native:</strong> Built on Cloudflare's own edge AI platform</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Mockup -->
+                <div class="mockup-container">
+                    <div class="mockup-header">
+                        <p class="mockup-label">Interactive Concept</p>
+                        <h3 class="mockup-title">Cloudflare Dashboard + Copilot</h3>
+                    </div>
+
+                    <div class="cf-dashboard">
+                        <div class="cf-dashboard-header">
+                            <div class="dashboard-logo">Cloudflare</div>
+                            <input type="text" class="dashboard-search" placeholder="Search..." readonly>
+                        </div>
+
+                        <div class="dashboard-content">
+                            <div class="dashboard-sidebar">
+                                <div class="sidebar-item active">Analytics</div>
+                                <div class="sidebar-item">DNS</div>
+                                <div class="sidebar-item">SSL/TLS</div>
+                                <div class="sidebar-item">Firewall</div>
+                                <div class="sidebar-item">Workers</div>
+                                <div class="sidebar-item">Pages</div>
+                                <div class="sidebar-item">Zero Trust</div>
+                            </div>
+
+                            <div class="dashboard-main">
+                                <!-- Copilot Assistant -->
+                                <div class="copilot-assistant">
+                                    <div class="copilot-header">
+                                        <div class="copilot-icon">✨</div>
+                                        <span class="copilot-title">Cloudflare Copilot</span>
+                                    </div>
+
+                                    <div class="copilot-body">
+                                        <div class="copilot-message">
+                                            <div class="copilot-message-header">
+                                                <div class="copilot-avatar">🤖</div>
+                                                <span class="copilot-name">Copilot</span>
+                                            </div>
+                                            <div class="copilot-message-text">
+                                                I can see you're viewing analytics for example.com. Would you like help with any of these common tasks?
+                                            </div>
+                                            <div class="copilot-suggestions">
+                                                <div class="copilot-suggestion">📊 Explain traffic spike on Jan 24</div>
+                                                <div class="copilot-suggestion">🛡️ Review security threats</div>
+                                                <div class="copilot-suggestion">⚡ Optimize cache performance</div>
+                                                <div class="copilot-suggestion">🌐 Set up new subdomain</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="copilot-input-container">
+                                        <input type="text" class="copilot-input" placeholder="Ask me anything..." readonly>
+                                        <button class="copilot-send">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="features-grid fade-in">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3 class="feature-title">Intent-Based Actions</h3>
+                    <p class="feature-description">
+                        Type "set up CDN for my React app" and Copilot walks you through the entire process, automatically configuring optimal settings based on your stack.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3 class="feature-title">Context-Aware Suggestions</h3>
+                    <p class="feature-description">
+                        Proactively suggests improvements based on your usage patterns: "Your cache hit ratio is 65%. Would you like me to analyze and optimize it?"
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3 class="feature-title">Plain Language Explanations</h3>
+                    <p class="feature-description">
+                        Translates technical concepts like "DDoS mitigation" or "edge workers" into accessible language for stakeholders who need to understand but not configure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="comparison-content">
+            <div class="section-header">
+                <p class="section-label">Before & After</p>
+                <h2 class="section-title">Transforming the Dashboard Experience</h2>
+                <p class="section-description">
+                    How Cloudflare Copilot addresses core usability challenges
+                </p>
+            </div>
+
+            <div class="comparison-grid fade-in">
+                <div class="comparison-card before">
+                    <span class="comparison-label">Current State</span>
+                    <h3 class="comparison-title">Dashboard Today</h3>
+                    <ul class="comparison-list">
+                        <li>
+                            <span class="comparison-icon">❌</span>
+                            <span>3-4 clicks to accomplish basic tasks</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">❌</span>
+                            <span>No guidance for first-time configurations</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">❌</span>
+                            <span>Manual setup requires extensive documentation reading</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">❌</span>
+                            <span>Technical terminology confuses non-technical users</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">❌</span>
+                            <span>Settings buried across multiple sections</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">❌</span>
+                            <span>No proactive optimization suggestions</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card after">
+                    <span class="comparison-label">With Copilot</span>
+                    <h3 class="comparison-title">Enhanced Dashboard</h3>
+                    <ul class="comparison-list">
+                        <li>
+                            <span class="comparison-icon">✅</span>
+                            <span>Natural language commands: "deploy my app"</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">✅</span>
+                            <span>Step-by-step guided configurations</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">✅</span>
+                            <span>Automatic optimal settings based on your stack</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">✅</span>
+                            <span>Plain language explanations on demand</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">✅</span>
+                            <span>Intelligent navigation shortcuts</span>
+                        </li>
+                        <li>
+                            <span class="comparison-icon">✅</span>
+                            <span>Proactive performance and security insights</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="roadmap-section">
+        <div class="roadmap-content">
+            <div class="section-header">
+                <p class="section-label">Implementation Vision</p>
+                <h2 class="section-title">Development Roadmap</h2>
+                <p class="section-description">
+                    A phased approach to integrating Copilot into the Cloudflare dashboard
+                </p>
+            </div>
+
+            <div class="roadmap-timeline fade-in">
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">1</div>
+                    <div class="roadmap-card">
+                        <p class="roadmap-phase">Phase 1: Foundation</p>
+                        <h3 class="roadmap-title">Basic Chat Interface & Context</h3>
+                        <p class="roadmap-description">
+                            Build the chat UI using Cloudflare's design system. Integrate Workers AI for natural language understanding. Implement context detection for current page and user's infrastructure state.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">2</div>
+                    <div class="roadmap-card">
+                        <p class="roadmap-phase">Phase 2: Guided Actions</p>
+                        <h3 class="roadmap-title">Intent Recognition & Workflows</h3>
+                        <p class="roadmap-description">
+                            Add intent parsing to understand user goals. Create guided workflows for common tasks like DNS setup, SSL configuration, and worker deployment. Implement smart suggestions based on infrastructure analysis.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">3</div>
+                    <div class="roadmap-card">
+                        <p class="roadmap-phase">Phase 3: Learning & Optimization</p>
+                        <h3 class="roadmap-title">Proactive Intelligence</h3>
+                        <p class="roadmap-description">
+                            Build personalization engine that learns from user patterns. Implement proactive suggestions for performance optimization, security hardening, and cost reduction. Add anomaly detection for traffic patterns.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">4</div>
+                    <div class="roadmap-card">
+                        <p class="roadmap-phase">Phase 4: Enterprise & Scale</p>
+                        <h3 class="roadmap-title">Team Collaboration & Governance</h3>
+                        <p class="roadmap-description">
+                            Add team features like shared conversations and best practices. Implement governance controls for enterprise customers. Create audit trails for AI-assisted actions. Support for multi-account management.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-section">
+        <div class="tech-content">
+            <h2 class="tech-title">Built on Cloudflare's Own Platform</h2>
+            <p class="tech-subtitle">Leveraging Workers AI and edge computing capabilities</p>
+
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <span class="tech-label">Workers AI</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🌐</div>
+                    <span class="tech-label">Edge Network</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">💾</div>
+                    <span class="tech-label">Durable Objects</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔍</div>
+                    <span class="tech-label">Vectorize</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <span class="tech-label">Design System</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔐</div>
+                    <span class="tech-label">Zero Trust</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="./assets/circleprofilepic.png" alt="Maria Dumitrescu" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'about-placeholder\'>MD</span>'">
+            </div>
+            <div class="about-text">
+                <h3>Maria Dumitrescu</h3>
+                <p class="about-role">Product Designer & Researcher</p>
+                <p class="about-bio">
+                    I'm passionate about making complex technical tools accessible through thoughtful design. My approach combines systems thinking with user empathy to create experiences that empower rather than overwhelm.
+                    <br><br>
+                    This proposal showcases my ability to research real user pain points, synthesize insights into strategic solutions, and communicate ideas through both narrative and visual design—exactly what's needed for Cloudflare's Product Experience Team.
+                    <br><br>
+                    I'm excited about the opportunity to help build a better Internet by designing experiences that make powerful infrastructure tools accessible to everyone.
+                </p>
+                <div class="about-links">
+                    <a href="index.html" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                        Portfolio
+                    </a>
+                    <a href="mailto:mariadumitrescuoffice@gmail.com" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg>
+                        Contact
+                    </a>
+                    <a href="resume.html" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/></svg>
+                        Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section class="sources-section">
+        <div class="sources-content">
+            <h3 class="sources-title">Research Sources</h3>
+            <div class="sources-list">
+                <a href="https://blog.cloudflare.com/redesigning-cloudflare/" class="source-link" target="_blank">Cloudflare Blog — Redesigning CloudFlare</a>
+                <a href="https://community.cloudflare.com/t/horrendous-user-experience/548493" class="source-link" target="_blank">Cloudflare Community — Horrendous User Experience</a>
+                <a href="https://community.cloudflare.com/t/upcoming-changes-to-zero-trust-dashboard-and-navigation/856342" class="source-link" target="_blank">Cloudflare Community — Upcoming changes to Zero Trust dashboard</a>
+                <a href="https://www.gartner.com/reviews/product/cloudflare-access" class="source-link" target="_blank">Gartner Peer Insights — Cloudflare Access Reviews</a>
+                <a href="https://www.ai-infra-link.com/vercel-vs-netlify-vs-cloudflare-pages-2025-comparison-for-developers/" class="source-link" target="_blank">Vercel vs Netlify vs Cloudflare Pages: 2025 Comparison</a>
+                <a href="https://developers.cloudflare.com/workers-ai/" class="source-link" target="_blank">Cloudflare Workers AI Documentation</a>
+                <a href="https://www.cloudflare.com/innovation-week/ai-week-2025/updates/" class="source-link" target="_blank">Cloudflare AI Week 2025 Updates</a>
+                <a href="https://blog.cloudflare.com/deep-dive-into-cloudflares-sept-12-dashboard-and-api-outage/" class="source-link" target="_blank">Cloudflare Blog — Dashboard and API Outage Deep Dive</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="cf-footer">
+        <div class="footer-logo">
+            <div class="cf-nav-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </div>
+            <span class="cf-nav-title" style="color: white;">Cloudflare Copilot</span>
+        </div>
+        <p class="footer-text">
+            A design proposal for the Product Design Intern position at Cloudflare
+        </p>
+        <p class="footer-copyright">
+            Created by Maria Dumitrescu — January 2026
+        </p>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
