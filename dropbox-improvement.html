@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropbox Pathways — A Design Proposal by Maria Dumitrescu</title>
+    <link rel="icon" href="./assets/circleprofilepic.png">
+    <style>
+        /* ===== DROPBOX DESIGN SYSTEM ===== */
+        :root {
+            /* Dropbox Brand */
+            --dbx-blue: #0061FF;
+            --dbx-blue-dark: #0050D4;
+            --dbx-blue-light: #B4D0FF;
+            --dbx-blue-lightest: #EBF4FF;
+
+            /* Neutrals */
+            --dbx-black: #1E1919;
+            --dbx-gray-1: #2B2929;
+            --dbx-gray-2: #544F4F;
+            --dbx-gray-3: #736C6C;
+            --dbx-gray-4: #9B9494;
+            --dbx-gray-5: #C3BCBC;
+            --dbx-gray-6: #E2DEDE;
+            --dbx-gray-7: #F5F2F2;
+            --dbx-white: #FFFFFF;
+
+            /* Accent */
+            --dbx-coral: #FF6242;
+            --dbx-green: #0CBF4C;
+            --dbx-purple: #6C3FEE;
+            --dbx-yellow: #FFD830;
+
+            /* Typography */
+            --font-family: 'Atlas Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(30, 25, 25, 0.08);
+            --shadow-md: 0 4px 12px rgba(30, 25, 25, 0.1);
+            --shadow-lg: 0 8px 24px rgba(30, 25, 25, 0.12);
+            --shadow-xl: 0 16px 48px rgba(30, 25, 25, 0.16);
+
+            /* Corners */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--dbx-white);
+            color: var(--dbx-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .dbx-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 64px;
+            background: var(--dbx-white);
+            border-bottom: 1px solid var(--dbx-gray-6);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 32px;
+        }
+
+        .dbx-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .dbx-nav-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--dbx-blue);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dbx-nav-icon svg { width: 16px; height: 16px; }
+
+        .dbx-nav-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dbx-black);
+        }
+
+        .dbx-nav-links {
+            margin-left: auto;
+            display: flex;
+            gap: 32px;
+        }
+
+        .dbx-nav-link {
+            font-size: 14px;
+            color: var(--dbx-gray-3);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .dbx-nav-link:hover { color: var(--dbx-blue); text-decoration: none; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 48px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--dbx-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 60%;
+            height: 120%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-badge-dot {
+            width: 8px; height: 8px;
+            background: var(--dbx-yellow);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.15); }
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 88px);
+            font-weight: 700;
+            color: white;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: rgba(255,255,255,0.85);
+            max-width: 680px;
+            margin-bottom: 40px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+
+        .hero-meta-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .hero-meta-value {
+            font-size: 15px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        .dbx-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .dbx-btn-white {
+            background: white;
+            color: var(--dbx-black);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .dbx-btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            color: var(--dbx-black);
+            text-decoration: none;
+        }
+
+        .dbx-btn-ghost {
+            background: rgba(255,255,255,0.12);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .dbx-btn-ghost:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* ===== SECTIONS ===== */
+        .dbx-section {
+            padding: 100px 48px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--dbx-blue);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--dbx-black);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .section-desc {
+            font-size: 18px;
+            color: var(--dbx-gray-3);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== PROBLEM CARDS ===== */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .problem-card {
+            background: var(--dbx-white);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            border: 2px solid var(--dbx-gray-6);
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            border-color: var(--dbx-blue-light);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .problem-emoji {
+            width: 48px; height: 48px;
+            background: var(--dbx-blue-lightest);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .problem-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dbx-black);
+            margin-bottom: 12px;
+        }
+
+        .problem-card p {
+            font-size: 14px;
+            color: var(--dbx-gray-3);
+            line-height: 1.6;
+        }
+
+        .problem-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--dbx-gray-6);
+        }
+
+        .stat-num {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dbx-blue);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--dbx-gray-3);
+        }
+
+        /* ===== SOLUTION ===== */
+        .solution-section {
+            background: var(--dbx-gray-7);
+            padding: 100px 48px;
+        }
+
+        .solution-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .solution-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 968px) {
+            .solution-hero { grid-template-columns: 1fr; }
+        }
+
+        .solution-text h2 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 700;
+            color: var(--dbx-black);
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .solution-text p {
+            font-size: 18px;
+            color: var(--dbx-gray-2);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .principles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .principle-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--dbx-gray-6);
+        }
+
+        .principle-dot {
+            width: 36px; height: 36px;
+            background: var(--dbx-blue);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .principle-label {
+            font-size: 14px;
+            color: var(--dbx-gray-2);
+            font-weight: 500;
+        }
+
+        .principle-label strong { color: var(--dbx-black); }
+
+        /* ===== MOCKUP ===== */
+        .mockup-wrapper {
+            background: var(--dbx-black);
+            border-radius: var(--radius-2xl);
+            padding: 40px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .mockup-tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--dbx-blue-light);
+            margin-bottom: 8px;
+        }
+
+        .mockup-title {
+            font-size: 22px;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Help Center Mockup */
+        .help-ui {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .help-topbar {
+            height: 48px;
+            background: var(--dbx-blue);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 16px;
+        }
+
+        .help-topbar-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .help-topbar-search {
+            flex: 1;
+            max-width: 360px;
+            height: 32px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 6px;
+            padding: 0 12px;
+            color: white;
+            font-size: 13px;
+        }
+
+        .help-topbar-search::placeholder { color: rgba(255,255,255,0.6); }
+
+        .help-body {
+            padding: 32px;
+            min-height: 420px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .help-body { grid-template-columns: 1fr; }
+        }
+
+        .help-main h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dbx-black);
+            margin-bottom: 8px;
+        }
+
+        .help-main > p {
+            font-size: 14px;
+            color: var(--dbx-gray-3);
+            margin-bottom: 24px;
+        }
+
+        /* Role Cards */
+        .role-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .role-card {
+            padding: 16px;
+            border: 2px solid var(--dbx-gray-6);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .role-card:hover {
+            border-color: var(--dbx-blue-light);
+            background: var(--dbx-blue-lightest);
+        }
+
+        .role-card.active {
+            border-color: var(--dbx-blue);
+            background: var(--dbx-blue-lightest);
+        }
+
+        .role-card-emoji {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .role-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dbx-black);
+            margin-bottom: 2px;
+        }
+
+        .role-card-desc {
+            font-size: 11px;
+            color: var(--dbx-gray-3);
+        }
+
+        /* Steps */
+        .pathway-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pathway-step {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            background: var(--dbx-gray-7);
+            border-radius: var(--radius-md);
+            transition: all 0.2s;
+        }
+
+        .pathway-step:hover {
+            background: var(--dbx-blue-lightest);
+        }
+
+        .step-num {
+            width: 28px; height: 28px;
+            background: var(--dbx-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 13px;
+            color: var(--dbx-gray-2);
+            font-weight: 500;
+        }
+
+        /* Sidebar AI Assistant */
+        .help-sidebar {
+            border-left: 1px solid var(--dbx-gray-6);
+            padding-left: 32px;
+        }
+
+        .ai-assist {
+            background: var(--dbx-blue-lightest);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            border: 1px solid var(--dbx-blue-light);
+        }
+
+        .ai-assist-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .ai-dot {
+            width: 28px; height: 28px;
+            background: var(--dbx-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .ai-assist-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dbx-black);
+        }
+
+        .ai-message {
+            font-size: 13px;
+            color: var(--dbx-gray-2);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .ai-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .ai-action {
+            padding: 10px 14px;
+            background: white;
+            border: 1px solid var(--dbx-gray-6);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            color: var(--dbx-gray-2);
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+        }
+
+        .ai-action:hover {
+            border-color: var(--dbx-blue);
+            background: white;
+        }
+
+        .ai-input {
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .ai-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--dbx-gray-6);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .ai-input input:focus { border-color: var(--dbx-blue); }
+
+        .ai-input button {
+            width: 36px; height: 36px;
+            background: var(--dbx-blue);
+            border: none;
+            border-radius: var(--radius-md);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== FEATURES ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 64px;
+        }
+
+        @media (max-width: 968px) {
+            .features-grid { grid-template-columns: 1fr; }
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            border: 2px solid var(--dbx-gray-6);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--dbx-blue-light);
+            transform: translateY(-4px);
+        }
+
+        .feature-num {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--dbx-gray-6);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dbx-black);
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--dbx-gray-3);
+            line-height: 1.6;
+        }
+
+        /* ===== COMPARISON ===== */
+        .comparison-section {
+            background: white;
+            padding: 100px 48px;
+        }
+
+        .comparison-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+
+        .comp-card {
+            padding: 40px;
+            border-radius: var(--radius-2xl);
+            position: relative;
+        }
+
+        .comp-card.before {
+            background: #FEF2F2;
+            border: 2px solid #FECACA;
+        }
+
+        .comp-card.after {
+            background: #ECFDF5;
+            border: 2px solid #A7F3D0;
+        }
+
+        .comp-label {
+            position: absolute;
+            top: -12px; left: 24px;
+            background: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .comp-card.before .comp-label { color: #EF4444; }
+        .comp-card.after .comp-label { color: #10B981; }
+
+        .comp-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dbx-black);
+        }
+
+        .comp-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comp-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 14px;
+            color: var(--dbx-gray-2);
+        }
+
+        .comp-list li:last-child { border-bottom: none; }
+        .comp-icon { font-size: 16px; flex-shrink: 0; }
+
+        /* ===== ROADMAP ===== */
+        .roadmap-section {
+            background: var(--dbx-gray-7);
+            padding: 100px 48px;
+        }
+
+        .roadmap-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 64px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--dbx-blue), var(--dbx-purple));
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 32px;
+            padding: 32px 0;
+        }
+
+        .timeline-dot {
+            width: 50px; height: 50px;
+            background: white;
+            border: 3px solid var(--dbx-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--dbx-blue);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .timeline-card {
+            flex: 1;
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-phase {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dbx-blue);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dbx-black);
+            margin-bottom: 12px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--dbx-gray-3);
+            line-height: 1.6;
+        }
+
+        /* ===== TECH ===== */
+        .tech-section {
+            background: var(--dbx-black);
+            padding: 80px 48px;
+        }
+
+        .tech-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tech-title {
+            font-size: 28px;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .tech-sub {
+            font-size: 15px;
+            color: var(--dbx-gray-4);
+            margin-bottom: 48px;
+        }
+
+        .tech-grid {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-icon-box {
+            width: 60px; height: 60px;
+            background: var(--dbx-gray-1);
+            border: 1px solid var(--dbx-gray-2);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            transition: all 0.3s;
+        }
+
+        .tech-item:hover .tech-icon-box {
+            transform: scale(1.1);
+            border-color: var(--dbx-blue);
+        }
+
+        .tech-label {
+            font-size: 12px;
+            color: var(--dbx-gray-4);
+            font-weight: 500;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-section {
+            background: white;
+            padding: 100px 48px;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .about-content { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        .about-img {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--dbx-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .about-placeholder { font-size: 56px; color: white; }
+
+        .about-text h3 {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--dbx-black);
+            margin-bottom: 6px;
+        }
+
+        .about-role {
+            font-size: 15px;
+            color: var(--dbx-blue);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .about-bio {
+            font-size: 15px;
+            color: var(--dbx-gray-3);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .about-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .about-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--dbx-gray-7);
+            border-radius: var(--radius-md);
+            color: var(--dbx-gray-2);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .about-link:hover {
+            background: var(--dbx-blue);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* ===== SOURCES ===== */
+        .sources-section {
+            background: var(--dbx-gray-7);
+            padding: 48px;
+        }
+
+        .sources-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .sources-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dbx-gray-2);
+            margin-bottom: 24px;
+        }
+
+        .sources-list { display: grid; gap: 10px; }
+
+        .source-link {
+            font-size: 13px;
+            color: var(--dbx-blue);
+            text-decoration: none;
+        }
+
+        .source-link:hover { text-decoration: underline; }
+
+        /* ===== FOOTER ===== */
+        .dbx-footer {
+            background: var(--dbx-black);
+            padding: 48px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--dbx-gray-4);
+            margin-bottom: 12px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--dbx-gray-3);
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .hero { padding: 100px 24px 60px; }
+            .dbx-section, .solution-section, .comparison-section, .roadmap-section, .about-section { padding: 60px 24px; }
+            .mockup-wrapper { padding: 20px; }
+            .dbx-nav-links { display: none; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav class="dbx-nav">
+        <a href="index.html" class="dbx-nav-logo">
+            <div class="dbx-nav-icon">
+                <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M4 17l8 5 8-5M4 12l8 5 8-5M12 2L4 7l8 5 8-5-8-5z"/></svg>
+            </div>
+            <span class="dbx-nav-title">Design Proposal</span>
+        </a>
+        <div class="dbx-nav-links">
+            <a href="#problem" class="dbx-nav-link">Research</a>
+            <a href="#solution" class="dbx-nav-link">Solution</a>
+            <a href="#roadmap" class="dbx-nav-link">Roadmap</a>
+            <a href="#about" class="dbx-nav-link">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                CX Technical Content Design Intern Application
+            </div>
+            <h1 class="hero-title">Dropbox Pathways</h1>
+            <p class="hero-subtitle">
+                An adaptive knowledge system that replaces static documentation with role-based learning paths, contextual AI guidance, and visual technical storytelling, powered by Dash.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Designer</span>
+                    <span class="hero-meta-value">Maria Dumitrescu</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Position</span>
+                    <span class="hero-meta-value">CX Technical Content Design Intern</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Team</span>
+                    <span class="hero-meta-value">Knowledge, Experience & Platforms</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Focus</span>
+                    <span class="hero-meta-value">Scalable Technical Content</span>
+                </div>
+            </div>
+            <div class="hero-cta-group">
+                <a href="#solution" class="dbx-btn dbx-btn-white">
+                    View Solution
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#problem" class="dbx-btn dbx-btn-ghost">Read Research</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section id="problem" class="dbx-section">
+        <div class="section-header">
+            <p class="section-label">Research Insights</p>
+            <h2 class="section-title">The Documentation Gap</h2>
+            <p class="section-desc">
+                Through user research, community feedback, and competitive analysis, I identified critical friction points in how Dropbox communicates its technical story to customers.
+            </p>
+        </div>
+
+        <div class="problem-grid fade-in">
+            <div class="problem-card">
+                <div class="problem-emoji">🔍</div>
+                <h3>Information Scattered Everywhere</h3>
+                <p>Knowledge workers waste over a month per year searching for information across apps. Dropbox CEO Drew Houston identified this as the core problem Dash aims to solve.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">1 mo+</span>
+                    <span class="stat-label">wasted per year searching for information</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-emoji">📄</div>
+                <h3>One-Size-Fits-All Documentation</h3>
+                <p>Current help content doesn't adapt to the reader's role. An IT admin, a creative team lead, and a developer all see the same generic guides despite vastly different needs.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">3+</span>
+                    <span class="stat-label">distinct user personas with the same docs</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-emoji">🧩</div>
+                <h3>Complex Features, Simple Docs</h3>
+                <p>Advanced capabilities like Smart Sync, Selective Sync, and Zero-Knowledge Encryption are explained in text-heavy articles. Users struggle to grasp the differences and implications.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">Low</span>
+                    <span class="stat-label">adoption of advanced features</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-emoji">🤝</div>
+                <h3>Support Accessibility Gap</h3>
+                <p>Users report difficulty reaching support, especially for billing and account issues. Self-serve content doesn't adequately bridge the gap, creating frustration and potential churn.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">2.3/5</span>
+                    <span class="stat-label">average Trustpilot rating on support</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-emoji">🚀</div>
+                <h3>Onboarding Drop-Off</h3>
+                <p>Dropbox offers robust integration capabilities, but setup complexity leads to incomplete adoption. Users configure basic storage but miss workflow automation and Dash AI features.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">Underused</span>
+                    <span class="stat-label">advanced features like Dash and integrations</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-emoji">📊</div>
+                <h3>No Department-Specific Playbooks</h3>
+                <p>Engineering teams need API docs and integration guides. Legal needs compliance workflows. Creative teams need asset management tips. Today, they all search the same generic help center.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">Zero</span>
+                    <span class="stat-label">role-specific content pathways</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section id="solution" class="solution-section">
+        <div class="solution-content">
+            <div class="solution-hero">
+                <div class="solution-text">
+                    <h2>Introducing<br><strong>Dropbox Pathways</strong></h2>
+                    <p>
+                        An adaptive knowledge system that guides users through Dropbox's product suite with role-based learning paths, contextual Dash-powered AI assistance, and visual technical storytelling that makes complex features approachable.
+                    </p>
+                    <div class="principles-list">
+                        <div class="principle-row">
+                            <div class="principle-dot">🎯</div>
+                            <span class="principle-label"><strong>Role-Adaptive:</strong> Content adapts to IT Admin, Developer, Creative, or End User</span>
+                        </div>
+                        <div class="principle-row">
+                            <div class="principle-dot">🤖</div>
+                            <span class="principle-label"><strong>Dash-Powered:</strong> AI assistant surfaces the right content at the right time</span>
+                        </div>
+                        <div class="principle-row">
+                            <div class="principle-dot">🎨</div>
+                            <span class="principle-label"><strong>Visual-First:</strong> Interactive diagrams replace walls of text</span>
+                        </div>
+                        <div class="principle-row">
+                            <div class="principle-dot">📐</div>
+                            <span class="principle-label"><strong>Scalable:</strong> Template system for consistent, maintainable content</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mockup -->
+                <div class="mockup-wrapper">
+                    <div class="mockup-header">
+                        <p class="mockup-tag">Interactive Concept</p>
+                        <h3 class="mockup-title">Dropbox Help Center + Pathways</h3>
+                    </div>
+
+                    <div class="help-ui">
+                        <div class="help-topbar">
+                            <span class="help-topbar-title">Dropbox Help</span>
+                            <input type="text" class="help-topbar-search" placeholder="Search help articles..." readonly>
+                        </div>
+
+                        <div class="help-body">
+                            <div class="help-main">
+                                <h3>Choose your path</h3>
+                                <p>Select your role to see a personalized learning journey.</p>
+
+                                <div class="role-cards">
+                                    <div class="role-card active">
+                                        <div class="role-card-emoji">🛡️</div>
+                                        <div class="role-card-title">IT Admin</div>
+                                        <div class="role-card-desc">Setup, security, SSO</div>
+                                    </div>
+                                    <div class="role-card">
+                                        <div class="role-card-emoji">💻</div>
+                                        <div class="role-card-title">Developer</div>
+                                        <div class="role-card-desc">APIs, integrations, CLI</div>
+                                    </div>
+                                    <div class="role-card">
+                                        <div class="role-card-emoji">🎨</div>
+                                        <div class="role-card-title">Creative</div>
+                                        <div class="role-card-desc">Assets, review, share</div>
+                                    </div>
+                                    <div class="role-card">
+                                        <div class="role-card-emoji">👤</div>
+                                        <div class="role-card-title">End User</div>
+                                        <div class="role-card-desc">Sync, organize, basics</div>
+                                    </div>
+                                </div>
+
+                                <div class="pathway-steps">
+                                    <div class="pathway-step">
+                                        <div class="step-num">1</div>
+                                        <span class="step-text">Configure SSO & team permissions</span>
+                                    </div>
+                                    <div class="pathway-step">
+                                        <div class="step-num">2</div>
+                                        <span class="step-text">Set up Smart Sync policies</span>
+                                    </div>
+                                    <div class="pathway-step">
+                                        <div class="step-num">3</div>
+                                        <span class="step-text">Enable audit logging & compliance</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="help-sidebar">
+                                <div class="ai-assist">
+                                    <div class="ai-assist-header">
+                                        <div class="ai-dot">✨</div>
+                                        <span class="ai-assist-title">Dash Assistant</span>
+                                    </div>
+                                    <div class="ai-message">
+                                        I see you're setting up an IT Admin pathway. Need help with any of these?
+                                    </div>
+                                    <div class="ai-actions">
+                                        <div class="ai-action">How does SSO work with Dropbox?</div>
+                                        <div class="ai-action">Compare Smart Sync vs Selective Sync</div>
+                                        <div class="ai-action">Show compliance requirements</div>
+                                    </div>
+                                    <div class="ai-input">
+                                        <input type="text" placeholder="Ask Dash..." readonly>
+                                        <button>
+                                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="features-grid fade-in">
+                <div class="feature-card">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title">Department Playbooks</h3>
+                    <p class="feature-desc">
+                        Pre-built content guides for Engineering, Legal, Creative, HR, and Support teams. Each playbook includes setup checklists, use-case tutorials, and integration recipes.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title">Interactive Diagrams</h3>
+                    <p class="feature-desc">
+                        Visual explanations of complex features like Smart Sync architecture, sharing permission models, and data flow diagrams that replace dense text documentation.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title">Progress Tracking</h3>
+                    <p class="feature-desc">
+                        CSMs and admins can see which team members have completed onboarding paths, identify gaps, and assign specific learning modules for their department.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison-section">
+        <div class="comparison-content">
+            <div class="section-header">
+                <p class="section-label">Before & After</p>
+                <h2 class="section-title">Transforming the Help Experience</h2>
+                <p class="section-desc">How Dropbox Pathways changes the way users learn and adopt the product</p>
+            </div>
+
+            <div class="comparison-grid fade-in">
+                <div class="comp-card before">
+                    <span class="comp-label">Current State</span>
+                    <h3 class="comp-title">Help Center Today</h3>
+                    <ul class="comp-list">
+                        <li><span class="comp-icon">❌</span>Generic articles for all user types</li>
+                        <li><span class="comp-icon">❌</span>Text-heavy technical explanations</li>
+                        <li><span class="comp-icon">❌</span>No guided onboarding or learning paths</li>
+                        <li><span class="comp-icon">❌</span>Static content that doesn't adapt</li>
+                        <li><span class="comp-icon">❌</span>Disconnected from Dash AI capabilities</li>
+                        <li><span class="comp-icon">❌</span>No way to track team adoption progress</li>
+                    </ul>
+                </div>
+
+                <div class="comp-card after">
+                    <span class="comp-label">With Pathways</span>
+                    <h3 class="comp-title">Adaptive Knowledge</h3>
+                    <ul class="comp-list">
+                        <li><span class="comp-icon">✅</span>Role-specific content for each persona</li>
+                        <li><span class="comp-icon">✅</span>Interactive visual diagrams and walkthroughs</li>
+                        <li><span class="comp-icon">✅</span>Step-by-step learning pathways</li>
+                        <li><span class="comp-icon">✅</span>AI-powered content that responds to context</li>
+                        <li><span class="comp-icon">✅</span>Dash Assistant integrated for real-time help</li>
+                        <li><span class="comp-icon">✅</span>CSM dashboards for onboarding analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="roadmap-section">
+        <div class="roadmap-content">
+            <div class="section-header">
+                <p class="section-label">Implementation Vision</p>
+                <h2 class="section-title">Development Roadmap</h2>
+                <p class="section-desc">A phased approach to building Dropbox Pathways</p>
+            </div>
+
+            <div class="timeline fade-in">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-card">
+                        <p class="timeline-phase">Phase 1: Content Architecture</p>
+                        <h3 class="timeline-title">Role-Based Content Framework</h3>
+                        <p class="timeline-desc">Audit existing help content. Define user personas and their unique journeys. Create content templates using Chicago Manual of Style guidelines. Build the information architecture for role-based pathways.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-card">
+                        <p class="timeline-phase">Phase 2: Visual Storytelling</p>
+                        <h3 class="timeline-title">Interactive Technical Diagrams</h3>
+                        <p class="timeline-desc">Replace text-heavy guides with visual walkthroughs. Create interactive diagrams for Smart Sync, permission models, and integration workflows. Develop reusable illustration components.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-card">
+                        <p class="timeline-phase">Phase 3: AI Integration</p>
+                        <h3 class="timeline-title">Dash-Powered Contextual Help</h3>
+                        <p class="timeline-desc">Integrate Dash AI to surface relevant content based on user context. Build the conversational assistant for real-time technical guidance. Implement smart search that understands user intent.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-card">
+                        <p class="timeline-phase">Phase 4: Analytics & Scale</p>
+                        <h3 class="timeline-title">Adoption Tracking & Expansion</h3>
+                        <p class="timeline-desc">Build CSM dashboards showing team adoption progress. Create department-specific playbook templates for scalable content. Implement feedback loops to continuously improve content quality.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech -->
+    <section class="tech-section">
+        <div class="tech-content">
+            <h2 class="tech-title">Built on Dropbox's Own Platform</h2>
+            <p class="tech-sub">Leveraging Dash AI and existing content infrastructure</p>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon-box">🤖</div>
+                    <span class="tech-label">Dash AI / RAG</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">🔍</div>
+                    <span class="tech-label">Universal Search</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">📝</div>
+                    <span class="tech-label">Content Templates</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">📊</div>
+                    <span class="tech-label">Analytics</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">🎨</div>
+                    <span class="tech-label">Design System</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">🔗</div>
+                    <span class="tech-label">Integrations API</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <div class="about-img">
+                <img src="./assets/circleprofilepic.png" alt="Maria Dumitrescu" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'about-placeholder\'>MD</span>'">
+            </div>
+            <div class="about-text">
+                <h3>Maria Dumitrescu</h3>
+                <p class="about-role">Content Designer & Researcher</p>
+                <p class="about-bio">
+                    I'm passionate about making complex technical products understandable through thoughtful content design. My approach combines deep user research with visual storytelling to create documentation that empowers rather than overwhelms.
+                    <br><br>
+                    This proposal demonstrates my ability to break down complex infrastructure concepts, develop role-specific content strategies, and communicate ideas through both narrative and interactive prototypes, exactly the skills needed for Dropbox's KXP team.
+                    <br><br>
+                    I'm excited to help tell the technical story of Dropbox's product suite in a way that enables every customer to get the most out of their experience.
+                </p>
+                <div class="about-links">
+                    <a href="index.html" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                        Portfolio
+                    </a>
+                    <a href="mailto:mariadumitrescuoffice@gmail.com" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg>
+                        Contact
+                    </a>
+                    <a href="resume.html" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/></svg>
+                        Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources-section">
+        <div class="sources-content">
+            <h3 class="sources-title">Research Sources</h3>
+            <div class="sources-list">
+                <a href="https://blog.dropbox.com/topics/news/fall-2025-release-dropbox-dash-context-aware-ai-teammate" class="source-link" target="_blank">Dropbox Blog — Fall 2025 Release: Dropbox Dash AI Teammate</a>
+                <a href="https://blog.dropbox.com/topics/company/spring-2025-release-dropbox-dash-search-videos-images-create-content-fast" class="source-link" target="_blank">Dropbox Blog — Spring 2025 Release: AI Writing Tools</a>
+                <a href="https://dropbox.tech/machine-learning/building-dash-rag-multi-step-ai-agents-business-users" class="source-link" target="_blank">Dropbox Tech — Building Dash: RAG and AI Agents</a>
+                <a href="https://dropbox.tech/culture/ai-adoption-productivity-dropbox-cto-ali-dasdan" class="source-link" target="_blank">Dropbox CTO Ali Dasdan — Driving AI Adoption</a>
+                <a href="https://blog.logrocket.com/ux-design/help-desk-ux-case-studies/" class="source-link" target="_blank">LogRocket — 5 Support Page Redesigns That Transformed Help Desk UX</a>
+                <a href="https://uxcontent.com/support-ux-designing-better-knowledge-base-content/" class="source-link" target="_blank">UX Content Collective — Designing Better Knowledge Base Content</a>
+                <a href="https://www.trustpilot.com/review/www.dropbox.com" class="source-link" target="_blank">Trustpilot — Dropbox Customer Reviews 2025</a>
+                <a href="https://www.linktly.com/productivity-software/dropbox-review-2/" class="source-link" target="_blank">Dropbox Review 2026 — Features, Pros, Cons & Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="dbx-footer">
+        <div class="footer-logo">
+            <div class="dbx-nav-icon">
+                <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M4 17l8 5 8-5M4 12l8 5 8-5M12 2L4 7l8 5 8-5-8-5z"/></svg>
+            </div>
+            <span class="dbx-nav-title" style="color:white;">Dropbox Pathways</span>
+        </div>
+        <p class="footer-text">A design proposal for the CX Technical Content Design Intern position at Dropbox</p>
+        <p class="footer-copy">Created by Maria Dumitrescu — January 2026</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
