@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanium Compass — Maria Dumitrescu</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #09080d;
+            width: 210mm;
+            height: 297mm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40mm 20mm;
+            color: white;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 170mm;
+            text-align: center;
+        }
+
+        /* Icon */
+        .icon-wrapper {
+            margin: 0 auto 30px;
+            width: 100px;
+            height: 100px;
+            background: #ec3430;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrapper svg {
+            width: 56px;
+            height: 56px;
+            color: white;
+        }
+
+        /* Title */
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        /* Author Section */
+        .author-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .author-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 12px;
+        }
+
+        .author-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .author-role {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Link Section */
+        .link-box {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .link-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ec3430;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .url-display {
+            background: #ec3430;
+            color: white;
+            padding: 18px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Monaco', 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+        }
+
+        .footer-item {
+            text-align: center;
+        }
+
+        .footer-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+
+        .footer-value {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media print {
+            body {
+                background: #09080d !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Icon -->
+        <div class="icon-wrapper">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+            </svg>
+        </div>
+
+        <!-- Title -->
+        <h1 class="title">Tanium Compass</h1>
+        <p class="subtitle">Intelligent onboarding &amp; navigation for endpoint management</p>
+
+        <!-- Author -->
+        <div class="author-box">
+            <p class="author-label">Designed by</p>
+            <h2 class="author-name">Maria Dumitrescu</h2>
+            <p class="author-role">UX/UI Design Intern Application</p>
+        </div>
+
+        <!-- Link -->
+        <div class="link-box">
+            <p class="link-label">View Full Proposal Online</p>
+            <div class="url-display">mariadumitrescu.com/tanium-improvement.html</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-label">Position</div>
+                <div class="footer-value">UX/UI Design Intern</div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-label">Location</div>
+                <div class="footer-value">Durham, NC (Hybrid)</div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-label">Date</div>
+                <div class="footer-value">January 2026</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
