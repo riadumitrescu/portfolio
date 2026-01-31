@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM Research Spectrum — Maria Dumitrescu</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #161616;
+            width: 210mm;
+            height: 297mm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40mm 20mm;
+            color: white;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 170mm;
+            text-align: center;
+        }
+
+        /* Icon */
+        .icon-wrapper {
+            margin: 0 auto 30px;
+            width: 100px;
+            height: 100px;
+            background: #0f62fe;
+            border-radius: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrapper svg {
+            width: 56px;
+            height: 56px;
+            color: white;
+        }
+
+        /* Title */
+        .title {
+            font-size: 48px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #c6c6c6;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        /* Author Section */
+        .author-box {
+            background: #262626;
+            border: 1px solid #393939;
+            border-radius: 0px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .author-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #6f6f6f;
+            margin-bottom: 12px;
+        }
+
+        .author-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .author-role {
+            font-size: 14px;
+            color: #c6c6c6;
+        }
+
+        /* Link Section */
+        .link-box {
+            background: #f4f4f4;
+            border-radius: 0px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .link-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #0f62fe;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .url-display {
+            background: #0f62fe;
+            color: white;
+            padding: 18px 24px;
+            border-radius: 0px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'IBM Plex Mono', 'Monaco', 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            color: #6f6f6f;
+            font-size: 12px;
+        }
+
+        .footer-item {
+            text-align: center;
+        }
+
+        .footer-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+
+        .footer-value {
+            font-weight: 500;
+            color: #c6c6c6;
+        }
+
+        @media print {
+            body {
+                background: #161616 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Icon -->
+        <div class="icon-wrapper">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"/>
+            </svg>
+        </div>
+
+        <!-- Title -->
+        <h1 class="title">IBM Research Spectrum</h1>
+        <p class="subtitle">Visual storytelling system for quantum, AI &amp; semiconductor research</p>
+
+        <!-- Author -->
+        <div class="author-box">
+            <p class="author-label">Designed by</p>
+            <h2 class="author-name">Maria Dumitrescu</h2>
+            <p class="author-role">Visual Design Intern Application</p>
+        </div>
+
+        <!-- Link -->
+        <div class="link-box">
+            <p class="link-label">View Full Proposal Online</p>
+            <div class="url-display">mariadumitrescu.com/ibm-improvement.html</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-label">Position</div>
+                <div class="footer-value">Visual Design Intern</div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-label">Team</div>
+                <div class="footer-value">IBM Research Creative</div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-label">Date</div>
+                <div class="footer-value">January 2026</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

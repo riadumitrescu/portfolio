@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM Research Spectrum — A Design Proposal by Maria Dumitrescu</title>
+    <link rel="icon" href="./assets/circleprofilepic.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== IBM CARBON DESIGN SYSTEM ===== */
+        :root {
+            /* IBM Blue */
+            --ibm-blue: #0f62fe;
+            --ibm-blue-hover: #0353e9;
+            --ibm-blue-light: #78a9ff;
+            --ibm-blue-lightest: #d0e2ff;
+
+            /* IBM Neutrals */
+            --ibm-black: #000000;
+            --ibm-gray-100: #161616;
+            --ibm-gray-90: #262626;
+            --ibm-gray-80: #393939;
+            --ibm-gray-70: #525252;
+            --ibm-gray-60: #6f6f6f;
+            --ibm-gray-50: #8d8d8d;
+            --ibm-gray-40: #a8a8a8;
+            --ibm-gray-30: #c6c6c6;
+            --ibm-gray-20: #e0e0e0;
+            --ibm-gray-10: #f4f4f4;
+            --ibm-white: #ffffff;
+
+            /* Semantic */
+            --ibm-success: #24a148;
+            --ibm-error: #da1e28;
+            --ibm-warning: #f1c21b;
+            --ibm-info: #4589ff;
+            --ibm-purple: #a56eff;
+            --ibm-teal: #009d9a;
+            --ibm-magenta: #ee5396;
+
+            /* Typography */
+            --font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.24);
+
+            /* Carbon uses 0 radius for containers */
+            --radius-none: 0px;
+            --radius-btn: 0px;
+            --radius-tag: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--ibm-gray-10);
+            color: var(--ibm-gray-100);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .ibm-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 48px;
+            background: var(--ibm-gray-100);
+            border-bottom: 1px solid var(--ibm-gray-80);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+        }
+
+        .ibm-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            height: 100%;
+            padding-right: 24px;
+            border-right: 1px solid var(--ibm-gray-80);
+        }
+
+        .ibm-nav-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--ibm-blue);
+            border-radius: var(--radius-none);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ibm-nav-icon svg { width: 16px; height: 16px; }
+
+        .ibm-nav-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ibm-white);
+            letter-spacing: 0.1px;
+        }
+
+        .ibm-nav-links {
+            margin-left: auto;
+            display: flex;
+            gap: 0;
+            height: 100%;
+        }
+
+        .ibm-nav-link {
+            font-size: 14px;
+            color: var(--ibm-gray-30);
+            text-decoration: none;
+            font-weight: 400;
+            transition: all 0.15s;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            border-left: 1px solid transparent;
+        }
+
+        .ibm-nav-link:hover {
+            color: var(--ibm-white);
+            background: var(--ibm-gray-80);
+            text-decoration: none;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 48px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--ibm-gray-100);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 60%;
+            height: 140%;
+            background: radial-gradient(ellipse, rgba(15, 98, 254, 0.1), transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%; left: 10%;
+            width: 40%;
+            height: 100%;
+            background: radial-gradient(ellipse, rgba(165, 110, 255, 0.06), transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(15, 98, 254, 0.1);
+            border: 1px solid rgba(15, 98, 254, 0.3);
+            padding: 6px 16px;
+            border-radius: var(--radius-tag);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ibm-blue-light);
+            margin-bottom: 32px;
+            letter-spacing: 0.32px;
+        }
+
+        .hero-badge-dot {
+            width: 8px; height: 8px;
+            background: var(--ibm-blue);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 7vw, 84px);
+            font-weight: 300;
+            color: var(--ibm-white);
+            line-height: 1.07;
+            margin-bottom: 24px;
+            letter-spacing: -0.64px;
+        }
+
+        .hero-title strong {
+            font-weight: 600;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: var(--ibm-gray-40);
+            max-width: 700px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+
+        .hero-meta-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.32px;
+            color: var(--ibm-gray-50);
+        }
+
+        .hero-meta-value {
+            font-size: 14px;
+            color: var(--ibm-white);
+            font-weight: 500;
+        }
+
+        .hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        .ibm-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            padding: 14px 16px;
+            border-radius: var(--radius-btn);
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.15s;
+            cursor: pointer;
+            border: none;
+            min-width: 200px;
+            letter-spacing: 0.16px;
+        }
+
+        .ibm-btn-primary {
+            background: var(--ibm-blue);
+            color: var(--ibm-white);
+        }
+
+        .ibm-btn-primary:hover {
+            background: var(--ibm-blue-hover);
+            color: var(--ibm-white);
+            text-decoration: none;
+        }
+
+        .ibm-btn-ghost {
+            background: transparent;
+            color: var(--ibm-white);
+            border: 1px solid var(--ibm-gray-70);
+        }
+
+        .ibm-btn-ghost:hover {
+            background: var(--ibm-gray-80);
+            color: var(--ibm-white);
+            text-decoration: none;
+        }
+
+        /* ===== SECTIONS ===== */
+        .ibm-section {
+            padding: 96px 48px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.32px;
+            color: var(--ibm-blue);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 300;
+            color: var(--ibm-gray-100);
+            margin-bottom: 16px;
+            letter-spacing: 0px;
+        }
+
+        .section-title strong {
+            font-weight: 600;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--ibm-gray-60);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== PROBLEM CARDS ===== */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1px;
+            margin-top: 48px;
+            background: var(--ibm-gray-20);
+        }
+
+        .problem-card {
+            background: var(--ibm-white);
+            border-radius: var(--radius-none);
+            padding: 32px;
+            transition: all 0.15s;
+        }
+
+        .problem-card:hover {
+            background: var(--ibm-gray-10);
+        }
+
+        .problem-icon {
+            width: 48px; height: 48px;
+            background: var(--ibm-blue-lightest);
+            border-radius: var(--radius-none);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .problem-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ibm-gray-100);
+            margin-bottom: 12px;
+            letter-spacing: 0.1px;
+        }
+
+        .problem-card p {
+            font-size: 14px;
+            color: var(--ibm-gray-60);
+            line-height: 1.6;
+        }
+
+        .problem-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--ibm-gray-20);
+        }
+
+        .stat-num {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--ibm-blue);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--ibm-gray-50);
+            letter-spacing: 0.32px;
+        }
+
+        /* ===== SOLUTION ===== */
+        .solution-section {
+            background: var(--ibm-gray-100);
+            padding: 96px 48px;
+        }
+
+        .solution-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .solution-hero {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 64px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 968px) {
+            .solution-hero { grid-template-columns: 1fr; }
+        }
+
+        .solution-text h2 {
+            font-size: clamp(32px, 4.5vw, 48px);
+            font-weight: 300;
+            color: var(--ibm-white);
+            margin-bottom: 24px;
+            line-height: 1.15;
+        }
+
+        .solution-text h2 strong {
+            font-weight: 600;
+        }
+
+        .solution-text p {
+            font-size: 16px;
+            color: var(--ibm-gray-40);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .principles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .principle-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--ibm-gray-90);
+            border-left: 3px solid var(--ibm-blue);
+            transition: background 0.15s;
+        }
+
+        .principle-row:hover {
+            background: var(--ibm-gray-80);
+        }
+
+        .principle-dot {
+            width: 32px; height: 32px;
+            background: var(--ibm-blue);
+            border-radius: var(--radius-none);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .principle-dot svg {
+            width: 16px;
+            height: 16px;
+            color: var(--ibm-white);
+        }
+
+        .principle-label {
+            font-size: 14px;
+            color: var(--ibm-gray-40);
+            font-weight: 400;
+        }
+
+        .principle-label strong { color: var(--ibm-white); font-weight: 600; }
+
+        /* ===== MOCKUP ===== */
+        .mockup-wrapper {
+            background: var(--ibm-gray-90);
+            border-radius: var(--radius-none);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--ibm-gray-80);
+        }
+
+        .mockup-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .mockup-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.32px;
+            color: var(--ibm-blue-light);
+            margin-bottom: 8px;
+        }
+
+        .mockup-title {
+            font-size: 20px;
+            color: var(--ibm-white);
+            font-weight: 400;
+        }
+
+        /* IBM Research App Mockup */
+        .ibm-app {
+            background: var(--ibm-gray-100);
+            border-radius: var(--radius-none);
+            overflow: hidden;
+            border: 1px solid var(--ibm-gray-80);
+        }
+
+        .ibm-app-topbar {
+            height: 48px;
+            background: var(--ibm-gray-100);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--ibm-gray-80);
+        }
+
+        .app-topbar-brand {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ibm-white);
+            letter-spacing: 0.1px;
+        }
+
+        .app-topbar-tabs {
+            display: flex;
+            margin-left: 24px;
+            gap: 0;
+            height: 100%;
+        }
+
+        .app-tab {
+            font-size: 13px;
+            color: var(--ibm-gray-40);
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid transparent;
+        }
+
+        .app-tab.active {
+            color: var(--ibm-white);
+            border-bottom-color: var(--ibm-blue);
+        }
+
+        .ibm-app-body {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            min-height: 380px;
+        }
+
+        @media (max-width: 768px) {
+            .ibm-app-body { grid-template-columns: 1fr; }
+            .app-sidebar { display: none; }
+        }
+
+        .app-main {
+            padding: 24px;
+            position: relative;
+        }
+
+        .quantum-card {
+            background: var(--ibm-gray-90);
+            border: 1px solid var(--ibm-gray-80);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .quantum-card-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.32px;
+            color: var(--ibm-blue-light);
+            margin-bottom: 8px;
+        }
+
+        .quantum-card-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--ibm-white);
+            margin-bottom: 16px;
+        }
+
+        /* Quantum visual */
+        .quantum-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 160px;
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .q-orb {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            position: absolute;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .q-orb-1 {
+            background: radial-gradient(circle, var(--ibm-blue), rgba(15, 98, 254, 0.2));
+            left: 20%;
+            top: 25%;
+            animation-delay: 0s;
+        }
+
+        .q-orb-2 {
+            background: radial-gradient(circle, var(--ibm-purple), rgba(165, 110, 255, 0.2));
+            width: 48px; height: 48px;
+            right: 25%;
+            top: 15%;
+            animation-delay: -1.5s;
+        }
+
+        .q-orb-3 {
+            background: radial-gradient(circle, var(--ibm-teal), rgba(0, 157, 154, 0.2));
+            width: 40px; height: 40px;
+            left: 45%;
+            bottom: 10%;
+            animation-delay: -3s;
+        }
+
+        .q-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--ibm-blue-light), transparent);
+            opacity: 0.4;
+        }
+
+        .q-line-1 { width: 120px; left: 28%; top: 42%; transform: rotate(-15deg); }
+        .q-line-2 { width: 100px; right: 20%; top: 35%; transform: rotate(25deg); }
+        .q-line-3 { width: 80px; left: 38%; bottom: 30%; transform: rotate(-5deg); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .quantum-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--ibm-gray-80);
+        }
+
+        .q-stat {
+            background: var(--ibm-gray-90);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .q-stat-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--ibm-blue-light);
+        }
+
+        .q-stat-label {
+            font-size: 11px;
+            color: var(--ibm-gray-50);
+            letter-spacing: 0.32px;
+        }
+
+        /* Sidebar */
+        .app-sidebar {
+            background: var(--ibm-gray-90);
+            border-left: 1px solid var(--ibm-gray-80);
+            padding: 16px;
+        }
+
+        .sidebar-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.32px;
+            color: var(--ibm-gray-50);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .component-preview {
+            background: var(--ibm-gray-80);
+            padding: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            border-left: 2px solid transparent;
+        }
+
+        .component-preview:hover {
+            background: var(--ibm-gray-70);
+            border-left-color: var(--ibm-blue);
+        }
+
+        .component-preview .cp-dot {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            margin-bottom: 6px;
+        }
+
+        .cp-dot-blue { background: var(--ibm-blue); }
+        .cp-dot-purple { background: var(--ibm-purple); }
+        .cp-dot-teal { background: var(--ibm-teal); }
+
+        .component-preview span {
+            font-size: 11px;
+            color: var(--ibm-gray-30);
+            font-weight: 500;
+        }
+
+        /* ===== FEATURES ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            margin-top: 64px;
+            background: var(--ibm-gray-80);
+        }
+
+        @media (max-width: 968px) {
+            .features-grid { grid-template-columns: 1fr; }
+        }
+
+        .feature-card {
+            background: var(--ibm-gray-90);
+            padding: 32px;
+            transition: all 0.15s;
+            border-top: 3px solid transparent;
+        }
+
+        .feature-card:hover {
+            background: var(--ibm-gray-80);
+            border-top-color: var(--ibm-blue);
+        }
+
+        .feature-num {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--ibm-gray-70);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ibm-white);
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--ibm-gray-40);
+            line-height: 1.6;
+        }
+
+        /* ===== COMPARISON ===== */
+        .comparison-section {
+            background: var(--ibm-white);
+            padding: 96px 48px;
+        }
+
+        .comparison-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-top: 64px;
+            background: var(--ibm-gray-20);
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+
+        .comp-card {
+            padding: 40px;
+            position: relative;
+        }
+
+        .comp-card.before {
+            background: #fff1f1;
+        }
+
+        .comp-card.after {
+            background: #defbe6;
+        }
+
+        .comp-label {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.32px;
+            margin-bottom: 16px;
+        }
+
+        .comp-card.before .comp-label {
+            background: var(--ibm-error);
+            color: var(--ibm-white);
+        }
+
+        .comp-card.after .comp-label {
+            background: var(--ibm-success);
+            color: var(--ibm-white);
+        }
+
+        .comp-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--ibm-gray-100);
+        }
+
+        .comp-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comp-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 14px;
+            color: var(--ibm-gray-70);
+        }
+
+        .comp-list li:last-child { border-bottom: none; }
+        .comp-icon { font-size: 16px; flex-shrink: 0; }
+
+        /* ===== ROADMAP ===== */
+        .roadmap-section {
+            background: var(--ibm-gray-10);
+            padding: 96px 48px;
+        }
+
+        .roadmap-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 64px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--ibm-blue);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 32px;
+            padding: 24px 0;
+        }
+
+        .timeline-dot {
+            width: 50px; height: 50px;
+            background: var(--ibm-white);
+            border: 2px solid var(--ibm-blue);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--ibm-blue);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .timeline-card {
+            flex: 1;
+            background: var(--ibm-white);
+            border-radius: var(--radius-none);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border-left: 3px solid var(--ibm-blue);
+        }
+
+        .timeline-phase {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.32px;
+            color: var(--ibm-blue);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ibm-gray-100);
+            margin-bottom: 12px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--ibm-gray-60);
+            line-height: 1.6;
+        }
+
+        /* ===== TECH ===== */
+        .tech-section {
+            background: var(--ibm-gray-100);
+            padding: 80px 48px;
+        }
+
+        .tech-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tech-title {
+            font-size: 28px;
+            color: var(--ibm-white);
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .tech-sub {
+            font-size: 14px;
+            color: var(--ibm-gray-50);
+            margin-bottom: 48px;
+        }
+
+        .tech-grid {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-icon-box {
+            width: 64px; height: 64px;
+            background: var(--ibm-gray-90);
+            border: 1px solid var(--ibm-gray-80);
+            border-radius: var(--radius-none);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+        }
+
+        .tech-icon-box svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .tech-item:hover .tech-icon-box {
+            border-color: var(--ibm-blue);
+            background: var(--ibm-gray-80);
+        }
+
+        .tech-label {
+            font-size: 12px;
+            color: var(--ibm-gray-40);
+            font-weight: 500;
+            letter-spacing: 0.32px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-section {
+            background: var(--ibm-white);
+            padding: 96px 48px;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .about-content { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        .about-img {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--ibm-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-img img { width: 100%; height: 100%; object-fit: cover; }
+        .about-placeholder { font-size: 56px; color: var(--ibm-white); font-weight: 300; }
+
+        .about-text h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--ibm-gray-100);
+            margin-bottom: 4px;
+        }
+
+        .about-role {
+            font-size: 14px;
+            color: var(--ibm-blue);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .about-bio {
+            font-size: 14px;
+            color: var(--ibm-gray-60);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .about-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .about-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--ibm-gray-10);
+            border-radius: var(--radius-none);
+            color: var(--ibm-gray-100);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.15s;
+        }
+
+        .about-link:hover {
+            background: var(--ibm-blue);
+            color: var(--ibm-white);
+            text-decoration: none;
+        }
+
+        /* ===== SOURCES ===== */
+        .sources-section {
+            background: var(--ibm-gray-10);
+            padding: 48px;
+        }
+
+        .sources-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .sources-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ibm-gray-100);
+            margin-bottom: 24px;
+        }
+
+        .sources-list { display: grid; gap: 8px; }
+
+        .source-link {
+            font-size: 14px;
+            color: var(--ibm-blue);
+            text-decoration: none;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--ibm-gray-20);
+            display: block;
+            transition: color 0.15s;
+        }
+
+        .source-link:hover {
+            color: var(--ibm-blue-hover);
+            text-decoration: none;
+        }
+
+        /* ===== FOOTER ===== */
+        .ibm-footer {
+            background: var(--ibm-gray-100);
+            padding: 48px;
+            text-align: center;
+            border-top: 1px solid var(--ibm-gray-80);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: var(--ibm-gray-50);
+            margin-bottom: 12px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--ibm-gray-60);
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .hero { padding: 80px 24px 60px; }
+            .ibm-section, .solution-section, .comparison-section, .roadmap-section, .about-section { padding: 64px 24px; }
+            .mockup-wrapper { padding: 16px; }
+            .ibm-nav-links { display: none; }
+            .problem-grid { grid-template-columns: 1fr; }
+            .ibm-btn { min-width: auto; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="ibm-nav">
+        <a href="index.html" class="ibm-nav-logo">
+            <div class="ibm-nav-icon">
+                <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                    <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/>
+                    <line x1="12" y1="2" x2="12" y2="22" opacity="0.5"/>
+                    <line x1="2" y1="8.5" x2="22" y2="15.5" opacity="0.5"/>
+                    <line x1="22" y1="8.5" x2="2" y2="15.5" opacity="0.5"/>
+                </svg>
+            </div>
+            <span class="ibm-nav-title">Design Proposal</span>
+        </a>
+        <div class="ibm-nav-links">
+            <a href="#problem" class="ibm-nav-link">Research</a>
+            <a href="#solution" class="ibm-nav-link">Solution</a>
+            <a href="#roadmap" class="ibm-nav-link">Roadmap</a>
+            <a href="#about" class="ibm-nav-link">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Visual Design Intern Application
+            </div>
+            <h1 class="hero-title">
+                <strong>IBM Research</strong><br>Spectrum
+            </h1>
+            <p class="hero-subtitle">
+                A visual storytelling system that translates complex quantum computing, AI, and semiconductor research into compelling visual experiences for every audience.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Designer</span>
+                    <span class="hero-meta-value">Maria Dumitrescu</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Position</span>
+                    <span class="hero-meta-value">Visual Design Intern</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Team</span>
+                    <span class="hero-meta-value">IBM Research Creative</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Focus</span>
+                    <span class="hero-meta-value">Visual Storytelling</span>
+                </div>
+            </div>
+            <div class="hero-cta-group">
+                <a href="#solution" class="ibm-btn ibm-btn-primary">
+                    <span>View Solution</span>
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#problem" class="ibm-btn ibm-btn-ghost">
+                    <span>Read Research</span>
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="ibm-section">
+        <div class="section-header">
+            <p class="section-label">Research Insights</p>
+            <h2 class="section-title">The <strong>Visualization Challenge</strong></h2>
+            <p class="section-desc">
+                Through analysis of IBM Research publications, design system audits, and industry benchmarks, I identified critical gaps in how breakthrough research is communicated visually.
+            </p>
+        </div>
+
+        <div class="problem-grid fade-in">
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <svg width="22" height="22" fill="none" stroke="var(--ibm-blue)" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/><circle cx="12" cy="12" r="4" opacity="0.5"/></svg>
+                </div>
+                <h3>Quantum Concepts Are Abstract</h3>
+                <p>Bloch spheres only work for small systems (N&#8804;5 qubits), and entanglement is impossible to visualize using classical analogies. As qubit counts grow, visual representations break down entirely.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">5</span>
+                    <span class="stat-label">max qubits visualized intuitively</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <svg width="22" height="22" fill="none" stroke="var(--ibm-blue)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>Research-to-Public Gap</h3>
+                <p>IBM Research spans quantum, AI, and semiconductors, but communicating breakthroughs to non-technical audiences remains a major challenge. Each domain has its own visual language with no shared framework.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">3</span>
+                    <span class="stat-label">major domains to communicate</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <svg width="22" height="22" fill="none" stroke="var(--ibm-blue)" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="0"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <h3>Cross-Platform Inconsistency</h3>
+                <p>Research visual assets are created ad-hoc across web, social media, conference presentations, events, and print publications without a unified visual system or shared asset library.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">5+</span>
+                    <span class="stat-label">touchpoints, no unified system</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <svg width="22" height="22" fill="none" stroke="var(--ibm-blue)" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>
+                </div>
+                <h3>Static Explanations for Dynamic Concepts</h3>
+                <p>Quantum circuits, AI model training, and chip fabrication are inherently dynamic processes, yet they are typically explained through static diagrams that fail to convey how these systems evolve.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">Low</span>
+                    <span class="stat-label">engagement with technical content</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <svg width="22" height="22" fill="none" stroke="var(--ibm-blue)" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                </div>
+                <h3>Carbon Rigidity for Creative Work</h3>
+                <p>Carbon Design System is optimized for enterprise dashboards and product interfaces, but offers less flexibility for creative research storytelling, editorial design, and immersive visual experiences.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">Enterprise</span>
+                    <span class="stat-label">focused, not research-optimized</span>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <svg width="22" height="22" fill="none" stroke="var(--ibm-blue)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3>Talent Pipeline Challenge</h3>
+                <p>Quantum computing needs 300K+ professionals by 2030, but visual communication of the field struggles to inspire and recruit new talent. The visual gap limits public understanding and career interest.</p>
+                <div class="problem-stat">
+                    <span class="stat-num">300K+</span>
+                    <span class="stat-label">needed by 2030</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution-section">
+        <div class="solution-content">
+            <div class="solution-hero">
+                <div class="solution-text">
+                    <h2>Introducing<br><strong>IBM Research Spectrum</strong></h2>
+                    <p>
+                        A visual storytelling system built on IBM's design foundation that provides systematic tools for translating complex quantum computing, AI, and semiconductor concepts into layered, explorable visual experiences across every research touchpoint.
+                    </p>
+                    <div class="principles-list">
+                        <div class="principle-row">
+                            <div class="principle-dot">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <span class="principle-label"><strong>Abstraction Layers:</strong> Simplify without dumbing down</span>
+                        </div>
+                        <div class="principle-row">
+                            <div class="principle-dot">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                            </div>
+                            <span class="principle-label"><strong>Modular Components:</strong> Reusable visual building blocks</span>
+                        </div>
+                        <div class="principle-row">
+                            <div class="principle-dot">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+                            </div>
+                            <span class="principle-label"><strong>Interactive Narratives:</strong> Explorable explanations</span>
+                        </div>
+                        <div class="principle-row">
+                            <div class="principle-dot">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                            </div>
+                            <span class="principle-label"><strong>Unified Language:</strong> One system across all research domains</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mockup -->
+                <div class="mockup-wrapper">
+                    <div class="mockup-header">
+                        <p class="mockup-tag">Interactive Concept</p>
+                        <h3 class="mockup-title">Research Spectrum Platform</h3>
+                    </div>
+
+                    <div class="ibm-app">
+                        <div class="ibm-app-topbar">
+                            <span class="app-topbar-brand">IBM Research</span>
+                            <div class="app-topbar-tabs">
+                                <div class="app-tab active">Quantum</div>
+                                <div class="app-tab">AI</div>
+                                <div class="app-tab">Chips</div>
+                            </div>
+                        </div>
+
+                        <div class="ibm-app-body">
+                            <div class="app-main">
+                                <div class="quantum-card">
+                                    <p class="quantum-card-label">Interactive Explainer</p>
+                                    <h3 class="quantum-card-title">Quantum Advantage Explained</h3>
+
+                                    <div class="quantum-visual">
+                                        <div class="q-orb q-orb-1"></div>
+                                        <div class="q-orb q-orb-2"></div>
+                                        <div class="q-orb q-orb-3"></div>
+                                        <div class="q-line q-line-1"></div>
+                                        <div class="q-line q-line-2"></div>
+                                        <div class="q-line q-line-3"></div>
+                                    </div>
+
+                                    <div class="quantum-stats">
+                                        <div class="q-stat">
+                                            <div class="q-stat-value">1,121</div>
+                                            <div class="q-stat-label">Qubits</div>
+                                        </div>
+                                        <div class="q-stat">
+                                            <div class="q-stat-value">99.9%</div>
+                                            <div class="q-stat-label">Gate fidelity</div>
+                                        </div>
+                                        <div class="q-stat">
+                                            <div class="q-stat-value">3</div>
+                                            <div class="q-stat-label">Layers</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="app-sidebar">
+                                <p class="sidebar-title">Visual Components</p>
+                                <div class="component-preview">
+                                    <div class="cp-dot cp-dot-blue"></div>
+                                    <span>Qubit State</span>
+                                </div>
+                                <div class="component-preview">
+                                    <div class="cp-dot cp-dot-purple"></div>
+                                    <span>Entanglement</span>
+                                </div>
+                                <div class="component-preview">
+                                    <div class="cp-dot cp-dot-teal"></div>
+                                    <span>Error Correction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="features-grid fade-in">
+                <div class="feature-card">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title">Abstraction Toolkit</h3>
+                    <p class="feature-desc">
+                        A systematic framework for reducing complex research concepts to visual layers. Each concept maps to audience tiers: expert, technical, and general public, ensuring accuracy at every level.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title">Component Library</h3>
+                    <p class="feature-desc">
+                        Modular design assets for quantum circuits, AI neural architectures, and semiconductor chip diagrams. Built as reusable Figma and web components that maintain visual consistency.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title">Interactive Explainers</h3>
+                    <p class="feature-desc">
+                        Web-based visual experiences that let audiences explore quantum, AI, and chip concepts hands-on. Built with Three.js and Web Components for immersive, educational storytelling.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="comparison-content">
+            <div class="section-header">
+                <p class="section-label">Before & After</p>
+                <h2 class="section-title">Transforming <strong>Research Communication</strong></h2>
+                <p class="section-desc">How IBM Research Spectrum elevates the visual storytelling of breakthrough science</p>
+            </div>
+
+            <div class="comparison-grid fade-in">
+                <div class="comp-card before">
+                    <span class="comp-label">Current State</span>
+                    <h3 class="comp-title">Research Visuals Today</h3>
+                    <ul class="comp-list">
+                        <li>
+                            <span class="comp-icon">&#10005;</span>
+                            <span>Ad-hoc visuals created per project with no shared system</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10005;</span>
+                            <span>Static diagrams for inherently dynamic processes</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10005;</span>
+                            <span>Same visual complexity for experts and general audiences</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10005;</span>
+                            <span>Inconsistent styles across web, social, and events</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10005;</span>
+                            <span>Carbon components not optimized for editorial storytelling</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10005;</span>
+                            <span>Quantum concepts remain inaccessible to non-physicists</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="comp-card after">
+                    <span class="comp-label">With Spectrum</span>
+                    <h3 class="comp-title">Unified Visual System</h3>
+                    <ul class="comp-list">
+                        <li>
+                            <span class="comp-icon">&#10003;</span>
+                            <span>Modular component library shared across all teams</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10003;</span>
+                            <span>Interactive, animated explainers for dynamic concepts</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10003;</span>
+                            <span>Abstraction layers adapt visuals to audience expertise</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10003;</span>
+                            <span>One design language across every research touchpoint</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10003;</span>
+                            <span>Creative extensions built on Carbon's systematic foundation</span>
+                        </li>
+                        <li>
+                            <span class="comp-icon">&#10003;</span>
+                            <span>Explorable experiences that make quantum intuitive</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="roadmap-section">
+        <div class="roadmap-content">
+            <div class="section-header">
+                <p class="section-label">Implementation Vision</p>
+                <h2 class="section-title">Development <strong>Roadmap</strong></h2>
+                <p class="section-desc">A phased approach to building the IBM Research Spectrum system</p>
+            </div>
+
+            <div class="timeline fade-in">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-card">
+                        <p class="timeline-phase">Phase 1: Audit & Framework</p>
+                        <h3 class="timeline-title">Visual Language Foundation</h3>
+                        <p class="timeline-desc">Audit existing research visual assets across quantum, AI, and semiconductor teams. Map the abstraction framework linking technical depth to audience tiers. Define the visual grammar, color coding per research domain, and typographic hierarchy within IBM Design Language.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-card">
+                        <p class="timeline-phase">Phase 2: Component Library</p>
+                        <h3 class="timeline-title">Modular Visual Assets</h3>
+                        <p class="timeline-desc">Build a Figma and code component library of reusable visual elements: quantum circuit diagrams, qubit state representations, neural network architectures, and chip cross-section illustrations. All components follow Carbon grid and spacing, with domain-specific color tokens.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-card">
+                        <p class="timeline-phase">Phase 3: Interactive Prototypes</p>
+                        <h3 class="timeline-title">Explorable Explainers</h3>
+                        <p class="timeline-desc">Develop web-based interactive experiences using Three.js and Web Components. Create pilot explainers for quantum advantage, error correction, and AI foundation models. Test with researchers, communications team, and public audiences for comprehension and engagement.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-card">
+                        <p class="timeline-phase">Phase 4: Scale & Governance</p>
+                        <h3 class="timeline-title">System Adoption & Growth</h3>
+                        <p class="timeline-desc">Document the Spectrum system with usage guidelines and contribution workflows. Train research teams on the component library. Establish governance for visual consistency across IBM Research web properties, social media, conference assets, and publications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Section -->
+    <section class="tech-section">
+        <div class="tech-content">
+            <h2 class="tech-title">Built on IBM's Design Foundation</h2>
+            <p class="tech-sub">Extending the Carbon ecosystem for research visual storytelling</p>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon-box">
+                        <svg fill="none" stroke="var(--ibm-blue-light)" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <span class="tech-label">Carbon Design System</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">
+                        <svg fill="none" stroke="var(--ibm-blue-light)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+                    </div>
+                    <span class="tech-label">IBM Plex</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">
+                        <svg fill="none" stroke="var(--ibm-blue-light)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                    </div>
+                    <span class="tech-label">Figma</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">
+                        <svg fill="none" stroke="var(--ibm-blue-light)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <span class="tech-label">After Effects</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">
+                        <svg fill="none" stroke="var(--ibm-blue-light)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <span class="tech-label">Three.js</span>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon-box">
+                        <svg fill="none" stroke="var(--ibm-blue-light)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+                    </div>
+                    <span class="tech-label">Web Components</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <div class="about-img">
+                <img src="./assets/circleprofilepic.png" alt="Maria Dumitrescu" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'about-placeholder\'>MD</span>'">
+            </div>
+            <div class="about-text">
+                <h3>Maria Dumitrescu</h3>
+                <p class="about-role">Visual Designer & Researcher</p>
+                <p class="about-bio">
+                    I design at the intersection of complex ideas and clear communication. My practice centers on translating intricate technical and scientific concepts into visual experiences that are rigorous, accessible, and compelling.
+                    <br><br>
+                    This proposal demonstrates my approach to systematic visual thinking: identifying structural communication challenges, developing framework-level solutions, and executing with precision within an established design language. These are the exact skills needed to help IBM Research tell the story of quantum, AI, and semiconductor breakthroughs.
+                    <br><br>
+                    I'm excited about the opportunity to contribute to a team making frontier science visible and understandable to the world.
+                </p>
+                <div class="about-links">
+                    <a href="index.html" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                        Portfolio
+                    </a>
+                    <a href="mailto:mariadumitrescuoffice@gmail.com" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg>
+                        Contact
+                    </a>
+                    <a href="resume.html" class="about-link">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/></svg>
+                        Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section class="sources-section">
+        <div class="sources-content">
+            <h3 class="sources-title">Research Sources</h3>
+            <div class="sources-list">
+                <a href="https://research.ibm.com/quantum-computing" class="source-link" target="_blank">IBM Research Quantum Computing</a>
+                <a href="https://carbondesignsystem.com/" class="source-link" target="_blank">Carbon Design System</a>
+                <a href="https://www.ibm.com/design/language/" class="source-link" target="_blank">IBM Design Language</a>
+                <a href="https://arxiv.org/html/2601.07872v1" class="source-link" target="_blank">Quantum Computing Visualization Research Challenges</a>
+                <a href="https://newsroom.ibm.com/2025-11-12-ibm-delivers-new-quantum-processors" class="source-link" target="_blank">IBM Quantum Processors 2025</a>
+                <a href="https://research.ibm.com/blog/ibm-research-sxsw-quantum-ai" class="source-link" target="_blank">IBM Research at SXSW 2025</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ibm-footer">
+        <div class="footer-logo">
+            <div class="ibm-nav-icon">
+                <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                    <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/>
+                    <line x1="12" y1="2" x2="12" y2="22" opacity="0.5"/>
+                    <line x1="2" y1="8.5" x2="22" y2="15.5" opacity="0.5"/>
+                    <line x1="22" y1="8.5" x2="2" y2="15.5" opacity="0.5"/>
+                </svg>
+            </div>
+            <span class="ibm-nav-title">IBM Research Spectrum</span>
+        </div>
+        <p class="footer-text">
+            A design proposal for the Visual Design Intern position at IBM Research
+        </p>
+        <p class="footer-copy">
+            Created by Maria Dumitrescu &mdash; January 2026
+        </p>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
