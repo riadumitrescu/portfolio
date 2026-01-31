@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acuity Momentum — Maria Dumitrescu</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            background: #000000;
+            width: 210mm;
+            height: 297mm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40mm 20mm;
+            color: white;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 170mm;
+            text-align: center;
+        }
+
+        /* Icon */
+        .icon-wrapper {
+            margin: 0 auto 30px;
+            width: 100px;
+            height: 100px;
+            background: #ffffff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrapper svg {
+            width: 56px;
+            height: 56px;
+            color: #000000;
+        }
+
+        /* Title */
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        /* Author Section */
+        .author-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .author-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 12px;
+        }
+
+        .author-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .author-role {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Link Section */
+        .link-box {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .link-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #000000;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .url-display {
+            background: #000000;
+            color: white;
+            padding: 18px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Monaco', 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+        }
+
+        .footer-item {
+            text-align: center;
+        }
+
+        .footer-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+
+        .footer-value {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @media print {
+            body {
+                background: #000000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Icon -->
+        <div class="icon-wrapper">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+            </svg>
+        </div>
+
+        <!-- Title -->
+        <h1 class="title">Acuity Momentum</h1>
+        <p class="subtitle">Growth-focused trial experience for Acuity Scheduling</p>
+
+        <!-- Author -->
+        <div class="author-box">
+            <p class="author-label">Designed by</p>
+            <h2 class="author-name">Maria Dumitrescu</h2>
+            <p class="author-role">Product Design Intern Application</p>
+        </div>
+
+        <!-- Link -->
+        <div class="link-box">
+            <p class="link-label">View Full Proposal Online</p>
+            <div class="url-display">mariadumitrescu.com/squarespace-improvement.html</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-label">Position</div>
+                <div class="footer-value">Product Design Intern</div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-label">Team</div>
+                <div class="footer-value">Acuity Growth</div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-label">Date</div>
+                <div class="footer-value">January 2026</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
