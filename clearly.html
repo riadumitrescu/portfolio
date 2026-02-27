@@ -26,6 +26,7 @@
     }
 
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     html, body {
       overflow-x: hidden;
       font-family: Georgia, serif;
@@ -172,11 +173,13 @@
 
     /* ===== IMAGE HELPERS ===== */
     .img-card {
-      border-radius: 14px; overflow: hidden;
+      border-radius: 14px; overflow: hidden; position: relative;
       border: 1.5px solid var(--border); background: var(--warm);
-      cursor: zoom-in;
+      cursor: zoom-in; transition: box-shadow 0.3s ease;
     }
-    .img-card img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .img-card:hover { box-shadow: 0 8px 28px rgba(44,40,37,0.12); }
+    .img-card img { max-width: 100%; height: auto; display: block; margin: 0 auto; transition: transform 0.45s ease; }
+    .img-card:hover img { transform: scale(1.025); }
     .img-label {
       padding: 9px 14px; border-top: 1px solid var(--border);
       font-family: system-ui, sans-serif; font-size: 0.68rem;
@@ -215,7 +218,8 @@
 
     /* ===== INSIGHT BLOCKS ===== */
     .c-insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
-    .c-insight { background: var(--warm); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; }
+    .c-insight { background: var(--warm); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; transition: transform 0.22s ease, box-shadow 0.22s ease; }
+    .c-insight:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(44,40,37,0.08); }
     .c-insight-num {
       font-family: system-ui, sans-serif; font-size: 0.58rem;
       font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
@@ -248,7 +252,8 @@
     /* ===== STEP BLOCK ===== */
     .c-step-block {
       margin: 32px 0; padding: 28px 28px 24px;
-      background: #fff; border: 1.5px solid var(--border); border-radius: 20px;
+      background: #fff; border: 1.5px solid var(--border);
+      border-left: 3.5px solid var(--terra); border-radius: 20px;
     }
     .c-step-label {
       font-family: system-ui, sans-serif; font-size: 0.58rem;
@@ -305,34 +310,71 @@
     /* ===== LIGHTBOX ===== */
     .lb-overlay {
       position: fixed; inset: 0;
-      background: rgba(20,18,16,0.95);
-      z-index: 9999; display: flex;
+      background: rgba(10,9,8,0.93);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      z-index: 9999; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       padding: 24px; opacity: 0; pointer-events: none;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.22s ease;
     }
     .lb-overlay.open { opacity: 1; pointer-events: auto; }
+    .lb-img-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      max-width: 88vw;
+      transform: scale(0.93) translateY(12px);
+      transition: transform 0.32s cubic-bezier(0.34,1.4,0.64,1);
+    }
+    .lb-overlay.open .lb-img-wrap { transform: scale(1) translateY(0); }
     .lb-overlay img {
-      max-width: 90vw; max-height: 88vh;
+      max-width: 88vw; max-height: 80vh;
       width: auto; height: auto;
-      border-radius: 8px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      border-radius: 10px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.65);
+      display: block;
+    }
+    .lb-caption {
+      margin-top: 13px;
+      font-family: system-ui, sans-serif; font-size: 0.7rem;
+      color: rgba(250,246,240,0.45); text-align: center;
+      max-width: 60ch; line-height: 1.5; letter-spacing: 0.01em;
     }
     .lb-close {
-      position: fixed; top: 20px; right: 24px;
-      background: rgba(255,255,255,0.1);
-      border: 1.5px solid rgba(255,255,255,0.2);
-      color: #fff; width: 44px; height: 44px;
-      border-radius: 50%; font-size: 22px; line-height: 1;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s; z-index: 10000;
+      position: fixed; top: 20px; right: 22px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.85); width: 40px; height: 40px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s, transform 0.22s; z-index: 10000;
+      backdrop-filter: blur(4px);
     }
-    .lb-close:hover { background: rgba(255,255,255,0.22); }
+    .lb-close:hover { background: rgba(255,255,255,0.18); transform: rotate(90deg) scale(1.1); }
+    .lb-close svg { width: 15px; height: 15px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; }
+    .lb-counter {
+      position: fixed; top: 26px; left: 50%; transform: translateX(-50%);
+      font-family: system-ui, sans-serif; font-size: 0.66rem; letter-spacing: 0.07em;
+      color: rgba(255,255,255,0.32); z-index: 10000; pointer-events: none;
+    }
+    .lb-nav {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.75); width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.18s; z-index: 10000;
+      backdrop-filter: blur(4px);
+    }
+    .lb-nav:hover { background: rgba(255,255,255,0.17); }
+    .lb-nav svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .lb-prev { left: 18px; }
+    .lb-next { right: 18px; }
     .lb-hint {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-      font-family: system-ui, sans-serif; font-size: 0.72rem;
-      color: rgba(255,255,255,0.35); z-index: 10000; pointer-events: none;
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      font-family: system-ui, sans-serif; font-size: 0.6rem; letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.18); z-index: 10000; pointer-events: none;
     }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
@@ -966,9 +1008,21 @@
 
 <!-- Lightbox overlay -->
 <div class="lb-overlay" id="lbOverlay">
-  <button class="lb-close" id="lbClose" aria-label="Close">×</button>
-  <img id="lbImg" src="" alt="Full size preview">
-  <div class="lb-hint">click outside or press Esc to close</div>
+  <button class="lb-close" id="lbClose" aria-label="Close">
+    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="lb-counter" id="lbCounter"></div>
+  <div class="lb-img-wrap" id="lbImgWrap">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">
+    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">
+    <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="lb-hint">← → navigate · Esc close</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -979,27 +1033,68 @@
   const lbOverlay = document.getElementById('lbOverlay');
   const lbImg     = document.getElementById('lbImg');
   const lbClose   = document.getElementById('lbClose');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbCounter = document.getElementById('lbCounter');
+  const lbPrev    = document.getElementById('lbPrev');
+  const lbNext    = document.getElementById('lbNext');
 
-  function openLb(src, alt) {
-    lbImg.src = src;
-    lbImg.alt = alt || '';
+  const lbImages = [];
+  let lbIdx = 0;
+
+  function registerCard(card, captionSelector) {
+    const img = card.querySelector('img');
+    if (!img) return;
+    const labelEl = card.querySelector(captionSelector);
+    const caption = labelEl ? labelEl.textContent.trim() : (img.alt || '');
+    const idx = lbImages.length;
+    lbImages.push({ src: img.src, caption });
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => openLb(idx));
+  }
+
+  function registerImg(img) {
+    const idx = lbImages.length;
+    lbImages.push({ src: img.src, caption: img.alt || '' });
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => openLb(idx));
+  }
+
+  document.querySelectorAll('.img-card').forEach(c => registerCard(c, '.img-label'));
+  document.querySelectorAll('.c-ds-card').forEach(c => registerCard(c, '.c-ds-label'));
+  document.querySelectorAll('.c-logo-card').forEach(c => registerCard(c, null));
+  document.querySelectorAll('.c-slides img').forEach(registerImg);
+  document.querySelectorAll('.img-full').forEach(registerImg);
+
+  function renderLb() {
+    const item = lbImages[lbIdx];
+    lbImg.src = item.src;
+    lbImg.alt = item.caption;
+    lbCaption.textContent = item.caption;
+    lbCounter.textContent = (lbImages.length > 1) ? `${lbIdx + 1} / ${lbImages.length}` : '';
+  }
+
+  function openLb(idx) {
+    lbIdx = ((idx % lbImages.length) + lbImages.length) % lbImages.length;
+    renderLb();
     lbOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+
   function closeLb() {
     lbOverlay.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  // Attach to all clickable images
-  document.querySelectorAll('.img-card img, .c-slides img, .img-full, .c-ds-card img, .c-logo-card img').forEach(img => {
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('click', () => openLb(img.src, img.alt));
-  });
-
   lbClose.addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', () => { lbIdx = (lbIdx - 1 + lbImages.length) % lbImages.length; renderLb(); });
+  lbNext.addEventListener('click', () => { lbIdx = (lbIdx + 1) % lbImages.length; renderLb(); });
   lbOverlay.addEventListener('click', e => { if (e.target === lbOverlay) closeLb(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lbOverlay.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft')  { lbIdx = (lbIdx - 1 + lbImages.length) % lbImages.length; renderLb(); }
+    if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % lbImages.length; renderLb(); }
+  });
 
   // ===== PROGRESS BAR =====
   const bar   = document.getElementById('csProgress');
@@ -1024,6 +1119,18 @@
   }
   window.addEventListener('scroll', tick, { passive: true });
   tick();
+
+  // ===== SCROLL REVEAL =====
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
+
+  document.querySelectorAll('.c-step-block, .c-insight, .c-callout, .c-reflection, .c-related-card, .img-card').forEach(el => {
+    el.classList.add('reveal');
+    revObs.observe(el);
+  });
 </script>
 </body>
 </html>
