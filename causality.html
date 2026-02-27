@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maria Dumitrescu — Causality</title>
+  <link rel="icon" href="./assets/circleprofilepic.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CAUSALITY — COLOR SYSTEM ===== */
+    :root {
+      --primary: #2563EB;        /* electric blue */
+      --primary-dark: #1D4ED8;
+      --primary-light: rgba(37, 99, 235, 0.08);
+      --primary-border: rgba(37, 99, 235, 0.20);
+      --accent: #F59E0B;          /* amber */
+      --accent-light: rgba(245, 158, 11, 0.10);
+      --teal: #0D9488;            /* teal for data highlights */
+      --bg: #F0F4F8;
+      --bg-dark: #0F1D3E;
+      --surface: #FFFFFF;
+      --text: #1E293B;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --code-bg: #F8FAFC;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    img, video { max-width: 100%; height: auto; }
+    code, .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ===== NAVBAR ===== */
+    #navbar { background: rgba(240,244,248,0.95) !important; backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    #navbar .navbar-brand, #navbar .nav-link { color: var(--text) !important; font-weight: 600; }
+    #navbar .nav-link:hover { color: var(--primary) !important; }
+
+    /* ===== HERO ===== */
+    .cs-hero {
+      background: var(--bg-dark);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 70% 50%, rgba(37,99,235,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(13,148,136,0.15) 0%, transparent 70%);
+    }
+    /* Data grid decoration */
+    .cs-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .cs-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .cs-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .cs-title {
+      font-size: clamp(48px, 6vw, 76px);
+      font-weight: 800;
+      line-height: 0.92;
+      color: #fff;
+      margin: 0 0 20px 0;
+      letter-spacing: -0.03em;
+    }
+    .cs-title .highlight {
+      color: var(--accent);
+    }
+    .cs-subtitle {
+      font-size: clamp(14px, 1.4vw, 17px);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      max-width: 50ch;
+      margin: 0 0 32px 0;
+    }
+    .cs-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+    .cs-pill {
+      padding: 7px 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(4px);
+    }
+    .cs-meta-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 28px;
+      backdrop-filter: blur(8px);
+    }
+    .cs-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 28px;
+    }
+    .cs-meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 4px;
+    }
+    .cs-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+    }
+    .cs-palette-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin: 20px 0 10px;
+    }
+    .cs-colors {
+      display: flex;
+      gap: 10px;
+    }
+    .cs-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cs-swatch:hover { transform: scale(1.15); }
+    .cs-hero-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 0;
+      grid-column: 1 / -1;
+      padding-bottom: 8px;
+    }
+    .cs-nav-step {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      background: rgba(255,255,255,0.06);
+    }
+    .cs-nav-step:hover { color: #fff; border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.12); text-decoration: none; }
+
+    /* ===== STAT BAR ===== */
+    .cs-stat-bar {
+      background: var(--bg-dark);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .cs-stat-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .cs-stat {
+      background: var(--bg-dark);
+      padding: 20px 24px;
+      text-align: center;
+    }
+    .cs-stat-num {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .cs-stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+
+    /* ===== PROGRESS BAR ===== */
+    .cs-progress {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .cs-progress.visible { opacity: 1; pointer-events: auto; }
+    .cs-progress-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 1rem 0;
+    }
+    .cs-progress-track {
+      position: absolute;
+      left: 8px;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      width: 2px;
+      background: rgba(37, 99, 235, 0.15);
+      border-radius: 2px;
+    }
+    .cs-progress-fill {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 2px;
+      transition: height 0.8s cubic-bezier(0.4,0,0.2,1);
+    }
+    .cs-step-wrapper { position: relative; z-index: 10; margin-bottom: 2.5rem; }
+    .cs-step-wrapper:last-child { margin-bottom: 0; }
+    .cs-step-nav { display: flex; align-items: center; gap: 0.85rem; text-decoration: none !important; cursor: pointer; }
+    .cs-step-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2.5px solid var(--border);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+    .cs-step-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary);
+      opacity: 0.45;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+    .cs-step-wrapper.active .cs-step-dot { background: var(--primary); border-color: var(--primary); transform: scale(1.25); }
+    .cs-step-wrapper.active .cs-step-label { opacity: 1; font-weight: 700; }
+    .cs-step-wrapper.visited .cs-step-dot { background: var(--primary-light); border-color: var(--primary); }
+    .cs-step-wrapper.visited .cs-step-label { opacity: 0.65; }
+    @media (max-width: 1280px) { .cs-progress { display: none; } }
+
+    /* ===== SECTION BASE ===== */
+    .cs-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-section:last-of-type { border-bottom: none; }
+    .cs-h2 {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--text);
+      margin: 0 0 8px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .cs-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+      margin: 12px 0 32px;
+    }
+    .cs-h3 {
+      font-size: clamp(15px, 1.6vw, 19px);
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 12px;
+    }
+    .cs-body {
+      font-size: clamp(13.5px, 1.3vw, 15.5px);
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 72ch;
+    }
+    .cs-split {
+      display: grid;
+      grid-template-columns: 0.45fr 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 40px;
+    }
+
+    /* ===== PROBLEM CARDS ===== */
+    .cs-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .cs-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cs-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,99,235,0.10); border-color: var(--primary-border); }
+    .cs-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .cs-card-icon svg { width: 22px; height: 22px; stroke: var(--primary); }
+    .cs-card h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .cs-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+    /* ===== CALLOUT ===== */
+    .cs-callout {
+      background: linear-gradient(135deg, var(--primary-light), #EFF6FF);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .cs-callout p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text); }
+    .cs-callout strong { color: var(--primary); }
+
+    .cs-callout-amber {
+      background: linear-gradient(135deg, var(--accent-light), #FFFBEB);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .cs-callout-amber p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text); }
+    .cs-callout-amber strong { color: #D97706; }
+
+    /* ===== WORKFLOW STEPS ===== */
+    .cs-workflow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .cs-wf-step {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+    }
+    .cs-wf-step::before {
+      content: attr(data-num);
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+    }
+    .cs-wf-step h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .cs-wf-step p { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+
+    /* ===== SCREEN SHOWCASE ===== */
+    .cs-screens {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .cs-screen {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .cs-screen img { width: 100%; display: block; }
+    .cs-screen-caption {
+      padding: 12px 16px;
+      background: var(--code-bg);
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1.4;
+      border-top: 1px solid var(--border);
+    }
+    .cs-screen-caption code {
+      font-size: 11px;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* ===== FULL IMG ===== */
+    .cs-img-full {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin: 20px 0;
+      border: 1px solid var(--border);
+    }
+    .cs-img-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    /* ===== STEP SECTION ===== */
+    .cs-step-section {
+      margin: 48px 0 32px;
+      padding: 32px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+    }
+    .cs-step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .cs-step-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cs-step-num-large {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 8px;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+    .cs-step-section h3 {
+      font-size: clamp(15px, 1.5vw, 18px);
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+
+    /* ===== INSIGHT BLOCKS ===== */
+    .cs-insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .cs-insight {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+    }
+    .cs-insight-num {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      margin-bottom: 10px;
+      opacity: 0.7;
+    }
+    .cs-insight h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .cs-insight p { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+
+    /* ===== FEATURE SHOWCASE ===== */
+    .cs-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .cs-feature {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 6px;
+    }
+    .cs-feature:hover { border-color: var(--primary-border); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,99,235,0.10); transition: all 0.2s ease; }
+    .cs-feature-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      border-radius: 8px;
+      padding: 3px 8px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .cs-feature h4 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0; }
+    .cs-feature p { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+    .cs-feature-impact {
+      background: var(--code-bg);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+    .cs-feature-impact strong { color: var(--primary); }
+
+    /* ===== TECHNICAL NOTE ===== */
+    .cs-code-note {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .cs-code-note .kw { color: var(--primary); font-weight: 700; }
+    .cs-code-note .fn { color: var(--teal); }
+    .cs-code-note .str { color: var(--accent); }
+
+    /* ===== REFLECTION DARK ===== */
+    .cs-reflection {
+      background: var(--bg-dark);
+      border-radius: 20px;
+      padding: 48px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-reflection::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 30% 50%, rgba(37,99,235,0.15) 0%, transparent 70%);
+    }
+    .cs-reflection blockquote {
+      font-size: clamp(16px, 1.8vw, 21px);
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.55;
+      margin: 0;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    .cs-reflection .quote-attr {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 20px;
+      font-style: normal;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== RELATED ===== */
+    .cs-related { padding: 64px 48px; max-width: 1100px; margin: 0 auto; }
+    .cs-related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    .cs-related-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      text-decoration: none !important;
+      display: block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background: var(--surface);
+    }
+    .cs-related-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+    .cs-related-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .cs-related-body { padding: 20px; }
+    .cs-related-body h5 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .cs-related-body p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .cs-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .cs-stat-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .cs-insight-grid, .cs-card-grid, .cs-workflow { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .cs-hero-inner { padding: 100px 20px 60px; }
+      .cs-section, .cs-related { padding-left: 20px; padding-right: 20px; }
+      .cs-split { grid-template-columns: 1fr; gap: 16px; }
+      .cs-insight-grid, .cs-card-grid, .cs-workflow, .cs-screens { grid-template-columns: 1fr; }
+      .cs-stat-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .cs-reflection { padding: 28px 20px; }
+      .cs-related-grid { grid-template-columns: 1fr; }
+      .cs-step-section { padding: 20px; }
+    }
+    @media (max-width: 480px) {
+      .cs-stat-bar-inner { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <a class="navbar-brand" href="index.html"><span id="navbar-brand-text">Maria Dumitrescu</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="aboutme.html">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.html">Projects</a></li>
+      <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Progress Bar -->
+<div class="cs-progress" id="csProgress">
+  <div class="cs-progress-container">
+    <div class="cs-progress-track">
+      <div class="cs-progress-fill" id="csFill"></div>
+    </div>
+    <div class="cs-step-wrapper" data-section="problem">
+      <a href="#problem" class="cs-step-nav"><span class="cs-step-dot"></span><span class="cs-step-label">Problem</span></a>
+    </div>
+    <div class="cs-step-wrapper" data-section="solution">
+      <a href="#solution" class="cs-step-nav"><span class="cs-step-dot"></span><span class="cs-step-label">Solution</span></a>
+    </div>
+    <div class="cs-step-wrapper" data-section="workflow">
+      <a href="#workflow" class="cs-step-nav"><span class="cs-step-dot"></span><span class="cs-step-label">Workflow</span></a>
+    </div>
+    <div class="cs-step-wrapper" data-section="results">
+      <a href="#results" class="cs-step-nav"><span class="cs-step-dot"></span><span class="cs-step-label">Results</span></a>
+    </div>
+    <div class="cs-step-wrapper" data-section="reflection">
+      <a href="#reflection" class="cs-step-nav"><span class="cs-step-dot"></span><span class="cs-step-label">Reflection</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- Dark Hero -->
+<section class="cs-hero">
+  <div class="cs-hero-inner">
+    <div>
+      <div class="cs-eyebrow">Data Science · Statistical Computing · R Shiny</div>
+      <h1 class="cs-title">causality<span class="highlight">.</span></h1>
+      <p class="cs-subtitle">making causal inference accessible — a Shiny web app that turns complex synthetic control analysis into a guided, no-code workflow</p>
+      <div class="cs-pills">
+        <span class="cs-pill">Synthetic Control Method</span>
+        <span class="cs-pill">Placebo Testing</span>
+        <span class="cs-pill">R Shiny</span>
+        <span class="cs-pill">Causal Inference</span>
+        <span class="cs-pill">Data Visualization</span>
+      </div>
+      <nav class="cs-hero-nav">
+        <a href="#problem" class="cs-nav-step">Problem</a>
+        <a href="#solution" class="cs-nav-step">The App</a>
+        <a href="#workflow" class="cs-nav-step">Workflow</a>
+        <a href="#results" class="cs-nav-step">Results</a>
+        <a href="#reflection" class="cs-nav-step">Reflection</a>
+      </nav>
+    </div>
+    <div>
+      <div class="cs-meta-box">
+        <div class="cs-meta-grid">
+          <div>
+            <div class="cs-meta-label">Project</div>
+            <div class="cs-meta-value">Causality — Synthetic Control App</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">Context</div>
+            <div class="cs-meta-value">CS130 Course Project</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">Role</div>
+            <div class="cs-meta-value">Designer & Developer</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">Stack</div>
+            <div class="cs-meta-value">R, Shiny, Synth Package</div>
+          </div>
+        </div>
+        <div class="cs-palette-label">Color Palette</div>
+        <div class="cs-colors">
+          <div class="cs-swatch" style="background:#0F1D3E;" title="#0F1D3E — Deep Navy"></div>
+          <div class="cs-swatch" style="background:#2563EB;" title="#2563EB — Electric Blue"></div>
+          <div class="cs-swatch" style="background:#0D9488;" title="#0D9488 — Teal"></div>
+          <div class="cs-swatch" style="background:#F59E0B;" title="#F59E0B — Amber"></div>
+          <div class="cs-swatch" style="background:#F0F4F8;" title="#F0F4F8 — Slate Background"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stat Bar -->
+<div class="cs-stat-bar">
+  <div class="cs-stat-bar-inner">
+    <div class="cs-stat">
+      <div class="cs-stat-num">6</div>
+      <div class="cs-stat-label">guided workflow steps</div>
+    </div>
+    <div class="cs-stat">
+      <div class="cs-stat-num">0</div>
+      <div class="cs-stat-label">lines of code required from user</div>
+    </div>
+    <div class="cs-stat">
+      <div class="cs-stat-num">3</div>
+      <div class="cs-stat-label">types of placebo validation</div>
+    </div>
+    <div class="cs-stat">
+      <div class="cs-stat-num">R</div>
+      <div class="cs-stat-label">Shiny · Synth · ggplot2</div>
+    </div>
+  </div>
+</div>
+
+<!-- Lead -->
+<section class="cs-section" style="border-top: 1px solid var(--border); background: var(--surface);">
+  <p class="cs-body" style="max-width: 80ch; font-size: 17px; color: var(--text); font-weight: 400; line-height: 1.75;">
+    Causality is a Shiny web application I built for CS130 that makes synthetic control analysis — one of the most powerful methods in observational causal inference — accessible to researchers without requiring them to write a single line of R code. Upload your panel data, follow the guided steps, run placebo tests to validate your results, and export your findings.
+  </p>
+</section>
+
+<!-- Problem -->
+<section id="problem" class="cs-section">
+  <h2 class="cs-h2">the problem with causal inference</h2>
+  <div class="cs-divider"></div>
+
+  <div class="cs-split">
+    <h3 class="cs-h3">powerful method, painful to use without a coding background</h3>
+    <p class="cs-body">The synthetic control method (Abadie, Diamond & Hainmueller) is one of the most credible tools for estimating causal effects in policy research. But running it requires knowledge of R, the <code>Synth</code> package, and how to interpret placebo tests. Most researchers who need it most — social scientists, policy analysts, economists without a coding background — can't access it.</p>
+  </div>
+
+  <div class="cs-card-grid">
+    <div class="cs-card">
+      <div class="cs-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
+      </div>
+      <h4>Steep coding barrier</h4>
+      <p>The <code>Synth</code> R package requires familiarity with data structures, matrix operations, and debugging code — before you can even start analysis.</p>
+    </div>
+    <div class="cs-card">
+      <div class="cs-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <h4>Opaque validation</h4>
+      <p>Placebo tests — essential for validating synthetic control results — are time-consuming to run and difficult to interpret without visualization support.</p>
+    </div>
+    <div class="cs-card">
+      <div class="cs-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <h4>No shareable workflow</h4>
+      <p>Running analysis in R scripts makes it hard to reproduce, share, or hand off to collaborators. A web app changes that — anyone can run the same analysis in a browser.</p>
+    </div>
+  </div>
+
+  <div class="cs-callout">
+    <p><strong>Core Challenge:</strong> How do you make a rigorous statistical method accessible to researchers who shouldn't need to know R — without sacrificing the method's integrity?</p>
+  </div>
+</section>
+
+<!-- The App -->
+<section id="solution" class="cs-section">
+  <h2 class="cs-h2">the solution — a guided Shiny app</h2>
+  <div class="cs-divider"></div>
+
+  <div class="cs-split">
+    <h3 class="cs-h3">six steps from raw data to validated causal estimates</h3>
+    <p class="cs-body">Causality wraps the entire synthetic control workflow in a guided six-step interface. Users only need to bring their panel data — the app handles the R code, the optimization, the visualization, and the export. No terminal, no script, no debugging.</p>
+  </div>
+
+  <div class="cs-code-note">
+    <span class="kw">library</span>(shiny); <span class="kw">library</span>(Synth); <span class="kw">library</span>(ggplot2) <br>
+    <span class="kw">##</span> <span class="str">All of this runs invisibly behind a clean UI →</span>
+  </div>
+
+  <div class="cs-workflow">
+    <div class="cs-wf-step" data-num="STEP 01">
+      <h4>Upload Data</h4>
+      <p>Import a panel dataset (CSV). The app validates column structure and previews the data immediately.</p>
+    </div>
+    <div class="cs-wf-step" data-num="STEP 02">
+      <h4>Select Variables</h4>
+      <p>Choose the outcome variable, treatment unit, control units, and pre-treatment period — guided by the UI.</p>
+    </div>
+    <div class="cs-wf-step" data-num="STEP 03">
+      <h4>Set Parameters</h4>
+      <p>Define predictors, time period, and optimization settings. Defaults are provided to get started quickly.</p>
+    </div>
+    <div class="cs-wf-step" data-num="STEP 04">
+      <h4>Run Synthetic Control</h4>
+      <p>The app runs the Synth optimization, constructs the synthetic control unit, and visualizes the pre/post comparison.</p>
+    </div>
+    <div class="cs-wf-step" data-num="STEP 05">
+      <h4>Run Placebo Tests</h4>
+      <p>One-click placebo testing — in time and in space — to assess the statistical significance of the estimated effect.</p>
+    </div>
+    <div class="cs-wf-step" data-num="STEP 06">
+      <h4>Save & Export Results</h4>
+      <p>Download plots, weight tables, and parameter settings as a reproducible record of the full analysis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Workflow Screenshots -->
+<section id="workflow" class="cs-section">
+  <h2 class="cs-h2">inside the app — step by step</h2>
+  <div class="cs-divider"></div>
+
+  <!-- Step 1: Upload -->
+  <div class="cs-step-section">
+    <div class="cs-step-header">
+      <div class="cs-step-badge">
+        <span class="cs-step-num-large">STEP 01</span>
+        <h3>Upload Your Data</h3>
+      </div>
+    </div>
+    <p class="cs-body" style="margin-bottom: 20px;">The upload interface accepts any panel dataset in CSV format. Instant column detection means users see their variables immediately — no configuration needed before the next step.</p>
+    <div class="cs-screens">
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/shiny-1-upload-data.png" alt="Step 1: Upload data interface">
+        <div class="cs-screen-caption"><code>Step 1</code> — Upload panel data · CSV format · instant preview</div>
+      </div>
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/shiny-2-data-uploaded.png" alt="Step 2: Data successfully uploaded">
+        <div class="cs-screen-caption"><code>Step 2</code> — Data confirmed · column structure validated · ready to configure</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Steps 2+3: Variables & Parameters -->
+  <div class="cs-step-section">
+    <div class="cs-step-header">
+      <div class="cs-step-badge">
+        <span class="cs-step-num-large">STEPS 02–03</span>
+        <h3>Select Variables & Set Parameters</h3>
+      </div>
+    </div>
+    <p class="cs-body" style="margin-bottom: 20px;">The variable selection interface dynamically populates from the uploaded data. Users choose their treatment unit, control pool, outcome variable, and time period using dropdown menus — no column index memorization required.</p>
+    <div class="cs-screens">
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/select-correct-variables.png" alt="Variable selection interface">
+        <div class="cs-screen-caption"><code>Step 2</code> — Select treatment unit, controls, outcome variable, and predictors</div>
+      </div>
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/shiny-3-set-parameters.png" alt="Parameter configuration screen">
+        <div class="cs-screen-caption"><code>Step 3</code> — Configure optimization parameters · pre-treatment window · time period</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4: Run Analysis -->
+  <div class="cs-step-section">
+    <div class="cs-step-header">
+      <div class="cs-step-badge">
+        <span class="cs-step-num-large">STEP 04</span>
+        <h3>Run Synthetic Control & Save Parameters</h3>
+      </div>
+    </div>
+    <p class="cs-body" style="margin-bottom: 20px;">With one click, the app runs the Synth optimization algorithm in R, constructs the synthetic control unit, and renders the comparison plot. The pre-treatment fit and post-treatment divergence are immediately visible.</p>
+    <div class="cs-screens">
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/run-the-analysis.png" alt="Running the synthetic control analysis">
+        <div class="cs-screen-caption"><code>Step 4a</code> — Run analysis · Synth optimization · synthetic control construction</div>
+      </div>
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/shiny-4-run-synth-and-save-parameters.png" alt="Run synth and save parameters">
+        <div class="cs-screen-caption"><code>Step 4b</code> — Save parameters · reproducible configuration record</div>
+      </div>
+    </div>
+    <img src="./assets/data-vizualization/causality/shiny-6-save-parameters.png" alt="Save parameters final step" class="cs-img-full">
+    <p class="cs-img-caption">Parameter export — full configuration saved as a reproducible record</p>
+  </div>
+
+  <!-- Step 5: Placebo Tests -->
+  <div class="cs-step-section">
+    <div class="cs-step-header">
+      <div class="cs-step-badge">
+        <span class="cs-step-num-large">STEP 05</span>
+        <h3>Run Placebo Tests — Validate Your Results</h3>
+      </div>
+    </div>
+    <p class="cs-body" style="margin-bottom: 20px;">Placebo testing is the most critical step for assessing whether the estimated effect is real or a statistical artifact. The app runs three types: in-time placebos (treating pre-treatment years as if they were the treatment year), in-space placebos (running the same analysis on each control unit as if it were treated), and full placebo result inspection.</p>
+    <div class="cs-screens">
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/shiny-5-run-placebo-plots.png" alt="Run placebo plots interface">
+        <div class="cs-screen-caption"><code>Step 5a</code> — Run placebo plots · one-click validation launch</div>
+      </div>
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/run-placebo.png" alt="Placebo tests running">
+        <div class="cs-screen-caption"><code>Step 5b</code> — Placebo tests executing · iterating across all control units</div>
+      </div>
+    </div>
+    <div class="cs-callout-amber">
+      <p><strong>Why placebo tests matter:</strong> A synthetic control result is only credible if the treated unit's post-treatment gap is much larger than the gaps for all the control units in the same period. Placebo tests make this comparison visual and intuitive.</p>
+    </div>
+  </div>
+
+  <!-- Results: Placebo charts -->
+  <div class="cs-step-section">
+    <div class="cs-step-header">
+      <div class="cs-step-badge">
+        <span class="cs-step-num-large">STEP 06</span>
+        <h3>Inspect Results & Export</h3>
+      </div>
+    </div>
+    <p class="cs-body" style="margin-bottom: 20px;">The results view presents all the analysis outputs in a readable format: the main synthetic control plot, placebo distribution in time and in space, weights assigned to each donor unit, and the final results table.</p>
+    <div class="cs-screens">
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/save-results.png" alt="Save results interface">
+        <div class="cs-screen-caption"><code>Step 6a</code> — Save results · download plots + weights table</div>
+      </div>
+      <div class="cs-screen">
+        <img src="./assets/data-vizualization/causality/placebo-results.png" alt="Placebo results visualization">
+        <div class="cs-screen-caption"><code>Step 6b</code> — Placebo results · distribution of gaps across all units</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results: Visualizations -->
+<section id="results" class="cs-section">
+  <h2 class="cs-h2">visualizations — making inference visible</h2>
+  <div class="cs-divider"></div>
+
+  <div class="cs-split">
+    <h3 class="cs-h3">three views that tell the causal story</h3>
+    <p class="cs-body">The most important contribution of the app is not the computation — it's the visualization. The three output charts work together to tell the complete causal story: what happened, why it happened (the weights), and whether it's real (the placebos).</p>
+  </div>
+
+  <div class="cs-screens">
+    <div class="cs-screen">
+      <img src="./assets/data-vizualization/causality/placebo-in-time.png" alt="Placebo in time visualization">
+      <div class="cs-screen-caption"><strong>Placebo in Time</strong> — What if the treatment had happened earlier? The gap should be small in pre-treatment "fake" periods.</div>
+    </div>
+    <div class="cs-screen">
+      <img src="./assets/data-vizualization/causality/placebo-in-space (1).png" alt="Placebo in space visualization">
+      <div class="cs-screen-caption"><strong>Placebo in Space</strong> — Running the same analysis on every control unit. The treated unit's gap should stand out from the distribution.</div>
+    </div>
+  </div>
+
+  <img src="./assets/data-vizualization/causality/weights-results (1).png" alt="Weights results table" class="cs-img-full">
+  <p class="cs-img-caption">Weights results — which donor units contribute most to the synthetic control, and by how much</p>
+
+  <!-- Feature Summary -->
+  <div class="cs-feature-grid">
+    <div class="cs-feature">
+      <span class="cs-feature-num">01</span>
+      <h4>No-Code Workflow</h4>
+      <p>The entire synthetic control pipeline runs in a browser. Researchers never need to open a terminal or write R code.</p>
+      <div class="cs-feature-impact"><strong>Impact:</strong> Accessible to non-programmers</div>
+    </div>
+    <div class="cs-feature">
+      <span class="cs-feature-num">02</span>
+      <h4>Guided Steps</h4>
+      <p>Six sequential steps with clear instructions at each stage mean users can't accidentally skip essential configuration.</p>
+      <div class="cs-feature-impact"><strong>Impact:</strong> Error-resistant analysis workflow</div>
+    </div>
+    <div class="cs-feature">
+      <span class="cs-feature-num">03</span>
+      <h4>Placebo Visualization</h4>
+      <p>One-click placebo tests in both time and space, with visual outputs that make statistical significance intuitive.</p>
+      <div class="cs-feature-impact"><strong>Impact:</strong> Rigorous validation without extra effort</div>
+    </div>
+    <div class="cs-feature">
+      <span class="cs-feature-num">04</span>
+      <h4>Reproducible Export</h4>
+      <p>All parameters, plots, and weight tables are exportable — making the analysis fully reproducible by collaborators.</p>
+      <div class="cs-feature-impact"><strong>Impact:</strong> Shareable, auditable research</div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflection -->
+<section id="reflection" class="cs-section">
+  <h2 class="cs-h2">reflection</h2>
+  <div class="cs-divider"></div>
+
+  <div class="cs-split" style="margin-bottom: 36px;">
+    <h3 class="cs-h3">what building causality taught me</h3>
+    <p class="cs-body">The technical challenge here wasn't the statistics — it was the interaction design. Synthetic control analysis has many interdependent parameters, and the order in which users configure them matters enormously. Getting that sequencing right, while hiding all the complexity underneath a clean UI, was the real design problem.</p>
+  </div>
+
+  <div class="cs-insight-grid">
+    <div class="cs-insight">
+      <div class="cs-insight-num">LESSON 01</div>
+      <h4>Sequencing is UX design</h4>
+      <p>In a complex analytical workflow, the order of steps is a UX decision, not just a technical one. Getting it wrong means users configure things they don't understand yet.</p>
+    </div>
+    <div class="cs-insight">
+      <div class="cs-insight-num">LESSON 02</div>
+      <h4>Defaults are design</h4>
+      <p>The best way to help non-expert users isn't to remove options — it's to provide sensible defaults that let them run a valid analysis first and customize later.</p>
+    </div>
+    <div class="cs-insight">
+      <div class="cs-insight-num">LESSON 03</div>
+      <h4>Visualization is the method</h4>
+      <p>In causal inference, a chart isn't decoration — it IS the result. The visual output of a placebo test communicates something that a p-value alone never could.</p>
+    </div>
+  </div>
+
+  <div class="cs-reflection">
+    <blockquote>
+      "The synthetic control method is one of the most elegant ideas in applied economics — but it lives behind a wall of R syntax that most researchers can't get past. Building Causality was about removing that wall without removing the rigor. The method stayed the same; everything around it changed."
+    </blockquote>
+    <div class="quote-attr">— Causality, CS130 Project</div>
+  </div>
+</section>
+
+<!-- Related Projects -->
+<div class="cs-related">
+  <h2 class="cs-h2">more case studies</h2>
+  <div class="cs-divider"></div>
+  <div class="cs-related-grid">
+    <a href="nuuko.html" class="cs-related-card">
+      <img src="./assets/nuuko/Hero-section-show-app.jpg" alt="Nuuko journaling app">
+      <div class="cs-related-body">
+        <h5>Nuuko — Journaling App</h5>
+        <p>Designing an emotion-first journaling app that doesn't make you feel terrible. Increased first-entry completion from 31% → 78%.</p>
+      </div>
+    </a>
+    <a href="clearly.html" class="cs-related-card">
+      <img src="./assets/data-vizualization/clearly/clearly_Cover.jpg" alt="Clearly data visualization app">
+      <div class="cs-related-body">
+        <h5>Clearly — Data Visualization Design</h5>
+        <p>Designing a web app where charts explain themselves. A guided data conversation from upload to insight — built for Revolut.</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer custom-footer bg-light py-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <img src="./assets/circleprofilepic.png" alt="Maria Dumitrescu" class="footer-profile-pic mb-3" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover;">
+        <p class="footer-name mb-1" style="font-weight: 700; font-size: 16px;">Maria Dumitrescu</p>
+        <p class="footer-tagline text-muted mb-3" style="font-size: 14px;">open to collaborations and full-time roles</p>
+        <a href="mailto:mariadumitrescu2307@gmail.com" class="btn btn-dark btn-sm mb-3">Get in Touch</a>
+        <div class="footer-social d-flex justify-content-center gap-3">
+          <a href="https://linkedin.com/in/mariadumitrescu" target="_blank" rel="noopener" class="text-muted">LinkedIn</a>
+          <a href="https://github.com/mariadumitrescu" target="_blank" rel="noopener" class="text-muted">GitHub</a>
+        </div>
+        <p class="mt-3 text-muted" style="font-size: 12px;">© 2026 Maria Dumitrescu</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // Progress bar
+  const progressBar = document.getElementById('csProgress');
+  const fill = document.getElementById('csFill');
+  const steps = document.querySelectorAll('.cs-step-wrapper');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPct = (scrollTop / docHeight) * 100;
+    fill.style.height = scrollPct + '%';
+
+    if (scrollPct > 5) progressBar.classList.add('visible');
+    else progressBar.classList.remove('visible');
+
+    steps.forEach(step => {
+      const sectionId = step.getAttribute('data-section');
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      step.classList.remove('active', 'visited');
+      if (rect.top <= window.innerHeight * 0.4 && rect.bottom >= 0) {
+        step.classList.add('active');
+      } else if (rect.bottom < window.innerHeight * 0.4) {
+        step.classList.add('visited');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>
+</body>
+</html>
