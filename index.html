@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Maria Dumitrescu | Product Designer & UI/UX Specialist in San Francisco</title>
   <link rel="icon" href="./assets/circleprofilepic.png">
@@ -81,6 +81,23 @@
   
   <!-- Parallax Hero Styles -->
   <style>
+    /* Skip to content link */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: #000;
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0 0 6px 6px;
+      font-weight: 700;
+      font-size: 1rem;
+      z-index: 9999;
+      text-decoration: none;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 0; }
+
     /* Ensure navbar brand always visible over hero */
     #navbar { z-index: 1100; background: #fffbf4 !important; }
     #navbar #navbar-brand-text, #navbar .nav-link { color: #000 !important; }
@@ -89,6 +106,88 @@
     #navbar.transparent, #navbar.transparent .navbar-brand, #navbar.transparent .navbar-nav .nav-link, #navbar.transparent #navbar-brand-text { color: #000 !important; }
     #navbar a.navbar-brand, #navbar a.navbar-brand:link, #navbar a.navbar-brand:visited, #navbar a.navbar-brand:hover, #navbar a.navbar-brand:active { color: #000 !important; }
     .navbar .navbar-brand { display: inline-block; font-weight: 800; letter-spacing: .2px; }
+
+    /* ── Custom mobile menu ── */
+    /* Hide Bootstrap collapse on mobile, show custom overlay instead */
+    @media (max-width: 991px) {
+      #navbarNav { display: none !important; }
+    }
+
+    /* Hamburger button */
+    #hamburgerBtn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      background: transparent !important;
+      border: none !important;
+      cursor: pointer;
+      z-index: 1200;
+      position: relative;
+    }
+    @media (max-width: 991px) {
+      #hamburgerBtn { display: flex; }
+      .navbar-toggler { display: none !important; }
+    }
+    .ham-line {
+      display: block;
+      height: 2px;
+      width: 22px;
+      background: #000;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+    #hamburgerBtn.is-open .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #hamburgerBtn.is-open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #hamburgerBtn.is-open .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Full-screen mobile overlay */
+    #mobileMenuOverlay {
+      position: fixed;
+      inset: 0;
+      background: #fffbf4;
+      z-index: 1150;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    #mobileMenuOverlay.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    #mobileMenuOverlay ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    #mobileMenuOverlay ul li {
+      margin: 1.5rem 0;
+    }
+    #mobileMenuOverlay ul li a {
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 800;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      transition: opacity 0.2s;
+    }
+    #mobileMenuOverlay ul li a:hover { opacity: 0.5; }
+    #mobileMenuOverlay .mobile-menu-footer {
+      position: absolute;
+      bottom: 2.5rem;
+      font-size: 0.85rem;
+      color: #6b6b6b;
+      letter-spacing: 0.05em;
+    }
     /* Whimsical Background Circles for Individual Cards */
     .project-card-wrapper {
       position: relative;
@@ -358,6 +457,19 @@
       66% { transform: translate(-5px, 8px) scale(0.96) rotate(-1deg); opacity: 0.08; }
     }
     
+    /* Respect reduced-motion preference — disable all decorative animations */
+    @media (prefers-reduced-motion: reduce) {
+      .project-card-wrapper::before,
+      .project-card-wrapper::after,
+      .project-card-wrapper .card::before,
+      .project-card-wrapper .card::after,
+      .section-title-wrapper::before,
+      .section-title-wrapper::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
     /* Ensure sections don't cut off circles */
     .project-section {
       overflow: visible !important;
@@ -880,11 +992,11 @@
       gap: 8px;
       white-space: nowrap;
       min-width: 160px;
-      outline: none;
     }
-    .video-hero__button:focus {
-      outline: none;
-      box-shadow: 0 8px 24px rgba(0,0,0,.2), 0 0 0 3px rgba(0,0,0,0.1);
+    .video-hero__button:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2), 0 0 0 6px rgba(0,0,0,0.6);
     }
     .video-hero__button:hover { 
       transform: translateY(-3px); 
@@ -919,11 +1031,11 @@
       align-items: center;
       justify-content: center;
       min-width: 60px;
-      outline: none;
     }
-    .video-hero__speed-button:focus {
-      outline: none;
-      box-shadow: 0 8px 24px rgba(0,0,0,.2), 0 0 0 3px rgba(0,0,0,0.1);
+    .video-hero__speed-button:focus-visible {
+      outline: 3px solid #000;
+      outline-offset: 3px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
     }
     .video-hero__speed-button:hover {
       transform: translateY(-3px);
@@ -949,11 +1061,11 @@
       align-items: center;
       justify-content: center;
       min-width: 160px;
-      outline: none;
     }
-    .video-hero__link:focus {
-      outline: none;
-      box-shadow: 0 8px 24px rgba(0,0,0,.2), 0 0 0 3px rgba(0,0,0,0.1);
+    .video-hero__link:focus-visible {
+      outline: 3px solid #000;
+      outline-offset: 3px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
     }
     .video-hero__link:hover { 
       transform: translateY(-3px); 
@@ -1083,6 +1195,7 @@
 
 <body>
 
+  <a href="#intro" class="skip-link">Skip to main content</a>
 
   <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
     <a class="navbar-brand d-flex align-items-center text-dark" href="#" style="color:#000 !important;">
@@ -1091,6 +1204,12 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Custom animated hamburger for mobile -->
+    <button id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
@@ -1107,10 +1226,21 @@
     </div>
   </nav>
 
+  <!-- Mobile full-screen overlay menu -->
+  <div id="mobileMenuOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <ul>
+      <li><a href="aboutme.html">About</a></li>
+      <li><a href="#recent-projects">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+    <p class="mobile-menu-footer">mariadumitrescu.com</p>
+  </div>
+
   <section id="intro" class="mb-5 video-hero-section">
     <div class="video-hero">
       <video id="heroVideo" class="video-hero__media" playsinline muted preload="metadata" poster="assets/why_i_design_thumbnail.jpg">
         <source src="assets/Why I Design_Maria Dumitrescu – Video Cover Letter_optimized.mp4" type="video/mp4">
+        <track kind="captions" src="assets/why_i_design_captions.vtt" srclang="en" label="English" default>
       </video>
       <div class="video-hero__overlay"></div>
       
@@ -1120,7 +1250,7 @@
           <p class="video-hero__subtitle">A 2-minute video on my journey as a designer; blending empathy, data, and art to create products that connect us.</p>
           <div class="video-hero__actions">
               <button id="videoToggleButton" class="video-hero__button" aria-pressed="false" aria-label="Play video with sound">
-                <svg class="video-hero__button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg class="video-hero__button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                   <path id="buttonIconPath" d="M8 5v14l11-7z"/>
                 </svg>
                 <span id="videoToggleText">Play</span>
@@ -1145,7 +1275,7 @@
 
       <!-- Card - Nuuko -->
       <div class="col-sm-12 col-md-6 col-lg-6 mb-4 project-card-wrapper recent-project-card">
-        <a href="nuuko.html" class="card-link">
+        <a href="nuuko.html" class="card-link" aria-label="Nuuko — Emotion-Centered Journaling case study">
           <div class="card">
             <div class="blur-load" style="background-image: url('./assets/nuuko/Hero-section-show-app.jpg');">
               <img
@@ -1173,7 +1303,7 @@
 
       <!-- Card - Sanofi x IDEO -->
       <div class="col-sm-12 col-md-6 col-lg-6 mb-4 project-card-wrapper recent-project-card">
-        <a href="sanofi-ideo.html" class="card-link">
+        <a href="sanofi-ideo.html" class="card-link" aria-label="Sanofi x IDEO: Wearable Injection System case study">
           <div class="card">
             <div class="blur-load" style="background-image: url('./assets/sanofi-ideo/cover-sanofi-ideo.jpg');">
               <img
@@ -1212,7 +1342,7 @@
 
         <!-- Clearly -->
         <div class="col-sm-12 col-md-6 col-lg-6 mb-4 project-card-wrapper">
-          <a href="clearly.html" class="card-link">
+          <a href="clearly.html" class="card-link" aria-label="Clearly — Data visualization tool case study">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/data-vizualization/clearly/clearly_Cover.jpg'); height: 220px; overflow: hidden;">
                 <img data-src="./assets/data-vizualization/clearly/clearly_Cover.jpg" class="card-img-top" style="height: 220px; object-fit: cover; object-position: center top;" alt="Clearly data visualization tool">
@@ -1234,7 +1364,7 @@
 
         <!-- Synth -->
         <div class="col-sm-12 col-md-6 col-lg-6 mb-4 project-card-wrapper">
-          <a href="causality.html" class="card-link">
+          <a href="causality.html" class="card-link" aria-label="Synth. — Synthetic Control Research App case study">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/data-vizualization/causality/Synthetic Control Analysis App Cover.jpg'); height: 220px; overflow: hidden;">
                 <img data-src="./assets/data-vizualization/causality/Synthetic Control Analysis App Cover.jpg" class="card-img-top" style="height: 220px; object-fit: cover; object-position: center top;" alt="Synth — Synthetic Control Research App">
@@ -1265,7 +1395,7 @@
       <div class="row" style="row-gap: 1.5rem;">
         <!-- Stylique-->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
-          <a href="stylique.html" class="card-link">
+          <a href="stylique.html" class="card-link" aria-label="Stylique — Weather-aware outfit picker project">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/stylique_rock-tiny.jpg');">
                 <img src="./assets/stylique_rock.png" 
@@ -1288,7 +1418,7 @@
         </div>
         <!-- Card 1 - Lotus -->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
-          <a href="lotus.html" class="card-link">
+          <a href="lotus.html" class="card-link" aria-label="Lotus Tracker — Habit tracking app project">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/lotus/lotus_profile_pic-tiny.jpg');">
                 <img data-src="./assets/lotus/lotus_profile_pic.svg" 
@@ -1310,7 +1440,7 @@
           </a>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
-          <a href="gist.html" class="card-link">
+          <a href="gist.html" class="card-link" aria-label="Gist — Speed dating app design project">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/girst_mockup-tiny.jpg');">
                 <img data-src="./assets/girst_mockup.png" 
@@ -1335,7 +1465,7 @@
 
         <!-- Card 3 - StudyPaws -->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
-          <a href="focuspaws.html" class="card-link">
+          <a href="focuspaws.html" class="card-link" aria-label="StudyPaws — Companion study sessions app project">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/studypaws_mockup-tiny.jpg');">
                 <img data-src="./assets/studypaws_mockup.jpg" 
@@ -1609,7 +1739,7 @@
       <div class="row" style="row-gap: 1.5rem;">
         <!-- Card 1 - Marie Lee Store -->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
-          <a href="https://www.etsy.com/shop/marieleeshop" class="card-link" target="_blank">
+          <a href="https://www.etsy.com/shop/marieleeshop" class="card-link" target="_blank" aria-label="Marie Lee Store on Etsy (opens in new tab)">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/brand/ML-tiny.jpg');">
                 <img data-src="./assets/brand/ML.png" class="card-img-top" alt="Marie Lee Store">
@@ -1623,7 +1753,7 @@
         </div>
         <!-- lets uni -->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
-          <a href="https://www.instagram.com/letsuni.eu/" class="card-link" target="_blank">
+          <a href="https://www.instagram.com/letsuni.eu/" class="card-link" target="_blank" aria-label="Let's Uni on Instagram (opens in new tab)">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/letsuni/letsuni-tiny.jpg');">
                 <img data-src="./assets/letsuni/letsuni.png" class="card-img-top" alt="Let's Uni">
@@ -1637,7 +1767,7 @@
         </div>
         <!-- instagram -->
         <div class="col-sm-12 col-md-6 col-lg-4 mb-4 project-card-wrapper">
-          <a href="https://www.instagram.com/ria.dms/" class="card-link" target="_blank">
+          <a href="https://www.instagram.com/ria.dms/" class="card-link" target="_blank" aria-label="My Instagram — Personal Brand (opens in new tab)">
             <div class="card">
               <div class="blur-load" style="background-image: url('./assets/instagram/INSTAGRAM-tiny.jpg');">
                 <img data-src="./assets/instagram/INSTAGRAM.png" class="card-img-top" alt="Instagram">
@@ -1739,20 +1869,19 @@
           <div class="text-center">
             <p class="footer-text">I am open to collaborations and working full time over the summer (from April 21 to
               September 1st) and part-time the rest of the year.</p>
-            <button class="btn btn-learn-more btn-tooltip1"
-              onclick="location.href='mailto:mariadumitrescuoffice@gmail.com';" aria-label="Contact Me">
+            <a href="mailto:mariadumitrescuoffice@gmail.com" class="btn btn-learn-more btn-tooltip1">
               Contact Me
-            </button>
+            </a>
           </div>
         </div>
         <div class="col-md-3 d-flex align-items-center justify-content-center">
           <ul class="example-2">
             <li class="icon-content">
-              <a href="https://www.linkedin.com/in/maria-dumitrescu-4218ba161/" aria-label="LinkedIn"
-                data-social="linkedin" target="_blank">
+              <a href="https://www.linkedin.com/in/maria-dumitrescu-4218ba161/" aria-label="LinkedIn (opens in new tab)"
+                data-social="linkedin" target="_blank" rel="noopener noreferrer">
                 <div class="filled"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-linkedin" viewBox="0 0 16 16" xml:space="preserve">
+                  class="bi bi-linkedin" viewBox="0 0 16 16" xml:space="preserve" aria-hidden="true" focusable="false">
                   <path
                     d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"
                     fill="currentColor"></path>
@@ -1761,10 +1890,10 @@
               <div class="tooltip">LinkedIn</div>
             </li>
             <li class="icon-content">
-              <a href="https://github.com/riadumitrescu" aria-label="GitHub" data-social="github" target="_blank">
+              <a href="https://github.com/riadumitrescu" aria-label="GitHub (opens in new tab)" data-social="github" target="_blank" rel="noopener noreferrer">
                 <div class="filled"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
-                  viewBox="0 0 16 16" xml:space="preserve">
+                  viewBox="0 0 16 16" xml:space="preserve" aria-hidden="true" focusable="false">
                   <path
                     d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
                     fill="currentColor"></path>
@@ -1773,11 +1902,11 @@
               <div class="tooltip">GitHub</div>
             </li>
             <li class="icon-content">
-              <a href="https://www.instagram.com/ria.dms/" aria-label="Instagram" data-social="instagram"
-                target="_blank">
+              <a href="https://www.instagram.com/ria.dms/" aria-label="Instagram (opens in new tab)" data-social="instagram"
+                target="_blank" rel="noopener noreferrer">
                 <div class="filled"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-instagram" viewBox="0 0 16 16" xml:space="preserve">
+                  class="bi bi-instagram" viewBox="0 0 16 16" xml:space="preserve" aria-hidden="true" focusable="false">
                   <path
                     d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
                     fill="currentColor"></path>
@@ -1786,11 +1915,11 @@
               <div class="tooltip">Instagram</div>
             </li>
             <li class="icon-content">
-              <a href="https://www.youtube.com/@ria-dms/" aria-label="Youtube" data-social="youtube"
-                target="_blank">
+              <a href="https://www.youtube.com/@ria-dms/" aria-label="YouTube (opens in new tab)" data-social="youtube"
+                target="_blank" rel="noopener noreferrer">
                 <div class="filled"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube"
-                  viewBox="0 0 16 16" xml:space="preserve">
+                  viewBox="0 0 16 16" xml:space="preserve" aria-hidden="true" focusable="false">
                   <path
                     d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"
                     fill="currentColor"></path>
@@ -1941,6 +2070,61 @@
   
   <!-- Parallax and smooth scrolling removed as per user request -->
   <script>
+    // Mobile menu with focus trap and focus management
+    (function() {
+      const btn = document.getElementById('hamburgerBtn');
+      const overlay = document.getElementById('mobileMenuOverlay');
+      if (!btn || !overlay) return;
+
+      function getFocusable() {
+        return [...overlay.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])')].filter(el => !el.disabled);
+      }
+
+      function openMenu() {
+        overlay.classList.add('is-open');
+        btn.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        // Move focus to first focusable element in overlay
+        const first = getFocusable()[0];
+        if (first) setTimeout(() => first.focus(), 50);
+      }
+
+      function closeMenu() {
+        overlay.classList.remove('is-open');
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        // Return focus to hamburger button
+        btn.focus();
+      }
+
+      btn.addEventListener('click', () => {
+        overlay.classList.contains('is-open') ? closeMenu() : openMenu();
+      });
+
+      // Close on any link click
+      overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+      // Close on Escape key
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeMenu();
+      });
+
+      // Focus trap: keep Tab/Shift+Tab inside overlay while open
+      overlay.addEventListener('keydown', e => {
+        if (e.key !== 'Tab') return;
+        const focusable = getFocusable();
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+    })();
+
     document.addEventListener("DOMContentLoaded", () => {
       // Simple smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
