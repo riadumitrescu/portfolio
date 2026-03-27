@@ -37,12 +37,12 @@
     
     /* Large screens - prevent excessive scaling */
     @media (min-width: 1600px) {
-      .unified-hero-section .hero-title { font-size: 64px !important; }
-      .unified-hero-section .hero-subtitle { font-size: 20px !important; }
-      .unified-hero-section .feature-pill { font-size: 16px !important; }
-      .white-side-title { font-size: 42px !important; }
-      .white-side-smalltitle { font-size: 24px !important; }
-      .white-side-section .lead-text { font-size: 19px !important; }
+      .unified-hero-section .hero-title { font-size: 56px !important; }
+      .unified-hero-section .hero-subtitle { font-size: 18px !important; }
+      .unified-hero-section .feature-pill { font-size: 15px !important; }
+      .white-side-title { font-size: 38px !important; }
+      .white-side-smalltitle { font-size: 22px !important; }
+      .white-side-section .lead-text { font-size: 17px !important; }
     }
     
     /* Tablet landscape (1024px - 1280px) */
@@ -967,14 +967,19 @@
       </blockquote>
     </div>
     
-    <!-- CTA Prototype - Moved to top for visibility -->
-    <div class="hero-prototype-cta" style="margin-top: 24px; padding: 24px; background: linear-gradient(135deg, #F4E7D1 0%, #FFF9ED 100%); border-radius: 16px; border: 2px solid #D4A574; text-align: center;">
-      <h4 style="margin: 0 0 12px 0; font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 700; color: #3A2A23;">✨ Try the Live Prototype</h4>
-      <p style="margin: 0 0 16px 0; font-size: clamp(0.9rem, 1.2vw, 1rem); color: #666;">Experience Nuuko's gentle onboarding and core features</p>
-      <a href="https://nuuko-v1.vercel.app/" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 14px 32px; background: #8D4630; color: #fff; text-decoration: none; border-radius: 999px; font-weight: 700; font-size: clamp(0.95rem, 1.1vw, 1.05rem); transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(141, 70, 48, 0.3);" onmouseover="this.style.background='#6B3424'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(141, 70, 48, 0.4)'" onmouseout="this.style.background='#8D4630'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 16px rgba(141, 70, 48, 0.3)'">
-        Launch Interactive Prototype →
-      </a>
-    </div>
+    <!-- CTA Prototype -->
+    <a href="https://www.nuuko.app/" target="_blank" rel="noopener noreferrer" class="hero-prototype-cta" style="margin-top: 16px; padding: 14px 24px; background: white; border-radius: 14px; border: 1px solid rgba(141,70,48,0.1); text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 4px 16px rgba(141,70,48,0.06); transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 24px rgba(141,70,48,0.12)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='0 4px 16px rgba(141,70,48,0.06)'; this.style.transform='translateY(0)'">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #8D4630, #D4A574); display: grid; place-items: center; flex-shrink: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </span>
+        <div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: #3A2A23; font-family: 'Inter', sans-serif;">Try the Live App</div>
+          <div style="font-size: 0.78rem; color: #8D4630; font-family: 'Inter', sans-serif; opacity: 0.7;">nuuko.app</div>
+        </div>
+      </div>
+      <span style="font-size: 0.8rem; font-weight: 600; color: #8D4630; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 6px;">Visit <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+    </a>
   </div>
 </section>
 

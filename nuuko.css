@@ -696,7 +696,7 @@ body {
 
 /* Unified Hero Section */
 .unified-hero-section {
-  padding: 4.8rem 0 2.5rem 0;
+  padding: 4.5rem 0 2rem 0;
   background: linear-gradient(135deg, #f8f5f0 0%, #f4e7d1 100%);
   position: relative;
   overflow: hidden;
@@ -716,33 +716,33 @@ body {
 }
 
 .hero-container {
-  max-width: 1280px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 24px;
   position: relative;
   z-index: 2;
 }
 
 .main-title-card {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr; /* use width better */
-  gap: 2rem; /* tighter */
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.5rem;
   align-items: start;
   background: white;
-  border-radius: 20px;
-  padding: 2rem; /* -33% */
-  box-shadow: 
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow:
     0 10px 38px rgba(141, 70, 48, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(141, 70, 48, 0.08);
-  margin-bottom: 1.5rem; /* reduce gap below */
+  margin-bottom: 1.25rem;
   transition: all 0.3s ease;
 }
 
 .main-title-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 
-    0 20px 64px rgba(141, 70, 48, 0.18),
+  transform: translateY(-3px);
+  box-shadow:
+    0 16px 48px rgba(141, 70, 48, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
@@ -752,12 +752,12 @@ body {
 
 .hero-title {
   font-family: 'Crimson Text', serif;
-  font-size: clamp(2.7rem, 7vw, 3.5rem);
+  font-size: clamp(2.5rem, 5vw, 3.2rem);
   font-weight: 600;
   color: #8D4630;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   position: relative;
 }
 
@@ -774,11 +774,11 @@ body {
 
 .hero-subtitle {
   font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: #3A2A23;
   font-style: italic;
-  margin-bottom: 1.25rem;
-  line-height: 1.35; /* snugger */
+  margin-bottom: 1rem;
+  line-height: 1.35;
 }
 
 .features-pills {
@@ -803,7 +803,7 @@ body {
 .side-content {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
   padding-left: 1.25rem;
   border-left: 2px solid #f4e7d1;
 }
@@ -897,8 +897,8 @@ body {
   justify-content: center;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1.25rem;
   background: white;
   border-radius: 50px;
   box-shadow: 0 4px 20px rgba(141, 70, 48, 0.08);
@@ -951,18 +951,18 @@ body {
 .mission-banner {
   text-align: center;
   background: white;
-  border-radius: 20px;
-  padding: 1rem 1.5rem; /* tighter */
-  box-shadow: 0 8px 32px rgba(141, 70, 48, 0.08);
+  border-radius: 16px;
+  padding: 0.85rem 1.25rem;
+  box-shadow: 0 6px 24px rgba(141, 70, 48, 0.08);
   border: 1px solid rgba(141, 70, 48, 0.06);
 }
 
 .mission-statement-text {
   font-family: 'Crimson Text', serif;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-style: italic;
   color: #8D4630;
-  line-height: 1.5;
+  line-height: 1.45;
   margin: 0;
   position: relative;
   font-weight: 400;
@@ -1491,8 +1491,8 @@ body {
 .hero-mockup-section {
   padding-top: 0;
   width: 100%;
-  max-width: 100vw;
-  margin: 24px auto 0; /* 40 -> 24 */
+  max-width: 1200px;
+  margin: 20px auto 0;
   overflow: hidden;
   position: relative;
 }
@@ -1501,30 +1501,30 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
   flex-wrap: nowrap;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .hero-center-image {
-  max-width: 750px;
+  max-width: 620px;
   width: 100%;
   height: auto;
-  border-radius: 24px;
-  box-shadow: 0 15px 30px rgba(141, 70, 48, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(141, 70, 48, 0.08);
   transition: transform 0.3s ease;
   order: 2;
 }
 
 .hero-side-image {
-  max-width: 250px;
+  max-width: 200px;
   width: 100%;
   height: auto;
-  border-radius: 24px;
-  box-shadow: 0 15px 30px rgba(141, 70, 48, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(141, 70, 48, 0.08);
   transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .hero-side-image:hover {
@@ -1668,10 +1668,13 @@ body {
   color: rgb(0, 0, 0);
   position: relative;
   overflow: visible;
-  padding: 48px 16px;
+  padding: 40px 24px;
   text-align: left;
   z-index: 0;
   margin: 0;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .white-side-title {
@@ -1703,8 +1706,8 @@ body {
 }
 
 .white-side-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  margin: 0 0 12px 0; /* left aligned rhythm */
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0 0 12px 0;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #3A2A23;
