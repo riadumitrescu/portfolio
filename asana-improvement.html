@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing Trust — A Research Proposal for Asana | Maria Dumitrescu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #F06A6A;
+            --coral-light: #FF8F8F;
+            --coral-dark: #E05555;
+            --yellow: #F8DF72;
+            --green: #5DA283;
+            --blue: #4573D2;
+            --purple: #AA62E3;
+            --bg: #FAFAF8;
+            --bg-warm: #F5F3EF;
+            --bg-card: #FFFFFF;
+            --text-primary: #1E1E1E;
+            --text-body: #3D3D3D;
+            --text-secondary: #6D6D6D;
+            --text-muted: #9B9B9B;
+            --border: rgba(0,0,0,0.08);
+            --border-light: rgba(0,0,0,0.04);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 18px 48px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(250,250,248,0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-left {
+            display: flex; align-items: center; gap: 16px;
+        }
+
+        .nav-back {
+            display: flex; align-items: center; gap: 6px;
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 13px; font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--text-primary); }
+        .nav-back svg { width: 14px; height: 14px; }
+
+        .nav-title {
+            font-size: 13px; font-weight: 600; color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex; gap: 28px;
+        }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 13px; font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        /* ── Hero / Letter Opening ── */
+        .hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 140px 48px 100px;
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-date {
+            font-size: 13px; color: var(--text-muted); font-weight: 500;
+            letter-spacing: 0.02em; margin-bottom: 40px;
+        }
+
+        .hero-greeting {
+            font-size: 18px; color: var(--text-body);
+            line-height: 1.7; margin-bottom: 48px;
+            max-width: 620px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            font-weight: 800; letter-spacing: -0.035em;
+            line-height: 1.08; margin-bottom: 28px;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-light) 50%, var(--yellow) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 19px; color: var(--text-secondary);
+            max-width: 580px; line-height: 1.7;
+            margin-bottom: 56px;
+        }
+
+        .hero-meta {
+            display: flex; flex-wrap: wrap; gap: 40px;
+            padding-top: 32px; border-top: 1px solid var(--border);
+        }
+
+        .meta-item {
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .meta-label {
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-muted);
+        }
+        .meta-value {
+            font-size: 14px; font-weight: 500; color: var(--text-primary);
+        }
+
+        /* ── Sections ── */
+        section {
+            padding: 100px 48px;
+        }
+
+        .section-inner {
+            max-width: 860px; margin: 0 auto;
+        }
+
+        .section-wide {
+            max-width: 1100px; margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; color: var(--coral);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700; letter-spacing: -0.025em;
+            line-height: 1.15; margin-bottom: 20px;
+        }
+
+        .section-desc {
+            font-size: 17px; color: var(--text-secondary);
+            line-height: 1.75; max-width: 640px;
+        }
+
+        /* ── Thank You Section ── */
+        .thankyou {
+            background: var(--bg-warm);
+        }
+
+        .thankyou-letter {
+            font-size: 17px; color: var(--text-body);
+            line-height: 1.85; max-width: 640px;
+        }
+
+        .thankyou-letter p { margin-bottom: 20px; }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px; margin-top: 48px;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px; padding: 20px 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .team-name {
+            font-size: 14px; font-weight: 600; margin-bottom: 4px;
+        }
+        .team-role {
+            font-size: 12px; color: var(--text-muted);
+        }
+
+        /* ── Context / Why Now ── */
+        .context-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px; padding: 48px;
+            margin-top: 48px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .context-stat-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 32px; margin-top: 40px;
+            padding-top: 32px; border-top: 1px solid var(--border-light);
+        }
+
+        .context-stat {
+            text-align: center;
+        }
+
+        .context-stat-number {
+            font-size: 40px; font-weight: 800; letter-spacing: -0.03em;
+            color: var(--coral); margin-bottom: 6px;
+        }
+
+        .context-stat-label {
+            font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+        }
+
+        /* ── Insight Box ── */
+        .insight-box {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-light) 100%);
+            border-radius: 20px; padding: 48px;
+            margin-top: 48px; position: relative; overflow: hidden;
+        }
+
+        .insight-box::before {
+            content: '\201C';
+            position: absolute; top: -20px; left: 24px;
+            font-size: 160px; font-weight: 900;
+            color: rgba(255,255,255,0.15); line-height: 1;
+        }
+
+        .insight-box p {
+            font-size: 22px; font-weight: 600; color: #fff;
+            line-height: 1.55; position: relative; z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .insight-box .insight-source {
+            font-size: 13px; color: rgba(255,255,255,0.7);
+            margin-top: 16px; font-weight: 400;
+        }
+
+        /* ── Research Questions ── */
+        .research-grid {
+            display: flex; flex-direction: column;
+            gap: 24px; margin-top: 48px;
+        }
+
+        .rq-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px; padding: 40px;
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            gap: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .rq-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .rq-number {
+            width: 56px; height: 56px; border-radius: 16px;
+            background: linear-gradient(135deg, rgba(240,106,106,0.1), rgba(240,106,106,0.05));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; font-weight: 800; color: var(--coral);
+        }
+
+        .rq-content h3 {
+            font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+            margin-bottom: 12px; line-height: 1.3;
+        }
+
+        .rq-content p {
+            font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .rq-method {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--bg-warm); border-radius: 8px;
+            padding: 8px 14px; font-size: 12px; font-weight: 600;
+            color: var(--text-body);
+        }
+
+        .rq-method svg {
+            width: 14px; height: 14px; color: var(--coral);
+        }
+
+        /* ── Nuuko Parallel ── */
+        .parallel-box {
+            background: var(--bg-warm);
+            border-left: 3px solid var(--coral);
+            border-radius: 0 12px 12px 0;
+            padding: 20px 24px; margin-top: 20px;
+        }
+
+        .parallel-box .parallel-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--coral); margin-bottom: 8px;
+        }
+
+        .parallel-box p {
+            font-size: 14px; color: var(--text-body); line-height: 1.7;
+        }
+
+        /* ── Design Ideas ── */
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px; margin-top: 48px;
+        }
+
+        .idea-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            transition: transform 0.25s, box-shadow 0.25s;
+            position: relative; overflow: hidden;
+        }
+
+        .idea-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--yellow));
+            opacity: 0; transition: opacity 0.3s;
+        }
+
+        .idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+        }
+
+        .idea-card:hover::before { opacity: 1; }
+
+        .idea-number {
+            font-size: 12px; font-weight: 700; color: var(--coral);
+            text-transform: uppercase; letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .idea-card h3 {
+            font-size: 22px; font-weight: 700; letter-spacing: -0.015em;
+            margin-bottom: 12px;
+        }
+
+        .idea-problem {
+            font-size: 13px; color: var(--text-muted);
+            line-height: 1.6; margin-bottom: 16px;
+            padding-bottom: 16px; border-bottom: 1px solid var(--border-light);
+        }
+
+        .idea-card p {
+            font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+        }
+
+        .idea-detail {
+            margin-top: 20px;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+
+        .idea-detail-item {
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 13px; color: var(--text-body); line-height: 1.6;
+        }
+
+        .idea-detail-item .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--coral); margin-top: 7px; flex-shrink: 0;
+        }
+
+        /* ── Competitive ── */
+        .comp-table {
+            width: 100%; margin-top: 48px;
+            border-collapse: collapse;
+        }
+
+        .comp-table th {
+            text-align: left; padding: 16px 20px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-muted);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .comp-table td {
+            padding: 18px 20px;
+            font-size: 14px; color: var(--text-body);
+            border-bottom: 1px solid var(--border-light);
+            line-height: 1.6;
+        }
+
+        .comp-table tr:last-child td { border-bottom: none; }
+
+        .comp-table .company-name {
+            font-weight: 600; color: var(--text-primary);
+        }
+
+        .comp-table .gap-col {
+            color: var(--text-secondary); font-size: 13px;
+        }
+
+        .comp-highlight {
+            background: linear-gradient(135deg, rgba(240,106,106,0.06), rgba(248,223,114,0.06));
+            border-radius: 12px;
+        }
+
+        .comp-highlight td {
+            color: var(--text-primary); font-weight: 500;
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            margin-top: 48px;
+            display: flex; flex-direction: column; gap: 0;
+        }
+
+        .timeline-phase {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 32px; padding: 36px 0;
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .timeline-phase:last-child { border-bottom: none; }
+
+        .timeline-weeks {
+            font-size: 13px; font-weight: 700; color: var(--coral);
+            text-transform: uppercase; letter-spacing: 0.08em;
+        }
+
+        .timeline-phase-name {
+            font-size: 11px; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.1em;
+            margin-top: 4px;
+        }
+
+        .timeline-content h4 {
+            font-size: 18px; font-weight: 700; margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .timeline-items {
+            list-style: none; display: flex;
+            flex-direction: column; gap: 8px;
+        }
+
+        .timeline-items li {
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+        }
+
+        .timeline-items li::before {
+            content: '';
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--coral); margin-top: 8px;
+            flex-shrink: 0; opacity: 0.5;
+        }
+
+        .timeline-output {
+            margin-top: 16px; font-size: 13px;
+            font-weight: 600; color: var(--green);
+        }
+
+        /* ── Why Me ── */
+        .why-me-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px; margin-top: 48px;
+        }
+
+        .why-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px; padding: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .why-card h3 {
+            font-size: 16px; font-weight: 700; margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .why-card p {
+            font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+        }
+
+        /* ── Footer ── */
+        .closing {
+            background: var(--bg-warm);
+            text-align: center;
+        }
+
+        .closing-inner {
+            max-width: 600px; margin: 0 auto;
+        }
+
+        .closing h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 700; letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .closing p {
+            font-size: 16px; color: var(--text-secondary);
+            line-height: 1.75; margin-bottom: 12px;
+        }
+
+        .closing .signature {
+            margin-top: 40px; font-size: 15px;
+            color: var(--text-body); font-weight: 500;
+        }
+
+        .closing .signature-sub {
+            font-size: 13px; color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .cta-row {
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; margin-top: 36px;
+        }
+
+        .cta-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--coral); color: #fff;
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none; font-weight: 600; font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .cta-primary:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 28px rgba(240,106,106,0.3);
+        }
+
+        .cta-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-body);
+            padding: 14px 28px; border-radius: 100px;
+            text-decoration: none; font-weight: 600; font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--text-muted);
+            background: var(--bg-card);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .ideas-grid { grid-template-columns: 1fr; }
+            .why-me-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav, section, .hero { padding-left: 24px; padding-right: 24px; }
+            .nav-links { display: none; }
+            .hero { padding-top: 120px; }
+            .rq-card { grid-template-columns: 1fr; gap: 16px; }
+            .rq-number { width: 44px; height: 44px; font-size: 18px; border-radius: 12px; }
+            .timeline-phase { grid-template-columns: 1fr; gap: 12px; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .comp-table { font-size: 13px; }
+            .comp-table th, .comp-table td { padding: 12px 14px; }
+        }
+
+        /* ── Fade-in animations ── */
+        .fade-in {
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1; transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="proposals.html" class="nav-back">
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M8.5 2L3.5 7l5 5"/>
+                </svg>
+                Proposals
+            </a>
+            <span class="nav-title">Asana &mdash; Designing Trust</span>
+        </div>
+        <div class="nav-links">
+            <a href="#thankyou">Thank You</a>
+            <a href="#context">Why Now</a>
+            <a href="#research">Research</a>
+            <a href="#ideas">Ideas</a>
+            <a href="#timeline">Timeline</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-date">April 2026</div>
+        <div class="hero-greeting">
+            Dear Asana Design Team,
+        </div>
+        <h1>Designing <span class="accent">Trust</span></h1>
+        <p class="hero-subtitle">How people learn to work with AI Teammates &mdash; a research-driven exploration and design proposal, inspired by meeting your team and learning about the work you do.</p>
+        <div class="hero-meta">
+            <div class="meta-item">
+                <span class="meta-label">Prepared by</span>
+                <span class="meta-value">Maria Dumitrescu</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Position</span>
+                <span class="meta-value">Product Design Intern</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Location</span>
+                <span class="meta-value">Asana Warsaw</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Duration</span>
+                <span class="meta-value">9 Weeks</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thank You -->
+    <section class="thankyou" id="thankyou">
+        <div class="section-inner">
+            <div class="section-label">A Note of Gratitude</div>
+            <h2 class="section-title">Thank you for the opportunity</h2>
+            <div class="thankyou-letter">
+                <p>Meeting the team was one of the most meaningful experiences I've had in my design journey so far. The conversations we had &mdash; about how Asana thinks about collaboration, about the challenges of designing AI that teams actually trust, about what good craft looks like &mdash; genuinely changed how I think about this work.</p>
+                <p>I walked away from those interviews with more questions than answers, and that's the best kind of outcome. I couldn't stop thinking about the problems you're solving, so I started writing things down. This page is what came out of that process.</p>
+                <p>These aren't polished solutions. They're ideas, research directions, and design instincts shaped by what I learned during our conversations and the week I spent going deep on Asana's AI Teammates. Consider this a window into how I think &mdash; and a small thank you for your time and generosity.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-name">Matt Farmer</div>
+                    <div class="team-role">Presentation & Craft 1:1</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-name">Ksenia Harabiuk</div>
+                    <div class="team-role">Presentation & Craft 1:1</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-name">Tyson Kallberg</div>
+                    <div class="team-role">Presentation Panel</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-name">Alex Slyusar</div>
+                    <div class="team-role">Presentation Panel</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-name">Tamar Pacheco-Theard</div>
+                    <div class="team-role">Presentation Panel</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-name">Justyna Charubin</div>
+                    <div class="team-role">Women Culture Chat</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-name">Marta Miko&#322;ajczyk</div>
+                    <div class="team-role">Portfolio Deep Dive</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Context: Why Now -->
+    <section id="context">
+        <div class="section-inner">
+            <div class="section-label">Why This, Why Now</div>
+            <h2 class="section-title">The hardest part of AI Teammates is just beginning</h2>
+            <p class="section-desc">In March 2026, AI Teammates went GA: collaborative AI agents that live inside projects, get assigned tasks, receive feedback, and build institutional memory. The vision is bold. But the next wave of adoption isn't a technology problem &mdash; it's a design problem.</p>
+
+            <div class="context-card fade-in">
+                <p style="font-size: 16px; color: var(--text-body); line-height: 1.75;">The early adopters are bought in &mdash; they chose to experiment. The next wave is different. These are teams who are skeptical, overwhelmed, or unsure what an AI agent even does. Getting them to trust AI Teammates will determine whether it becomes Asana's defining feature or a checkbox on a pricing page.</p>
+                <div class="context-stat-row">
+                    <div class="context-stat">
+                        <div class="context-stat-number">2x</div>
+                        <div class="context-stat-label">Faster task completion in beta teams</div>
+                    </div>
+                    <div class="context-stat">
+                        <div class="context-stat-number">93%</div>
+                        <div class="context-stat-label">Granted full edit access to AI Teammates</div>
+                    </div>
+                    <div class="context-stat">
+                        <div class="context-stat-number">73%</div>
+                        <div class="context-stat-label">Orgs report gap between AI ambitions and reality</div>
+                    </div>
+                    <div class="context-stat">
+                        <div class="context-stat-number">11%</div>
+                        <div class="context-stat-label">Agentic AI use cases have reached production</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box fade-in">
+                <p>Trust with AI is not binary. People build it incrementally, through small interactions, and lose it in a single bad experience. The barrier to AI adoption isn't capability. It's trust.</p>
+                <div class="insight-source">Based on human-AI interaction research & firsthand experience building Nuuko</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Nuuko Taught Me -->
+    <section style="background: var(--bg-warm);">
+        <div class="section-inner">
+            <div class="section-label">What I Bring</div>
+            <h2 class="section-title">What building Nuuko taught me about AI trust</h2>
+            <p class="section-desc" style="margin-bottom: 36px;">I built Nuuko, an AI-powered journaling app that surfaces patterns in a user's own writing. The AI reads someone's most personal thoughts and reflects insights back to them. That's an extremely high-trust interaction. Here's what I learned:</p>
+
+            <div class="research-grid">
+                <div class="rq-card fade-in" style="grid-template-columns: 1fr;">
+                    <div class="rq-content">
+                        <h3>Trust comes from experiencing one small success</h3>
+                        <p>When users saw their first Nuuko "Wrapped" summary and thought "oh, that's actually me," they were hooked. No onboarding tutorial created that moment. The AI's output did.</p>
+                    </div>
+                </div>
+                <div class="rq-card fade-in" style="grid-template-columns: 1fr;">
+                    <div class="rq-content">
+                        <h3>Tone matters as much as accuracy</h3>
+                        <p>When I tested a more clinical, data-driven tone, users felt surveilled rather than supported. The same insight, different words, completely different emotional response.</p>
+                    </div>
+                </div>
+                <div class="rq-card fade-in" style="grid-template-columns: 1fr;">
+                    <div class="rq-content">
+                        <h3>Doing less builds more trust than doing more</h3>
+                        <p>Nuuko's first version had too many AI features visible at once. When I reduced the surface to just journaling and one insight per session, engagement went up. People trusted it more because it tried to do less.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Questions -->
+    <section id="research">
+        <div class="section-inner">
+            <div class="section-label">Research Directions</div>
+            <h2 class="section-title">Three questions I'd investigate</h2>
+            <p class="section-desc">Structured around three layers of the trust problem, each targeting a different dimension of how teams learn to work with AI agents.</p>
+
+            <div class="research-grid">
+                <!-- RQ1 -->
+                <div class="rq-card fade-in">
+                    <div class="rq-number">01</div>
+                    <div class="rq-content">
+                        <h3>"What does the first 10 minutes with an AI Teammate feel like?"</h3>
+                        <p>Where does trust break in the first interaction? Where do people hesitate? When does the AI feel like a tool versus a teammate? When do they decide "this is useful" or "this is not for me"?</p>
+                        <div class="rq-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            Moderated usability sessions &mdash; 6-8 first-time users
+                        </div>
+                        <div class="parallel-box">
+                            <div class="parallel-label">Design lens from Nuuko</div>
+                            <p>Journaling prompts needed to feel like invitations, not instructions. "Tell me about your day" felt clinical. "What's one small thing that made you feel something today?" felt human. The same principle applies to how an AI Teammate introduces itself.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RQ2 -->
+                <div class="rq-card fade-in">
+                    <div class="rq-number">02</div>
+                    <div class="rq-content">
+                        <h3>"How do teams develop shared understanding of what AI can and can't do?"</h3>
+                        <p>Most AI tools are single-player. Asana's AI Teammates are shared. When one person configures an agent, the rest of the team encounters it without that context. Does the team develop a shared mental model? Who becomes the "AI translator"?</p>
+                        <div class="rq-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+                            Diary study &mdash; 3-4 teams over 2 weeks
+                        </div>
+                        <div class="parallel-box">
+                            <div class="parallel-label">Why this is unique to Asana</div>
+                            <p>This multiplayer dimension is what makes Asana's approach fundamentally different from every other AI tool. If the team doesn't develop shared understanding, you get inconsistent expectations, frustration, and eventually abandonment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RQ3 -->
+                <div class="rq-card fade-in">
+                    <div class="rq-number">03</div>
+                    <div class="rq-content">
+                        <h3>"What role does tone and personality play in whether teams keep using an AI agent?"</h3>
+                        <p>Do people want their AI Teammate to have personality, or does personality feel uncanny? Does warmth increase trust, or feel manipulative? Does acknowledging uncertainty help?</p>
+                        <div class="rq-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                            Comparative prototype test &mdash; 3 communication styles, 5 per variant
+                        </div>
+                        <div class="parallel-box">
+                            <div class="parallel-label">Design lens from Nuuko</div>
+                            <p>In Nuuko, the AI's tone was the single biggest factor in whether users felt "supported" versus "watched." The same pattern recognition, wrapped in different language, created completely different emotional responses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Ideas -->
+    <section style="background: var(--bg-warm);" id="ideas">
+        <div class="section-wide">
+            <div class="section-label">Design Explorations</div>
+            <h2 class="section-title">Four ideas I'd prototype</h2>
+            <p class="section-desc">Starting points, not final solutions. The research would sharpen and redirect them.</p>
+
+            <div class="ideas-grid">
+                <!-- Idea 1 -->
+                <div class="idea-card fade-in">
+                    <div class="idea-number">Idea 01</div>
+                    <h3>The "First Task" Guided Experience</h3>
+                    <div class="idea-problem">Right now, setting up an AI Teammate feels like filling out a form. There's no moment where the team experiences what the AI can do before committing.</div>
+                    <p>Design a guided "first task" where the AI walks the team through a low-stakes, reversible task together. A ride-along before you hand over the keys. The team picks a real (but small) task, watches the AI's thinking step by step, gives feedback, and sees the AI incorporate it.</p>
+                    <div class="parallel-box" style="margin-top: 20px;">
+                        <div class="parallel-label">Design principle</div>
+                        <p>People don't trust AI by reading documentation. They trust it by experiencing one small success. Nuuko's onboarding doesn't explain pattern recognition &mdash; it lets you journal for a few days and then shows you your first insight.</p>
+                    </div>
+                </div>
+
+                <!-- Idea 2 -->
+                <div class="idea-card fade-in">
+                    <div class="idea-number">Idea 02</div>
+                    <h3>Layered Transparency</h3>
+                    <div class="idea-problem">How much AI reasoning should be visible, and when? Too much detail is noisy. Too little is a black box. Neither builds trust.</div>
+                    <p>A three-layer transparency model inspired by clearly., my data visualization tool:</p>
+                    <div class="idea-detail">
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>Layer 1 &mdash; Summary:</strong> One sentence, always visible. "I drafted the brief based on your strategy doc."</span>
+                        </div>
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>Layer 2 &mdash; Reasoning:</strong> Expandable. Sources, decisions, uncertainties.</span>
+                        </div>
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>Layer 3 &mdash; Full Trace:</strong> On demand. Complete audit trail for admins.</span>
+                        </div>
+                    </div>
+                    <div class="parallel-box" style="margin-top: 20px;">
+                        <div class="parallel-label">From clearly.</div>
+                        <p>Non-technical users don't distrust data &mdash; they distrust their ability to interpret it. Leading with "sentences before charts" closes the confidence gap.</p>
+                    </div>
+                </div>
+
+                <!-- Idea 3 -->
+                <div class="idea-card fade-in">
+                    <div class="idea-number">Idea 03</div>
+                    <h3>Configurable Communication Style</h3>
+                    <div class="idea-problem">A startup design team and an enterprise compliance team communicate in fundamentally different ways. A one-size-fits-all AI voice will feel wrong to most teams.</div>
+                    <p>Let teams configure not just what an AI Teammate does, but how it communicates:</p>
+                    <div class="idea-detail">
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>Concise vs. Detailed</strong> &mdash; "Brief updated." vs. "I updated the brief with three changes..."</span>
+                        </div>
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>Formal vs. Casual</strong> &mdash; "The brief is ready for review." vs. "Hey team, brief's done!"</span>
+                        </div>
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>Proactive vs. On-demand</strong> &mdash; Waits for tasks vs. flags risks and suggests actions.</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 16px;">Over time, the AI could learn from team interactions and adapt &mdash; but starting with explicit configuration gives teams agency.</p>
+                </div>
+
+                <!-- Idea 4 -->
+                <div class="idea-card fade-in">
+                    <div class="idea-number">Idea 04</div>
+                    <h3>Mobile-First AI Collaboration</h3>
+                    <div class="idea-problem">AI Teammates are desktop-heavy. But people check Asana on phones constantly &mdash; during commutes, between meetings, in quick moments.</div>
+                    <p>Lightweight mobile surfaces for AI collaboration:</p>
+                    <div class="idea-detail">
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>AI Digest</strong> &mdash; Daily summary card: "Sprint Coach flagged 2 blocked tasks while you were out."</span>
+                        </div>
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>Swipeable Review</strong> &mdash; Quick approve/comment gestures for AI output, like triaging email.</span>
+                        </div>
+                        <div class="idea-detail-item">
+                            <span class="dot"></span>
+                            <span><strong>Distinct Notifications</strong> &mdash; AI updates should look visually different from human updates.</span>
+                        </div>
+                    </div>
+                    <div class="parallel-box" style="margin-top: 20px;">
+                        <div class="parallel-label">Warsaw team relevance</div>
+                        <p>The Warsaw design hub owns the Mobile group. This is a direct contribution to that team's roadmap, extending AI Teammates beyond desktop power users.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Context -->
+    <section>
+        <div class="section-inner">
+            <div class="section-label">Landscape</div>
+            <h2 class="section-title">Where Asana can differentiate</h2>
+            <p class="section-desc">Asana's advantage is clear: the Work Graph gives AI Teammates context no other platform can match. But context without trust design is just data.</p>
+
+            <table class="comp-table fade-in">
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Approach</th>
+                        <th>Gap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-name">Microsoft Copilot</td>
+                        <td>Embedded in Office, single-player, prompt-driven</td>
+                        <td class="gap-col">No multiplayer context. Team can't see what AI did for someone else.</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Slack AI</td>
+                        <td>Summarizes channels and threads on demand</td>
+                        <td class="gap-col">Reactive only. No proactive collaboration or task ownership.</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Notion AI</td>
+                        <td>Document-level assistant for writing and editing</td>
+                        <td class="gap-col">No workflow context. Doesn't know deadlines, dependencies, or team structure.</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Monday AI</td>
+                        <td>Automations with AI-generated content</td>
+                        <td class="gap-col">Rule-based. No agent memory or learning from feedback.</td>
+                    </tr>
+                    <tr class="comp-highlight">
+                        <td class="company-name" style="color: var(--coral);">Asana</td>
+                        <td>Multiplayer AI agents with full Work Graph context</td>
+                        <td class="gap-col" style="color: var(--coral); font-weight: 600;">Opportunity: combine structural advantage with emotionally intelligent interaction design.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section style="background: var(--bg-warm);" id="timeline">
+        <div class="section-inner">
+            <div class="section-label">Proposed Plan</div>
+            <h2 class="section-title">9-week roadmap</h2>
+            <p class="section-desc">Three phases, each with clear outputs that build on the previous.</p>
+
+            <div class="timeline">
+                <div class="timeline-phase fade-in">
+                    <div>
+                        <div class="timeline-weeks">Weeks 1&ndash;3</div>
+                        <div class="timeline-phase-name">Research</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>Research Sprint</h4>
+                        <ul class="timeline-items">
+                            <li>6-8 moderated usability sessions with first-time AI Teammate users</li>
+                            <li>Diary study setup with 3-4 active teams</li>
+                            <li>Competitive audit: AI agent UX across Copilot, Slack AI, Notion, Monday</li>
+                            <li>Heuristic evaluation of current AI Teammate flows</li>
+                            <li>Internal stakeholder interviews (AI Teammates PM, eng, research)</li>
+                        </ul>
+                        <div class="timeline-output">Output: Research synthesis deck with findings and opportunity map</div>
+                    </div>
+                </div>
+
+                <div class="timeline-phase fade-in">
+                    <div>
+                        <div class="timeline-weeks">Weeks 4&ndash;6</div>
+                        <div class="timeline-phase-name">Concept</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>Concept & Prototype</h4>
+                        <ul class="timeline-items">
+                            <li>2-3 design concepts based on research findings</li>
+                            <li>Lo-fi prototypes in Figma</li>
+                            <li>Usability testing with 5-8 participants</li>
+                            <li>Iteration based on testing feedback</li>
+                        </ul>
+                        <div class="timeline-output">Output: Tested prototypes with user feedback documentation</div>
+                    </div>
+                </div>
+
+                <div class="timeline-phase fade-in">
+                    <div>
+                        <div class="timeline-weeks">Weeks 7&ndash;9</div>
+                        <div class="timeline-phase-name">Deliver</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>Refine & Deliver</h4>
+                        <ul class="timeline-items">
+                            <li>High-fidelity designs with interaction specs</li>
+                            <li>Design system integration (Asana's component library)</li>
+                            <li>Final presentation to Design + PM team</li>
+                            <li>Handoff documentation for engineering</li>
+                        </ul>
+                        <div class="timeline-output">Output: Presentation, design specs, research report, next-steps roadmap</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Me -->
+    <section>
+        <div class="section-inner">
+            <div class="section-label">How I Think</div>
+            <h2 class="section-title">Three things that are relevant to this work</h2>
+
+            <div class="why-me-grid fade-in">
+                <div class="why-card">
+                    <h3>I've designed AI trust before</h3>
+                    <p>Nuuko asks people to share their most personal thoughts with an AI. That only works if the AI feels safe, warm, and honest. I've spent months learning that the difference between "helpful" and "creepy" often comes down to three words in a sentence.</p>
+                </div>
+                <div class="why-card">
+                    <h3>I make complex systems feel human</h3>
+                    <p>clearly., my data visualization tool, was built on "sentences before charts." Non-technical users don't distrust data &mdash; they distrust their ability to interpret it. The same progressive disclosure applies to AI transparency.</p>
+                </div>
+                <div class="why-card">
+                    <h3>I can talk to engineers</h3>
+                    <p>With a CS background, I understand how language models work, what confidence thresholds mean, how context windows affect output. I can have real conversations about trade-offs, not just hand over mockups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing">
+        <div class="closing-inner">
+            <h2>Thank you for reading</h2>
+            <p>This proposal exists because meeting your team genuinely inspired me. The problems you're working on sit at the intersection of everything I care about: AI that helps people, design that builds trust, and products that feel human even when they're powered by machines.</p>
+            <p>Asana's multiplayer approach to AI agents is the most interesting thing happening in this space. I would love the opportunity to contribute to it.</p>
+
+            <div class="signature">
+                Maria Dumitrescu
+            </div>
+            <div class="signature-sub">
+                CS & Design &mdash; Minerva University &middot; mariadumitrescuoffice@gmail.com
+            </div>
+
+            <div class="cta-row">
+                <a href="mailto:mariadumitrescuoffice@gmail.com" class="cta-primary">
+                    Get in Touch
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                </a>
+                <a href="index.html" class="cta-secondary">
+                    View Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
