@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You, Angel</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { color: #2a2a2a; font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.75; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; padding: 11px 20px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  nav a { font-size: 11.5px; letter-spacing: 1.2px; text-transform: uppercase; color: #aaa; text-decoration: none; transition: color 0.2s; }
+  nav a:hover { color: #2a2a2a; }
+
+  /* SECTIONS */
+  .s-white { background: #fff; }
+  .s-cream { background: #faf9f6; }
+  .inner { max-width: 600px; margin: 0 auto; padding: 64px 24px; }
+
+  /* TYPE */
+  .tag { font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase; color: #7c3aed; font-weight: 700; margin-bottom: 10px; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.3; font-weight: 400; margin-bottom: 20px; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 21px; font-weight: 400; margin-bottom: 14px; line-height: 1.35; }
+  h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #2a2a2a; }
+  p { color: #555; margin-bottom: 12px; line-height: 1.8; }
+  .lead { font-size: 14.5px; line-height: 1.85; }
+  .small { font-size: 13.5px; color: #777; line-height: 1.7; }
+  .sign { font-size: 14px; color: #2a2a2a; font-weight: 500; margin-top: 24px; }
+
+  /* CARDS */
+  .card { background: #fff; border: 1px solid #eee; border-radius: 8px; padding: 16px 18px; margin-bottom: 10px; }
+  .cream-card { background: #faf9f6; border: 1px solid #eee; border-radius: 8px; padding: 16px 18px; margin-bottom: 10px; }
+  .card-t { font-weight: 600; color: #2a2a2a; font-size: 14px; margin-bottom: 4px; }
+  .card p, .cream-card p { font-size: 13.5px; color: #777; margin: 0; line-height: 1.7; }
+
+  /* NOTE */
+  .note { background: #f5f4f1; border-left: 3px solid #d4d0c8; padding: 12px 14px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 13px; color: #666; line-height: 1.7; }
+
+  /* WORKSTREAM BLOCK */
+  .ws { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 24px; margin-bottom: 16px; }
+  .ws-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7c3aed; font-weight: 700; margin-bottom: 6px; }
+  .ws h3 { font-size: 16px; margin-bottom: 10px; }
+
+  /* TOPIC */
+  .topic { margin-bottom: 14px; }
+  .topic-t { font-weight: 600; color: #2a2a2a; font-size: 13.5px; margin-bottom: 2px; }
+  .topic p { font-size: 13.5px; color: #666; margin: 0; }
+
+  /* ARROW LIST */
+  .arr { font-size: 13.5px; color: #555; margin-bottom: 5px; padding-left: 18px; text-indent: -18px; line-height: 1.7; }
+  .arr strong { color: #2a2a2a; }
+
+  /* TIMELINE */
+  .ph { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .ph-badge { background: #7c3aed; color: #fff; font-size: 10.5px; font-weight: 700; padding: 4px 11px; border-radius: 14px; letter-spacing: 0.5px; white-space: nowrap; }
+  .ph-title { font-size: 14.5px; font-weight: 600; }
+  .tl { padding-left: 14px; border-left: 2px solid #eee; margin-bottom: 28px; }
+  .tl-item { margin-bottom: 14px; }
+  .tl-label { font-size: 13.5px; font-weight: 600; color: #2a2a2a; margin-bottom: 2px; }
+  .tl-desc { font-size: 13px; color: #888; line-height: 1.6; }
+
+  /* RESOURCES */
+  .res { padding: 9px 0; border-bottom: 1px solid #f0eeea; }
+  .res a { color: #7c3aed; font-size: 13.5px; font-weight: 500; text-decoration: none; }
+  .res a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .res-note { font-size: 12.5px; color: #999; margin-top: 2px; line-height: 1.5; }
+  .res-cat { font-size: 11px; font-weight: 700; color: #2a2a2a; letter-spacing: 1px; text-transform: uppercase; margin: 18px 0 8px; }
+  .res-cat:first-child { margin-top: 0; }
+
+  /* FOOTER */
+  footer { text-align: center; font-size: 12.5px; color: #bbb; line-height: 1.7; padding: 40px 24px 60px; }
+  footer a { color: #bbb; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#thanks">Thank you</a>
+  <a href="#context">Context</a>
+  <a href="#ideas">Ideas</a>
+  <a href="#plan">Plan</a>
+  <a href="#research">Research</a>
+  <a href="#me">About me</a>
+</nav>
+
+<!-- ============================================ -->
+<!-- THANK YOU -->
+<!-- ============================================ -->
+<div class="s-white" id="thanks">
+  <div class="inner">
+    <p class="tag">A note for Angel ✦</p>
+    <h1>Thank you for the conversation.</h1>
+    <div class="lead">
+      <p>Hi Angel, I walked away from our conversation feeling genuinely excited. I could tell how much thought you've put into making this team feel like a real community, from adding celebrations and music to the Wednesday meeting, to turning the design crit into a space where people can share however feels right to them.</p>
+      <p>The thing that's stayed with me most is what you said about not wanting AI fluency to belong to just the three people who already get it. I've seen that gap turn into a divide really quickly, where people stop asking questions. The fact that you're thinking about this so carefully, especially for senior designers learning a completely new language after 20 years of expertise, that really matters.</p>
+      <p>So I did some research and put together ideas. What's below isn't a polished plan. It's my thinking so far, things I'd want to shape with you. I don't know Udemy's design system or workflows yet, but I do know how to make a room of people at different levels feel safe and excited about something new.</p>
+      <p style="margin-bottom:0">Also, your Ratatouille analogy, the "anyone can cook" feeling about Udemy, I felt that. Thank you for being so generous with your time.</p>
+    </div>
+    <p class="sign">With gratitude, Maria</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- WHAT I HEARD -->
+<!-- ============================================ -->
+<div class="s-cream" id="context">
+  <div class="inner">
+    <p class="tag">What I heard</p>
+    <h2>Where the team is right now</h2>
+    <p>43 designers and researchers. West Coast, Mexico City, Dublin, Turkey, the Netherlands. Grew from 26 since August. One DesignOps manager. One weekly all-hands on Wednesdays.</p>
+    <p style="margin-bottom:16px">Three things stood out:</p>
+
+    <div class="card">
+      <p class="card-t">1. AI is a new language for much of the team</p>
+      <p>About a third are senior/principal designers with 20+ years of experience. AI, vibe coding, MCPs, terminals are genuinely new. They want to learn but don't always want to speak up. Both a skill gap and a confidence gap.</p>
+    </div>
+    <div class="card">
+      <p class="card-t">2. Figma is huge and getting wilder</p>
+      <p>Figma Make and Claude Code opened new possibilities but also new chaos. Designers setting up GitHub and terminal without shared guidelines.</p>
+    </div>
+    <div class="card">
+      <p class="card-t">3. Culture survey lands when the internship starts</p>
+      <p>Quarterly survey reruns in June. We'd analyze results together and turn them into programs based on real data, not assumptions.</p>
+    </div>
+
+    <div class="note">
+      <strong>Something you said that stuck with me:</strong> "We don't just want the three people who already know how to vibe code to be the people. We want everyone."
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- IDEAS -->
+<!-- ============================================ -->
+<div class="s-white" id="ideas">
+  <div class="inner">
+    <p class="tag">Ideas</p>
+    <h2>AI fluency for the design team</h2>
+    <p class="small" style="margin-bottom:24px">Starting ideas, not a final plan. I'd shape everything with you and the team.</p>
+
+    <!-- LEARN -->
+    <div class="ws">
+      <p class="ws-tag">01 · Learn together</p>
+      <h3>Hands-on AI sessions</h3>
+      <p style="margin-bottom:14px">Recurring sessions where the team learns AI tools together. Not slides. Hands-on with real design tasks. Format that works best: show a technique, let people try it right away, then next thing.</p>
+
+      <div class="topic">
+        <p class="topic-t">What is MCP and why should designers care?</p>
+        <p>MCP (Model Context Protocol) is like USB-C for AI tools. One standard plug so Claude can talk to Figma, GitHub, and other tools through the same protocol. For designers: point Claude at your Figma file and it reads your components, sets variables, generates code. I'd demo this live and let people try it.</p>
+      </div>
+      <div class="topic">
+        <p class="topic-t">Figma Make: prompts to prototypes</p>
+        <p>Drop a design file in and chat with AI to build a working prototype. As of April 2026, Make Kits let you import your design system's tokens and code packages so everything stays on brand. If Udemy's system gets set up as a Make Kit, every prototype would automatically follow it.</p>
+      </div>
+      <div class="topic">
+        <p class="topic-t">Claude Code to Figma: code back to canvas</p>
+        <p>Launched Feb 2026. Build something in Claude Code, capture the live UI, send it into Figma as editable frames. Actual layers and components, not screenshots. Design and code flow both directions.</p>
+      </div>
+      <div class="topic">
+        <p class="topic-t">Vibe coding from zero</p>
+        <p>Setup is where beginners get stuck. What is a terminal. What is GitHub. From my workshops, once people get past setup they're excited. But if they can't, they give up. Patient step-by-step guide, first session together.</p>
+      </div>
+      <div class="topic">
+        <p class="topic-t">AI for everyday design work</p>
+        <p>No code needed. Writing prototype content, summarizing research, generating copy variations, drafting docs. Low-barrier entry for people not ready for vibe coding yet.</p>
+      </div>
+
+      <div class="note"><strong>On the senior designers:</strong> the discomfort isn't the learning. It's being a beginner again in front of people. Every session should feel like "we're figuring this out together." Celebrating questions matters as much as celebrating what people build.</div>
+    </div>
+
+    <!-- DOCUMENT -->
+    <div class="ws">
+      <p class="ws-tag">02 · Write it down</p>
+      <h3>Docs that actually get used</h3>
+      <p style="margin-bottom:10px">Everything learned gets captured so it doesn't disappear after the session and new hires can onboard with it later.</p>
+      <p class="arr">→ AI setup guide (terminal, GitHub, Claude Code, Figma MCP, zero to connected)</p>
+      <p class="arr">→ MCP explainer for designers (plain language, never-read-a-spec friendly)</p>
+      <p class="arr">→ Figma file standards (naming, structure, components, archiving)</p>
+      <p class="arr">→ AI tool catalog (tools by use case with tips)</p>
+      <p class="arr">→ Vibe coding playbook (workflows, troubleshooting, team examples)</p>
+      <div class="note">From freelance work I learned: documentation that can't be maintained isn't documentation. Everything I build would be designed to work without me.</div>
+    </div>
+
+    <!-- CONNECT -->
+    <div class="ws">
+      <p class="ws-tag">03 · Build community</p>
+      <h3>A place to be stuck together</h3>
+      <p style="margin-bottom:10px">You mentioned wanting a community where people share what they're making and where they're stuck. I love that framing because it normalizes not knowing.</p>
+      <p class="arr">→ <strong>Weekly show-and-tell.</strong> 30 min. Share what you tried, what worked, what confused you. Recorded for async.</p>
+      <p class="arr">→ <strong>Slack channel.</strong> Persistent space for tips, questions, interesting outputs between sessions.</p>
+      <p class="arr">→ <strong>Buddy pairings.</strong> Someone comfortable with AI + someone starting out. Just a person you can DM.</p>
+      <div class="note">From my Figma workshops: events are sparks, communities are fires. The workshops were 2 hours. The Telegram community I built after is still growing.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 12-WEEK PLAN -->
+<!-- ============================================ -->
+<div class="s-cream" id="plan">
+  <div class="inner">
+    <p class="tag">Rough plan</p>
+    <h2>12 weeks, three phases</h2>
+    <p class="small" style="margin-bottom:24px">Would flex based on the culture survey and listening tour. AI work runs alongside other DesignOps priorities.</p>
+
+    <div class="ph"><span class="ph-badge">Weeks 1–4</span><span class="ph-title">Listen and lay groundwork</span></div>
+    <div class="tl">
+      <div class="tl-item"><p class="tl-label">Listening tour</p><p class="tl-desc">1-on-1s with 10-12 designers across time zones. Where are people with AI? What excites or intimidates them?</p></div>
+      <div class="tl-item"><p class="tl-label">Culture survey</p><p class="tl-desc">Help launch the June survey. Plan analysis approach.</p></div>
+      <div class="tl-item"><p class="tl-label">Audit current state</p><p class="tl-desc">Map Figma structure, existing tools, where AI setups are breaking down.</p></div>
+      <div class="tl-item"><p class="tl-label">First AI session</p><p class="tl-desc">MCP basics + live demo. Everyone connects Claude to Figma together. Low stakes.</p></div>
+      <div class="tl-item"><p class="tl-label">Start docs</p><p class="tl-desc">Draft AI setup guide and MCP explainer. Share with a few designers for feedback first.</p></div>
+    </div>
+
+    <div class="ph"><span class="ph-badge">Weeks 5–8</span><span class="ph-title">Build momentum</span></div>
+    <div class="tl">
+      <div class="tl-item"><p class="tl-label">Deeper sessions</p><p class="tl-desc">Figma Make with Make Kits, Claude Code workflows, vibe coding basics.</p></div>
+      <div class="tl-item"><p class="tl-label">Launch community</p><p class="tl-desc">Weekly show-and-tell, Slack channel, buddy pairings. Frame as "learning together."</p></div>
+      <div class="tl-item"><p class="tl-label">Publish first docs</p><p class="tl-desc">Setup guide, MCP explainer, Figma standards. Share at Wednesday all-hands. Iterate.</p></div>
+      <div class="tl-item"><p class="tl-label">Survey → programs</p><p class="tl-desc">Turn culture survey insights into 1-2 programs that address what the team needs.</p></div>
+      <div class="tl-item"><p class="tl-label">Mid-point check</p><p class="tl-desc">What's landing? What's not? Adjust second half.</p></div>
+    </div>
+
+    <div class="ph"><span class="ph-badge">Weeks 9–12</span><span class="ph-title">Sustain and hand off</span></div>
+    <div class="tl">
+      <div class="tl-item"><p class="tl-label">Team-led sessions</p><p class="tl-desc">Shift to team members teaching each other. Peer teaching makes it self-sustaining.</p></div>
+      <div class="tl-item"><p class="tl-label">Remaining docs</p><p class="tl-desc">AI tool catalog, vibe coding playbook with real examples from the team.</p></div>
+      <div class="tl-item"><p class="tl-label">Handoff guide</p><p class="tl-desc">"How to keep this going" doc. Templates, facilitation notes, feedback process.</p></div>
+      <div class="tl-item"><p class="tl-label">Impact summary</p><p class="tl-desc">What changed? Who tried AI tools who hadn't before? Recommendations for next quarter.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- RESOURCES -->
+<!-- ============================================ -->
+<div class="s-white" id="research">
+  <div class="inner">
+    <p class="tag">Research</p>
+    <h2>What I looked into</h2>
+    <p class="small" style="margin-bottom:20px">Wanted to make sure these ideas are grounded in what's actually available, not just what sounds good.</p>
+
+    <p class="res-cat">MCP &amp; AI integration</p>
+    <div class="res"><a href="https://modelcontextprotocol.io" target="_blank">↗ MCP official docs</a><p class="res-note">Full spec + getting started guides</p></div>
+    <div class="res"><a href="https://en.wikipedia.org/wiki/Model_Context_Protocol" target="_blank">↗ MCP Wikipedia overview</a><p class="res-note">Clear summary of what it is and who adopted it</p></div>
+    <div class="res"><a href="https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/" target="_blank">↗ 2026 MCP roadmap</a><p class="res-note">Where the protocol is headed</p></div>
+
+    <p class="res-cat">Figma + AI tools</p>
+    <div class="res"><a href="https://www.figma.com/blog/introducing-claude-code-to-figma/" target="_blank">↗ Claude Code to Figma (Figma blog, Feb 2026)</a><p class="res-note">The code-to-canvas feature. How it works.</p></div>
+    <div class="res"><a href="https://www.builder.io/blog/claude-code-figma-mcp-server" target="_blank">↗ Figma MCP server setup guide</a><p class="res-note">Step-by-step. Foundation for the team setup guide.</p></div>
+    <div class="res"><a href="https://www.figma.com/release-notes/" target="_blank">↗ Make Kits (Figma release notes, Apr 2026)</a><p class="res-note">Import design system code into Make. Very relevant for Udemy.</p></div>
+    <div class="res"><a href="https://medium.com/design-bootcamp/claude-code-figma-a-designer-developer-workflow-that-actually-works-b7d7545edc40" target="_blank">↗ Claude Code + Figma workflow</a><p class="res-note">Real-world walkthrough. "Claude is the builder, Figma is the blueprint room."</p></div>
+    <div class="res"><a href="https://claude.com/plugins/figma" target="_blank">↗ Figma plugin for Claude</a><p class="res-note">Commands like /implement-design and /create-design-system-rules</p></div>
+
+    <p class="res-cat">DesignOps &amp; culture</p>
+    <div class="res"><a href="https://www.nngroup.com/articles/design-operations-101/" target="_blank">↗ DesignOps 101 (NN/g)</a><p class="res-note">Foundational overview of the field</p></div>
+    <div class="res"><a href="https://www.nngroup.com/articles/designops-roles-partnerships/" target="_blank">↗ DesignOps roles and partnerships (NN/g)</a><p class="res-note">Day-to-day of a DesignOps lead</p></div>
+    <div class="res"><a href="https://www.hrstacks.com/building-culture-in-distributed-teams/" target="_blank">↗ Building culture in distributed teams</a><p class="res-note">Zapier's async-first approach. Relevant for 5+ time zones.</p></div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ABOUT ME -->
+<!-- ============================================ -->
+<div class="s-cream" id="me">
+  <div class="inner">
+    <p class="tag">A bit about me</p>
+    <h2>Why I think I could help</h2>
+
+    <div class="cream-card">
+      <p class="card-t">I've taught AI to mixed-skill groups</p>
+      <p>Ran Figma workshops in Tokyo for 30-40 people. Taught components through vibe coding with Claude. Iterated between workshops based on feedback. Built a Telegram community that's still growing. I know what freezes beginners (setup, fear of looking foolish) and what excites them (making something real in 15 minutes).</p>
+    </div>
+    <div class="cream-card">
+      <p class="card-t">I've built ops systems from scratch</p>
+      <p>Design lead of a 20-person branding studio. Created team handbook, onboarding system, Notion tracking, weekly rituals. All from zero. Systems kept working when people left.</p>
+    </div>
+    <div class="cream-card">
+      <p class="card-t">I've worked across cultures and time zones</p>
+      <p>Sony in Tokyo: facilitating across Japanese, Polish, Ukrainian, Egyptian colleagues. Minerva: lived in SF, Berlin, Buenos Aires, Seoul, Tokyo. I know what it feels like to be in the inconvenient time zone.</p>
+    </div>
+    <div class="cream-card">
+      <p class="card-t">I understand AI as a builder</p>
+      <p>Built ML-powered emotional analysis for my journaling app with human-in-the-loop design. I understand MCPs, Claude Code, and Figma's integration stack because I've used them. And I can explain them patiently because I remember not knowing.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- FOOTER -->
+<!-- ============================================ -->
+<footer>
+  <p>Maria Dumitrescu</p>
+  <p><a href="mailto:mariadumitrescuoffice@gmail.com">mariadumitrescuoffice@gmail.com</a> · <a href="https://mariadumitrescu.com">mariadumitrescu.com</a></p>
+  <p>put together with care after a great conversation ✦</p>
+</footer>
+
+</body>
+</html>
